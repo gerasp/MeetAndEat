@@ -55,7 +55,7 @@ public class LoginTask extends BaseTask {
                 switch (response.getInt("code")) {
                     case 0: break;
                     case 1: activity.showSimpleDialog(activity.getString(R.string.error_incorrect_password));break;
-                    case 2: activity.showSimpleDialog("YOU ARE LOGGED IN");break;
+                    case 2: activity.showEditTextDialog("YOU ARE LOGGED IN");break;
                     default:
                 }
             } catch (JSONException e) {
