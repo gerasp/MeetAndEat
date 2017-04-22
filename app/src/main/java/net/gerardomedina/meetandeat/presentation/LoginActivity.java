@@ -1,5 +1,6 @@
 package net.gerardomedina.meetandeat.presentation;
 
+import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -127,16 +128,33 @@ public class LoginActivity extends AppCompatActivity {
 
         private final String username;
         private final String password;
-
+        private ProgressDialog progressDialog;
+        
+        
         UserLoginTask(String username, String password) {
             this.username = username;
             this.password = password;
         }
 
         @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            ProgressDialog progressDialog = new ProgressDialog(LoginActivity.this);
+            progressDialog.setMessage(getString(R.string.login_dialog));
+            progressDialog.setIndeterminate(false);
+            progressDialog.setCancelable(false);
+            progressDialog.show();
+        }
+
+
+        @Override
         protected Boolean doInBackground(Void... params) {
             // TODO: attempt authentication against a network service.
-            getUsers();
+            try {
+                Thread.sleep(5000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             // TODO: register the new account here if the account does not exist.
             return true;
         }
@@ -157,35 +175,6 @@ public class LoginActivity extends AppCompatActivity {
             authTask = null;
         }
 
-
-        private void getUsers() {
-            final String url = "jdbc:mysql://192.168.1.51/";
-            final String user = "root";
-            final String password = "root";
-            try {
-
-                Class.forName("com.mysql.jdbc.Driver").newInstance();
-                Connection con = DriverManager.getConnection(url, user, password);
-                Statement st = con.createStatement();
-                final ResultSet rs = st.executeQuery("SELECT * FROM meetandeat.User;");
-                while (rs.next()) {
-                    runOnUiThread(new Runnable() {
-                        public void run() {
-
-                            try {
-                                Toast.makeText(LoginActivity.this, rs.getString(0), Toast.LENGTH_SHORT).show();
-                            } catch (SQLException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    });
-                    if (isCancelled()) break;
-                }
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
     }
 }
 

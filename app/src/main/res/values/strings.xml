@@ -10,6 +10,7 @@
     <string name="error_incorrect_password">This password is incorrect</string>
     <string name="error_field_required">This field is required</string>
 
+    <string name="login_dialog">Trying to log in...</string>
 
 
 </resources>
