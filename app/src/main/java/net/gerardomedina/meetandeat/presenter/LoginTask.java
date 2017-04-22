@@ -44,8 +44,6 @@ public class LoginTask extends BaseTask {
         parameters.put("password",password);
 
         response = requester.httpRequest("LoginUser.php", "POST", parameters);
-
-        // TODO: register the new account here if the account does not exist.
         return true;
     }
 
@@ -55,7 +53,7 @@ public class LoginTask extends BaseTask {
         if (success) {
             try {
                 switch (response.getInt("code")) {
-                    case 0: EditText text = ((LoginActivity)activity).showEmailDialog();
+                    case 0: EditText text = ((LoginActivity)activity).showEmailDialog(username, password);
                             break;
                     case 1: activity.showSimpleDialog(activity.getString(R.string.error_incorrect_password));break;
                     case 2:

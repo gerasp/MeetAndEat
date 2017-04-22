@@ -15,20 +15,22 @@ public class SignupTask extends BaseTask {
 
     private final String username;
     private final String password;
+    private final String email;
     private final BaseActivity activity;
     private ProgressDialog progressDialog;
 
-    public SignupTask(BaseActivity activity, String username, String password) {
+    public SignupTask(BaseActivity activity, String username, String password, String email) {
         this.activity = activity;
         this.username = username;
         this.password = password;
+        this.email = email;
     }
 
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
         progressDialog = new ProgressDialog(activity);
-        progressDialog.setMessage(activity.getString(R.string.login_dialog));
+        progressDialog.setMessage(activity.getString(R.string.signup_dialog));
         progressDialog.setIndeterminate(false);
         progressDialog.setCancelable(false);
         progressDialog.show();
@@ -40,10 +42,9 @@ public class SignupTask extends BaseTask {
         Map<String,String> parameters = new HashMap<>();
         parameters.put("username",username);
         parameters.put("password",password);
+        parameters.put("email",email);
 
-        response = requester.httpRequest("LoginUser.php", "POST", parameters);
-
-        // TODO: register the new account here if the account does not exist.
+        response = requester.httpRequest("SignupUser.php", "POST", parameters);
         return true;
     }
 

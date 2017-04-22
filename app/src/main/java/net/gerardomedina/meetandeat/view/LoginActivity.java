@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import net.gerardomedina.meetandeat.R;
 import net.gerardomedina.meetandeat.presenter.LoginTask;
+import net.gerardomedina.meetandeat.presenter.SignupTask;
 
 
 public class LoginActivity extends BaseActivity {
@@ -118,7 +119,8 @@ public class LoginActivity extends BaseActivity {
         return password.length() > 0;
     }
 
-    public EditText showEmailDialog() {
+    public EditText showEmailDialog(final String username,final String password) {
+        final BaseActivity activity = this;
         AlertDialog alertDialog = new AlertDialog.Builder(this).create();
         final EditText input = new EditText(this);
         input.setInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
@@ -131,9 +133,10 @@ public class LoginActivity extends BaseActivity {
                     case DialogInterface.BUTTON_POSITIVE:
                             if (isEmailValid(input.getText().toString())) {
                                 dialog.cancel();
-                                showSimpleDialog("YAHOO");
+                                new SignupTask(activity, username, password, input.getText().toString()).execute((Void)null);
                             } else {
-                                showSimpleDialog(getString(R.string.error_invalid_email));
+                                showEmailDialog(username,password);
+                                showToast(getString(R.string.error_invalid_email));
                             }
                 }
             }
@@ -141,6 +144,8 @@ public class LoginActivity extends BaseActivity {
         alertDialog.show();
         return input;
     }
+
+
 
 }
 
