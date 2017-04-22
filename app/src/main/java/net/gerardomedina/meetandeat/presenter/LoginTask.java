@@ -2,9 +2,11 @@ package net.gerardomedina.meetandeat.presenter;
 
 import android.app.ProgressDialog;
 import android.util.Log;
+import android.widget.EditText;
 
 import net.gerardomedina.meetandeat.R;
 import net.gerardomedina.meetandeat.view.BaseActivity;
+import net.gerardomedina.meetandeat.view.LoginActivity;
 
 import org.json.JSONException;
 
@@ -53,9 +55,11 @@ public class LoginTask extends BaseTask {
         if (success) {
             try {
                 switch (response.getInt("code")) {
-                    case 0: break;
+                    case 0: EditText text = ((LoginActivity)activity).showEmailDialog();
+                            break;
                     case 1: activity.showSimpleDialog(activity.getString(R.string.error_incorrect_password));break;
-                    case 2: activity.showEditTextDialog("YOU ARE LOGGED IN");break;
+                    case 2:
+                            break;
                     default:
                 }
             } catch (JSONException e) {

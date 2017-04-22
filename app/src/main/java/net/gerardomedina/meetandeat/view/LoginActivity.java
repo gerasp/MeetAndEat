@@ -1,6 +1,9 @@
 package net.gerardomedina.meetandeat.view;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
+import android.text.InputType;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
@@ -100,6 +103,11 @@ public class LoginActivity extends BaseActivity {
         }
     }
 
+    private boolean isEmailValid(String email) {
+        // TODO CHANGE THIS
+        return email.contains("@");
+    }
+
     private boolean isUsernameValid(String username) {
         // TODO CHANGE THIS
         return username.length() > 0;
@@ -110,6 +118,29 @@ public class LoginActivity extends BaseActivity {
         return password.length() > 0;
     }
 
+    public EditText showEmailDialog() {
+        AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+        final EditText input = new EditText(this);
+        input.setInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
+        alertDialog.setMessage(getString(R.string.request_email));
+        alertDialog.setView(input);
+        alertDialog.setButton(DialogInterface.BUTTON_POSITIVE, getString(android.R.string.ok), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                switch (which) {
+                    case DialogInterface.BUTTON_POSITIVE:
+                            if (isEmailValid(input.getText().toString())) {
+                                dialog.cancel();
+                                showSimpleDialog("YAHOO");
+                            } else {
+                                showSimpleDialog(getString(R.string.error_invalid_email));
+                            }
+                }
+            }
+        });
+        alertDialog.show();
+        return input;
+    }
 
 }
 

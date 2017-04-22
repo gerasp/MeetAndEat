@@ -15,16 +15,5 @@ public abstract class BaseActivity extends AppCompatActivity {
                 .show();
     }
 
-
-    public void showEditTextDialog(String message) {
-        final AlertDialog alertDialog = new AlertDialog.Builder(this).create();
-        final EditText input = new EditText(this);
-        alertDialog.setMessage(message);
-        alertDialog.setView(input);
-        alertDialog.show();
-    }
-
-
-
 }
 
