@@ -1,11 +1,7 @@
-package net.gerardomedina.meetandeat.presentation;
+package net.gerardomedina.meetandeat.view;
 
-import android.app.ProgressDialog;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -14,20 +10,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import net.gerardomedina.meetandeat.R;
-import net.gerardomedina.meetandeat.persistence.Requester;
-
-import org.json.JSONObject;
-
-import java.util.HashMap;
-import java.util.Map;
+import net.gerardomedina.meetandeat.presenter.LoginTask;
 
 
-public class LoginActivity extends AppCompatActivity {
-
-    private UserLoginTask authTask = null;
+public class LoginActivity extends BaseActivity {
 
     private ImageView logoView;
     private EditText usernameView;
@@ -77,9 +65,6 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void attemptLogin() {
-        if (authTask != null) {
-            return;
-        }
         usernameView.setError(null);
         passwordView.setError(null);
 
@@ -111,8 +96,7 @@ public class LoginActivity extends AppCompatActivity {
         if (cancel) {
             focusView.requestFocus();
         } else {
-            authTask = new UserLoginTask(username, password);
-            authTask.execute((Void) null);
+            new LoginTask(this, username, password).execute((Void)null);
         }
     }
 
@@ -126,56 +110,6 @@ public class LoginActivity extends AppCompatActivity {
         return password.length() > 0;
     }
 
-    private class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
 
-        private final String username;
-        private final String password;
-        
-        UserLoginTask(String username, String password) {
-            this.username = username;
-            this.password = password;
-        }
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            ProgressDialog progressDialog = new ProgressDialog(LoginActivity.this);
-            progressDialog.setMessage(getString(R.string.login_dialog));
-            progressDialog.setIndeterminate(false);
-            progressDialog.setCancelable(false);
-            progressDialog.show();
-        }
-
-
-        @Override
-        protected Boolean doInBackground(Void... params) {
-            // TODO: attempt authentication against a network service.
-            Map<String,String> parameters = new HashMap<>();
-            parameters.put("username",username);
-            parameters.put("password",password);
-            JSONObject response = new Requester().httpRequest("LoginUser.php", "POST", parameters);
-            Log.e("asdf",response.toString());
-
-            // TODO: register the new account here if the account does not exist.
-            return true;
-        }
-
-        @Override
-        protected void onPostExecute(final Boolean success) {
-            authTask = null;
-            if (success) {
-                finish();
-            } else {
-                passwordView.setError(getString(R.string.error_incorrect_password));
-                passwordView.requestFocus();
-            }
-        }
-
-        @Override
-        protected void onCancelled() {
-            authTask = null;
-        }
-
-    }
 }
 

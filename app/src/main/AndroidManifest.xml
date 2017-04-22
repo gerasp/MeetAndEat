@@ -14,7 +14,7 @@
         android:theme="@style/AppTheme"
         android:fullBackupContent="false">
         <activity
-            android:name="net.gerardomedina.meetandeat.presentation.LoginActivity"
+            android:name="net.gerardomedina.meetandeat.view.LoginActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
