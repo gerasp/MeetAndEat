@@ -5,6 +5,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -16,12 +17,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import net.gerardomedina.meetandeat.R;
+import net.gerardomedina.meetandeat.persistence.Requester;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
+
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -128,8 +130,6 @@ public class LoginActivity extends AppCompatActivity {
 
         private final String username;
         private final String password;
-        private ProgressDialog progressDialog;
-        
         
         UserLoginTask(String username, String password) {
             this.username = username;
@@ -150,11 +150,12 @@ public class LoginActivity extends AppCompatActivity {
         @Override
         protected Boolean doInBackground(Void... params) {
             // TODO: attempt authentication against a network service.
-            try {
-                Thread.sleep(5000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+            Map<String,String> parameters = new HashMap<>();
+            parameters.put("username",username);
+            parameters.put("password",password);
+            JSONObject response = new Requester().httpRequest("LoginUser.php", "POST", parameters);
+            Log.e("asdf",response.toString());
+
             // TODO: register the new account here if the account does not exist.
             return true;
         }
