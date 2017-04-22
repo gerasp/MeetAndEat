@@ -1,4 +1,4 @@
-package net.gerardomedina.meeteat.presentation;
+package net.gerardomedina.meetandeat.presentation;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -8,12 +8,19 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.EditorInfo;
-import android.widget.EditText;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import net.gerardomedina.meeteat.R;
+import net.gerardomedina.meetandeat.R;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -67,7 +74,9 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void attemptLogin() {
-        if (authTask != null) { return; }
+        if (authTask != null) {
+            return;
+        }
         usernameView.setError(null);
         passwordView.setError(null);
 
@@ -77,7 +86,7 @@ public class LoginActivity extends AppCompatActivity {
         boolean cancel = false;
         View focusView = null;
 
-        if (!TextUtils.isEmpty(password)) {
+        if (TextUtils.isEmpty(password)) {
             passwordView.setError(getString(R.string.error_field_required));
             focusView = passwordView;
             cancel = true;
@@ -105,11 +114,13 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private boolean isUsernameValid(String username) {
-        return username.length() > 3;
+        // TODO CHANGE THIS
+        return username.length() > 0;
     }
 
     private boolean isPasswordValid(String password) {
-        return password.length() > 3;
+        // TODO CHANGE THIS
+        return password.length() > 0;
     }
 
     private class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
@@ -125,7 +136,7 @@ public class LoginActivity extends AppCompatActivity {
         @Override
         protected Boolean doInBackground(Void... params) {
             // TODO: attempt authentication against a network service.
-
+            getUsers();
             // TODO: register the new account here if the account does not exist.
             return true;
         }
@@ -142,7 +153,39 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         @Override
-        protected void onCancelled() { authTask = null; }
+        protected void onCancelled() {
+            authTask = null;
+        }
+
+
+        private void getUsers() {
+            final String url = "jdbc:mysql://192.168.1.51/";
+            final String user = "root";
+            final String password = "root";
+            try {
+
+                Class.forName("com.mysql.jdbc.Driver").newInstance();
+                Connection con = DriverManager.getConnection(url, user, password);
+                Statement st = con.createStatement();
+                final ResultSet rs = st.executeQuery("SELECT * FROM meetandeat.User;");
+                while (rs.next()) {
+                    runOnUiThread(new Runnable() {
+                        public void run() {
+
+                            try {
+                                Toast.makeText(LoginActivity.this, rs.getString(0), Toast.LENGTH_SHORT).show();
+                            } catch (SQLException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    });
+                    if (isCancelled()) break;
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
 

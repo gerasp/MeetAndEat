@@ -1,4 +1,4 @@
-package net.gerardomedina.meeteat;
+package net.gerardomedina.meetandeat;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

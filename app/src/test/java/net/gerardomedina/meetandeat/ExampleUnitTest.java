@@ -1,4 +1,4 @@
-package net.gerardomedina.meeteat;
+package net.gerardomedina.meetandeat;
 
 import org.junit.Test;
 
