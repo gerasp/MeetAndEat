@@ -10,24 +10,33 @@ import android.view.View.OnClickListener;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import net.gerardomedina.meeteat.R;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private UserLoginTask mAuthTask = null;
+    private UserLoginTask authTask = null;
 
-    private EditText mUsernameView;
-    private EditText mPasswordView;
+    private ImageView logoView;
+    private EditText usernameView;
+    private EditText passwordView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        mUsernameView = (EditText) findViewById(R.id.username);
-        mPasswordView = (EditText) findViewById(R.id.password);
-        mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+        usernameView = (EditText) findViewById(R.id.username);
+        usernameView.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) logoView.setVisibility(View.GONE);
+                else logoView.setVisibility(View.VISIBLE);
+            }
+        });
+        passwordView = (EditText) findViewById(R.id.password);
+        passwordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
                 if (id == R.id.login || id == EditorInfo.IME_NULL) {
@@ -37,51 +46,61 @@ public class LoginActivity extends AppCompatActivity {
                 return false;
             }
         });
+        passwordView.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) logoView.setVisibility(View.GONE);
+                else logoView.setVisibility(View.VISIBLE);
+            }
+        });
 
-        Button mUsernameSignInButton = (Button) findViewById(R.id.sign_in_button);
-        mUsernameSignInButton.setOnClickListener(new OnClickListener() {
+        Button usernameSignInButton = (Button) findViewById(R.id.sign_in_button);
+        usernameSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
                 attemptLogin();
             }
         });
+
+        logoView = (ImageView) findViewById(R.id.logo);
+        logoView.requestFocus();
     }
 
     private void attemptLogin() {
-        if (mAuthTask != null) { return; }
-        mUsernameView.setError(null);
-        mPasswordView.setError(null);
+        if (authTask != null) { return; }
+        usernameView.setError(null);
+        passwordView.setError(null);
 
-        String username = mUsernameView.getText().toString();
-        String password = mPasswordView.getText().toString();
+        String username = usernameView.getText().toString();
+        String password = passwordView.getText().toString();
 
         boolean cancel = false;
         View focusView = null;
 
         if (!TextUtils.isEmpty(password)) {
-            mPasswordView.setError(getString(R.string.error_field_required));
-            focusView = mPasswordView;
+            passwordView.setError(getString(R.string.error_field_required));
+            focusView = passwordView;
             cancel = true;
         } else if (!isPasswordValid(password)) {
-            mPasswordView.setError(getString(R.string.error_invalid_password));
-            focusView = mPasswordView;
+            passwordView.setError(getString(R.string.error_invalid_password));
+            focusView = passwordView;
             cancel = true;
         }
         if (TextUtils.isEmpty(username)) {
-            mUsernameView.setError(getString(R.string.error_field_required));
-            focusView = mUsernameView;
+            usernameView.setError(getString(R.string.error_field_required));
+            focusView = usernameView;
             cancel = true;
         } else if (!isUsernameValid(username)) {
-            mUsernameView.setError(getString(R.string.error_invalid_username));
-            focusView = mUsernameView;
+            usernameView.setError(getString(R.string.error_invalid_username));
+            focusView = usernameView;
             cancel = true;
         }
 
         if (cancel) {
             focusView.requestFocus();
         } else {
-            mAuthTask = new UserLoginTask(username, password);
-            mAuthTask.execute((Void) null);
+            authTask = new UserLoginTask(username, password);
+            authTask.execute((Void) null);
         }
     }
 
@@ -95,12 +114,12 @@ public class LoginActivity extends AppCompatActivity {
 
     private class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
 
-        private final String mUsername;
-        private final String mPassword;
+        private final String username;
+        private final String password;
 
         UserLoginTask(String username, String password) {
-            mUsername = username;
-            mPassword = password;
+            this.username = username;
+            this.password = password;
         }
 
         @Override
@@ -113,17 +132,17 @@ public class LoginActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(final Boolean success) {
-            mAuthTask = null;
+            authTask = null;
             if (success) {
                 finish();
             } else {
-                mPasswordView.setError(getString(R.string.error_incorrect_password));
-                mPasswordView.requestFocus();
+                passwordView.setError(getString(R.string.error_incorrect_password));
+                passwordView.requestFocus();
             }
         }
 
         @Override
-        protected void onCancelled() { mAuthTask = null; }
+        protected void onCancelled() { authTask = null; }
     }
 }
 
