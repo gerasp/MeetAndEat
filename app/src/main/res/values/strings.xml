@@ -32,4 +32,7 @@
     <string name="successfully_changed_account">Successfully changed your account details</string>
     <string name="copyright">Copyright © 2017 - Gerardo Medina</string>
 
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>

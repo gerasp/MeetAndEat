@@ -1,43 +1,43 @@
-package net.gerardomedina.meetandeat.presenter;
+package net.gerardomedina.meetandeat.task;
 
 import android.util.Log;
-import android.widget.EditText;
 
 import net.gerardomedina.meetandeat.R;
-import net.gerardomedina.meetandeat.view.BaseActivity;
-import net.gerardomedina.meetandeat.view.LoginActivity;
-import net.gerardomedina.meetandeat.view.DashboardActivity;
+import net.gerardomedina.meetandeat.view.activity.BaseActivity;
+import net.gerardomedina.meetandeat.view.activity.NavigationActivity;
 
 import org.json.JSONException;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class LoginTask extends BaseTask {
+public class SignupTask extends BaseTask {
 
     private final String username;
     private final String password;
+    private final String email;
 
-    public LoginTask(BaseActivity activity, String username, String password) {
+    public SignupTask(BaseActivity activity, String username, String password, String email) {
         this.activity = activity;
         this.username = username;
         this.password = password;
+        this.email = email;
     }
 
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
-        showProgressDialog(R.string.login_dialog);
+        showProgressDialog(R.string.signup_dialog);
     }
-
 
     @Override
     protected Boolean doInBackground(Void... params) {
         Map<String,String> parameters = new HashMap<>();
         parameters.put("username",username);
         parameters.put("password",password);
+        parameters.put("email",email);
 
-        response = requester.httpRequest("LoginUser.php", "POST", parameters);
+        response = requester.httpRequest("SignupUser.php", "POST", parameters);
         return true;
     }
 
@@ -47,13 +47,10 @@ public class LoginTask extends BaseTask {
         if (success) {
             try {
                 switch (response.getInt("code")) {
-                    case 0: EditText text = ((LoginActivity)activity).showEmailDialog(username, password);
+                    case 0: activity.showSimpleDialog(activity.getString(R.string.error_taken_email));
                             break;
-                    case 1: activity.showSimpleDialog(activity.getString(R.string.error_incorrect_password));
+                    case 2: activity.changeToActivity(NavigationActivity.class);
                             break;
-                    case 2: activity.changeToActivity(DashboardActivity.class);
-                            break;
-                    default:
                 }
             } catch (JSONException e) {
                 Log.e("JSON Parser", "Error parsing data: " + e.toString());

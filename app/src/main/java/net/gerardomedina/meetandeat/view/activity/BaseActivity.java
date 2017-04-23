@@ -1,4 +1,4 @@
-package net.gerardomedina.meetandeat.view;
+package net.gerardomedina.meetandeat.view.activity;
 
 import android.app.Activity;
 import android.content.Intent;

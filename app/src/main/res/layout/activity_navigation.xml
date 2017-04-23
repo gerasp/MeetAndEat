@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="net.gerardomedina.meetandeat.view.NavigationActivity">
+    tools:context="net.gerardomedina.meetandeat.view.activity.NavigationActivity">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -25,17 +25,18 @@
             android:layout_height="match_parent"
             android:background="@color/white" >
 
-            <ViewStub
-                android:id="@+id/content_container"
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:inflatedId="@+id/message_layout" />
+                android:layout_height="wrap_content"
+                android:id="@+id/fragment_container">
+
+            </FrameLayout>
 
             <android.support.design.widget.BottomNavigationView
                 android:id="@+id/navigation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="bottom|right"
+                android:layout_gravity="bottom"
                 android:background="?android:attr/windowBackground"
                 app:menu="@menu/navigation" />
         </FrameLayout>

@@ -1,4 +1,4 @@
-package net.gerardomedina.meetandeat.view;
+package net.gerardomedina.meetandeat.view.activity;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -15,8 +15,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import net.gerardomedina.meetandeat.R;
-import net.gerardomedina.meetandeat.presenter.LoginTask;
-import net.gerardomedina.meetandeat.presenter.SignupTask;
+import net.gerardomedina.meetandeat.task.LoginTask;
+import net.gerardomedina.meetandeat.task.SignupTask;
 
 
 public class LoginActivity extends BaseActivity {

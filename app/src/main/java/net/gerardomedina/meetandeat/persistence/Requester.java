@@ -1,4 +1,4 @@
-package net.gerardomedina.meetandeat.model;
+package net.gerardomedina.meetandeat.persistence;
 
 import android.util.Log;
 
