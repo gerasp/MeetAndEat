@@ -3,6 +3,7 @@ package net.gerardomedina.meetandeat.view.fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,10 +14,13 @@ import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.ui.PlacePicker;
 
 import net.gerardomedina.meetandeat.R;
+import net.gerardomedina.meetandeat.task.GetMeetingsTask;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -27,6 +31,7 @@ public class DashboardFragment extends BaseFragment {
 
     private int PLACE_PICKER_REQUEST = 1;
     private ListView meetings;
+    private View view;
 
     public DashboardFragment() {
     }
@@ -34,22 +39,17 @@ public class DashboardFragment extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_dashboard, container, false);
+        view = inflater.inflate(R.layout.fragment_dashboard, container, false);
         FloatingActionButton newMeetingButton = (FloatingActionButton) view.findViewById(R.id.newMeetingButton);
-        populateDashboard(view);
+        new GetMeetingsTask(this, 1).execute();
         return view;
     }
 
-    private void populateDashboard(View view) {
+    public void populateDashboard(JSONObject response) throws JSONException {
         ListView resultsListView = (ListView) view.findViewById(R.id.meetings);
-
+        Log.e("ASDF",response.toString());
         HashMap<String, String> meetings = new HashMap<>();
-        meetings.put("Diana", "3214 Broadway Avenue");
-        meetings.put("Tyga", "343 Rack City Drive");
-        meetings.put("Rich Homie Quan", "111 Everything Gold Way");
-        meetings.put("Donna", "789 Escort St");
-        meetings.put("Bartholomew", "332 Dunkin St");
-        meetings.put("Eden", "421 Angelic Blvd");
+        meetings.put(response.getJSONObject("0").getString("description"), response.getJSONObject("0").getString("datetime"));
 
         List<HashMap<String, String>> listItems = new ArrayList<>();
         SimpleAdapter adapter = new SimpleAdapter(getActivity(), listItems, R.layout.fragment_dashboard_item,

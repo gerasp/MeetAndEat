@@ -126,5 +126,6 @@
     <string name="title_activity_main">MainActivity</string>
     <string name="title_home">Home</string>
     <string name="account_created">Account successfully created</string>
+    <string name="get_meetings_dialog">Getting Meetings</string>
 
 </resources>
