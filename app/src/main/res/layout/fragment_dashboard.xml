@@ -6,12 +6,12 @@
     tools:context="net.gerardomedina.meetandeat.view.fragment.BaseFragment">
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/floatingActionButton2"
+        android:id="@+id/newMeetingButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:clickable="true"
-        android:layout_margin="@dimen/activity_horizontal_margin"
         android:layout_gravity="bottom|right"
+        android:layout_margin="@dimen/activity_horizontal_margin"
+        android:clickable="true"
         app:fabSize="mini"
         app:srcCompat="@android:drawable/ic_input_add" />
 
