@@ -157,31 +157,31 @@ public class LoginActivity extends BaseActivity {
         return password.length() > 0;
     }
 
-    public EditText showEmailDialog(final String username, final String password) {
-        final BaseActivity activity = this;
-        AlertDialog alertDialog = new AlertDialog.Builder(this).create();
-        final EditText input = new EditText(this);
-        input.setInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
-        alertDialog.setMessage(getString(R.string.request_email));
-        alertDialog.setView(input);
-        alertDialog.setButton(DialogInterface.BUTTON_POSITIVE, getString(android.R.string.ok), new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                switch (which) {
-                    case DialogInterface.BUTTON_POSITIVE:
-                        if (isEmailValid(input.getText().toString())) {
-                            dialog.cancel();
-                            new SignupTask(activity, username, password, input.getText().toString()).execute((Void) null);
-                        } else {
-                            showEmailDialog(username, password);
-                            showToast(getString(R.string.error_invalid_email));
-                        }
-                }
-            }
-        });
-        alertDialog.show();
-        return input;
-    }
+//    public EditText showEmailDialog(final String username, final String password) {
+//        final BaseActivity activity = this;
+//        AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+//        final EditText input = new EditText(this);
+//        input.setInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
+//        alertDialog.setMessage(getString(R.string.request_email));
+//        alertDialog.setView(input);
+//        alertDialog.setButton(DialogInterface.BUTTON_POSITIVE, getString(android.R.string.ok), new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int which) {
+//                switch (which) {
+//                    case DialogInterface.BUTTON_POSITIVE:
+//                        if (isEmailValid(input.getText().toString())) {
+//                            dialog.cancel();
+//                            new SignupTask(activity, username, password, input.getText().toString()).execute((Void) null);
+//                        } else {
+//                            showEmailDialog(username, password);
+//                            showToast(getString(R.string.error_invalid_email));
+//                        }
+//                }
+//            }
+//        });
+//        alertDialog.show();
+//        return input;
+//    }
 
     @Override
     protected void onDestroy() {

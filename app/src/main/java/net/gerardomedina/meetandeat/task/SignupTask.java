@@ -15,13 +15,13 @@ public class SignupTask extends BaseTask {
 
     private final String username;
     private final String password;
-    private final String email;
+//    private final String email;
 
-    public SignupTask(BaseActivity activity, String username, String password, String email) {
+    public SignupTask(BaseActivity activity, String username, String password) {
         this.activity = activity;
         this.username = username;
         this.password = password;
-        this.email = email;
+//        this.email = email;
     }
 
     @Override
@@ -35,7 +35,7 @@ public class SignupTask extends BaseTask {
         Map<String,String> parameters = new HashMap<>();
         parameters.put("username",username);
         parameters.put("password",password);
-        parameters.put("email",email);
+//        parameters.put("email",email);
 
         response = requester.httpRequest("SignupUser.php", "POST", parameters);
         return true;
@@ -47,9 +47,11 @@ public class SignupTask extends BaseTask {
         if (success) {
             try {
                 switch (response.getInt("code")) {
-                    case 0: activity.showSimpleDialog(activity.getString(R.string.error_taken_email));
-                            break;
-                    case 2: activity.changeToActivity(NavigationActivity.class);
+//                    case 0: activity.showSimpleDialog(activity.getString(R.string.error_taken_email));
+//                            break;
+                    case 2:
+                            activity.showToast(activity.getString(R.string.account_created));
+                            activity.changeToActivity(NavigationActivity.class);
                             break;
                 }
             } catch (JSONException e) {

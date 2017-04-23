@@ -47,11 +47,14 @@ public class LoginTask extends BaseTask {
         if (success) {
             try {
                 switch (response.getInt("code")) {
-                    case 0: EditText text = ((LoginActivity)activity).showEmailDialog(username, password);
+                    case 0:
+//                            EditText text = ((LoginActivity)activity).showEmailDialog(username, password);
+                            new SignupTask(activity, username, password).execute((Void) null);
                             break;
                     case 1: activity.showSimpleDialog(activity.getString(R.string.error_incorrect_password));
                             break;
-                    case 2: activity.changeToActivity(NavigationActivity.class);
+                    case 2: activity.showToast("You are logged in");
+                            activity.changeToActivity(NavigationActivity.class);
                             break;
                     default:
                 }
