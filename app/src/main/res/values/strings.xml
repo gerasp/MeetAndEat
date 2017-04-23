@@ -10,10 +10,20 @@
     <string name="error_invalid_email">This email is invalid</string>
     <string name="error_incorrect_password">This password is incorrect</string>
     <string name="error_field_required">This field is required</string>
+    <string name="error_taken_email">This email is already taken</string>
 
     <string name="login_dialog">Trying to log in…</string>
     <string name="request_email">This username is not taken. Please write your email in order to finish the creation of a new account</string>
     <string name="signup_dialog">Trying to sign up…</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
 
 
 </resources>

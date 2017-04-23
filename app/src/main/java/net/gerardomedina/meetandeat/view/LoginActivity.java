@@ -24,6 +24,7 @@ public class LoginActivity extends BaseActivity {
     private ImageView logoView;
     private EditText usernameView;
     private EditText passwordView;
+    private Button signInButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,8 +57,8 @@ public class LoginActivity extends BaseActivity {
             }
         });
 
-        Button usernameSignInButton = (Button) findViewById(R.id.sign_in_button);
-        usernameSignInButton.setOnClickListener(new OnClickListener() {
+        signInButton = (Button) findViewById(R.id.sign_in_button);
+        signInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
                 attemptLogin();
@@ -69,6 +70,7 @@ public class LoginActivity extends BaseActivity {
     }
 
     private void attemptLogin() {
+
         usernameView.setError(null);
         passwordView.setError(null);
 
@@ -100,8 +102,10 @@ public class LoginActivity extends BaseActivity {
         if (cancel) {
             focusView.requestFocus();
         } else {
+            logoView.setVisibility(View.VISIBLE);
             new LoginTask(this, username, password).execute((Void)null);
         }
+
     }
 
     private boolean isEmailValid(String email) {

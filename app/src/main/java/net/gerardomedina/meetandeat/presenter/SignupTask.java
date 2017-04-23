@@ -5,6 +5,7 @@ import android.util.Log;
 
 import net.gerardomedina.meetandeat.R;
 import net.gerardomedina.meetandeat.view.BaseActivity;
+import net.gerardomedina.meetandeat.view.MainActivity;
 
 import org.json.JSONException;
 
@@ -16,8 +17,6 @@ public class SignupTask extends BaseTask {
     private final String username;
     private final String password;
     private final String email;
-    private final BaseActivity activity;
-    private ProgressDialog progressDialog;
 
     public SignupTask(BaseActivity activity, String username, String password, String email) {
         this.activity = activity;
@@ -29,13 +28,8 @@ public class SignupTask extends BaseTask {
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
-        progressDialog = new ProgressDialog(activity);
-        progressDialog.setMessage(activity.getString(R.string.signup_dialog));
-        progressDialog.setIndeterminate(false);
-        progressDialog.setCancelable(false);
-        progressDialog.show();
+        showProgressDialog(R.string.signup_dialog);
     }
-
 
     @Override
     protected Boolean doInBackground(Void... params) {
@@ -52,10 +46,12 @@ public class SignupTask extends BaseTask {
     protected void onPostExecute(final Boolean success) {
         progressDialog.cancel();
         if (success) {
-            activity.showSimpleDialog(response.toString());
             try {
                 switch (response.getInt("code")) {
-                    case 0:
+                    case 0: activity.showSimpleDialog(activity.getString(R.string.error_taken_email));
+                            break;
+                    case 2: activity.changeToActivity(MainActivity.class);
+                            break;
                 }
             } catch (JSONException e) {
                 Log.e("JSON Parser", "Error parsing data: " + e.toString());

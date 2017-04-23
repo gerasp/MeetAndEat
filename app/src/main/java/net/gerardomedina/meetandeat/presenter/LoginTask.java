@@ -7,6 +7,7 @@ import android.widget.EditText;
 import net.gerardomedina.meetandeat.R;
 import net.gerardomedina.meetandeat.view.BaseActivity;
 import net.gerardomedina.meetandeat.view.LoginActivity;
+import net.gerardomedina.meetandeat.view.MainActivity;
 
 import org.json.JSONException;
 
@@ -17,8 +18,6 @@ public class LoginTask extends BaseTask {
 
     private final String username;
     private final String password;
-    private final BaseActivity activity;
-    private ProgressDialog progressDialog;
 
     public LoginTask(BaseActivity activity, String username, String password) {
         this.activity = activity;
@@ -29,11 +28,7 @@ public class LoginTask extends BaseTask {
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
-        progressDialog = new ProgressDialog(activity);
-        progressDialog.setMessage(activity.getString(R.string.login_dialog));
-        progressDialog.setIndeterminate(false);
-        progressDialog.setCancelable(false);
-        progressDialog.show();
+        showProgressDialog(R.string.login_dialog);
     }
 
 
@@ -55,8 +50,9 @@ public class LoginTask extends BaseTask {
                 switch (response.getInt("code")) {
                     case 0: EditText text = ((LoginActivity)activity).showEmailDialog(username, password);
                             break;
-                    case 1: activity.showSimpleDialog(activity.getString(R.string.error_incorrect_password));break;
-                    case 2:
+                    case 1: activity.showSimpleDialog(activity.getString(R.string.error_incorrect_password));
+                            break;
+                    case 2: activity.changeToActivity(MainActivity.class);
                             break;
                     default:
                 }
