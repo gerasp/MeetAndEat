@@ -16,8 +16,6 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     public void changeToActivity(Class activity) {
         this.startActivity(new Intent(this, activity));
-        this.overridePendingTransition(0, 0);
-
     }
 
     public void showSimpleDialog(String message) {
