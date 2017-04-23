@@ -1,17 +1,30 @@
 package net.gerardomedina.meetandeat.view.activity;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.ObjectAnimator;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AlertDialog;
 import android.text.InputType;
 import android.text.TextUtils;
+import android.util.AttributeSet;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.animation.DecelerateInterpolator;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import net.gerardomedina.meetandeat.R;
@@ -25,11 +38,20 @@ public class LoginActivity extends BaseActivity {
     private EditText usernameView;
     private EditText passwordView;
     private Button signInButton;
+    private Handler handler;
+    private Runnable runnable;
+
+    private ProgressBar progressBar;
+    private ScrollView loginForm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        showProgress();
+
+        loginForm = (ScrollView)findViewById(R.id.login_form);
+
         usernameView = (EditText) findViewById(R.id.username);
         usernameView.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
@@ -61,6 +83,7 @@ public class LoginActivity extends BaseActivity {
         signInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
+                logoView.setVisibility(View.VISIBLE);
                 attemptLogin();
             }
         });
@@ -103,7 +126,7 @@ public class LoginActivity extends BaseActivity {
             focusView.requestFocus();
         } else {
             logoView.setVisibility(View.VISIBLE);
-            new LoginTask(this, username, password).execute((Void)null);
+            new LoginTask(this, username, password).execute((Void) null);
         }
 
     }
@@ -123,7 +146,7 @@ public class LoginActivity extends BaseActivity {
         return password.length() > 0;
     }
 
-    public EditText showEmailDialog(final String username,final String password) {
+    public EditText showEmailDialog(final String username, final String password) {
         final BaseActivity activity = this;
         AlertDialog alertDialog = new AlertDialog.Builder(this).create();
         final EditText input = new EditText(this);
@@ -135,13 +158,13 @@ public class LoginActivity extends BaseActivity {
             public void onClick(DialogInterface dialog, int which) {
                 switch (which) {
                     case DialogInterface.BUTTON_POSITIVE:
-                            if (isEmailValid(input.getText().toString())) {
-                                dialog.cancel();
-                                new SignupTask(activity, username, password, input.getText().toString()).execute((Void)null);
-                            } else {
-                                showEmailDialog(username,password);
-                                showToast(getString(R.string.error_invalid_email));
-                            }
+                        if (isEmailValid(input.getText().toString())) {
+                            dialog.cancel();
+                            new SignupTask(activity, username, password, input.getText().toString()).execute((Void) null);
+                        } else {
+                            showEmailDialog(username, password);
+                            showToast(getString(R.string.error_invalid_email));
+                        }
                 }
             }
         });
@@ -149,6 +172,38 @@ public class LoginActivity extends BaseActivity {
         return input;
     }
 
+    public void showProgress() {
+        progressBar = (ProgressBar) findViewById(R.id.splash_progress_bar);
+        ObjectAnimator animation = ObjectAnimator.ofInt(progressBar, "progress", 0, 100);
+        animation.setDuration(1500);
+        animation.setInterpolator(new DecelerateInterpolator());
+        animation.start();
+
+        handler = new Handler();
+        runnable = new Runnable() {
+            public void run() {
+                progressBar.setVisibility(View.GONE);
+                logoView.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(),R.anim.slide_in_top));
+                logoView.setTranslationY((float) 50.0);
+
+                loginForm.setVisibility(View.VISIBLE);
+                loginForm.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(),
+                        R.anim.slide_in_bottom));
+
+            }
+        };
+        handler.postDelayed(runnable, 1500);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (handler != null && runnable != null) {
+            handler.removeCallbacks(runnable);
+            runnable = null;
+            handler = null;
+        }
+    }
 
 
 }
