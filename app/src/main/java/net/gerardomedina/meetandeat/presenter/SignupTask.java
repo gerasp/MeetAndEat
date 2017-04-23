@@ -1,11 +1,10 @@
 package net.gerardomedina.meetandeat.presenter;
 
-import android.app.ProgressDialog;
 import android.util.Log;
 
 import net.gerardomedina.meetandeat.R;
 import net.gerardomedina.meetandeat.view.BaseActivity;
-import net.gerardomedina.meetandeat.view.MainActivity;
+import net.gerardomedina.meetandeat.view.DashboardActivity;
 
 import org.json.JSONException;
 
@@ -50,7 +49,7 @@ public class SignupTask extends BaseTask {
                 switch (response.getInt("code")) {
                     case 0: activity.showSimpleDialog(activity.getString(R.string.error_taken_email));
                             break;
-                    case 2: activity.changeToActivity(MainActivity.class);
+                    case 2: activity.changeToActivity(DashboardActivity.class);
                             break;
                 }
             } catch (JSONException e) {

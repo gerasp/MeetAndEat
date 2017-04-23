@@ -15,12 +15,21 @@
     <string name="signup_dialog">Trying to sign up…</string>
     <string name="request_email">This username is not taken. Please write your email in order to finish the creation of a new account</string>
 
-    <!-- Navigation -->
+    <!-- NavigationActivity -->
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="title_contacts">Contacts</string>
     <string name="title_preferences">Preferences</string>
-    <string name="title_activity_main">Actividad principal</string>
 
+    <!-- Settings -->
+    <string name="account_management">Account management</string>
+    <string name="edit_account">Edit account</string>
+    <string name="delete_account">Delete account</string>
+    <string name="change_email">Change e-mail</string>
+    <string name="change_password">Change password</string>
+    <string name="your_actual_password">Confirm your actual password</string>
+    <string name="delete_confirmation">Are you sure you want to delete your account and all its data?</string>
+    <string name="successfully_changed_account">Successfully changed your account details</string>
+    <string name="copyright">Copyright © 2017 - Gerardo Medina</string>
 
 </resources>

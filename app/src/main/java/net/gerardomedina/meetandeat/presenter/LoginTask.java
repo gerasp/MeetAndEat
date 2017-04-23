@@ -1,13 +1,12 @@
 package net.gerardomedina.meetandeat.presenter;
 
-import android.app.ProgressDialog;
 import android.util.Log;
 import android.widget.EditText;
 
 import net.gerardomedina.meetandeat.R;
 import net.gerardomedina.meetandeat.view.BaseActivity;
 import net.gerardomedina.meetandeat.view.LoginActivity;
-import net.gerardomedina.meetandeat.view.MainActivity;
+import net.gerardomedina.meetandeat.view.DashboardActivity;
 
 import org.json.JSONException;
 
@@ -52,7 +51,7 @@ public class LoginTask extends BaseTask {
                             break;
                     case 1: activity.showSimpleDialog(activity.getString(R.string.error_incorrect_password));
                             break;
-                    case 2: activity.changeToActivity(MainActivity.class);
+                    case 2: activity.changeToActivity(DashboardActivity.class);
                             break;
                     default:
                 }

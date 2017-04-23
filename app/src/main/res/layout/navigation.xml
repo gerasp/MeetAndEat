@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="net.gerardomedina.meetandeat.view.BaseDrawerActivity">
+    tools:context="net.gerardomedina.meetandeat.view.NavigationActivity">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -22,7 +22,8 @@
 
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="@color/white" >
 
             <ViewStub
                 android:id="@+id/content_container"
