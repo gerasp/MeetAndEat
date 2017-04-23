@@ -41,7 +41,7 @@
             android:theme="@style/AppTheme" />
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyCLgR1S5NaPrSxDn9CYT8hfclS5Sa0uq-8"/>
+            android:value="@string/google_api_key"/>
     </application>
 
 </manifest>
