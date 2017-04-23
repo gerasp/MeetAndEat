@@ -14,7 +14,6 @@ public class MainActivity extends BaseDrawerActivity
         stub.setLayoutResource(R.layout.activity_main);
         stub.inflate();
 
-
         super.onCreate(savedInstanceState);
 
 
