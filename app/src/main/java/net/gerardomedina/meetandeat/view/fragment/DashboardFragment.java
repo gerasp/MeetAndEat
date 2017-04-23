@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
@@ -15,6 +16,8 @@ import com.google.android.gms.location.places.ui.PlacePicker;
 
 import net.gerardomedina.meetandeat.R;
 import net.gerardomedina.meetandeat.task.GetMeetingsTask;
+import net.gerardomedina.meetandeat.view.activity.BaseActivity;
+import net.gerardomedina.meetandeat.view.activity.ScrollingActivity;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -47,11 +50,12 @@ public class DashboardFragment extends BaseFragment {
 
     public void populateDashboard(JSONObject response) throws JSONException {
         ListView resultsListView = (ListView) view.findViewById(R.id.meetings);
-        Log.e("ASDF",response.toString());
+
         HashMap<String, String> meetings = new HashMap<>();
         meetings.put(response.getJSONObject("0").getString("description"), response.getJSONObject("0").getString("datetime"));
 
         List<HashMap<String, String>> listItems = new ArrayList<>();
+
         SimpleAdapter adapter = new SimpleAdapter(getActivity(), listItems, R.layout.fragment_dashboard_item,
                 new String[]{"First Line", "Second Line"},
                 new int[]{R.id.meeting_label, R.id.meeting_date});
@@ -65,7 +69,12 @@ public class DashboardFragment extends BaseFragment {
             listItems.add(resultsMap);
         }
         resultsListView.setAdapter(adapter);
-
+        resultsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                ((BaseActivity)getActivity()).changeToActivity(ScrollingActivity.class);
+            }
+        });
 
     }
 
