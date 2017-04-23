@@ -19,7 +19,7 @@ import java.util.List;
 public class NavigationActivity extends BaseActivity {
 
     private Toolbar toolbar;
-    final List<MenuItem> items=new ArrayList<>();
+    final List<MenuItem> items = new ArrayList<>();
     private int lastPosition = 1;
     private int position = 2;
 
@@ -34,6 +34,7 @@ public class NavigationActivity extends BaseActivity {
                     changeToFragment(new DashboardFragment());
                     return true;
                 case R.id.navigation_notifications:
+                    changeToActivity(ScrollingActivity.class);
                     return true;
                 case R.id.navigation_contacts:
                     return true;
@@ -57,17 +58,18 @@ public class NavigationActivity extends BaseActivity {
 
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-        Menu menu=navigation.getMenu();
-        for(int i=0; i<menu.size(); i++){ items.add(menu.getItem(i)); }
+        Menu menu = navigation.getMenu();
+        for (int i = 0; i < menu.size(); i++) {
+            items.add(menu.getItem(i));
+        }
     }
 
     void changeToFragment(Fragment fragment) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        if (lastPosition > position) {
+        if (lastPosition > position)
             transaction.setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right);
-        } else {
+        else if (lastPosition < position)
             transaction.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left);
-        }
         transaction.replace(R.id.fragment_container, fragment);
         transaction.commit();
         lastPosition = position;

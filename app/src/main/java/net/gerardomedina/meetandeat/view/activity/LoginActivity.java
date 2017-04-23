@@ -42,6 +42,7 @@ public class LoginActivity extends BaseActivity {
     private Button signInButton;
     private Handler handler;
     private Runnable runnable;
+    private LinearLayout loginForm;
 
     CarouselView carouselView;
 
@@ -53,9 +54,12 @@ public class LoginActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        loginForm = (LinearLayout)findViewById(R.id.email_login_form);
+        loginForm.startAnimation(AnimationUtils.loadAnimation(this,R.anim.slide_in_bottom));
+
         carouselView = (CarouselView) findViewById(R.id.carouselView);
         carouselView.setPageCount(sampleImages.length);
-
+        carouselView.startAnimation(AnimationUtils.loadAnimation(this,R.anim.slide_in_top));
         carouselView.setImageListener(new ImageListener() {
             @Override
             public void setImageForPosition(int position, ImageView imageView) {
@@ -64,6 +68,13 @@ public class LoginActivity extends BaseActivity {
         });
 
         usernameView = (EditText) findViewById(R.id.username);
+        usernameView.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) carouselView.setVisibility(View.GONE);
+                else carouselView.setVisibility(View.VISIBLE);
+            }
+        });
         passwordView = (EditText) findViewById(R.id.password);
         passwordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -75,11 +86,19 @@ public class LoginActivity extends BaseActivity {
                 return false;
             }
         });
+        passwordView.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) carouselView.setVisibility(View.GONE);
+                else carouselView.setVisibility(View.VISIBLE);
+            }
+        });
 
         signInButton = (Button) findViewById(R.id.sign_in_button);
         signInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
+                carouselView.setVisibility(View.VISIBLE);
                 attemptLogin();
             }
         });

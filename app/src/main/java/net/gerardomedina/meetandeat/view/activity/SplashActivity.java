@@ -51,7 +51,7 @@ public class SplashActivity extends BaseActivity {
         runnable = new Runnable() {
             public void run() {
 //                int id = (Integer) appCommon.getUtils().sharedGetValue(getApplicationContext(), "id", 2);
-                changeToActivity(LoginActivity.class);
+                changeToActivity(NavigationActivity.class);
             }
         };
         handler.postDelayed(runnable, 1500);
