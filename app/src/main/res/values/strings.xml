@@ -16,9 +16,8 @@
     <string name="signup_dialog">Trying to sign up…</string>
     <string name="request_email">This username is not taken. Please write your email in order to finish the creation of a new account</string>
 
-    <!-- NavigationActivity -->
+    <!-- MainActivity -->
     <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
     <string name="title_contacts">Contacts</string>
     <string name="title_preferences">Preferences</string>
 

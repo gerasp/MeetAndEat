@@ -3,7 +3,6 @@ package net.gerardomedina.meetandeat.view.fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +16,7 @@ import com.google.android.gms.location.places.ui.PlacePicker;
 import net.gerardomedina.meetandeat.R;
 import net.gerardomedina.meetandeat.task.GetMeetingsTask;
 import net.gerardomedina.meetandeat.view.activity.BaseActivity;
-import net.gerardomedina.meetandeat.view.activity.ScrollingActivity;
+import net.gerardomedina.meetandeat.view.activity.MeetingActivity;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -72,7 +71,7 @@ public class DashboardFragment extends BaseFragment {
         resultsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                ((BaseActivity)getActivity()).changeToActivity(ScrollingActivity.class);
+                ((BaseActivity)getActivity()).changeToActivity(MeetingActivity.class);
             }
         });
 

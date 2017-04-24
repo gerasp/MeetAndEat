@@ -20,7 +20,7 @@ import java.util.Map;
 
 public class Requester {
 
-    private final String baseUrl = "http://192.168.1.21/ws/";
+    private final String baseUrl = "http://192.168.1.32/ws/";
 
     public Requester() {
 

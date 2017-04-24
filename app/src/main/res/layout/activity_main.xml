@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="net.gerardomedina.meetandeat.view.activity.NavigationActivity">
+    tools:context="net.gerardomedina.meetandeat.view.activity.MainActivity">
 
 
     <android.support.design.widget.AppBarLayout
@@ -26,7 +26,7 @@
             android:layout_height="match_parent"
             android:background="@color/colorBackground"
             android:gravity="bottom"
-            tools:context="net.gerardomedina.meetandeat.view.activity.NavigationActivity">
+            tools:context="net.gerardomedina.meetandeat.view.activity.MainActivity">
 
             <FrameLayout
                 android:id="@+id/fragment_container"

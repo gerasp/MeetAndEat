@@ -4,7 +4,6 @@ import android.util.Log;
 
 import net.gerardomedina.meetandeat.R;
 import net.gerardomedina.meetandeat.view.activity.BaseActivity;
-import net.gerardomedina.meetandeat.view.activity.NavigationActivity;
 import net.gerardomedina.meetandeat.view.fragment.BaseFragment;
 import net.gerardomedina.meetandeat.view.fragment.DashboardFragment;
 

@@ -9,12 +9,12 @@ import android.view.View;
 
 import net.gerardomedina.meetandeat.R;
 
-public class ScrollingActivity extends AppCompatActivity {
+public class MeetingActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_scrolling);
+        setContentView(R.layout.activity_meeting);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 

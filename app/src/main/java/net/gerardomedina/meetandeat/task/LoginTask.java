@@ -1,12 +1,10 @@
 package net.gerardomedina.meetandeat.task;
 
 import android.util.Log;
-import android.widget.EditText;
 
 import net.gerardomedina.meetandeat.R;
 import net.gerardomedina.meetandeat.view.activity.BaseActivity;
-import net.gerardomedina.meetandeat.view.activity.LoginActivity;
-import net.gerardomedina.meetandeat.view.activity.NavigationActivity;
+import net.gerardomedina.meetandeat.view.activity.MainActivity;
 
 import org.json.JSONException;
 
@@ -54,7 +52,7 @@ public class LoginTask extends BaseTask {
                     case 1: activity.showSimpleDialog(activity.getString(R.string.error_incorrect_password));
                             break;
                     case 2: activity.showToast("You are logged in");
-                            activity.changeToActivity(NavigationActivity.class);
+                            activity.changeToActivity(MainActivity.class);
                             break;
                     default:
                 }

@@ -1,19 +1,13 @@
 package net.gerardomedina.meetandeat.view.activity;
 
 import android.animation.ObjectAnimator;
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
-import android.view.View;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.ProgressBar;
 
 
 import net.gerardomedina.meetandeat.R;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 public class SplashActivity extends BaseActivity {
 
@@ -51,7 +45,7 @@ public class SplashActivity extends BaseActivity {
         runnable = new Runnable() {
             public void run() {
 //                int id = (Integer) appCommon.getUtils().sharedGetValue(getApplicationContext(), "id", 2);
-                changeToActivity(NavigationActivity.class);
+                changeToActivity(MainActivity.class);
             }
         };
         handler.postDelayed(runnable, 1500);

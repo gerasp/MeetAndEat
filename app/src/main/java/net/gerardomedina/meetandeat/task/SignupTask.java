@@ -4,7 +4,7 @@ import android.util.Log;
 
 import net.gerardomedina.meetandeat.R;
 import net.gerardomedina.meetandeat.view.activity.BaseActivity;
-import net.gerardomedina.meetandeat.view.activity.NavigationActivity;
+import net.gerardomedina.meetandeat.view.activity.MainActivity;
 
 import org.json.JSONException;
 
@@ -51,7 +51,7 @@ public class SignupTask extends BaseTask {
 //                            break;
                     case 2:
                             activity.showToast(activity.getString(R.string.account_created));
-                            activity.changeToActivity(NavigationActivity.class);
+                            activity.changeToActivity(MainActivity.class);
                             break;
                 }
             } catch (JSONException e) {

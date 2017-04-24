@@ -16,7 +16,7 @@ import net.gerardomedina.meetandeat.view.fragment.SettingsFragment;
 import java.util.ArrayList;
 import java.util.List;
 
-public class NavigationActivity extends BaseActivity {
+public class MainActivity extends BaseActivity {
 
     private Toolbar toolbar;
     final List<MenuItem> items = new ArrayList<>();
@@ -33,11 +33,11 @@ public class NavigationActivity extends BaseActivity {
                 case R.id.navigation_dashboard:
                     changeToFragment(new DashboardFragment());
                     return true;
-                case R.id.navigation_notifications:
-                    changeToActivity(ScrollingActivity.class);
-                    return true;
-                case R.id.navigation_contacts:
-                    return true;
+//                case R.id.navigation_notifications:
+//                    changeToActivity(MeetingActivity.class);
+//                    return true;
+//                case R.id.navigation_contacts:
+//                    return true;
                 case R.id.navigation_preferences:
                     changeToFragment(new SettingsFragment());
                     return true;
@@ -63,7 +63,7 @@ public class NavigationActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         changeToFragment(new DashboardFragment());
-        setContentView(R.layout.activity_navigation);
+        setContentView(R.layout.activity_main);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
