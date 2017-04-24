@@ -12,6 +12,7 @@ import android.widget.SimpleAdapter;
 
 import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.ui.PlacePicker;
+import com.google.android.gms.maps.model.Dash;
 
 import net.gerardomedina.meetandeat.R;
 import net.gerardomedina.meetandeat.task.GetMeetingsTask;
@@ -49,17 +50,12 @@ public class DashboardFragment extends BaseFragment {
 
     public void populateDashboard(JSONObject response) throws JSONException {
         ListView resultsListView = (ListView) view.findViewById(R.id.meetings);
-
         HashMap<String, String> meetings = new HashMap<>();
         meetings.put(response.getJSONObject("0").getString("description"), response.getJSONObject("0").getString("datetime"));
-
         List<HashMap<String, String>> listItems = new ArrayList<>();
-
         SimpleAdapter adapter = new SimpleAdapter(getActivity(), listItems, R.layout.fragment_dashboard_item,
                 new String[]{"First Line", "Second Line"},
                 new int[]{R.id.meeting_label, R.id.meeting_date});
-
-
         for (Object o : meetings.entrySet()) {
             HashMap<String, String> resultsMap = new HashMap<>();
             Map.Entry pair = (Map.Entry) o;
@@ -71,7 +67,7 @@ public class DashboardFragment extends BaseFragment {
         resultsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                ((BaseActivity)getActivity()).changeToActivity(MeetingActivity.class);
+                ((BaseActivity) getActivity()).changeToActivity(MeetingActivity.class);
             }
         });
 
