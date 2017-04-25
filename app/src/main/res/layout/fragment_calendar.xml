@@ -1,15 +1,25 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="1"
     tools:context="net.gerardomedina.meetandeat.view.fragment.BaseFragment">
 
+    <net.gerardomedina.meetandeat.view.fragment.CalendarFragment.VerticalViewPager
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
-    <com.jmavarez.materialcalendar.CalendarView
-        android:id="@+id/calendarView"
+        <de.jodamob.android.calendar.CalenderWidget
+            android:id="@+id/calendar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </net.gerardomedina.meetandeat.view.fragment.CalendarFragment.VerticalViewPager>
+
+
+    <ListView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:mc_color="@color/colorAccent"
-        />
-</FrameLayout>
+        android:layout_height="0dp"
+        android:layout_weight="0.3" />
+</LinearLayout>

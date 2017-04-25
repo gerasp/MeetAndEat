@@ -6,9 +6,13 @@
     <color name="colorAccent">#f0ad4e</color>
     <color name="colorPrimary">#DE9226</color>
     <color name="colorPrimaryDark">#B37011</color>
-
     <color name="colorBackground">#cfcfcf</color>
+    <color name="colorPrimaryText">@color/black</color>
+    <color name="colorSecondaryText">@color/darkGrey</color>
+    <color name="colorInvertedText">@color/white</color>
     <color name="black">#000000</color>
     <color name="white">#ffffff</color>
     <color name="darkGrey">#454545</color>
+
+
 </resources>

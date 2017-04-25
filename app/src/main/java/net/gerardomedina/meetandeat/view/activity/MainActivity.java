@@ -12,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import net.gerardomedina.meetandeat.R;
+import net.gerardomedina.meetandeat.view.fragment.BaseFragment;
 import net.gerardomedina.meetandeat.view.fragment.CalendarFragment;
 import net.gerardomedina.meetandeat.view.fragment.DashboardFragment;
 import net.gerardomedina.meetandeat.view.fragment.SettingsFragment;
@@ -22,7 +23,6 @@ public class MainActivity extends BaseActivity {
     private SectionsPagerAdapter sectionsPagerAdapter;
     private ViewPager viewPager;
     private BottomNavigationView bottomNavigationView;
-    private MenuItem prevMenuItem;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -57,10 +57,7 @@ public class MainActivity extends BaseActivity {
 
             @Override
             public void onPageSelected(int position) {
-//                if (prevMenuItem != null) prevMenuItem.setChecked(false);
-//                else bottomNavigationView.getMenu().getItem(2).setChecked(false);
                 bottomNavigationView.getMenu().getItem(position).setChecked(true);
-                prevMenuItem = bottomNavigationView.getMenu().getItem(position);
             }
 
             @Override
@@ -69,7 +66,6 @@ public class MainActivity extends BaseActivity {
         });
 
         bottomNavigationView = (BottomNavigationView) findViewById(R.id.navigation);
-//        bottomNavigationView.getMenu().getItem(0).setChecked(false);
         bottomNavigationView.getMenu().getItem(2).setChecked(true);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
