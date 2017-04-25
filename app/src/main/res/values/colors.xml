@@ -3,9 +3,9 @@
     <color name="navigation_bar_color">#630e66</color>
 
 
-    <color name="colorPrimary">#f0ad4e</color>
-    <color name="colorPrimaryDark">#DE9226</color>
-    <color name="colorAccent">#DE9226</color>
+    <color name="colorAccent">#f0ad4e</color>
+    <color name="colorPrimary">#DE9226</color>
+    <color name="colorPrimaryDark">#B37011</color>
 
     <color name="colorBackground">#cfcfcf</color>
     <color name="black">#000000</color>
