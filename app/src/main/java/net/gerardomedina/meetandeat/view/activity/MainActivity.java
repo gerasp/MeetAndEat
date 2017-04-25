@@ -16,9 +16,6 @@ import net.gerardomedina.meetandeat.view.fragment.CalendarFragment;
 import net.gerardomedina.meetandeat.view.fragment.DashboardFragment;
 import net.gerardomedina.meetandeat.view.fragment.SettingsFragment;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class MainActivity extends BaseActivity {
 
     private Toolbar toolbar;
@@ -29,7 +26,7 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main_toolbar_menu, menu);
+        getMenuInflater().inflate(R.menu.menu_toolbar, menu);
         menu.getItem(0).setEnabled(true);
         return true;
     }
@@ -37,7 +34,7 @@ public class MainActivity extends BaseActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.menu_search);
+        if (id == R.id.menu_search) ;
         return super.onOptionsItemSelected(item);
     }
 
@@ -52,33 +49,40 @@ public class MainActivity extends BaseActivity {
         sectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
         viewPager = (ViewPager) findViewById(R.id.fragment_container);
         viewPager.setAdapter(sectionsPagerAdapter);
+        viewPager.setCurrentItem(2, true);
         viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {}
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+            }
+
             @Override
             public void onPageSelected(int position) {
-                if (prevMenuItem != null) prevMenuItem.setChecked(false);
-                else bottomNavigationView.getMenu().getItem(0).setChecked(false);
+//                if (prevMenuItem != null) prevMenuItem.setChecked(false);
+//                else bottomNavigationView.getMenu().getItem(2).setChecked(false);
                 bottomNavigationView.getMenu().getItem(position).setChecked(true);
                 prevMenuItem = bottomNavigationView.getMenu().getItem(position);
             }
+
             @Override
-            public void onPageScrollStateChanged(int state) {}
+            public void onPageScrollStateChanged(int state) {
+            }
         });
 
         bottomNavigationView = (BottomNavigationView) findViewById(R.id.navigation);
+//        bottomNavigationView.getMenu().getItem(0).setChecked(false);
+        bottomNavigationView.getMenu().getItem(2).setChecked(true);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
-                    case R.id.navigation_dashboard:
-                        viewPager.setCurrentItem(0);
-                        return true;
                     case R.id.navigation_calendar:
                         viewPager.setCurrentItem(1);
                         return true;
-                    case R.id.navigation_preferences:
+                    case R.id.navigation_dashboard:
                         viewPager.setCurrentItem(2);
+                        return true;
+                    case R.id.navigation_preferences:
+                        viewPager.setCurrentItem(4);
                         return true;
                 }
                 return false;
@@ -95,26 +99,28 @@ public class MainActivity extends BaseActivity {
         @Override
         public Fragment getItem(int position) {
             switch (position) {
-                case 0: return new DashboardFragment();
-                case 1: return new CalendarFragment();
-                case 2: return new SettingsFragment();
+                case 0:
+                    return new CalendarFragment();
+                case 1:
+                    return new CalendarFragment();
+                case 2:
+                    return new DashboardFragment();
+                case 3:
+                    return new DashboardFragment();
+                case 4:
+                    return new SettingsFragment();
             }
             return null;
         }
 
         @Override
         public int getCount() {
-            return 3;
+            return 5;
         }
 
         @Override
         public CharSequence getPageTitle(int position) {
-            switch (position) {
-                case 0: return getString(R.string.title_dashboard);
-                case 1: return getString(R.string.title_calendar);
-                case 2: return getString(R.string.title_preferences);
-            }
-            return null;
+            return getString(R.string.app_name);
         }
     }
 }

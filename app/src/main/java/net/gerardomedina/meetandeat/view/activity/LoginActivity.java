@@ -46,7 +46,7 @@ public class LoginActivity extends BaseActivity {
 
     CarouselView carouselView;
 
-    int[] sampleImages = {R.drawable.logo, R.drawable.ic_dashboard_black_24dp};
+    int[] sampleImages = {R.drawable.logo, R.drawable.logo};
 
 
     @Override

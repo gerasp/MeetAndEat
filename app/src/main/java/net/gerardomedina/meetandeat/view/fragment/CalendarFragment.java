@@ -35,7 +35,6 @@ public class CalendarFragment extends BaseFragment {
 
 
     private View view;
-    private CalendarView calendarView;
 
     public CalendarFragment() {
     }
