@@ -12,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import net.gerardomedina.meetandeat.R;
+import net.gerardomedina.meetandeat.view.fragment.CalendarFragment;
 import net.gerardomedina.meetandeat.view.fragment.DashboardFragment;
 import net.gerardomedina.meetandeat.view.fragment.SettingsFragment;
 
@@ -21,7 +22,6 @@ import java.util.List;
 public class MainActivity extends BaseActivity {
 
     private Toolbar toolbar;
-    private final List<MenuItem> items = new ArrayList<>();
     private SectionsPagerAdapter sectionsPagerAdapter;
     private ViewPager viewPager;
     private BottomNavigationView bottomNavigationView;
@@ -74,17 +74,16 @@ public class MainActivity extends BaseActivity {
                     case R.id.navigation_dashboard:
                         viewPager.setCurrentItem(0);
                         return true;
-                    case R.id.navigation_preferences:
+                    case R.id.navigation_calendar:
                         viewPager.setCurrentItem(1);
+                        return true;
+                    case R.id.navigation_preferences:
+                        viewPager.setCurrentItem(2);
                         return true;
                 }
                 return false;
             }
         });
-        Menu menu = bottomNavigationView.getMenu();
-        for (int i = 0; i < menu.size(); i++) {
-            items.add(menu.getItem(i));
-        }
     }
 
     private class SectionsPagerAdapter extends FragmentPagerAdapter {
@@ -97,21 +96,23 @@ public class MainActivity extends BaseActivity {
         public Fragment getItem(int position) {
             switch (position) {
                 case 0: return new DashboardFragment();
-                case 1: return new SettingsFragment();
+                case 1: return new CalendarFragment();
+                case 2: return new SettingsFragment();
             }
             return null;
         }
 
         @Override
         public int getCount() {
-            return 2;
+            return 3;
         }
 
         @Override
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0: return getString(R.string.title_dashboard);
-                case 1: return getString(R.string.title_preferences);
+                case 1: return getString(R.string.title_calendar);
+                case 2: return getString(R.string.title_preferences);
             }
             return null;
         }

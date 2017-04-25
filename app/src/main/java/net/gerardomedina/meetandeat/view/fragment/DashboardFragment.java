@@ -30,10 +30,6 @@ import java.util.Map;
 import static android.app.Activity.RESULT_OK;
 
 public class DashboardFragment extends BaseFragment {
-
-
-    private int PLACE_PICKER_REQUEST = 1;
-    private ListView meetings;
     private View view;
 
     public DashboardFragment() {
@@ -71,21 +67,5 @@ public class DashboardFragment extends BaseFragment {
             }
         });
 
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-
-    }
-
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == PLACE_PICKER_REQUEST) {
-            if (resultCode == RESULT_OK) {
-                Place selectedPlace = PlacePicker.getPlace(data, getActivity());
-                // Do something with the place
-            }
-        }
     }
 }
