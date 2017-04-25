@@ -12,7 +12,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import net.gerardomedina.meetandeat.R;
+import net.gerardomedina.meetandeat.view.fragment.ContactsFragment;
 import net.gerardomedina.meetandeat.view.fragment.DashboardFragment;
+import net.gerardomedina.meetandeat.view.fragment.InvitationsFragment;
 import net.gerardomedina.meetandeat.view.fragment.SettingsFragment;
 
 public class MainActivity extends BaseActivity {
@@ -47,20 +49,16 @@ public class MainActivity extends BaseActivity {
         sectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
         viewPager = (ViewPager) findViewById(R.id.fragment_container);
         viewPager.setAdapter(sectionsPagerAdapter);
-        viewPager.setCurrentItem(2, true);
+        viewPager.setCurrentItem(1, true);
         viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-            }
-
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {}
             @Override
             public void onPageSelected(int position) {
                 bottomNavigationView.getMenu().getItem(position).setChecked(true);
             }
-
             @Override
-            public void onPageScrollStateChanged(int state) {
-            }
+            public void onPageScrollStateChanged(int state) {}
         });
 
         bottomNavigationView = (BottomNavigationView) findViewById(R.id.navigation);
@@ -69,14 +67,14 @@ public class MainActivity extends BaseActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
-                    case R.id.navigation_calendar:
-                        viewPager.setCurrentItem(1);
+                    case R.id.navigation_contacts:
+                        viewPager.setCurrentItem(0);
                         return true;
                     case R.id.navigation_dashboard:
-                        viewPager.setCurrentItem(2);
+                        viewPager.setCurrentItem(1);
                         return true;
                     case R.id.navigation_preferences:
-                        viewPager.setCurrentItem(4);
+                        viewPager.setCurrentItem(2);
                         return true;
                 }
                 return false;
@@ -85,31 +83,22 @@ public class MainActivity extends BaseActivity {
     }
 
     private class SectionsPagerAdapter extends FragmentPagerAdapter {
-
         SectionsPagerAdapter(FragmentManager fm) {
             super(fm);
         }
-
         @Override
         public Fragment getItem(int position) {
             switch (position) {
-                case 0:
-                case 1:
-                case 2:
-                    return new DashboardFragment();
-                case 3:
-                    return new DashboardFragment();
-                case 4:
-                    return new SettingsFragment();
+                case 0: return new ContactsFragment();
+                case 1: return new DashboardFragment();
+                case 2: return new SettingsFragment();
             }
             return null;
         }
-
         @Override
         public int getCount() {
-            return 5;
+            return 3;
         }
-
         @Override
         public CharSequence getPageTitle(int position) {
             return getString(R.string.app_name);
