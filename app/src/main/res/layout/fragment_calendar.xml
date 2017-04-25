@@ -7,15 +7,10 @@
     android:weightSum="1"
     tools:context="net.gerardomedina.meetandeat.view.fragment.BaseFragment">
 
-    <net.gerardomedina.meetandeat.view.fragment.CalendarFragment.VerticalViewPager
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
-        <de.jodamob.android.calendar.CalenderWidget
-            android:id="@+id/calendar"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </net.gerardomedina.meetandeat.view.fragment.CalendarFragment.VerticalViewPager>
+    <de.jodamob.android.calendar.CalenderWidget
+        android:id="@+id/calendar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 
     <ListView

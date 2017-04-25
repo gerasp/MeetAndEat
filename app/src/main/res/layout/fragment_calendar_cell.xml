@@ -19,15 +19,16 @@
 
     <TextView
         android:id="@+id/date_details"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_below="@id/date_text"
-        android:textColor="@android:color/white"
-        android:textStyle="italic"
-        android:text="more"
-        tools:text="more"
-        android:lines="2"
         android:duplicateParentState="true"
         android:gravity="center"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:lines="2"
+        android:text="more"
+        android:textColor="@android:color/white"
+        android:textStyle="italic"
+        android:visibility="invisible"
+        tools:text="more" />
 
 </RelativeLayout>
