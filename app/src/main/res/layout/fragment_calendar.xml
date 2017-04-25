@@ -6,8 +6,19 @@
     tools:context="net.gerardomedina.meetandeat.view.fragment.BaseFragment">
 
 
-    <CalendarView
-        android:id="@+id/calendarView"
+    <com.github.sundeepk.compactcalendarview.CompactCalendarView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/compactcalendar_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:paddingRight="10dp"
+        android:paddingLeft="10dp"
+        android:layout_height="match_parent"
+        app:compactCalendarTargetHeight="250dp"
+        app:compactCalendarTextSize="12sp"
+        app:compactCalendarBackgroundColor="@color/colorBackground"
+        app:compactCalendarTextColor="@color/black"
+        app:compactCalendarCurrentSelectedDayBackgroundColor="@color/colorPrimary"
+        app:compactCalendarCurrentDayBackgroundColor="@color/colorAccent"
+        app:compactCalendarMultiEventIndicatorColor="#fff"
+        />
 </FrameLayout>
