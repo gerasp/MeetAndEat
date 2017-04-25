@@ -24,6 +24,8 @@ public class MainActivity extends BaseActivity {
     private ViewPager viewPager;
     private BottomNavigationView bottomNavigationView;
 
+    private final int DEFAULT_SECTION = 1;
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_toolbar, menu);
@@ -49,7 +51,7 @@ public class MainActivity extends BaseActivity {
         sectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
         viewPager = (ViewPager) findViewById(R.id.fragment_container);
         viewPager.setAdapter(sectionsPagerAdapter);
-        viewPager.setCurrentItem(1, true);
+        viewPager.setCurrentItem(DEFAULT_SECTION, true);
         viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {}
@@ -62,7 +64,7 @@ public class MainActivity extends BaseActivity {
         });
 
         bottomNavigationView = (BottomNavigationView) findViewById(R.id.navigation);
-        bottomNavigationView.getMenu().getItem(2).setChecked(true);
+        bottomNavigationView.getMenu().getItem(DEFAULT_SECTION).setChecked(true);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
