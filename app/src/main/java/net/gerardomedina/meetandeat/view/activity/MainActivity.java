@@ -12,8 +12,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import net.gerardomedina.meetandeat.R;
-import net.gerardomedina.meetandeat.view.fragment.BaseFragment;
-import net.gerardomedina.meetandeat.view.fragment.CalendarFragment;
 import net.gerardomedina.meetandeat.view.fragment.DashboardFragment;
 import net.gerardomedina.meetandeat.view.fragment.SettingsFragment;
 
@@ -96,9 +94,7 @@ public class MainActivity extends BaseActivity {
         public Fragment getItem(int position) {
             switch (position) {
                 case 0:
-                    return new CalendarFragment();
                 case 1:
-                    return new CalendarFragment();
                 case 2:
                     return new DashboardFragment();
                 case 3:
