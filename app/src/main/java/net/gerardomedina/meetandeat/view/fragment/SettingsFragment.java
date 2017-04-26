@@ -3,14 +3,18 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceFragmentCompat;
+import android.util.Log;
 
 import net.gerardomedina.meetandeat.R;
+import net.gerardomedina.meetandeat.view.activity.BaseActivity;
+import net.gerardomedina.meetandeat.view.activity.LoginActivity;
 
 
 public class SettingsFragment extends PreferenceFragmentCompat {
 
-    Preference deleteAccount;
-    Preference editAccount;
+    private Preference deleteAccount;
+    private Preference editAccount;
+    private Preference logout;
 
     @Override
     public void onCreatePreferences(Bundle bundle, String s) {
@@ -44,6 +48,14 @@ public class SettingsFragment extends PreferenceFragmentCompat {
             }
         });
 
+        logout = getPreferenceManager().findPreference("logout");
+        logout.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                ((BaseActivity)getActivity()).changeToActivity(LoginActivity.class);
+                return false;
+            }
+        });
 
     }
 

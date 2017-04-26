@@ -52,6 +52,7 @@
                 android:imeActionLabel="@string/new_meeting_location"
                 android:imeOptions="actionUnspecified"
                 android:inputType="text"
+                android:focusable="false"
                 android:maxLines="1" />
 
         </android.support.design.widget.TextInputLayout>

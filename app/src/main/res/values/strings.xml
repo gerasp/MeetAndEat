@@ -29,6 +29,7 @@
     <string name="edit_account">Edit account</string>
     <string name="delete_account">Delete account</string>
     <string name="copyright">Copyright © 2017 - Gerardo Medina</string>
+    <string name="logout">Logout</string>
 
     <!-- Meeting -->
     <string name="large_text">

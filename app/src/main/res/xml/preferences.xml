@@ -5,20 +5,25 @@
 
     <PreferenceCategory android:title="@string/account_management">
         <Preference
-            android:icon="@android:drawable/ic_menu_edit"
+            android:icon="@drawable/ic_edit"
             android:key="edit_account"
             android:title="@string/edit_account" />
 
         <Preference
-            android:icon="@android:drawable/ic_delete"
+            android:icon="@drawable/ic_delete"
             android:key="delete_account"
             android:title="@string/delete_account"/>
     </PreferenceCategory>
+
 
     <Preference
         android:key="copyright"
         android:selectable="false"
         android:summary="@string/copyright" />
 
+    <Preference
+        android:icon="@drawable/ic_logout"
+        android:key="logout"
+        android:title="@string/logout"/>
 
 </PreferenceScreen>
