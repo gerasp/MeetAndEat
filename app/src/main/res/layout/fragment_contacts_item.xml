@@ -9,7 +9,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Person"
-        android:id="@+id/friend_label"
+        android:id="@+id/contact_label"
         android:layout_gravity="start|center"
         android:textSize="25sp"
         android:textColor="@color/colorPrimaryText" />
