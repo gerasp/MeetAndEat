@@ -7,6 +7,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
@@ -28,6 +29,7 @@ import java.util.Map;
 
 public class DashboardFragment extends BaseFragment {
     private View view;
+    private NewMeetingDialog newMeetingDialog;
 
     public DashboardFragment() {
     }
@@ -40,7 +42,9 @@ public class DashboardFragment extends BaseFragment {
         newMeetingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new NewMeetingDialog(getActivity()).show();
+                newMeetingDialog = new NewMeetingDialog(getActivity());
+                newMeetingDialog.show();
+
             }
         });
         new GetMeetingsTask(this, 1).execute();
@@ -79,13 +83,13 @@ public class DashboardFragment extends BaseFragment {
         NewMeetingDialog(Activity a) {super(a);}
         @Override
         protected void onCreate(Bundle savedInstanceState) {
+            requestWindowFeature(Window.FEATURE_NO_TITLE);
             super.onCreate(savedInstanceState);
             setContentView(R.layout.fragment_dashboard_new);
-            setTitle(getString(R.string.new_meeting_dialog_title));
 
             TextView title = (TextView)findViewById(R.id.newMeetingTitleInput);
-            TextView location = (TextView)findViewById(R.id.newMeetingLocationInput);
 
+            TextView location = (TextView)findViewById(R.id.newMeetingLocationInput);
             location.setOnFocusChangeListener(new View.OnFocusChangeListener() {
                 @Override
                 public void onFocusChange(View v, boolean hasFocus) {
