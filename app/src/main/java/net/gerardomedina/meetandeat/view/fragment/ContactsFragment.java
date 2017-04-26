@@ -62,9 +62,9 @@ public class ContactsFragment extends BaseFragment {
     public void populateContactList(JSONObject response) throws JSONException {
         contacts = new ArrayList<>();
         JSONArray results = response.getJSONArray("results");
-        ;
-        contacts.add(results.get(0).toString());
-
+        for (int i = 0; i < results.length(); i++) {
+            contacts.add(results.getJSONObject(i).getString("username"));
+        }
         contactList.setAdapter(new ContactsAdapter(getActivity(),contacts));
     }
 
