@@ -55,21 +55,37 @@
                 android:maxLines="1" />
 
         </android.support.design.widget.TextInputLayout>
-
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <EditText
-                android:id="@+id/newMeetingDatetimeInput"
+                android:id="@+id/newMeetingDateInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/new_meeting_datetime"
+                android:hint="@string/new_meeting_date"
                 android:imeActionId="@+id/newMeeting"
-                android:imeActionLabel="@string/new_meeting_datetime"
+                android:imeActionLabel="@string/new_meeting_date"
                 android:imeOptions="actionUnspecified"
                 android:inputType="datetime"
-                android:maxLines="1" />
+                android:maxLines="1"
+                android:focusable="false"/>
+        </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/newMeetingTimeInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/new_meeting_time"
+                android:imeActionId="@+id/newMeeting"
+                android:imeActionLabel="@string/new_meeting_time"
+                android:imeOptions="actionUnspecified"
+                android:inputType="datetime"
+                android:maxLines="1"
+                android:focusable="false"/>
         </android.support.design.widget.TextInputLayout>
     </LinearLayout>
 

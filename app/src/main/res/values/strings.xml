@@ -45,13 +45,15 @@
 
     <!-- Contacts -->
     <string name="search_new_contacts">Search new contacts</string>
+
+    <!-- New Meeting -->
     <string name="new_meeting_title">Title</string>
-    <string name="new_meeting_title_hint">Barbacue for us</string>
     <string name="new_meeting_location">Location</string>
     <string name="tap_to_select">Tap to select</string>
     <string name="new_meeting_dialog_title">New meeting</string>
     <string name="title_activity_maps">Map</string>
-    <string name="new_meeting_datetime">Date and time</string>
+    <string name="new_meeting_date">Date</string>
+    <string name="new_meeting_time">Time</string>
     <string name="prompt_title">Title</string>
     <string name="new_meeting">New meeting</string>
 </resources>
