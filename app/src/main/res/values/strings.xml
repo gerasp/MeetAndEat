@@ -38,13 +38,14 @@
         "A material metaphor is the unifying theory of a rationalized space and a system of motion."
         "The material is grounded in tactile reality,
     </string>
-    <string name="get_meetings_dialog">Getting Meetings</string>
+    <string name="get_meetings_dialog">Getting meetings</string>
     <string name="title_activity_scrolling">Meeting</string>
 
 
     <string name="title_notifications">Invitations</string>
 
     <!-- Contacts -->
+    <string name="get_contacts_dialog">Getting contacts</string>
     <string name="search_new_contacts">Search new contacts</string>
 
     <!-- New Meeting -->
@@ -59,4 +60,7 @@
     <string name="new_meeting">New meeting</string>
     <string name="long_click_to_delete">In order to delete a contact, please long press</string>
     <string name="delete">Delete</string>
+    <string name="no_internet_connection">To do that, you should have an Internet connection</string>
+    <string name="delete_contacts_dialog">Deleting contacts</string>
+    <string name="error_deleting_contacts">Error deleting contact</string>
 </resources>

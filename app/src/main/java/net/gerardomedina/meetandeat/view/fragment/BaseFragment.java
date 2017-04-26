@@ -10,4 +10,8 @@ public abstract class BaseFragment extends Fragment {
 
     public BaseFragment() {
     }
+
+    public BaseFragment getBaseFragment() {
+        return this;
+    }
 }

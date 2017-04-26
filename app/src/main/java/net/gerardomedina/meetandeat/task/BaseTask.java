@@ -3,6 +3,7 @@ package net.gerardomedina.meetandeat.task;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
 
+import net.gerardomedina.meetandeat.common.AppCommon;
 import net.gerardomedina.meetandeat.persistence.remote.Requester;
 import net.gerardomedina.meetandeat.view.activity.BaseActivity;
 import net.gerardomedina.meetandeat.view.fragment.BaseFragment;
@@ -10,6 +11,7 @@ import net.gerardomedina.meetandeat.view.fragment.BaseFragment;
 import org.json.JSONObject;
 
 public abstract class BaseTask extends AsyncTask<Void, Void, Boolean> {
+    AppCommon appCommon = AppCommon.getInstance();
     Requester requester = new Requester();
     JSONObject response;
     ProgressDialog progressDialog;

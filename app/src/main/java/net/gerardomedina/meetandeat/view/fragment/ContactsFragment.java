@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.TextView;
@@ -18,7 +19,9 @@ import android.widget.TextView;
 import net.gerardomedina.meetandeat.R;
 import net.gerardomedina.meetandeat.persistence.local.ContactHelper;
 import net.gerardomedina.meetandeat.persistence.local.ContactValues;
+import net.gerardomedina.meetandeat.task.DeleteContactsTask;
 import net.gerardomedina.meetandeat.task.GetContactsTask;
+import net.gerardomedina.meetandeat.view.activity.BaseActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -28,7 +31,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ContactsFragment extends BaseFragment {
-    private View view;
     private ListView contactList;
     private SearchView searchView;
     private ArrayList<String> contacts;
@@ -40,8 +42,8 @@ public class ContactsFragment extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_contacts, container, false);
-        contactList = (ListView)view.findViewById(R.id.contacts);
+        View view = inflater.inflate(R.layout.fragment_contacts, container, false);
+        contactList = (ListView) view.findViewById(R.id.contacts);
 
         searchView = (SearchView) view.findViewById(R.id.contacts_searchbox);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -61,16 +63,12 @@ public class ContactsFragment extends BaseFragment {
         } else {
             populateContactListFromLocalDB();
         }
-
         return view;
     }
 
     private void populateContactListFromLocalDB() {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
-        String[] projection = {
-                ContactValues._ID,
-                ContactValues.COLUMN_NAME_USERNAME,
-        };
+        String[] projection = {ContactValues._ID, ContactValues.COLUMN_NAME_USERNAME};
         String sortOrder = ContactValues.COLUMN_NAME_USERNAME + " ASC";
         Cursor cursor = db.query(
                 ContactValues.TABLE_NAME, projection, null, null, null, null,
@@ -79,8 +77,8 @@ public class ContactsFragment extends BaseFragment {
         for(cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext()) {
             contacts.add(cursor.getString(cursor.getColumnIndexOrThrow(ContactValues.COLUMN_NAME_USERNAME)));
         }
+        cursor.close();
         contactList.setAdapter(new ContactsAdapter(getActivity(),contacts));
-
     }
 
     public void populateContactListFromRemoteWS(JSONObject response) throws JSONException {
@@ -112,12 +110,24 @@ public class ContactsFragment extends BaseFragment {
         @NonNull
         @Override
         public View getView(final int position, View convertView, @NonNull ViewGroup parent) {
-            final String string = getItem(position);
+            final String contactUsername = getItem(position);
             if (convertView == null) {
                 convertView = LayoutInflater.from(getContext()).inflate(R.layout.fragment_contacts_item, parent, false);
             }
-            TextView username = (TextView) convertView.findViewById(R.id.contact_label);
-            username.setText(string);
+
+            TextView username = (TextView) convertView.findViewById(R.id.contactLabel);
+            username.setText(contactUsername);
+
+            ImageView delete = (ImageView) convertView.findViewById(R.id.deleteContactButton);
+            delete.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (appCommon.hasInternet(getActivity())) {
+                        new DeleteContactsTask(getBaseFragment(),appCommon.getUser().getId(),contactUsername).execute();
+                    } else ((BaseActivity)getActivity()).showToast(getString(R.string.no_internet_connection));
+                }
+            });
+
             return convertView;
         }
     }

@@ -103,9 +103,11 @@ public class NewMeetingActivity extends AppCompatActivity {
         timePickerDialog = new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                timeInput.setText(hourOfDay+":"+minute);
+                timeInput.setText((hourOfDay > 9 ? "" + hourOfDay : "0" + hourOfDay)
+                        + ":"
+                        + (minute > 9 ? "" + minute : "0" + minute));
             }
-        },newCalendar.get(Calendar.HOUR_OF_DAY),newCalendar.get(Calendar.MINUTE),true);
+        }, newCalendar.get(Calendar.HOUR_OF_DAY), newCalendar.get(Calendar.MINUTE), true);
 
 
     }

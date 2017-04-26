@@ -25,7 +25,7 @@ public class GetContactsTask extends BaseTask {
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
-        showProgressDialog(R.string.get_meetings_dialog);
+        showProgressDialog(R.string.get_contacts_dialog);
     }
 
     @Override
@@ -43,8 +43,6 @@ public class GetContactsTask extends BaseTask {
         if (success) {
             try {
                 switch (response.getInt("code")) {
-                    case 0: activity.showSimpleDialog("No contacts");
-                            break;
                     case 2: ((ContactsFragment)fragment).populateContactListFromRemoteWS(response);
                             break;
                 }
