@@ -22,10 +22,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class InvitationsFragment extends BaseFragment {
+public class NotificationsFragment extends BaseFragment {
     private View view;
 
-    public InvitationsFragment() {
+    public NotificationsFragment() {
     }
 
     @Override

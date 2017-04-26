@@ -14,7 +14,6 @@ import android.view.MenuItem;
 import net.gerardomedina.meetandeat.R;
 import net.gerardomedina.meetandeat.view.fragment.ContactsFragment;
 import net.gerardomedina.meetandeat.view.fragment.DashboardFragment;
-import net.gerardomedina.meetandeat.view.fragment.InvitationsFragment;
 import net.gerardomedina.meetandeat.view.fragment.SettingsFragment;
 
 public class MainActivity extends BaseActivity {
@@ -36,7 +35,7 @@ public class MainActivity extends BaseActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.menu_search) ;
+        if (id == R.id.menu_notifications) ;
         return super.onOptionsItemSelected(item);
     }
 

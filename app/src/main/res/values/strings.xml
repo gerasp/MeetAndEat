@@ -40,6 +40,11 @@
     <string name="title_activity_scrolling">Meeting</string>
 
 
-    <string name="title_invitations">Invitations</string>
+    <string name="title_notifications">Invitations</string>
 
+    <!-- Contacts -->
+    <string name="search_new_contacts">Search new contacts</string>
+    <string name="new_meeting_title">Title</string>
+    <string name="new_meeting_hint">Barbacue for us</string>
+    <string name="new_meeting_location">Location</string>
 </resources>
