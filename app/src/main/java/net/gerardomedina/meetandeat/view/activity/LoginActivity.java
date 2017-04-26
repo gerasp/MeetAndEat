@@ -1,30 +1,20 @@
 package net.gerardomedina.meetandeat.view.activity;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.animation.ObjectAnimator;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AlertDialog;
 import android.text.InputType;
 import android.text.TextUtils;
-import android.util.AttributeSet;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.view.animation.DecelerateInterpolator;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.synnapps.carouselview.CarouselView;
@@ -142,19 +132,12 @@ public class LoginActivity extends BaseActivity {
         }
     }
 
-    private boolean isEmailValid(String email) {
-        // TODO CHANGE THIS
-        return email.contains("@");
-    }
-
     private boolean isUsernameValid(String username) {
-        // TODO CHANGE THIS
-        return username.length() > 0;
+        return username.length() > 5;
     }
 
     private boolean isPasswordValid(String password) {
-        // TODO CHANGE THIS
-        return password.length() > 0;
+        return password.length() > 5;
     }
 
     public EditText showEmailDialog(final String username, final String password) {
@@ -169,7 +152,7 @@ public class LoginActivity extends BaseActivity {
             public void onClick(DialogInterface dialog, int which) {
                 switch (which) {
                     case DialogInterface.BUTTON_POSITIVE:
-                        if (isEmailValid(input.getText().toString())) {
+                        if (appCommon.isEmailValid(input.getText().toString())) {
                             dialog.dismiss();
                             new SignupTask(activity, username, password, input.getText().toString()).execute((Void) null);
                         } else {

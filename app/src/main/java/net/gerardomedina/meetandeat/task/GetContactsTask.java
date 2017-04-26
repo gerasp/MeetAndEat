@@ -4,40 +4,36 @@ import android.util.Log;
 
 import net.gerardomedina.meetandeat.R;
 import net.gerardomedina.meetandeat.view.activity.BaseActivity;
-import net.gerardomedina.meetandeat.view.activity.MainActivity;
+import net.gerardomedina.meetandeat.view.fragment.BaseFragment;
+import net.gerardomedina.meetandeat.view.fragment.DashboardFragment;
 
 import org.json.JSONException;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class SignupTask extends BaseTask {
+public class GetContactsTask extends BaseTask {
 
-    private final String username;
-    private final String password;
-    private final String email;
+    private final int userId;
 
-    public SignupTask(BaseActivity activity, String username, String password, String email) {
-        this.activity = activity;
-        this.username = username;
-        this.password = password;
-        this.email = email;
+    public GetContactsTask(BaseFragment fragment, int userId) {
+        this.fragment = fragment;
+        this.activity = (BaseActivity)fragment.getActivity();
+        this.userId = userId;
     }
 
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
-        showProgressDialog(R.string.signup_dialog);
+        showProgressDialog(R.string.get_meetings_dialog);
     }
 
     @Override
     protected Boolean doInBackground(Void... params) {
         Map<String,String> parameters = new HashMap<>();
-        parameters.put("username",username);
-        parameters.put("password",password);
-        parameters.put("email",email);
+        parameters.put("user_id",userId+"");
 
-        response = requester.httpRequest("SignupUser.php", "POST", parameters);
+        response = requester.httpRequest("GetMeetings.php", "POST", parameters);
         return true;
     }
 
@@ -47,9 +43,9 @@ public class SignupTask extends BaseTask {
         if (success) {
             try {
                 switch (response.getInt("code")) {
-                    case 0: activity.showSimpleDialog(activity.getString(R.string.error_taken_email));
+                    case 0: activity.showSimpleDialog("noo meettings");
                             break;
-                    case 2: activity.login(response.getInt("id"),response.getString("username"));
+                    case 2: ((DashboardFragment)fragment).populateDashboard(response);
                             break;
                 }
             } catch (JSONException e) {

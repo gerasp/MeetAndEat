@@ -8,6 +8,7 @@ import android.widget.ProgressBar;
 
 
 import net.gerardomedina.meetandeat.R;
+import net.gerardomedina.meetandeat.model.User;
 
 public class SplashActivity extends BaseActivity {
 
@@ -44,8 +45,12 @@ public class SplashActivity extends BaseActivity {
         handler = new Handler();
         runnable = new Runnable() {
             public void run() {
-//                int id = (Integer) appCommon.getUtils().sharedGetValue(getApplicationContext(), "id", 2);
-                changeToActivity(MainActivity.class);
+                int id = (Integer) appCommon.sharedGetValue(getApplicationContext(), "id", 2);
+                if (id != 0) {
+                    loginWithPrevValues(id);
+                } else {
+                    changeToActivity(LoginActivity.class);
+                }
             }
         };
         handler.postDelayed(runnable, 1500);

@@ -4,6 +4,7 @@ import android.util.Log;
 import android.widget.EditText;
 
 import net.gerardomedina.meetandeat.R;
+import net.gerardomedina.meetandeat.model.User;
 import net.gerardomedina.meetandeat.view.activity.BaseActivity;
 import net.gerardomedina.meetandeat.view.activity.LoginActivity;
 import net.gerardomedina.meetandeat.view.activity.MainActivity;
@@ -33,9 +34,9 @@ public class LoginTask extends BaseTask {
 
     @Override
     protected Boolean doInBackground(Void... params) {
-        Map<String,String> parameters = new HashMap<>();
-        parameters.put("username",username);
-        parameters.put("password",password);
+        Map<String, String> parameters = new HashMap<>();
+        parameters.put("username", username);
+        parameters.put("password", password);
 
         response = requester.httpRequest("LoginUser.php", "POST", parameters);
         return true;
@@ -48,13 +49,14 @@ public class LoginTask extends BaseTask {
             try {
                 switch (response.getInt("code")) {
                     case 0:
-                            ((LoginActivity)activity).showEmailDialog(username, password);
-                            break;
-                    case 1: activity.showSimpleDialog(activity.getString(R.string.error_incorrect_password));
-                            break;
-                    case 2: activity.showToast("You are logged in");
-                            activity.changeToActivity(MainActivity.class);
-                            break;
+                        ((LoginActivity) activity).showEmailDialog(username, password);
+                        break;
+                    case 1:
+                        activity.showSimpleDialog(activity.getString(R.string.error_incorrect_password));
+                        break;
+                    case 2:
+                        activity.login(response.getInt("id"),response.getString("username"));
+                        break;
                     default:
                 }
             } catch (JSONException e) {

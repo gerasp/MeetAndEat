@@ -2,6 +2,8 @@ package net.gerardomedina.meetandeat.persistence;
 
 import android.util.Log;
 
+import net.gerardomedina.meetandeat.common.AppCommon;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -20,7 +22,7 @@ import java.util.Map;
 
 public class Requester {
 
-    private final String baseUrl = "http://192.168.1.39/ws/";
+    private final AppCommon appCommon = AppCommon.getInstance();
 
     public Requester() {
 
@@ -29,7 +31,7 @@ public class Requester {
     public JSONObject httpRequest(String urlString, String method, Map<String,String> parameters) {
         HttpURLConnection connection = null;
         try {
-            URL url = new URL(baseUrl+urlString);
+            URL url = new URL(appCommon.getBaseURL()+urlString);
             connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod(method);
             if (method.equals("POST")) {

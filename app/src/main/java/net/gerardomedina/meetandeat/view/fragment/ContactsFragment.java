@@ -19,6 +19,7 @@ import android.widget.SearchView;
 import android.widget.TextView;
 
 import net.gerardomedina.meetandeat.R;
+import net.gerardomedina.meetandeat.task.GetContactsTask;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -42,14 +43,6 @@ public class ContactsFragment extends BaseFragment {
         view = inflater.inflate(R.layout.fragment_contacts, container, false);
         contactList = (ListView)view.findViewById(R.id.contacts);
         contacts = new ArrayList<>();
-        contacts.add("PEPE");
-        contacts.add("PEPE");
-        contacts.add("PEPE");
-        contacts.add("PEPE");
-        contacts.add("PEPE");
-        contacts.add("PEPE");
-        contacts.add("PEPE");
-        contacts.add("JUANA");
         contactList.setAdapter(new ContactsAdapter(getActivity(),contacts));
 
         searchView = (SearchView) view.findViewById(R.id.contacts_searchbox);
@@ -63,6 +56,7 @@ public class ContactsFragment extends BaseFragment {
                 return false;
             }
         });
+
         return view;
     }
 
@@ -81,7 +75,6 @@ public class ContactsFragment extends BaseFragment {
                 convertView = LayoutInflater.from(getContext()).inflate(R.layout.fragment_contacts_item, parent, false);
             }
             TextView username = (TextView) convertView.findViewById(R.id.contact_label);
-            ImageView addButton = (ImageView) convertView.findViewById(R.id.add_contact_button);
             username.setText(string);
             return convertView;
         }
