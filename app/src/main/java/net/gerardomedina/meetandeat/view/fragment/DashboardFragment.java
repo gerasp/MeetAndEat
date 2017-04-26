@@ -18,16 +18,13 @@ import android.widget.TextView;
 
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
-import com.google.android.gms.common.api.Status;
-import com.google.android.gms.location.places.Place;
-import com.google.android.gms.location.places.ui.PlaceAutocompleteFragment;
 import com.google.android.gms.location.places.ui.PlacePicker;
-import com.google.android.gms.location.places.ui.PlaceSelectionListener;
 
 import net.gerardomedina.meetandeat.R;
 import net.gerardomedina.meetandeat.task.GetMeetingsTask;
 import net.gerardomedina.meetandeat.view.activity.BaseActivity;
 import net.gerardomedina.meetandeat.view.activity.MeetingActivity;
+import net.gerardomedina.meetandeat.view.activity.NewMeetingActivity;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -39,7 +36,6 @@ import java.util.Map;
 
 public class DashboardFragment extends BaseFragment {
     private View view;
-    private NewMeetingDialog newMeetingDialog;
 
     public DashboardFragment() {
     }
@@ -52,8 +48,7 @@ public class DashboardFragment extends BaseFragment {
         newMeetingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                newMeetingDialog = new NewMeetingDialog(getActivity());
-                newMeetingDialog.show();
+                ((BaseActivity)getActivity()).changeToActivity(NewMeetingActivity.class);
 
             }
         });
@@ -86,67 +81,4 @@ public class DashboardFragment extends BaseFragment {
 
     }
 
-    private class NewMeetingDialog extends Dialog {
-        private Button okButton;
-        private Button cancelButton;
-        private int PLACE_PICKER_REQUEST = 1;
-
-        NewMeetingDialog(Activity a) {super(a);}
-        @Override
-        protected void onCreate(Bundle savedInstanceState) {
-            requestWindowFeature(Window.FEATURE_NO_TITLE);
-            super.onCreate(savedInstanceState);
-            setContentView(R.layout.fragment_dashboard_new);
-
-            TextView title = (TextView)findViewById(R.id.newMeetingTitleInput);
-
-            final TextView location = (TextView)findViewById(R.id.newMeetingLocationInput);
-            location.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-                @Override
-                public void onFocusChange(View v, boolean hasFocus) {
-                    PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
-                    Intent intent;
-                    try {
-                        intent = builder.build(getActivity());
-                        startActivityForResult(intent,PLACE_PICKER_REQUEST);
-                    } catch (GooglePlayServicesRepairableException | GooglePlayServicesNotAvailableException e) {
-                        Log.e("Google Play",e.getMessage());
-                    }
-                }
-            });
-
-            PlaceAutocompleteFragment autocompleteFragment = (PlaceAutocompleteFragment)
-                    getActivity().getFragmentManager().findFragmentById(R.id.place_autocomplete_fragment);
-
-            autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
-                @Override
-                public void onPlaceSelected(Place place) {
-                    location.setText(place.getAddress());
-                }
-
-                @Override
-                public void onError(Status status) {
-                }
-            });
-
-
-            okButton = (Button) findViewById(R.id.newMeetingOkButton);
-            okButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    dismiss();
-                }
-            });
-
-            cancelButton = (Button) findViewById(R.id.newMeetingCancelButton);
-            cancelButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    dismiss();
-                }
-            });
-        }
-
-
-    }
 }

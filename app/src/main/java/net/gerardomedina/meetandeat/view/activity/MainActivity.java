@@ -25,6 +25,9 @@ public class MainActivity extends BaseActivity {
     private BottomNavigationView bottomNavigationView;
 
     private final int DEFAULT_SECTION = 1;
+    private ContactsFragment contactsFragment;
+    private DashboardFragment dashboardFragment;
+    private SettingsFragment settingsFragment;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -91,9 +94,15 @@ public class MainActivity extends BaseActivity {
         @Override
         public Fragment getItem(int position) {
             switch (position) {
-                case 0: return new ContactsFragment();
-                case 1: return new DashboardFragment();
-                case 2: return new SettingsFragment();
+                case 0:
+                    contactsFragment = new ContactsFragment();
+                    return contactsFragment;
+                case 1:
+                    dashboardFragment = new DashboardFragment();
+                    return dashboardFragment;
+                case 2:
+                    settingsFragment = new SettingsFragment();
+                    return settingsFragment;
             }
             return null;
         }
@@ -110,6 +119,10 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == NewMeetingActivity.PLACE_PICKER_REQUEST) {
+            showToast("AJAJA");
+//            NewMeetingActivity.setLocation("Hola");
+        }
     }
 }
 
