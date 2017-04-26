@@ -52,7 +52,7 @@ public class DashboardFragment extends BaseFragment {
 
             }
         });
-        new GetMeetingsTask(this, 1).execute();
+        new GetMeetingsTask(this, appCommon.getUser().getId()).execute();
         return view;
     }
 

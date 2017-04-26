@@ -42,8 +42,6 @@ public class ContactsFragment extends BaseFragment {
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_contacts, container, false);
         contactList = (ListView)view.findViewById(R.id.contacts);
-        contacts = new ArrayList<>();
-        contactList.setAdapter(new ContactsAdapter(getActivity(),contacts));
 
         searchView = (SearchView) view.findViewById(R.id.contacts_searchbox);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -57,12 +55,21 @@ public class ContactsFragment extends BaseFragment {
             }
         });
 
+        new GetContactsTask(this,appCommon.getUser().getId()).execute();
         return view;
     }
 
+    public void populateContactList(JSONObject response) throws JSONException {
+        contacts = new ArrayList<>();
+        JSONArray results = response.getJSONArray("results");
+        ;
+        contacts.add(results.get(0).toString());
+
+        contactList.setAdapter(new ContactsAdapter(getActivity(),contacts));
+    }
 
 
-    class ContactsAdapter extends ArrayAdapter<String> {
+    private class ContactsAdapter extends ArrayAdapter<String> {
         ContactsAdapter(Context context, ArrayList<String> contacts) {
             super(context, 0, contacts);
         }

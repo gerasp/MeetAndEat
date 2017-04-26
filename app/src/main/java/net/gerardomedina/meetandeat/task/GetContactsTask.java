@@ -5,6 +5,7 @@ import android.util.Log;
 import net.gerardomedina.meetandeat.R;
 import net.gerardomedina.meetandeat.view.activity.BaseActivity;
 import net.gerardomedina.meetandeat.view.fragment.BaseFragment;
+import net.gerardomedina.meetandeat.view.fragment.ContactsFragment;
 import net.gerardomedina.meetandeat.view.fragment.DashboardFragment;
 
 import org.json.JSONException;
@@ -33,7 +34,7 @@ public class GetContactsTask extends BaseTask {
         Map<String,String> parameters = new HashMap<>();
         parameters.put("user_id",userId+"");
 
-        response = requester.httpRequest("GetMeetings.php", "POST", parameters);
+        response = requester.httpRequest("GetContacts.php", "POST", parameters);
         return true;
     }
 
@@ -43,9 +44,9 @@ public class GetContactsTask extends BaseTask {
         if (success) {
             try {
                 switch (response.getInt("code")) {
-                    case 0: activity.showSimpleDialog("noo meettings");
+                    case 0: activity.showSimpleDialog("No contacts");
                             break;
-                    case 2: ((DashboardFragment)fragment).populateDashboard(response);
+                    case 2: ((ContactsFragment)fragment).populateContactList(response);
                             break;
                 }
             } catch (JSONException e) {
