@@ -36,10 +36,10 @@ public class SplashActivity extends BaseActivity {
     }
 
     public void initialize() {
-        progressBar = (ProgressBar)findViewById(R.id.splash_progress_bar);
-        ObjectAnimator animation = ObjectAnimator.ofInt (progressBar, "progress", 0, 100);
-        animation.setDuration (1500);
-        animation.setInterpolator (new DecelerateInterpolator());
+        progressBar = (ProgressBar) findViewById(R.id.splash_progress_bar);
+        ObjectAnimator animation = ObjectAnimator.ofInt(progressBar, "progress", 0, 100);
+        animation.setDuration(1500);
+        animation.setInterpolator(new DecelerateInterpolator());
         animation.start();
 
         handler = new Handler();

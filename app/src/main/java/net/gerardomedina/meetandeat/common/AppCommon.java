@@ -10,18 +10,18 @@ import android.text.TextUtils;
 import net.gerardomedina.meetandeat.R;
 import net.gerardomedina.meetandeat.model.User;
 
-public class AppCommon extends MultiDexApplication {
+public class AppCommon {
 
     private static AppCommon singleton;
-    public static AppCommon getInstance() { return singleton; }
+    public static AppCommon getInstance() {
+        if (singleton != null) return singleton;
+        else {
+            singleton = new AppCommon();
+            return singleton;
+        }
+    }
 
     private User user;
-
-    @Override
-    public void onCreate() {
-        super.onCreate();
-        singleton       = this;
-    }
 
     public String getBaseURL() {
         return "http://192.168.1.39/ws/";
@@ -46,7 +46,7 @@ public class AppCommon extends MultiDexApplication {
 
     public Object sharedGetValue(Context context, String valueName, int objectType) {
         Object object = null;
-        SharedPreferences confShared = context.getSharedPreferences(AppCommon.getInstance().getString(R.string.app_name), Context.MODE_PRIVATE);
+        SharedPreferences confShared = context.getSharedPreferences(context.getString(R.string.app_name), Context.MODE_PRIVATE);
         if (objectType == 0) object = confShared.getBoolean(valueName, false);
         if (objectType == 1) object = confShared.getString(valueName, "");
         if (objectType == 2) object = confShared.getInt(valueName, 0);
@@ -54,7 +54,7 @@ public class AppCommon extends MultiDexApplication {
     }
 
     public void sharedSetValue(Context context, String sharedName, Object value) {
-        SharedPreferences confShared 	   	= context.getSharedPreferences(AppCommon.getInstance().getString(R.string.app_name), Context.MODE_PRIVATE);
+        SharedPreferences confShared 	   	= context.getSharedPreferences(context.getString(R.string.app_name), Context.MODE_PRIVATE);
         SharedPreferences.Editor editShared = confShared.edit();
         if (value instanceof Boolean) editShared.putBoolean(sharedName, (Boolean) value);
         if (value instanceof Integer) editShared.putInt(sharedName, (Integer) value);
@@ -63,7 +63,7 @@ public class AppCommon extends MultiDexApplication {
     }
 
     public void sharedRemoveValue(Context context, String sharedName) {
-        SharedPreferences confShared 	   	= context.getSharedPreferences(AppCommon.getInstance().getString(R.string.app_name), Context.MODE_PRIVATE);
+        SharedPreferences confShared 	   	= context.getSharedPreferences(context.getString(R.string.app_name), Context.MODE_PRIVATE);
         SharedPreferences.Editor editShared = confShared.edit();
         editShared.remove(sharedName);
         editShared.apply();
