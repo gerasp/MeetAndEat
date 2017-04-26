@@ -45,7 +45,8 @@
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                style="@style/TextLabel">
 
                 <EditText
                     android:id="@+id/username"
@@ -58,6 +59,7 @@
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
+                style="@style/TextLabel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 

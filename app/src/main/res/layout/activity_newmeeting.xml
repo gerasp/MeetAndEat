@@ -52,7 +52,6 @@
                 android:imeActionLabel="@string/new_meeting_location"
                 android:imeOptions="actionUnspecified"
                 android:inputType="text"
-                android:focusable="false"
                 android:maxLines="1" />
 
         </android.support.design.widget.TextInputLayout>
@@ -80,9 +79,9 @@
                 android:id="@+id/newMeetingTimeInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/new_meeting_time"
+                android:hint="@string/new_meeting_date"
                 android:imeActionId="@+id/newMeeting"
-                android:imeActionLabel="@string/new_meeting_time"
+                android:imeActionLabel="@string/new_meeting_date"
                 android:imeOptions="actionUnspecified"
                 android:inputType="datetime"
                 android:maxLines="1"
