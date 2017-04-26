@@ -47,4 +47,6 @@
     <string name="new_meeting_title">Title</string>
     <string name="new_meeting_hint">Barbacue for us</string>
     <string name="new_meeting_location">Location</string>
+    <string name="tap_to_select">Tap to select</string>
+    <string name="new_meeting_dialog_title">New meeting</string>
 </resources>

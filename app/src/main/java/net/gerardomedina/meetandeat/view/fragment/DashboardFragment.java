@@ -37,6 +37,12 @@ public class DashboardFragment extends BaseFragment {
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_dashboard, container, false);
         FloatingActionButton newMeetingButton = (FloatingActionButton) view.findViewById(R.id.newMeetingButton);
+        newMeetingButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new NewMeetingDialog(getActivity()).show();
+            }
+        });
         new GetMeetingsTask(this, 1).execute();
         return view;
     }
@@ -66,8 +72,7 @@ public class DashboardFragment extends BaseFragment {
 
     }
 
-    class NewMeetingDialog extends Dialog implements
-            android.view.View.OnClickListener {
+    private class NewMeetingDialog extends Dialog {
         private Button okButton;
         private Button cancelButton;
 
@@ -76,23 +81,33 @@ public class DashboardFragment extends BaseFragment {
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.fragment_dashboard_new);
-            TextView country = (TextView)findViewById(R.id.newMeetingTitle);
-            TextView level = (TextView)findViewById(R.id.friend_level_label);
-            TextView totalScore = (TextView)findViewById(R.id.friend_total_score_label);
-            ImageView flag = (ImageView)findViewById(R.id.friend_flag);
+            setTitle(getString(R.string.new_meeting_dialog_title));
 
-            setTitle(selectedFriend.getUsername());
-            country.setText(new Locale("",selectedFriend.getCountry()).getDisplayCountry());
-            level.setText(String.valueOf(selectedFriend.getLevel()));
-            totalScore.setText(String.valueOf(selectedFriend.getTotalScore()));
-            int drawableId = getResources()
-                    .getIdentifier("flag_"+selectedFriend.getCountry().toLowerCase(), "drawable", getActivity().getPackageName());
+            TextView title = (TextView)findViewById(R.id.newMeetingTitleInput);
+            TextView location = (TextView)findViewById(R.id.newMeetingLocationInput);
 
+            location.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+                @Override
+                public void onFocusChange(View v, boolean hasFocus) {
+
+                }
+            });
 
             okButton = (Button) findViewById(R.id.newMeetingOkButton);
-            okButton.setOnClickListener(this);
+            okButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    dismiss();
+                }
+            });
+
+            cancelButton = (Button) findViewById(R.id.newMeetingCancelButton);
+            cancelButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    dismiss();
+                }
+            });
         }
-        @Override
-        public void onClick(View v) {dismiss();}
     }
 }
