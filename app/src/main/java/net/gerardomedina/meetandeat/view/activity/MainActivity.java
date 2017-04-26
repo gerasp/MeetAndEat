@@ -1,5 +1,6 @@
 package net.gerardomedina.meetandeat.view.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -90,7 +91,8 @@ public class MainActivity extends BaseActivity {
         @Override
         public Fragment getItem(int position) {
             switch (position) {
-                case 0: return new ContactsFragment();
+                case 0:changeToActivity(MapsActivity.class);
+//                    return new ContactsFragment();
                 case 1: return new DashboardFragment();
                 case 2: return new SettingsFragment();
             }
@@ -104,6 +106,11 @@ public class MainActivity extends BaseActivity {
         public CharSequence getPageTitle(int position) {
             return getString(R.string.app_name);
         }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
     }
 }
 

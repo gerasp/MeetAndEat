@@ -49,4 +49,5 @@
     <string name="new_meeting_location">Location</string>
     <string name="tap_to_select">Tap to select</string>
     <string name="new_meeting_dialog_title">New meeting</string>
+    <string name="title_activity_maps">Map</string>
 </resources>
