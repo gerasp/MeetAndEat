@@ -1,9 +1,11 @@
 package net.gerardomedina.meetandeat.task;
 
 import android.util.Log;
+import android.widget.EditText;
 
 import net.gerardomedina.meetandeat.R;
 import net.gerardomedina.meetandeat.view.activity.BaseActivity;
+import net.gerardomedina.meetandeat.view.activity.LoginActivity;
 import net.gerardomedina.meetandeat.view.activity.MainActivity;
 
 import org.json.JSONException;
@@ -46,8 +48,7 @@ public class LoginTask extends BaseTask {
             try {
                 switch (response.getInt("code")) {
                     case 0:
-//                            EditText text = ((LoginActivity)activity).showEmailDialog(username, password);
-                            new SignupTask(activity, username, password).execute((Void) null);
+                            ((LoginActivity)activity).showEmailDialog(username, password);
                             break;
                     case 1: activity.showSimpleDialog(activity.getString(R.string.error_incorrect_password));
                             break;
