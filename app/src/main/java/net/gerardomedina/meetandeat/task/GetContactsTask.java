@@ -6,7 +6,6 @@ import net.gerardomedina.meetandeat.R;
 import net.gerardomedina.meetandeat.view.activity.BaseActivity;
 import net.gerardomedina.meetandeat.view.fragment.BaseFragment;
 import net.gerardomedina.meetandeat.view.fragment.ContactsFragment;
-import net.gerardomedina.meetandeat.view.fragment.DashboardFragment;
 
 import org.json.JSONException;
 
@@ -46,7 +45,7 @@ public class GetContactsTask extends BaseTask {
                 switch (response.getInt("code")) {
                     case 0: activity.showSimpleDialog("No contacts");
                             break;
-                    case 2: ((ContactsFragment)fragment).populateContactList(response);
+                    case 2: ((ContactsFragment)fragment).populateContactListFromRemoteWS(response);
                             break;
                 }
             } catch (JSONException e) {

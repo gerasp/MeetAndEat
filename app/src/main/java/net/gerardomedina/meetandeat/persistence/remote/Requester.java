@@ -1,4 +1,4 @@
-package net.gerardomedina.meetandeat.persistence;
+package net.gerardomedina.meetandeat.persistence.remote;
 
 import android.util.Log;
 

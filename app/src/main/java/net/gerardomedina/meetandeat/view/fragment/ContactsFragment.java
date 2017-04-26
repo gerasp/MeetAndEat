@@ -1,24 +1,23 @@
 package net.gerardomedina.meetandeat.view.fragment;
 
-import android.app.Activity;
-import android.app.Dialog;
+import android.content.ContentValues;
 import android.content.Context;
-import android.media.Image;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.TextView;
 
 import net.gerardomedina.meetandeat.R;
+import net.gerardomedina.meetandeat.persistence.local.ContactHelper;
+import net.gerardomedina.meetandeat.persistence.local.ContactValues;
 import net.gerardomedina.meetandeat.task.GetContactsTask;
 
 import org.json.JSONArray;
@@ -26,13 +25,14 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Locale;
+import java.util.List;
 
 public class ContactsFragment extends BaseFragment {
     private View view;
     private ListView contactList;
     private SearchView searchView;
     private ArrayList<String> contacts;
+    private SQLiteOpenHelper dbHelper;
 
     public ContactsFragment() {
     }
@@ -55,17 +55,52 @@ public class ContactsFragment extends BaseFragment {
             }
         });
 
-        new GetContactsTask(this,appCommon.getUser().getId()).execute();
+        dbHelper = new ContactHelper(getActivity());
+        if (appCommon.hasInternet(getActivity())) {
+            new GetContactsTask(this,appCommon.getUser().getId()).execute();
+        } else {
+            populateContactListFromLocalDB();
+        }
+
         return view;
     }
 
-    public void populateContactList(JSONObject response) throws JSONException {
+    private void populateContactListFromLocalDB() {
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        String[] projection = {
+                ContactValues._ID,
+                ContactValues.COLUMN_NAME_USERNAME,
+        };
+        String sortOrder = ContactValues.COLUMN_NAME_USERNAME + " ASC";
+        Cursor cursor = db.query(
+                ContactValues.TABLE_NAME, projection, null, null, null, null,
+                sortOrder);
+        contacts = new ArrayList<>();
+        for(cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext()) {
+            contacts.add(cursor.getString(cursor.getColumnIndexOrThrow(ContactValues.COLUMN_NAME_USERNAME)));
+        }
+        contactList.setAdapter(new ContactsAdapter(getActivity(),contacts));
+
+    }
+
+    public void populateContactListFromRemoteWS(JSONObject response) throws JSONException {
         contacts = new ArrayList<>();
         JSONArray results = response.getJSONArray("results");
         for (int i = 0; i < results.length(); i++) {
             contacts.add(results.getJSONObject(i).getString("username"));
         }
         contactList.setAdapter(new ContactsAdapter(getActivity(),contacts));
+        saveContactListToLocalDB(contacts);
+    }
+
+    private void saveContactListToLocalDB(List<String> contacts) {
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        db.delete(ContactValues.TABLE_NAME, null, null);
+        ContentValues values = new ContentValues();
+        for (String contact: contacts) {
+            values.put(ContactValues.COLUMN_NAME_USERNAME, contact);
+            db.insert(ContactValues.TABLE_NAME, null, values);
+        }
     }
 
 

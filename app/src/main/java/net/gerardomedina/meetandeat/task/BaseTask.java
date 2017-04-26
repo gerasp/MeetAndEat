@@ -3,7 +3,7 @@ package net.gerardomedina.meetandeat.task;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
 
-import net.gerardomedina.meetandeat.persistence.Requester;
+import net.gerardomedina.meetandeat.persistence.remote.Requester;
 import net.gerardomedina.meetandeat.view.activity.BaseActivity;
 import net.gerardomedina.meetandeat.view.fragment.BaseFragment;
 

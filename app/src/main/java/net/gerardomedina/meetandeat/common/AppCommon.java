@@ -24,7 +24,7 @@ public class AppCommon {
     private User user;
 
     public String getBaseURL() {
-        return "http://192.168.1.39/ws/";
+        return "http://192.168.1.40/ws/";
     }
 
     public User getUser() {
