@@ -6,12 +6,14 @@ import android.support.v7.preference.PreferenceFragmentCompat;
 import android.util.Log;
 
 import net.gerardomedina.meetandeat.R;
+import net.gerardomedina.meetandeat.common.AppCommon;
 import net.gerardomedina.meetandeat.view.activity.BaseActivity;
 import net.gerardomedina.meetandeat.view.activity.LoginActivity;
 
 
 public class SettingsFragment extends PreferenceFragmentCompat {
 
+    AppCommon appCommon = AppCommon.getInstance();
     private Preference deleteAccount;
     private Preference editAccount;
     private Preference logout;
@@ -52,6 +54,9 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         logout.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
+                appCommon.sharedRemoveValue(getActivity(),"id");
+                appCommon.sharedRemoveValue(getActivity(),"username");
+
                 ((BaseActivity)getActivity()).changeToActivity(LoginActivity.class);
                 return false;
             }

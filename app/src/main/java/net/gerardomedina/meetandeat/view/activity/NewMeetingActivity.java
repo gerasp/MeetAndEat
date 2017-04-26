@@ -57,6 +57,8 @@ public class NewMeetingActivity extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle(getString(R.string.new_meeting));
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         final Activity activity = this;
 
         title = (TextView) findViewById(R.id.newMeetingTitleInput);
