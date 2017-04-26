@@ -27,17 +27,18 @@ public abstract class BaseActivity extends AppCompatActivity {
         appCommon.sharedSetValue(this,"id",id);
         appCommon.sharedSetValue(this,"username",username);
         changeToActivity(MainActivity.class);
+        overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
     }
 
     public void loginWithPrevValues(int id) {
         appCommon.setUser(new User(id, (String)appCommon.sharedGetValue(getApplicationContext(), "username", 1)));
         changeToActivity(MainActivity.class);
+        overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
     }
 
     public void changeToActivity(Class activity) {
         this.startActivity(new Intent(this, activity));
         this.overridePendingTransition(0,0);
-
     }
 
     public void showSimpleDialog(String message) {

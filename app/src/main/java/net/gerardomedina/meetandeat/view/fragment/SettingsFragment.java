@@ -56,8 +56,8 @@ public class SettingsFragment extends PreferenceFragmentCompat {
             public boolean onPreferenceClick(Preference preference) {
                 appCommon.sharedRemoveValue(getActivity(),"id");
                 appCommon.sharedRemoveValue(getActivity(),"username");
-
                 ((BaseActivity)getActivity()).changeToActivity(LoginActivity.class);
+                getActivity().overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
                 return false;
             }
         });

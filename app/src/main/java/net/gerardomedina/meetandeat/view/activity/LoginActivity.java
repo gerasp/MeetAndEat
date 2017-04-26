@@ -58,13 +58,13 @@ public class LoginActivity extends BaseActivity {
         });
 
         usernameView = (EditText) findViewById(R.id.username);
-//        usernameView.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-//            @Override
-//            public void onFocusChange(View v, boolean hasFocus) {
-//                if (hasFocus) carouselView.setVisibility(View.GONE);
-//                else carouselView.setVisibility(View.VISIBLE);
-//            }
-//        });
+        usernameView.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) carouselView.setVisibility(View.GONE);
+                else carouselView.setVisibility(View.VISIBLE);
+            }
+        });
         passwordView = (EditText) findViewById(R.id.password);
         passwordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -76,19 +76,18 @@ public class LoginActivity extends BaseActivity {
                 return false;
             }
         });
-//        passwordView.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-//            @Override
-//            public void onFocusChange(View v, boolean hasFocus) {
-//                if (hasFocus) carouselView.setVisibility(View.GONE);
-//                else carouselView.setVisibility(View.VISIBLE);
-//            }
-//        });
+        passwordView.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) carouselView.setVisibility(View.GONE);
+                else carouselView.setVisibility(View.VISIBLE);
+            }
+        });
 
         signInButton = (Button) findViewById(R.id.sign_in_button);
         signInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-//                carouselView.setVisibility(View.VISIBLE);
                 attemptLogin();
             }
         });
