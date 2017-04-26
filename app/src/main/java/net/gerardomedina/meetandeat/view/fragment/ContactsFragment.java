@@ -43,6 +43,12 @@ public class ContactsFragment extends BaseFragment {
         contactList = (ListView)view.findViewById(R.id.contacts);
         contacts = new ArrayList<>();
         contacts.add("PEPE");
+        contacts.add("PEPE");
+        contacts.add("PEPE");
+        contacts.add("PEPE");
+        contacts.add("PEPE");
+        contacts.add("PEPE");
+        contacts.add("PEPE");
         contacts.add("JUANA");
         contactList.setAdapter(new ContactsAdapter(getActivity(),contacts));
 

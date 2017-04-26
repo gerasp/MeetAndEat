@@ -57,4 +57,5 @@
     <string name="new_meeting_time">Time</string>
     <string name="prompt_title">Title</string>
     <string name="new_meeting">New meeting</string>
+    <string name="long_click_to_delete">In order to delete a contact, please long press</string>
 </resources>

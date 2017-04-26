@@ -14,19 +14,4 @@
         android:textSize="25sp"
         android:textColor="@color/colorPrimaryText" />
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_gravity="end|center"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent">
-
-        <ImageView
-            android:layout_width="24dp"
-            android:id="@+id/add_contact_button"
-            android:background="@drawable/ic_add_contact"
-            android:layout_height="24dp"
-            android:contentDescription="@string/title_contacts" />
-
-    </LinearLayout>
-
 </FrameLayout>
