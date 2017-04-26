@@ -91,8 +91,7 @@ public class MainActivity extends BaseActivity {
         @Override
         public Fragment getItem(int position) {
             switch (position) {
-                case 0:changeToActivity(MapsActivity.class);
-//                    return new ContactsFragment();
+                case 0: return new ContactsFragment();
                 case 1: return new DashboardFragment();
                 case 2: return new SettingsFragment();
             }

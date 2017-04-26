@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">Meet&amp;Eat</string>
-    <string name="google_api_key">AIzaSyBaKiD_CZFf7FANOeCkcKT370BsF7oDvs4</string>
 
     <!-- Login -->
     <string name="title_login">Login</string>
