@@ -38,7 +38,7 @@ public class DashboardFragment extends BaseFragment {
             @Override
             public void onClick(View v) {
                 ((BaseActivity)getActivity()).changeToActivity(NewMeetingActivity.class);
-
+                getActivity().overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left);
             }
         });
         new GetMeetingsTask(this, appCommon.getUser().getId()).execute();
