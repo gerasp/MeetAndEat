@@ -3,9 +3,9 @@ package net.gerardomedina.meetandeat.view.activity;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
@@ -15,6 +15,9 @@ import android.widget.DatePicker;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
+import com.flask.colorpicker.ColorPickerView;
+import com.flask.colorpicker.builder.ColorPickerClickListener;
+import com.flask.colorpicker.builder.ColorPickerDialogBuilder;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
 import com.google.android.gms.location.places.ui.PlacePicker;
@@ -29,12 +32,17 @@ public class NewMeetingActivity extends BaseActivity {
 
     public TextView location;
     private TextView dateInput;
+    private TextView timeInput;
+    private TextView colorInput;
     public static final int PLACE_PICKER_REQUEST = 1;
     private TextView title;
-    private Toolbar toolbar;
     private DatePickerDialog datePickerDialog;
-    private TextView timeInput;
     private TimePickerDialog timePickerDialog;
+    private Toolbar toolbar;
+
+    Activity getActivity() {
+        return this;
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -111,7 +119,25 @@ public class NewMeetingActivity extends BaseActivity {
             }
         }, newCalendar.get(Calendar.HOUR_OF_DAY), newCalendar.get(Calendar.MINUTE), true);
 
-
+        colorInput = (TextView) findViewById(R.id.newMeetingColorInput);
+        colorInput.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ColorPickerDialogBuilder
+                        .with(getActivity())
+                        .setTitle(getString(R.string.choose_color))
+                        .wheelType(ColorPickerView.WHEEL_TYPE.FLOWER)
+                        .density(12)
+                        .setPositiveButton(getString(android.R.string.ok), new ColorPickerClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int selectedColor, Integer[] allColors) {
+                                colorInput.setText(Integer.toHexString(selectedColor));
+                            }
+                        })
+                        .build()
+                        .show();
+            }
+        });
     }
 
 

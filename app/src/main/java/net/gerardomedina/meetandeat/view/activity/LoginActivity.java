@@ -9,7 +9,6 @@ import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
@@ -30,14 +29,12 @@ public class LoginActivity extends BaseActivity {
 
     private EditText usernameView;
     private EditText passwordView;
-    private Button signInButton;
     private Handler handler;
     private Runnable runnable;
-    private LinearLayout loginForm;
 
-    CarouselView carouselView;
+    private CarouselView carouselView;
 
-    int[] sampleImages = {R.drawable.logo, R.drawable.logo};
+    private int[] sampleImages = {R.drawable.logo, R.drawable.logo};
 
 
     @Override
@@ -45,7 +42,7 @@ public class LoginActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        loginForm = (LinearLayout)findViewById(R.id.email_login_form);
+        LinearLayout loginForm = (LinearLayout) findViewById(R.id.email_login_form);
         loginForm.startAnimation(AnimationUtils.loadAnimation(this,R.anim.slide_in_bottom));
 
         carouselView = (CarouselView) findViewById(R.id.carouselView);
@@ -85,7 +82,7 @@ public class LoginActivity extends BaseActivity {
             }
         });
 
-        signInButton = (Button) findViewById(R.id.sign_in_button);
+        Button signInButton = (Button) findViewById(R.id.sign_in_button);
         signInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {

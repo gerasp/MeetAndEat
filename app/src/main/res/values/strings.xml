@@ -63,4 +63,7 @@
     <string name="no_internet_connection">To do that, you should have an Internet connection</string>
     <string name="delete_contacts_dialog">Deleting contacts</string>
     <string name="error_deleting_contacts">Error deleting contact</string>
+    <string name="choose_color">Choose color</string>
+    <string name="new_meeting_color">Color</string>
+    <string name="new_meeting_contacts">Contacts</string>
 </resources>

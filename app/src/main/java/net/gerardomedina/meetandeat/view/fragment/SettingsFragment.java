@@ -14,15 +14,12 @@ import net.gerardomedina.meetandeat.view.activity.LoginActivity;
 public class SettingsFragment extends PreferenceFragmentCompat {
 
     AppCommon appCommon = AppCommon.getInstance();
-    private Preference deleteAccount;
-    private Preference editAccount;
-    private Preference logout;
 
     @Override
     public void onCreatePreferences(Bundle bundle, String s) {
         setPreferencesFromResource(R.xml.preferences, s);
 
-        deleteAccount = getPreferenceManager().findPreference("delete_account");
+        Preference deleteAccount = getPreferenceManager().findPreference("delete_account");
         deleteAccount.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
@@ -42,7 +39,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
             }
         });
 
-        editAccount = getPreferenceManager().findPreference("edit_account");
+        Preference editAccount = getPreferenceManager().findPreference("edit_account");
         editAccount.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
@@ -50,7 +47,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
             }
         });
 
-        logout = getPreferenceManager().findPreference("logout");
+        Preference logout = getPreferenceManager().findPreference("logout");
         logout.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {

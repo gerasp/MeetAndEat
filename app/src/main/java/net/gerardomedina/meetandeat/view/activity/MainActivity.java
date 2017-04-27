@@ -14,8 +14,6 @@ import net.gerardomedina.meetandeat.view.adapter.SectionsAdapter;
 
 public class MainActivity extends BaseActivity {
 
-    private Toolbar toolbar;
-    private SectionsAdapter sectionsAdapter;
     private ViewPager viewPager;
     private BottomNavigationView bottomNavigationView;
 
@@ -40,10 +38,10 @@ public class MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        sectionsAdapter = new SectionsAdapter(this, getSupportFragmentManager());
+        SectionsAdapter sectionsAdapter = new SectionsAdapter(this, getSupportFragmentManager());
         viewPager = (ViewPager) findViewById(R.id.fragment_container);
         viewPager.setAdapter(sectionsAdapter);
         viewPager.setCurrentItem(DEFAULT_SECTION, true);
