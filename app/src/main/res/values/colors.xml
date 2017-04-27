@@ -5,16 +5,17 @@
     <color name="primary_dark">#FFA000</color>
     <color name="primary_light">#FFECB3</color>
     <color name="accent">#607D8B</color>
-    <color name="primary_text">#212121</color>
+    <color name="primary_text">#ffffff</color>
     <color name="secondary_text">#757575</color>
     <color name="inverted_text">@color/white</color>
-    <color name="background">#c4c4c4</color>
+    <color name="background">#cfd8dc</color>
 
     <color name="black">#000000</color>
     <color name="white">#ffffff</color>
-    <color name="dark_grey">#454545</color>
+    <color name="dark_grey">#303030</color>
     <color name="grey">#838383</color>
 
     <color name="icons">#212121</color>
     <color name="divider">#BDBDBD</color>
+
 </resources>

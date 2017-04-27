@@ -5,7 +5,6 @@
     android:layout_height="match_parent"
     android:background="@color/background"
     android:descendantFocusability="beforeDescendants"
-    android:focusableInTouchMode="true"
     android:orientation="vertical"
     android:weightSum="1"
     tools:context="net.gerardomedina.meetandeat.view.activity.LoginActivity">

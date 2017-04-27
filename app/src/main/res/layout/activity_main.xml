@@ -29,8 +29,8 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/background"
             android:gravity="bottom"
+            android:background="@color/background"
             tools:context="net.gerardomedina.meetandeat.view.activity.MainActivity">
 
             <android.support.v4.view.ViewPager
@@ -53,10 +53,10 @@
                 android:id="@+id/navigation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="?android:attr/windowBackground"
-                app:menu="@menu/menu_navigation"
                 android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true" />
+                android:layout_centerHorizontal="true"
+                android:background="?android:attr/windowBackground"
+                app:menu="@menu/menu_navigation" />
 
         </RelativeLayout>
     </android.support.design.widget.AppBarLayout>

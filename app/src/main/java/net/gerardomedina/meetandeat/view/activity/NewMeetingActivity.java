@@ -7,7 +7,9 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
+import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -76,7 +78,12 @@ public class NewMeetingActivity extends BaseActivity {
         for (TextView input : inputs) {
             input.setError(null);
             if (TextUtils.isEmpty(input.getText())){
-                input.setError(getString(R.string.error_field_required));
+                int ecolor = getResources().getColor(R.color.white);
+                String estring = getString(R.string.error_field_required);
+                ForegroundColorSpan fgcspan = new ForegroundColorSpan(ecolor);
+                SpannableStringBuilder ssbuilder = new SpannableStringBuilder(estring);
+                ssbuilder.setSpan(fgcspan, 0, estring.length(), 0);
+                input.setError(ssbuilder);
                 focusView = input;
                 cancel = true;
             }
@@ -92,7 +99,7 @@ public class NewMeetingActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_newmeeting);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle(getString(R.string.new_meeting));
+        toolbar.setTitle("");
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
