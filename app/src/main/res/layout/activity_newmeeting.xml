@@ -26,6 +26,7 @@
             style="@style/newMeetingLabel">
             <EditText
                 style="@style/newMeetingInput"
+                android:focusable="true"
                 android:id="@+id/newMeetingTitleInput"
                 android:hint="@string/new_meeting_title"
                 android:imeActionLabel="@string/action_sign_in" />

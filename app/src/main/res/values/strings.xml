@@ -3,6 +3,11 @@
     <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">
         AIzaSyDhWUfyNygBcIGXTqhJMFQfBaAnpfjHVmM
     </string>
+
+    <!-- General -->
+    <string name="no_internet_connection">To do that, you should have an Internet connection</string>
+    <string name="delete">Delete</string>
+
     <!-- Login -->
     <string name="title_login">Login</string>
     <string name="prompt_username">Username</string>
@@ -47,23 +52,21 @@
     <!-- Contacts -->
     <string name="get_contacts_dialog">Getting contacts</string>
     <string name="search_new_contacts">Search new contacts</string>
+    <string name="error_deleting_contacts">Error deleting contact</string>
+    <string name="delete_contacts_dialog">Deleting contacts</string>
+
+    <!-- Map -->
+    <string name="title_activity_maps">Map</string>
 
     <!-- New Meeting -->
+    <string name="new_meeting">New meeting</string>
     <string name="new_meeting_title">Title</string>
     <string name="new_meeting_location">Location</string>
-    <string name="tap_to_select">Tap to select</string>
-    <string name="new_meeting_dialog_title">New meeting</string>
-    <string name="title_activity_maps">Map</string>
     <string name="new_meeting_date">Date</string>
     <string name="new_meeting_time">Time</string>
-    <string name="prompt_title">Title</string>
-    <string name="new_meeting">New meeting</string>
-    <string name="long_click_to_delete">In order to delete a contact, please long press</string>
-    <string name="delete">Delete</string>
-    <string name="no_internet_connection">To do that, you should have an Internet connection</string>
-    <string name="delete_contacts_dialog">Deleting contacts</string>
-    <string name="error_deleting_contacts">Error deleting contact</string>
-    <string name="choose_color">Choose color</string>
     <string name="new_meeting_color">Color</string>
     <string name="new_meeting_contacts">Contacts</string>
+    <string name="choose_color">Choose color</string>
+    <string name="error_creating_meeting">Error creating meeting</string>
+
 </resources>

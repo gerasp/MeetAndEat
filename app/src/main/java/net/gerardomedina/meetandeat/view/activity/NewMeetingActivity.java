@@ -23,6 +23,7 @@ import com.google.android.gms.common.GooglePlayServicesRepairableException;
 import com.google.android.gms.location.places.ui.PlacePicker;
 
 import net.gerardomedina.meetandeat.R;
+import net.gerardomedina.meetandeat.task.NewMeeetingTask;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -54,7 +55,9 @@ public class NewMeetingActivity extends BaseActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.menu_new_meeting) ;
+        if (id == R.id.menu_new_meeting) {
+            new NewMeeetingTask(this,appCommon.getUser().getId(),title.).execute();
+        }
         return super.onOptionsItemSelected(item);
     }
 
@@ -127,7 +130,7 @@ public class NewMeetingActivity extends BaseActivity {
                         .with(getActivity())
                         .setTitle(getString(R.string.choose_color))
                         .wheelType(ColorPickerView.WHEEL_TYPE.FLOWER)
-                        .density(12)
+                        .density(6)
                         .setPositiveButton(getString(android.R.string.ok), new ColorPickerClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int selectedColor, Integer[] allColors) {
@@ -145,8 +148,9 @@ public class NewMeetingActivity extends BaseActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == NewMeetingActivity.PLACE_PICKER_REQUEST) {
-            showToast("AJAJA");
-//            NewMeetingActivity.setLocation("Hola");
+            if (resultCode == RESULT_OK) {
+                location.setText(PlacePicker.getPlace(data, this).getName());
+            }
         }
     }
 }
