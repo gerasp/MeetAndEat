@@ -23,7 +23,7 @@
             app:popupTheme="@style/AppTheme.PopupOverlay" />
 
         <View android:layout_width="match_parent"
-            android:layout_height="5dp"
+            android:layout_height="10dp"
             android:background="@drawable/shadow_down"/>
 
         <RelativeLayout
@@ -45,7 +45,7 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="5dp"
+                android:layout_height="10dp"
                 android:layout_alignBottom="@+id/fragment_container"
                 android:background="@drawable/shadow_up" />
 

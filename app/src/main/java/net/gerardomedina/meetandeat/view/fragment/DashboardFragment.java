@@ -15,6 +15,7 @@ import net.gerardomedina.meetandeat.view.activity.BaseActivity;
 import net.gerardomedina.meetandeat.view.activity.MeetingActivity;
 import net.gerardomedina.meetandeat.view.activity.NewMeetingActivity;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -48,7 +49,13 @@ public class DashboardFragment extends BaseFragment {
     public void populateDashboard(JSONObject response) throws JSONException {
         ListView resultsListView = (ListView) view.findViewById(R.id.meetings);
         HashMap<String, String> meetings = new HashMap<>();
-        meetings.put(response.getJSONObject("0").getString("description"), response.getJSONObject("0").getString("datetime"));
+        JSONArray results = response.getJSONArray("results");
+        for (int i = 0; i < results.length(); i++) {
+            meetings.put(results.getJSONObject(i).getString("title"),
+                    results.getJSONObject(i).getString("date")+
+                    results.getJSONObject(i).getString("time")
+            );
+        }
         List<HashMap<String, String>> listItems = new ArrayList<>();
         SimpleAdapter adapter = new SimpleAdapter(getActivity(), listItems, R.layout.fragment_dashboard_item,
                 new String[]{"First Line", "Second Line"},

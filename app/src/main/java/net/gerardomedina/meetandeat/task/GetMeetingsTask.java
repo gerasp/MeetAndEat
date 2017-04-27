@@ -41,6 +41,7 @@ public class GetMeetingsTask extends BaseTask {
         if (success) {
             try {
                 switch (response.getInt("code")) {
+                    case 0: break;
                     case 2: ((DashboardFragment)fragment).populateDashboard(response);
                             break;
                 }
