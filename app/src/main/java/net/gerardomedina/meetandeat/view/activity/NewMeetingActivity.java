@@ -76,6 +76,7 @@ public class NewMeetingActivity extends BaseActivity {
         for (TextView input : inputs) {
             input.setError(null);
             if (TextUtils.isEmpty(input.getText())){
+                input.setError(getString(R.string.error_field_required));
                 focusView = input;
                 cancel = true;
             }

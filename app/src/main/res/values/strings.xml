@@ -7,6 +7,7 @@
     <!-- General -->
     <string name="no_internet_connection">To do that, you should have an Internet connection</string>
     <string name="delete">Delete</string>
+    <string name="error_field_required">This field is required</string>
 
     <!-- Login -->
     <string name="title_login">Login</string>
@@ -17,7 +18,6 @@
     <string name="error_invalid_password">This password is too short</string>
     <string name="error_invalid_email">This email is invalid</string>
     <string name="error_incorrect_password">This password is incorrect</string>
-    <string name="error_field_required">This field is required</string>
     <string name="error_taken_email">This email is already taken</string>
     <string name="login_dialog">Trying to log in…</string>
     <string name="signup_dialog">Trying to sign up…</string>

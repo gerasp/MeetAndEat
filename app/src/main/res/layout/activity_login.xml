@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorBackground"
+    android:background="@color/color_background"
     android:descendantFocusability="beforeDescendants"
     android:focusableInTouchMode="true"
     android:orientation="vertical"
@@ -15,8 +15,8 @@
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:layout_weight="0.7"
-        app:fillColor="@color/colorPrimary"
-        app:pageColor="@color/colorBackground"
+        app:fillColor="@color/color_primary"
+        app:pageColor="@color/color_background"
         app:radius="6dp"
         app:slideInterval="3000"
         app:strokeColor="#FF777777"
@@ -64,7 +64,7 @@
                 android:layout_height="0dp"
                 android:layout_marginTop="16dp"
                 android:layout_weight="1"
-                android:background="@color/colorPrimary"
+                android:background="@color/color_primary"
                 android:text="@string/action_sign_in"
                 android:textStyle="bold" />
         </LinearLayout>

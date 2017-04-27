@@ -22,6 +22,6 @@
         android:id="@+id/meeting_date"
         android:layout_gravity="start|center"
         android:textSize="20sp"
-        android:textColor="@color/darkGrey" />
+        android:textColor="@color/dark_grey" />
 
 </LinearLayout>
