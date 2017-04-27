@@ -6,21 +6,28 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
-    <style name="newMeetingLabel" parent="TextAppearance.AppCompat">
+    <style name="NewMeetingInputLabelStyle" parent="TextAppearance.AppCompat">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_weight">0.5</item>
         <item name="android:layout_height">0dp</item>
     </style>
-    <style name="newMeetingInput">
-        <item name="android:imeOptions">actionUnspecified</item>
+    <style name="NewMeetingInputStyle">
         <item name="android:inputType">text</item>
         <item name="android:maxLines">1</item>
         <item name="android:focusable">false</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:imeActionId">@+id/newMeeting</item>
     </style>
-
+    <style name="LoginInputLabelStyle" parent="TextAppearance.AppCompat">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+    <style name="LoginInputStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:imeActionId">@+id/login</item>
+    </style>
     <style name="MyAlertDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:textColorPrimary">@color/black</item>

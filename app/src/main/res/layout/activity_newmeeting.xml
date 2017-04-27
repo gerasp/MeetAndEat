@@ -14,64 +14,76 @@
         android:background="?attr/colorPrimary"
         app:popupTheme="@style/AppTheme.PopupOverlay" />
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center_horizontal|top"
-        android:background="@color/darkGrey"
-        android:orientation="vertical"
-        android:weightSum="3"
-        android:padding="@dimen/activity_vertical_margin">
-        <android.support.design.widget.TextInputLayout
-            style="@style/newMeetingLabel">
-            <EditText
-                style="@style/newMeetingInput"
-                android:focusable="true"
-                android:id="@+id/newMeetingTitleInput"
-                android:hint="@string/new_meeting_title"
-                android:imeActionLabel="@string/action_sign_in" />
-        </android.support.design.widget.TextInputLayout>
-        <android.support.design.widget.TextInputLayout
-            style="@style/newMeetingLabel">
-            <EditText
-                style="@style/newMeetingInput"
-                android:id="@+id/newMeetingLocationInput"
-                android:hint="@string/new_meeting_location"
-                android:imeActionLabel="@string/new_meeting_location" />
-        </android.support.design.widget.TextInputLayout>
-        <android.support.design.widget.TextInputLayout
-            style="@style/newMeetingLabel">
-            <EditText
-                style="@style/newMeetingInput"
-                android:id="@+id/newMeetingDateInput"
-                android:hint="@string/new_meeting_date"
-                android:imeActionLabel="@string/new_meeting_date"
-                android:inputType="datetime" />
-        </android.support.design.widget.TextInputLayout>
-        <android.support.design.widget.TextInputLayout
-            style="@style/newMeetingLabel">
-            <EditText
-                style="@style/newMeetingInput"
-                android:id="@+id/newMeetingTimeInput"
-                android:hint="@string/new_meeting_time"
-                android:imeActionLabel="@string/new_meeting_time" />
-        </android.support.design.widget.TextInputLayout>
-        <android.support.design.widget.TextInputLayout
-            style="@style/newMeetingLabel">
-            <EditText
-                style="@style/newMeetingInput"
-                android:id="@+id/newMeetingColorInput"
-                android:hint="@string/new_meeting_color"
-                android:imeActionLabel="@string/new_meeting_color" />
-        </android.support.design.widget.TextInputLayout>
-        <android.support.design.widget.TextInputLayout
-            style="@style/newMeetingLabel">
-            <EditText
-                style="@style/newMeetingInput"
-                android:id="@+id/newMeetingContactsInput"
-                android:hint="@string/new_meeting_contacts"
-                android:imeActionLabel="@string/new_meeting_contacts" />
-        </android.support.design.widget.TextInputLayout>
-    </LinearLayout>
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|top"
+            android:background="@color/darkGrey"
+            android:orientation="vertical"
+            android:padding="@dimen/activity_vertical_margin"
+            android:weightSum="3">
+
+            <android.support.design.widget.TextInputLayout style="@style/NewMeetingInputLabelStyle">
+
+                <EditText
+                    android:id="@+id/newMeetingTitleInput"
+                    style="@style/NewMeetingInputStyle"
+                    android:focusable="true"
+                    android:hint="@string/new_meeting_title"
+                    android:imeActionLabel="@string/new_meeting_title" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout style="@style/NewMeetingInputLabelStyle">
+
+                <EditText
+                    android:id="@+id/newMeetingLocationInput"
+                    style="@style/NewMeetingInputStyle"
+                    android:hint="@string/new_meeting_location"
+                    android:imeActionLabel="@string/new_meeting_location" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout style="@style/NewMeetingInputLabelStyle">
+
+                <EditText
+                    android:id="@+id/newMeetingDateInput"
+                    style="@style/NewMeetingInputStyle"
+                    android:hint="@string/new_meeting_date"
+                    android:imeActionLabel="@string/new_meeting_date"
+                    android:inputType="datetime" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout style="@style/NewMeetingInputLabelStyle">
+
+                <EditText
+                    android:id="@+id/newMeetingTimeInput"
+                    style="@style/NewMeetingInputStyle"
+                    android:hint="@string/new_meeting_time"
+                    android:imeActionLabel="@string/new_meeting_time" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout style="@style/NewMeetingInputLabelStyle">
+
+                <EditText
+                    android:id="@+id/newMeetingColorInput"
+                    style="@style/NewMeetingInputStyle"
+                    android:hint="@string/new_meeting_color"
+                    android:imeActionLabel="@string/new_meeting_color" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout style="@style/NewMeetingInputLabelStyle">
+
+                <EditText
+                    android:id="@+id/newMeetingContactsInput"
+                    style="@style/NewMeetingInputStyle"
+                    android:hint="@string/new_meeting_contacts"
+                    android:imeActionLabel="@string/new_meeting_contacts" />
+            </android.support.design.widget.TextInputLayout>
+        </LinearLayout>
+    </ScrollView>
+
 </android.support.design.widget.AppBarLayout>
 

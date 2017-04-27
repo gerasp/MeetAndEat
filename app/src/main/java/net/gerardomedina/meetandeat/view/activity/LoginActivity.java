@@ -43,11 +43,11 @@ public class LoginActivity extends BaseActivity {
         setContentView(R.layout.activity_login);
 
         LinearLayout loginForm = (LinearLayout) findViewById(R.id.email_login_form);
-        loginForm.startAnimation(AnimationUtils.loadAnimation(this,R.anim.slide_in_bottom));
+        loginForm.startAnimation(AnimationUtils.loadAnimation(this, R.anim.slide_in_bottom));
 
         carouselView = (CarouselView) findViewById(R.id.carouselView);
         carouselView.setPageCount(sampleImages.length);
-        carouselView.startAnimation(AnimationUtils.loadAnimation(this,R.anim.slide_in_top));
+        carouselView.startAnimation(AnimationUtils.loadAnimation(this, R.anim.slide_in_top));
         carouselView.setImageListener(new ImageListener() {
             @Override
             public void setImageForPosition(int position, ImageView imageView) {
@@ -67,11 +67,8 @@ public class LoginActivity extends BaseActivity {
         passwordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
-                if (id == R.id.login || id == EditorInfo.IME_NULL) {
-                    attemptLogin();
-                    return true;
-                }
-                return false;
+                attemptLogin();
+                return true;
             }
         });
         passwordView.setOnFocusChangeListener(new View.OnFocusChangeListener() {
@@ -122,11 +119,8 @@ public class LoginActivity extends BaseActivity {
             cancel = true;
         }
 
-        if (cancel) {
-            focusView.requestFocus();
-        } else {
-            new LoginTask(this, username, password).execute((Void) null);
-        }
+        if (cancel) focusView.requestFocus();
+        else new LoginTask(this, username, password).execute((Void) null);
     }
 
     private boolean isUsernameValid(String username) {
