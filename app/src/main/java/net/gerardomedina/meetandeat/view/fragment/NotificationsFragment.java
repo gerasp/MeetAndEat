@@ -33,7 +33,7 @@ public class NotificationsFragment extends BaseFragment {
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_dashboard, container, false);
         FloatingActionButton newMeetingButton = (FloatingActionButton) view.findViewById(R.id.newMeetingButton);
-        new GetMeetingsTask(this, 1).execute();
+        new GetMeetingsTask(this).execute();
         return view;
     }
 }

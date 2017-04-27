@@ -3,6 +3,7 @@ package net.gerardomedina.meetandeat.task;
 import android.util.Log;
 
 import net.gerardomedina.meetandeat.R;
+import net.gerardomedina.meetandeat.view.activity.BaseActivity;
 
 import org.json.JSONException;
 
@@ -17,7 +18,8 @@ public class NewMeeetingTask extends BaseTask {
     private String time;
     private String color;
 
-    public NewMeeetingTask(String title, String location, String date, String time, String color) {
+    public NewMeeetingTask(BaseActivity activity, String title, String location, String date, String time, String color) {
+        this.activity = activity;
         this.title = title;
         this.location = location;
         this.date = date;

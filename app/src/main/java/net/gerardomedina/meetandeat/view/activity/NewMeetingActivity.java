@@ -15,7 +15,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.DatePicker;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
@@ -27,7 +26,7 @@ import com.google.android.gms.common.GooglePlayServicesRepairableException;
 import com.google.android.gms.location.places.ui.PlacePicker;
 
 import net.gerardomedina.meetandeat.R;
-import net.gerardomedina.meetandeat.task.LoginTask;
+import net.gerardomedina.meetandeat.task.NewMeeetingTask;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -90,7 +89,12 @@ public class NewMeetingActivity extends BaseActivity {
         }
 
         if (cancel) focusView.requestFocus();
-//        else new LoginTask(this, username, password).execute((Void) null);
+        else new NewMeeetingTask(this,
+                titleInput.getText().toString(),
+                locationInput.getText().toString(),
+                dateInput.getText().toString(),
+                timeInput.getText().toString(),
+                colorInput.getText().toString()).execute();
 
     }
 
@@ -126,7 +130,7 @@ public class NewMeetingActivity extends BaseActivity {
         final DatePickerDialog datePickerDialog  = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
                 Calendar newDate = Calendar.getInstance();
-                SimpleDateFormat dateFormatter = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
+                SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
                 newDate.set(year, monthOfYear, dayOfMonth);
                 dateInput.setText(dateFormatter.format(newDate.getTime()));
             }
@@ -144,7 +148,8 @@ public class NewMeetingActivity extends BaseActivity {
             public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                 timeInput.setText((hourOfDay > 9 ? "" + hourOfDay : "0" + hourOfDay)
                         + ":"
-                        + (minute > 9 ? "" + minute : "0" + minute));
+                        + (minute > 9 ? "" + minute : "0" + minute)
+                        + ":00");
             }
         }, newCalendar.get(Calendar.HOUR_OF_DAY), newCalendar.get(Calendar.MINUTE), true);
         timeInput = (TextView) findViewById(R.id.newMeetingTimeInput);
@@ -177,7 +182,7 @@ public class NewMeetingActivity extends BaseActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == NewMeetingActivity.PLACE_PICKER_REQUEST) {
             if (resultCode == RESULT_OK) {
-                locationInput.setText(PlacePicker.getPlace(data, this).getName());
+                locationInput.setText(PlacePicker.getPlace(data, this).getLatLng().toString());
             }
         }
     }
