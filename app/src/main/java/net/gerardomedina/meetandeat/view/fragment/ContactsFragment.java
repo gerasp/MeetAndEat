@@ -53,7 +53,7 @@ public class ContactsFragment extends BaseFragment {
 
         dbHelper = new ContactHelper(getActivity());
         if (appCommon.hasInternet(getActivity())) {
-            new GetContactsTask(this,appCommon.getUser().getId()).execute();
+            new GetContactsTask(this).execute();
         } else {
             populateContactListFromLocalDB();
         }

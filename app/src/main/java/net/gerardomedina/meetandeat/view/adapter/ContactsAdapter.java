@@ -40,7 +40,7 @@ public class ContactsAdapter extends ArrayAdapter<String> {
             @Override
             public void onClick(View v) {
                 if (contactsFragment.appCommon.hasInternet(contactsFragment.getActivity())) {
-                    new DeleteContactsTask(contactsFragment.getBaseFragment(), contactsFragment.appCommon.getUser().getId(),contactUsername).execute();
+                    new DeleteContactsTask(contactsFragment.getBaseFragment(), contactUsername).execute();
                 } else ((BaseActivity) contactsFragment.getActivity()).showToast(contactsFragment.getString(R.string.no_internet_connection));
             }
         });

@@ -13,13 +13,11 @@ import java.util.Map;
 
 public class DeleteContactsTask extends BaseTask {
 
-    private final int userId;
     private final String user2Username;
 
-    public DeleteContactsTask(BaseFragment fragment, int userId, String user2Username) {
+    public DeleteContactsTask(BaseFragment fragment, String user2Username) {
         this.fragment = fragment;
         this.activity = (BaseActivity)fragment.getActivity();
-        this.userId = userId;
         this.user2Username = user2Username;
     }
 
@@ -32,7 +30,7 @@ public class DeleteContactsTask extends BaseTask {
     @Override
     protected Boolean doInBackground(Void... params) {
         Map<String,String> parameters = new HashMap<>();
-        parameters.put("user_id",userId+"");
+        parameters.put("user_id",appCommon.getUser().getId()+"");
         parameters.put("user2_username", user2Username +"");
 
         response = requester.httpRequest("DeleteContact.php", "POST", parameters);
@@ -47,7 +45,7 @@ public class DeleteContactsTask extends BaseTask {
                 switch (response.getInt("code")) {
                     case 0: activity.showSimpleDialog(activity.getString(R.string.error_deleting_contacts));
                             break;
-                    case 2: new GetContactsTask(fragment,appCommon.getUser().getId()).execute();
+                    case 2: new GetContactsTask(fragment).execute();
                             break;
                 }
             } catch (JSONException e) {

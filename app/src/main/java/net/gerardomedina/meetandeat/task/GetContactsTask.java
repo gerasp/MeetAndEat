@@ -14,12 +14,9 @@ import java.util.Map;
 
 public class GetContactsTask extends BaseTask {
 
-    private final int userId;
-
-    public GetContactsTask(BaseFragment fragment, int userId) {
+    public GetContactsTask(BaseFragment fragment) {
         this.fragment = fragment;
         this.activity = (BaseActivity)fragment.getActivity();
-        this.userId = userId;
     }
 
     @Override
@@ -31,7 +28,7 @@ public class GetContactsTask extends BaseTask {
     @Override
     protected Boolean doInBackground(Void... params) {
         Map<String,String> parameters = new HashMap<>();
-        parameters.put("user_id",userId+"");
+        parameters.put("user_id",appCommon.getUser().getId()+"");
 
         response = requester.httpRequest("GetContacts.php", "POST", parameters);
         return true;

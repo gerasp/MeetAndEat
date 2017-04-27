@@ -30,6 +30,7 @@ public class Requester {
 
     public JSONObject httpRequest(String urlString, String method, Map<String,String> parameters) {
         HttpURLConnection connection = null;
+        parameters.put("key",appCommon.getKey());
         try {
             URL url = new URL(appCommon.getBaseURL()+urlString);
             connection = (HttpURLConnection) url.openConnection();

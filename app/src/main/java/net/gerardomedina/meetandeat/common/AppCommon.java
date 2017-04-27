@@ -23,6 +23,9 @@ public class AppCommon {
 
     private User user;
 
+    public String getKey() {
+        return "Df5f5z7e6W5pR2D2yEMK7Vkb77cp23nP";
+    }
     public String getBaseURL() {
         return "http://192.168.1.46/ws/";
     }

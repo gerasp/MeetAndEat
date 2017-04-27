@@ -14,12 +14,10 @@ import java.util.Map;
 
 public class GetMeetingsTask extends BaseTask {
 
-    private final int userId;
 
-    public GetMeetingsTask(BaseFragment fragment, int userId) {
+    public GetMeetingsTask(BaseFragment fragment) {
         this.fragment = fragment;
         this.activity = (BaseActivity)fragment.getActivity();
-        this.userId = userId;
     }
 
     @Override
@@ -31,7 +29,7 @@ public class GetMeetingsTask extends BaseTask {
     @Override
     protected Boolean doInBackground(Void... params) {
         Map<String,String> parameters = new HashMap<>();
-        parameters.put("user_id",userId+"");
+        parameters.put("user_id",appCommon.getUser().getId()+"");
 
         response = requester.httpRequest("GetMeetings.php", "POST", parameters);
         return true;

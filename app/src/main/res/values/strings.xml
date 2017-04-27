@@ -68,5 +68,6 @@
     <string name="new_meeting_contacts">Contacts</string>
     <string name="choose_color">Choose color</string>
     <string name="error_creating_meeting">Error creating meeting</string>
+    <string name="creating_meeting_dialog">Creating meeting</string>
 
 </resources>

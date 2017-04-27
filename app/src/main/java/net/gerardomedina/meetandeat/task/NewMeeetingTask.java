@@ -3,8 +3,6 @@ package net.gerardomedina.meetandeat.task;
 import android.util.Log;
 
 import net.gerardomedina.meetandeat.R;
-import net.gerardomedina.meetandeat.view.activity.BaseActivity;
-import net.gerardomedina.meetandeat.view.activity.LoginActivity;
 
 import org.json.JSONException;
 
@@ -13,29 +11,38 @@ import java.util.Map;
 
 public class NewMeeetingTask extends BaseTask {
 
-    private final String username;
-    private final String password;
+    private String title;
+    private String location;
+    private String date;
+    private String time;
+    private String color;
 
-    public NewMeeetingTask(BaseActivity activity, String username, String password) {
-        this.activity = activity;
-        this.username = username;
-        this.password = password;
+    public NewMeeetingTask(String title, String location, String date, String time, String color) {
+        this.title = title;
+        this.location = location;
+        this.date = date;
+        this.time = time;
+        this.color = color;
     }
 
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
-        showProgressDialog(R.string.login_dialog);
+        showProgressDialog(R.string.creating_meeting_dialog);
     }
 
 
     @Override
     protected Boolean doInBackground(Void... params) {
         Map<String, String> parameters = new HashMap<>();
-        parameters.put("username", username);
-        parameters.put("password", password);
+        parameters.put("user_id", appCommon.getUser().getId()+"");
+        parameters.put("title", title);
+        parameters.put("location", location);
+        parameters.put("date", date);
+        parameters.put("time", time);
+        parameters.put("color", color);
 
-        response = requester.httpRequest("LoginUser.php", "POST", parameters);
+        response = requester.httpRequest("NewMeeting.php", "POST", parameters);
         return true;
     }
 
