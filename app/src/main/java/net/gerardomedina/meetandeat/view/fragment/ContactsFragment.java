@@ -1,27 +1,21 @@
 package net.gerardomedina.meetandeat.view.fragment;
 
 import android.content.ContentValues;
-import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SearchView;
-import android.widget.TextView;
 
 import net.gerardomedina.meetandeat.R;
 import net.gerardomedina.meetandeat.persistence.local.ContactHelper;
 import net.gerardomedina.meetandeat.persistence.local.ContactValues;
-import net.gerardomedina.meetandeat.task.DeleteContactsTask;
 import net.gerardomedina.meetandeat.task.GetContactsTask;
-import net.gerardomedina.meetandeat.view.activity.BaseActivity;
+import net.gerardomedina.meetandeat.view.adapter.ContactsAdapter;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -78,7 +72,7 @@ public class ContactsFragment extends BaseFragment {
             contacts.add(cursor.getString(cursor.getColumnIndexOrThrow(ContactValues.COLUMN_NAME_USERNAME)));
         }
         cursor.close();
-        contactList.setAdapter(new ContactsAdapter(getActivity(),contacts));
+        contactList.setAdapter(new ContactsAdapter(this, getActivity(),contacts));
     }
 
     public void populateContactListFromRemoteWS(JSONObject response) throws JSONException {
@@ -87,7 +81,7 @@ public class ContactsFragment extends BaseFragment {
         for (int i = 0; i < results.length(); i++) {
             contacts.add(results.getJSONObject(i).getString("username"));
         }
-        contactList.setAdapter(new ContactsAdapter(getActivity(),contacts));
+        contactList.setAdapter(new ContactsAdapter(this, getActivity(),contacts));
         saveContactListToLocalDB(contacts);
     }
 
@@ -102,33 +96,4 @@ public class ContactsFragment extends BaseFragment {
     }
 
 
-    private class ContactsAdapter extends ArrayAdapter<String> {
-        ContactsAdapter(Context context, ArrayList<String> contacts) {
-            super(context, 0, contacts);
-        }
-
-        @NonNull
-        @Override
-        public View getView(final int position, View convertView, @NonNull ViewGroup parent) {
-            final String contactUsername = getItem(position);
-            if (convertView == null) {
-                convertView = LayoutInflater.from(getContext()).inflate(R.layout.fragment_contacts_item, parent, false);
-            }
-
-            TextView username = (TextView) convertView.findViewById(R.id.contactLabel);
-            username.setText(contactUsername);
-
-            ImageView delete = (ImageView) convertView.findViewById(R.id.deleteContactButton);
-            delete.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (appCommon.hasInternet(getActivity())) {
-                        new DeleteContactsTask(getBaseFragment(),appCommon.getUser().getId(),contactUsername).execute();
-                    } else ((BaseActivity)getActivity()).showToast(getString(R.string.no_internet_connection));
-                }
-            });
-
-            return convertView;
-        }
-    }
 }

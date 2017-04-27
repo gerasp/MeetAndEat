@@ -5,7 +5,7 @@ import android.support.v4.app.Fragment;
 import net.gerardomedina.meetandeat.common.AppCommon;
 
 public abstract class BaseFragment extends Fragment {
-    AppCommon appCommon = AppCommon.getInstance();
+    public AppCommon appCommon = AppCommon.getInstance();
 
 
     public BaseFragment() {

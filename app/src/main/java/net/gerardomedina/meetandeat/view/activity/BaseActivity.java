@@ -13,7 +13,7 @@ import net.gerardomedina.meetandeat.model.User;
 
 public abstract class BaseActivity extends AppCompatActivity {
 
-    AppCommon appCommon = AppCommon.getInstance();
+    public AppCommon appCommon = AppCommon.getInstance();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

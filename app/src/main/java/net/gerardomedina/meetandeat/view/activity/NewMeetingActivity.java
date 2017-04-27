@@ -25,7 +25,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
-public class NewMeetingActivity extends AppCompatActivity {
+public class NewMeetingActivity extends BaseActivity {
 
     public TextView location;
     private TextView dateInput;
@@ -112,5 +112,15 @@ public class NewMeetingActivity extends AppCompatActivity {
         }, newCalendar.get(Calendar.HOUR_OF_DAY), newCalendar.get(Calendar.MINUTE), true);
 
 
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == NewMeetingActivity.PLACE_PICKER_REQUEST) {
+            showToast("AJAJA");
+//            NewMeetingActivity.setLocation("Hola");
+        }
     }
 }

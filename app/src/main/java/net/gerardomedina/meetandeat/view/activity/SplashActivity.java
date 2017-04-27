@@ -6,9 +6,7 @@ import android.os.Handler;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.ProgressBar;
 
-
 import net.gerardomedina.meetandeat.R;
-import net.gerardomedina.meetandeat.model.User;
 
 public class SplashActivity extends BaseActivity {
 
@@ -21,21 +19,6 @@ public class SplashActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-        initialize();
-
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        if (handler != null && runnable != null) {
-            handler.removeCallbacks(runnable);
-            runnable = null;
-            handler = null;
-        }
-    }
-
-    public void initialize() {
         progressBar = (ProgressBar) findViewById(R.id.splash_progress_bar);
         ObjectAnimator animation = ObjectAnimator.ofInt(progressBar, "progress", 0, 100);
         animation.setDuration(1500);
@@ -56,5 +39,13 @@ public class SplashActivity extends BaseActivity {
         handler.postDelayed(runnable, 1500);
     }
 
-
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (handler != null && runnable != null) {
+            handler.removeCallbacks(runnable);
+            runnable = null;
+            handler = null;
+        }
+    }
 }
