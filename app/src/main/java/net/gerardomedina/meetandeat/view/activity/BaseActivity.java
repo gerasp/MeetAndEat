@@ -41,6 +41,13 @@ public abstract class BaseActivity extends AppCompatActivity {
         this.overridePendingTransition(0,0);
     }
 
+    public void changeToActivityNoBackStack(Class activity) {
+        Intent intent = new Intent(this, activity);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+        finish();
+    }
+
     public void showSimpleDialog(String message) {
         new android.support.v7.app.AlertDialog.Builder(this, R.style.MyAlertDialogStyle)
                 .setMessage(message)

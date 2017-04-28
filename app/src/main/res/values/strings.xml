@@ -13,7 +13,7 @@
     <string name="title_login">Login</string>
     <string name="login_username">Username</string>
     <string name="login_password">Password</string>
-    <string name="action_sign_in">Sign in</string>
+    <string name="action_sign_in">Sign in (or sign up)</string>
     <string name="error_invalid_username">This username is invalid</string>
     <string name="error_invalid_password">This password is too short</string>
     <string name="error_invalid_email">This email is invalid</string>

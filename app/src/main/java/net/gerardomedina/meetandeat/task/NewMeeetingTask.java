@@ -59,7 +59,7 @@ public class NewMeeetingTask extends BaseTask {
                         activity.showSimpleDialog(activity.getString(R.string.error_creating_meeting));
                         break;
                     case 2:
-                        activity.changeToActivity(MainActivity.class);
+                        activity.changeToActivityNoBackStack(MainActivity.class);
                         break;
                 }
             } catch (JSONException e) {
