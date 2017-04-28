@@ -3,90 +3,71 @@ package net.gerardomedina.meetandeat.view.dialog;
 import android.app.Activity;
 import android.app.Dialog;
 import android.os.Bundle;
-import android.support.v4.app.DialogFragment;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 
 import net.gerardomedina.meetandeat.R;
 
-import org.json.JSONException;
-
-import java.util.Locale;
-
-class AddFoodDialog extends Dialog implements
-        android.view.View.OnClickListener {
-    private Button ok, cancel;
+public class AddFoodDialog extends Dialog {
+    private final Activity activity;
     private EditText descriptionInput, amountInput;
+    private ImageView selectedIcon;
 
-    AddFoodDialog(Activity a) {
-        super(a);
+    public AddFoodDialog(Activity activity) {
+        super(activity);
+        this.activity = activity;
     }
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dialog_addfood);
+        setTitle(activity.getString(R.string.add_food_label));
 
-        setTitle(getOwnerActivity().getString(R.string.add_food_label));
-        descriptionInput = (EditText) findViewById(R.id.email_edit_input);
-        amountInput = (EditText) findViewById(R.id.country_edit_input);
-        changePassword = (EditText) findViewById(R.id.password_edit_input);
+        selectedIcon = (ImageView) findViewById(R.id.selectedIcon);
+        selectedIcon.setImageResource(R.drawable.ic_1);
 
-        descriptionInput.setText(appCommon.getUser().getEmail());
-        amountInput.setText((new Locale("", appCommon.getUser().getCountry())).getDisplayCountry());
-        amountInput.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showCountryList();
-            }
-        });
-        amountInput.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View view, boolean b) {
-                if (b) showCountryList();
-            }
-        });
+        TableLayout iconsTable = (TableLayout) findViewById(R.id.iconsTable);
+        generateIconsTable(iconsTable);
 
-        ok = (Button) findViewById(R.id.btn_edit_ok);
-        ok.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (changePassword.getText().toString().length() < 6 && changePassword.getText().toString().length() > 0) {
-                    showToast("Password should be longer");
-                } else {
-                    newCountry = selectedCountry;
-                    newEmail = descriptionInput.getText().toString();
-                    try {
-                        editAccount(descriptionInput.getText().toString(),
-                                selectedCountry,
-                                changePassword.getText().toString());
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
+        descriptionInput = (EditText) findViewById(R.id.descriptionInput);
+        amountInput = (EditText) findViewById(R.id.amountInput);
+    }
 
+    private void generateIconsTable(TableLayout table) {
+        try {
+            int counter = 0;
+            for (int i = 1; i <= 50; i++) {
+                TableRow row = new TableRow(activity);
+                for (int j = 1; j < 5; j++) {
+                    counter = counter+1;
+                    int id = R.drawable.class.getField("ic_"+counter).getInt(0);
+                    ImageView icon = new ImageView(activity);
+                    icon.setImageResource(id);
+                    final int finalCounter = counter;
+                    icon.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            try {
+                                selectedIcon.setImageResource(R.drawable.class.getField("ic_"+ finalCounter).getInt(0));
+                            } catch (IllegalAccessException e) {
+                                e.printStackTrace();
+                            } catch (NoSuchFieldException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    });
+                    row.addView(icon);
                 }
-                dismiss();
+                table.addView(row);
             }
-        });
-        cancel = (Button) findViewById(R.id.btn_edit_cancel);
-        cancel.setOnClickListener(this);
-    }
-
-    @Override
-    public void onClick(View v) {
-        dismiss();
-    }
-
-    private void showCountryList() {
-        CountryPicker picker = CountryPicker.getInstance(getString(R.string.select_country),new CountryPickerListener() {
-            @Override
-            public void onSelectCountry(String name, String code) {
-                amountInput.setText(name);
-                selectedCountry = code;
-                ((DialogFragment) getActivity().getSupportFragmentManager().findFragmentByTag("CountryPicker")).dismiss();
-            }
-        });
-        picker.show(getActivity().getSupportFragmentManager(), "CountryPicker");
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (NoSuchFieldException e) {
+            e.printStackTrace();
+        }
     }
 }

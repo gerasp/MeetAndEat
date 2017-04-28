@@ -19,6 +19,7 @@ import android.widget.TableRow;
 
 import net.gerardomedina.meetandeat.R;
 import net.gerardomedina.meetandeat.common.Meeting;
+import net.gerardomedina.meetandeat.view.dialog.AddFoodDialog;
 
 public class MeetingActivity extends BaseActivity {
 
@@ -88,41 +89,9 @@ public class MeetingActivity extends BaseActivity {
     }
 
     private void showAddFoodDialog() {
-        alertDialog = new AlertDialog.Builder(this).create();
-        LinearLayout linearLayout = new LinearLayout(this);
-        ScrollView scrollView = new ScrollView(this);
-        scrollView.setPadding(10,10,10,10);
-        scrollView.addView(generateIconsTable());
-        alertDialog.setView(scrollView);
-        alertDialog.show();
+        AddFoodDialog addFoodDialog = new AddFoodDialog(this);
+        addFoodDialog.show();
     }
 
-    private TableLayout generateIconsTable() {
-        TableLayout table = new TableLayout(this);
-        try {
-            int counter = 0;
-            for (int i = 1; i <= 50; i++) {
-                TableRow row = new TableRow(this);
-                for (int j = 1; j < 5; j++) {
-                    counter = counter+1;
-                    int id = R.drawable.class.getField("ic_"+counter).getInt(0);
-                    ImageView icon = new ImageView(this);
-                    icon.setImageResource(id);
-                    icon.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            alertDialog.dismiss();
-                        }
-                    });
-                    row.addView(icon);
-                }
-                table.addView(row);
-            }
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (NoSuchFieldException e) {
-            e.printStackTrace();
-        }
-        return table;
-    }
+
 }
