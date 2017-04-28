@@ -61,7 +61,7 @@
     <string name="new_meeting_time">Time</string>
     <string name="new_meeting_color">Color</string>
     <string name="new_meeting_contacts">Contacts</string>
-    <string name="choose_color">Choose icon</string>
+    <string name="choose_color">Choose color</string>
     <string name="error_creating_meeting">Error creating meeting</string>
     <string name="creating_meeting_dialog">Creating meeting</string>
     <string name="error_title_too_long">Should be shorter than 20 characters</string>
@@ -71,7 +71,7 @@
     <string name="add_food_label">Add food</string>
     <string name="prompt_description">Description</string>
     <string name="prompt_amount">Amount</string>
-    <string name="selected_icon">Selected icon</string>
-    <string name="select_an_icon">Select an icon from this list</string>
+    <string name="selected_icon">Selected color</string>
+    <string name="select_an_icon">Select an color from this list</string>
     <string name="error_adding_food">Error adding food</string>
 </resources>

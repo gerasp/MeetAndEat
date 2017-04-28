@@ -34,7 +34,7 @@ public class MeetingActivity extends BaseActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public Activity getActivity() {
+    public BaseActivity getActivity() {
         return this;
     }
 

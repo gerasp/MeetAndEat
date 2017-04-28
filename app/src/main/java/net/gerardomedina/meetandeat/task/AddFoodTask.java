@@ -4,7 +4,6 @@ import android.util.Log;
 
 import net.gerardomedina.meetandeat.R;
 import net.gerardomedina.meetandeat.view.activity.BaseActivity;
-import net.gerardomedina.meetandeat.view.activity.MainActivity;
 
 import org.json.JSONException;
 

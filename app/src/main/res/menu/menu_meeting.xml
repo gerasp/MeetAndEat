@@ -4,7 +4,6 @@
     tools:context="net.gerardomedina.meetandeat.view.activity.MeetingActivity">
     <item
         android:id="@+id/menu_options"
-
-        android:description="Options"
+        android:title="Options"
         app:showAsAction="never" />
 </menu>

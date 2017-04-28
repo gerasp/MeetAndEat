@@ -15,8 +15,8 @@
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:layout_weight="0.7"
-        app:fillColor="@icon/primary"
-        app:pageColor="@icon/background"
+        app:fillColor="@color/primary"
+        app:pageColor="@color/background"
         app:radius="6dp"
         app:slideInterval="3000"
         app:strokeColor="#FF777777"
@@ -64,10 +64,10 @@
                 android:layout_height="0dp"
                 android:layout_marginTop="16dp"
                 android:layout_weight="1"
-                android:background="@icon/primary"
+                android:background="@color/primary"
                 android:text="@string/action_sign_in"
                 android:textStyle="bold"
-                android:textColor="@icon/primary_text"/>
+                android:textColor="@color/primary_text"/>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

@@ -4,16 +4,16 @@
 
     <PreferenceCategory android:description="@string/account_management">
         <Preference
-            android:icon="@drawable/ic_edit"
+            android:color="@drawable/ic_edit"
             android:key="edit_account"
             android:description="@string/edit_account" />
 
         <Preference
-            android:icon="@drawable/ic_delete"
+            android:color="@drawable/ic_delete"
             android:key="delete_account"
             android:description="@string/delete_account" />
         <Preference
-            android:icon="@drawable/ic_logout"
+            android:color="@drawable/ic_logout"
             android:key="logout"
             android:description="@string/logout" />
     </PreferenceCategory>
