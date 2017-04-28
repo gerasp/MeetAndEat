@@ -37,12 +37,7 @@
     <string name="logout">Logout</string>
 
     <!-- Meeting -->
-    <string name="large_text">
-        "Material is the metaphor.\n\n"
 
-        "A material metaphor is the unifying theory of a rationalized space and a system of motion."
-        "The material is grounded in tactile reality,
-    </string>
     <string name="get_meetings_dialog">Getting meetings</string>
     <string name="title_activity_scrolling">Meeting</string>
 
@@ -56,7 +51,7 @@
     <string name="delete_contacts_dialog">Deleting contacts</string>
 
     <!-- Map -->
-    <string name="title_activity_maps">Map</string>
+    <string name="title_activity_location">Location</string>
 
     <!-- New Meeting -->
     <string name="new_meeting">New meeting</string>
@@ -69,7 +64,9 @@
     <string name="choose_color">Choose color</string>
     <string name="error_creating_meeting">Error creating meeting</string>
     <string name="creating_meeting_dialog">Creating meeting</string>
-    <string name="error_getting_meetings">Error getting meetings</string>
-    <string name="error_getting_contacts">Error getting contacts</string>
+    <string name="error_title_too_long">Should be shorter than 20 characters</string>
 
+    <string name="error_getting_contacts">Error getting contacts</string>
+    <string name="error_getting_meetings">Error getting meetings</string>
+    <string name="add_food_label">Add food</string>
 </resources>

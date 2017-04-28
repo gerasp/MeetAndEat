@@ -87,6 +87,14 @@ public class NewMeetingActivity extends BaseActivity {
                 cancel = true;
             }
         }
+        if (titleInput.getText().length() > 20){
+            int ecolor = getResources().getColor(R.color.white);
+            String estring = getString(R.string.error_title_too_long);
+            ForegroundColorSpan fgcspan = new ForegroundColorSpan(ecolor);
+            SpannableStringBuilder ssbuilder = new SpannableStringBuilder(estring);
+            ssbuilder.setSpan(fgcspan, 0, estring.length(), 0);
+            titleInput.setError(ssbuilder);
+        }
 
         if (cancel) focusView.requestFocus();
         else new NewMeeetingTask(this,

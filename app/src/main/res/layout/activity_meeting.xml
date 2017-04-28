@@ -41,22 +41,43 @@
         tools:context="net.gerardomedina.meetandeat.view.activity.MeetingActivity"
         tools:showIn="@layout/activity_meeting">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/text_margin"
-            android:text="@string/large_text" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <de.codecrafters.tableview.TableView xmlns:table="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/tableView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                table:tableView_columnCount="4">
+
+            </de.codecrafters.tableview.TableView>
+
+            <Button
+                android:id="@+id/add_food_button"
+                style="?android:textAppearanceSmall"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_margin="16dp"
+                android:layout_weight="1"
+                android:background="@color/accent"
+                android:text="@string/add_food_label"
+                android:textColor="@color/inverted_text"
+                android:textStyle="bold" />
+        </LinearLayout>
 
     </android.support.v4.widget.NestedScrollView>
 
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
+        android:id="@+id/locationFab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/fab_margin"
+        app:fabSize="normal"
         app:layout_anchor="@id/app_bar"
         app:layout_anchorGravity="bottom|end"
-        app:srcCompat="@drawable/ic_location" />
+        app:srcCompat="@drawable/ic_map" />
 
 </android.support.design.widget.CoordinatorLayout>
