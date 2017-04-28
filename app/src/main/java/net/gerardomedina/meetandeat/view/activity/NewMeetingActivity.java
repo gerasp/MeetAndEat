@@ -169,7 +169,7 @@ public class NewMeetingActivity extends BaseActivity {
                         .setPositiveButton(getString(android.R.string.ok), new ColorPickerClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int selectedColor, Integer[] allColors) {
-                                colorInput.setText(selectedColor);
+                                colorInput.setText(selectedColor+"");
                             }
                         }).build().show();
             }

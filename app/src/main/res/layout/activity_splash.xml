@@ -3,25 +3,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background"
+    android:background="@color/primary"
     tools:context="net.gerardomedina.meetandeat.view.activity.LoginActivity">
 
     <ProgressBar
         android:id="@+id/splash_progress_bar"
         style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="298dp"
+        android:layout_height="298dp"
         android:max="100"
         android:progress="0"
-        android:progressDrawable="@drawable/splash_progress" />
+        android:progressDrawable="@drawable/splash_progress"
+        android:layout_centerInParent="true"/>
 
     <ImageView
         android:id="@+id/logo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
         android:contentDescription="@string/app_name"
-        app:srcCompat="@drawable/logo"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        app:srcCompat="@drawable/logo_transparent"
+        android:layout_centerInParent="true" />
 
 </RelativeLayout>
