@@ -24,6 +24,7 @@ import com.flask.colorpicker.builder.ColorPickerDialogBuilder;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
 import com.google.android.gms.location.places.ui.PlacePicker;
+import com.google.android.gms.maps.model.LatLng;
 
 import net.gerardomedina.meetandeat.R;
 import net.gerardomedina.meetandeat.task.NewMeeetingTask;
@@ -190,7 +191,8 @@ public class NewMeetingActivity extends BaseActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == NewMeetingActivity.PLACE_PICKER_REQUEST) {
             if (resultCode == RESULT_OK) {
-                locationInput.setText(PlacePicker.getPlace(data, this).getLatLng().toString());
+                LatLng latLng = PlacePicker.getPlace(data, this).getLatLng();
+                locationInput.setText(latLng.latitude+","+latLng.longitude);
             }
         }
     }

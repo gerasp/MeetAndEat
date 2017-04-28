@@ -39,7 +39,6 @@ public class MeetingActivity extends BaseActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle(meeting.getTitle());
-        toolbar.setBackgroundColor(Color.parseColor(meeting.getColor()));
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 

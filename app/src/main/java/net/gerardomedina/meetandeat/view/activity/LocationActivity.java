@@ -10,6 +10,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import net.gerardomedina.meetandeat.R;
+import net.gerardomedina.meetandeat.common.Meeting;
 
 public class LocationActivity extends BaseActivity implements OnMapReadyCallback {
 
@@ -28,10 +29,10 @@ public class LocationActivity extends BaseActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        appCommon.getMeeting().getLocation();
-        // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        Meeting meeting = appCommon.getMeeting();
+        String [] latlng = meeting.getLocation().split(",");
+        LatLng location = new LatLng(Double.parseDouble(latlng[0]), Double.parseDouble(latlng[1]));
+        mMap.addMarker(new MarkerOptions().position(location).title(meeting.getTitle()));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(location));
     }
 }
