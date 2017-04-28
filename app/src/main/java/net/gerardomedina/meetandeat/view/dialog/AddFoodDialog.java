@@ -67,9 +67,12 @@ public class AddFoodDialog extends AlertDialog {
         }
 
         if (cancel) focusView.requestFocus();
-        else new AddFoodTask(activity,selectedIconParameter,
-                descriptionInput.getText().toString(),
-                amountInput.getText().toString()).execute();
+        else {
+            new AddFoodTask(activity,selectedIconParameter,
+                    descriptionInput.getText().toString(),
+                    amountInput.getText().toString()).execute();
+            dismiss();
+        }
     }
 
 

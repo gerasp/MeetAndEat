@@ -73,7 +73,6 @@ public class MeetingActivity extends BaseActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         addFoodDialog.attemptAddFood();
-                        addFoodDialog.dismiss();
                     }
                 });
                 addFoodDialog.setButton(DialogInterface.BUTTON_NEGATIVE, getString(android.R.string.cancel), new DialogInterface.OnClickListener() {
