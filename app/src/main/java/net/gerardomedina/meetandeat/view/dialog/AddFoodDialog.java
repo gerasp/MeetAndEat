@@ -1,10 +1,10 @@
 package net.gerardomedina.meetandeat.view.dialog;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.Dialog;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TableLayout;
@@ -12,7 +12,7 @@ import android.widget.TableRow;
 
 import net.gerardomedina.meetandeat.R;
 
-public class AddFoodDialog extends AlertDialog {
+public class AddFoodDialog extends Dialog {
     private final Activity activity;
     private EditText descriptionInput, amountInput;
     private ImageView selectedIcon;
@@ -36,6 +36,22 @@ public class AddFoodDialog extends AlertDialog {
 
         descriptionInput = (EditText) findViewById(R.id.descriptionInput);
         amountInput = (EditText) findViewById(R.id.amountInput);
+
+        Button ok = (Button) findViewById(R.id.okAddFood);
+        ok.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        Button cancel = (Button) findViewById(R.id.cancelAddFood);
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dismiss();
+            }
+        });
     }
 
     private void generateIconsTable(TableLayout table) {

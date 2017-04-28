@@ -65,19 +65,7 @@ public class MeetingActivity extends BaseActivity {
         addFoodButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final AddFoodDialog addFoodDialog = new AddFoodDialog(getActivity());
-                addFoodDialog.setButton(DialogInterface.BUTTON_POSITIVE, getString(android.R.string.ok), new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
-                    }
-                });
-                addFoodDialog.setButton(DialogInterface.BUTTON_NEGATIVE, getString(android.R.string.cancel), new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        addFoodDialog.dismiss();
-                    }
-                });
+                AddFoodDialog addFoodDialog = new AddFoodDialog(getActivity());
                 addFoodDialog.show();
             }
         });
