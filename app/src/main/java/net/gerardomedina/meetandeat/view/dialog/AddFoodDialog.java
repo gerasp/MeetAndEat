@@ -3,7 +3,9 @@ package net.gerardomedina.meetandeat.view.dialog;
 import android.app.Activity;
 import android.app.Dialog;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -25,8 +27,8 @@ public class AddFoodDialog extends Dialog {
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.dialog_addfood);
-        setTitle(activity.getString(R.string.add_food_label));
 
         selectedIcon = (ImageView) findViewById(R.id.selectedIcon);
         selectedIcon.setImageResource(R.drawable.ic_1);
@@ -59,6 +61,7 @@ public class AddFoodDialog extends Dialog {
             int counter = 0;
             for (int i = 1; i <= 50; i++) {
                 TableRow row = new TableRow(activity);
+                row.setGravity(Gravity.CENTER_HORIZONTAL);
                 for (int j = 1; j < 5; j++) {
                     counter = counter+1;
                     int id = R.drawable.class.getField("ic_"+counter).getInt(0);
