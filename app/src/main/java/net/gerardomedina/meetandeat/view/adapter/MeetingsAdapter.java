@@ -2,6 +2,7 @@ package net.gerardomedina.meetandeat.view.adapter;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.support.v4.widget.CursorAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -32,9 +33,9 @@ public class MeetingsAdapter extends CursorAdapter {
         String title = cursor.getString(cursor.getColumnIndexOrThrow(MeetingValues.COLUMN_NAME_TITLE));
         String datetime = cursor.getString(cursor.getColumnIndexOrThrow(MeetingValues.COLUMN_NAME_DATE))
                 +" "+cursor.getString(cursor.getColumnIndexOrThrow(MeetingValues.COLUMN_NAME_TIME));
-        int color = (cursor.getInt(cursor.getColumnIndexOrThrow(MeetingValues.COLUMN_NAME_COLOR)));
+        String color = (cursor.getString(cursor.getColumnIndexOrThrow(MeetingValues.COLUMN_NAME_COLOR)));
         meetingTitle.setText(title);
         meetingDateTime.setText(datetime);
-        meetingColor.setBackgroundColor(color);
+        meetingColor.setBackgroundColor(Color.parseColor(color));
     }
 }

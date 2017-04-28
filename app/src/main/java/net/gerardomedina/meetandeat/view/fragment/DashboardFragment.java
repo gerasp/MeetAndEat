@@ -63,7 +63,7 @@ public class DashboardFragment extends BaseFragment {
             values.put(MeetingValues.COLUMN_NAME_LOCATION, results.getJSONObject(i).getString("location"));
             values.put(MeetingValues.COLUMN_NAME_DATE, results.getJSONObject(i).getString("date"));
             values.put(MeetingValues.COLUMN_NAME_TIME, results.getJSONObject(i).getString("time"));
-            values.put(MeetingValues.COLUMN_NAME_COLOR, results.getJSONObject(i).getInt("color"));
+            values.put(MeetingValues.COLUMN_NAME_COLOR, results.getJSONObject(i).getString("color"));
             db.insert(MeetingValues.TABLE_NAME, null, values);
         }
         loadMeetingListFromLocalDB();

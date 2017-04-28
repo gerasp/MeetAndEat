@@ -17,7 +17,7 @@ public class MeetingValues implements BaseColumns {
                     MeetingValues.COLUMN_NAME_LOCATION + " TEXT," +
                     MeetingValues.COLUMN_NAME_DATE + " DATE," +
                     MeetingValues.COLUMN_NAME_TIME + " TIME," +
-                    MeetingValues.COLUMN_NAME_COLOR + " INTEGER" + " )";
+                    MeetingValues.COLUMN_NAME_COLOR + " TEXT" + " )";
 
     public static final String SQL_DELETE_ENTRIES =
             "DROP TABLE IF EXISTS " + MeetingValues.TABLE_NAME;

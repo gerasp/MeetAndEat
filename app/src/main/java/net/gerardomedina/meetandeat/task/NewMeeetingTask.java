@@ -4,6 +4,7 @@ import android.util.Log;
 
 import net.gerardomedina.meetandeat.R;
 import net.gerardomedina.meetandeat.view.activity.BaseActivity;
+import net.gerardomedina.meetandeat.view.activity.MainActivity;
 
 import org.json.JSONException;
 
@@ -58,7 +59,7 @@ public class NewMeeetingTask extends BaseTask {
                         activity.showSimpleDialog(activity.getString(R.string.error_creating_meeting));
                         break;
                     case 2:
-                        activity.showSimpleDialog("BIEEN");
+                        activity.changeToActivity(MainActivity.class);
                         break;
                 }
             } catch (JSONException e) {
