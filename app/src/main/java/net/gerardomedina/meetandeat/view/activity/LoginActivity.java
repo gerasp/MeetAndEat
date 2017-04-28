@@ -131,7 +131,7 @@ public class LoginActivity extends BaseActivity {
         return password.length() > 5;
     }
 
-    public EditText showEmailDialog(final String username, final String password) {
+    public void showEmailDialog(final String username, final String password) {
         final BaseActivity activity = this;
         AlertDialog alertDialog = new AlertDialog.Builder(this).create();
         final EditText input = new EditText(this);
@@ -154,7 +154,6 @@ public class LoginActivity extends BaseActivity {
             }
         });
         alertDialog.show();
-        return input;
     }
 
     @Override

@@ -69,4 +69,6 @@
     <string name="error_getting_contacts">Error getting contacts</string>
     <string name="error_getting_meetings">Error getting meetings</string>
     <string name="add_food_label">Add food</string>
+    <string name="prompt_description">Description</string>
+    <string name="prompt_amount">Amount</string>
 </resources>
