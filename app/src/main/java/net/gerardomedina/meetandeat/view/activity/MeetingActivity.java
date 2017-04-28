@@ -63,7 +63,7 @@ public class MeetingActivity extends BaseActivity {
             }
         });
 
-        Button addFoodButton = (Button) findViewById(R.id.add_food_button);
+        final Button addFoodButton = (Button) findViewById(R.id.add_food_button);
         addFoodButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -71,9 +71,7 @@ public class MeetingActivity extends BaseActivity {
                 addFoodDialog.setView(getActivity().getLayoutInflater().inflate(R.layout.dialog_addfood,null));
                 addFoodDialog.setButton(DialogInterface.BUTTON_POSITIVE, getString(android.R.string.ok), new DialogInterface.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        addFoodDialog.attemptAddFood();
-                    }
+                    public void onClick(DialogInterface dialog, int which) {}
                 });
                 addFoodDialog.setButton(DialogInterface.BUTTON_NEGATIVE, getString(android.R.string.cancel), new DialogInterface.OnClickListener() {
                     @Override
@@ -81,6 +79,19 @@ public class MeetingActivity extends BaseActivity {
                         addFoodDialog.dismiss();
                     }
                 });
+                addFoodDialog.setOnShowListener(new DialogInterface.OnShowListener() {
+                    @Override
+                    public void onShow(DialogInterface dialog) {
+                        Button b = addFoodDialog.getButton(AlertDialog.BUTTON_POSITIVE);
+                        b.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                addFoodDialog.attemptAddFood();
+                            }
+                        });
+                    }
+                });
+
                 addFoodDialog.show();
             }
         });

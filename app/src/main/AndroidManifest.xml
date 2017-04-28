@@ -34,7 +34,12 @@
         <activity
             android:name=".view.activity.MeetingActivity"
             android:label="@string/title_activity_scrolling"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:theme="@style/AppTheme"
+                android:value=".view.activity.MainActivity" />
+        </activity>
         <activity
             android:name=".view.activity.NewMeetingActivity"
             android:label="@string/title_activity_scrolling"
@@ -51,7 +56,7 @@
 
         <activity
             android:name=".view.activity.LocationActivity"
-            android:label="@string/title_activity_location"></activity>
+            android:label="@string/title_activity_location" />
     </application>
 
 </manifest>
