@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
-    android:description="@string/title_preferences">
+    android:title="@string/title_preferences">
 
-    <PreferenceCategory android:description="@string/account_management">
+    <PreferenceCategory android:title="@string/account_management">
         <Preference
-            android:color="@drawable/ic_edit"
+            android:icon="@drawable/ic_edit"
             android:key="edit_account"
-            android:description="@string/edit_account" />
+            android:title="@string/edit_account" />
 
         <Preference
-            android:color="@drawable/ic_delete"
+            android:icon="@drawable/ic_delete"
             android:key="delete_account"
-            android:description="@string/delete_account" />
+            android:title="@string/delete_account" />
         <Preference
-            android:color="@drawable/ic_logout"
+            android:icon="@drawable/ic_logout"
             android:key="logout"
-            android:description="@string/logout" />
+            android:title="@string/logout" />
     </PreferenceCategory>
 
     <Preference

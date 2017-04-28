@@ -49,6 +49,7 @@ public class AddFoodDialog extends Dialog {
             @Override
             public void onClick(View v) {
                 attemptAddFood();
+                dismiss();
             }
         });
 
