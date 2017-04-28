@@ -15,6 +15,7 @@ import android.widget.Button;
 
 import net.gerardomedina.meetandeat.R;
 import net.gerardomedina.meetandeat.common.Meeting;
+import net.gerardomedina.meetandeat.task.SignupTask;
 import net.gerardomedina.meetandeat.view.dialog.AddFoodDialog;
 
 public class MeetingActivity extends BaseActivity {
@@ -65,9 +66,24 @@ public class MeetingActivity extends BaseActivity {
         addFoodButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AddFoodDialog addFoodDialog = new AddFoodDialog(getActivity());
+                final AddFoodDialog addFoodDialog = new AddFoodDialog(getActivity());
+                addFoodDialog.setButton(DialogInterface.BUTTON_POSITIVE, getString(android.R.string.ok), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        addFoodDialog.attemptAddFood();
+                        addFoodDialog.dismiss();
+                    }
+                });
+                addFoodDialog.setButton(DialogInterface.BUTTON_NEGATIVE, getString(android.R.string.cancel), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        addFoodDialog.dismiss();
+                    }
+                });
                 addFoodDialog.show();
             }
         });
     }
+
+
 }

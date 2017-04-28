@@ -1,6 +1,7 @@
 package net.gerardomedina.meetandeat.view.dialog;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -18,7 +19,7 @@ import net.gerardomedina.meetandeat.task.AddFoodTask;
 import net.gerardomedina.meetandeat.task.LoginTask;
 import net.gerardomedina.meetandeat.view.activity.BaseActivity;
 
-public class AddFoodDialog extends Dialog {
+public class AddFoodDialog extends AlertDialog {
     private final BaseActivity activity;
     private EditText descriptionInput, amountInput;
     private ImageView selectedIcon;
@@ -32,7 +33,6 @@ public class AddFoodDialog extends Dialog {
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.dialog_addfood);
 
         selectedIcon = (ImageView) findViewById(R.id.selectedIcon);
@@ -43,26 +43,9 @@ public class AddFoodDialog extends Dialog {
 
         descriptionInput = (EditText) findViewById(R.id.descriptionInput);
         amountInput = (EditText) findViewById(R.id.amountInput);
-
-        Button ok = (Button) findViewById(R.id.okAddFood);
-        ok.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                attemptAddFood();
-                dismiss();
-            }
-        });
-
-        Button cancel = (Button) findViewById(R.id.cancelAddFood);
-        cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dismiss();
-            }
-        });
     }
 
-    private void attemptAddFood () {
+    public void attemptAddFood () {
 
         descriptionInput.setError(null);
         amountInput.setError(null);
