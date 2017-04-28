@@ -120,7 +120,7 @@ public class LoginActivity extends BaseActivity {
         }
 
         if (cancel) focusView.requestFocus();
-        else new LoginTask(this, username, password).execute((Void) null);
+        else new LoginTask(this, username, password).execute();
     }
 
     private boolean isUsernameValid(String username) {

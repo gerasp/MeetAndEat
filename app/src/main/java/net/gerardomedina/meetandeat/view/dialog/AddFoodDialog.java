@@ -3,6 +3,7 @@ package net.gerardomedina.meetandeat.view.dialog;
 import android.app.Activity;
 import android.app.Dialog;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
@@ -14,6 +15,7 @@ import android.widget.TableRow;
 
 import net.gerardomedina.meetandeat.R;
 import net.gerardomedina.meetandeat.task.AddFoodTask;
+import net.gerardomedina.meetandeat.task.LoginTask;
 import net.gerardomedina.meetandeat.view.activity.BaseActivity;
 
 public class AddFoodDialog extends Dialog {
@@ -46,9 +48,7 @@ public class AddFoodDialog extends Dialog {
         ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new AddFoodTask(activity,selectedIconParameter,
-                        descriptionInput.getText().toString(),
-                        amountInput.getText().toString());
+                attemptAddFood();
             }
         });
 
@@ -60,6 +60,35 @@ public class AddFoodDialog extends Dialog {
             }
         });
     }
+
+    private void attemptAddFood () {
+
+        descriptionInput.setError(null);
+        amountInput.setError(null);
+
+        String username = descriptionInput.getText().toString();
+        String password = amountInput.getText().toString();
+
+        boolean cancel = false;
+        View focusView = null;
+
+        if (TextUtils.isEmpty(password)) {
+            amountInput.setError(activity.getString(R.string.error_field_required));
+            focusView = amountInput;
+            cancel = true;
+        }
+        if (TextUtils.isEmpty(username)) {
+            descriptionInput.setError(activity.getString(R.string.error_field_required));
+            focusView = descriptionInput;
+            cancel = true;
+        }
+
+        if (cancel) focusView.requestFocus();
+        else new AddFoodTask(activity,selectedIconParameter,
+                descriptionInput.getText().toString(),
+                amountInput.getText().toString()).execute();
+    }
+
 
     private void generateIconsTable(TableLayout table) {
         try {
