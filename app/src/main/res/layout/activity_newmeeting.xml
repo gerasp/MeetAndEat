@@ -16,7 +16,7 @@
             android:layout_height="476dp"
             android:layout_above="@+id/toolbar"
             android:layout_alignParentTop="true"
-            android:background="@color/dark_grey">
+            android:background="@icon/dark_grey">
 
             <LinearLayout
                 android:layout_width="match_parent"

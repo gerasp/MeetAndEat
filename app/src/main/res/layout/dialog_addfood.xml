@@ -52,20 +52,21 @@
                 android:id="@+id/selectedIcon"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:srcCompat="@color/accent" />
+                app:srcCompat="@icon/accent" />
         </LinearLayout>
 
     </LinearLayout>
 
     <TextView
         android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
         android:layout_height="wrap_content"
         android:text="@string/select_an_icon"
         android:textAlignment="center" />
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="200dp">
+        android:layout_height="100dp">
 
         <TableLayout
             android:id="@+id/iconsTable"
@@ -88,17 +89,17 @@
             android:layout_height="match_parent"
             android:layout_marginRight="10dp"
             android:layout_weight="1"
-            android:background="@color/primary_text"
+            android:background="@icon/primary_text"
             android:text="@android:string/cancel"
-            android:textColor="@color/white" />
+            android:textColor="@icon/white" />
 
         <Button
             android:id="@+id/okAddFood"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@color/accent"
+            android:background="@icon/accent"
             android:text="@android:string/ok"
-            android:textColor="@color/white" />
+            android:textColor="@icon/white" />
     </LinearLayout>
 </LinearLayout>

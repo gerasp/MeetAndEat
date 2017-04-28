@@ -2,13 +2,13 @@
 
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
-        <item name="colorPrimary">@color/primary</item>
-        <item name="colorPrimaryDark">@color/primary_dark</item>
-        <item name="colorAccent">@color/accent</item>
+        <item name="colorPrimary">@icon/primary</item>
+        <item name="colorPrimaryDark">@icon/primary_dark</item>
+        <item name="colorAccent">@icon/accent</item>
     </style>
     <style name="ErrorText" parent="TextAppearance.AppCompat.Small">
         <item name="android:textStyle">bold|italic</item>
-        <item name="android:textColor">@color/white</item>
+        <item name="android:textColor">@icon/white</item>
     </style>
     <style name="NewMeetingInputLabelStyle" parent="TextAppearance.AppCompat">
         <item name="android:layout_width">match_parent</item>
@@ -39,9 +39,9 @@
     </style>
 
     <style name="MyAlertDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
-        <item name="colorAccent">@color/accent</item>
-        <item name="android:textColorPrimary">@color/primary_text</item>
-        <item name="android:background">@color/background</item>
+        <item name="colorAccent">@icon/accent</item>
+        <item name="android:textColorPrimary">@icon/primary_text</item>
+        <item name="android:background">@icon/background</item>
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />

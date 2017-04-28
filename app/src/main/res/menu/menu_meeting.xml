@@ -5,6 +5,6 @@
     <item
         android:id="@+id/menu_options"
 
-        android:title="Options"
+        android:description="Options"
         app:showAsAction="never" />
 </menu>

@@ -13,13 +13,16 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 
 import net.gerardomedina.meetandeat.R;
+import net.gerardomedina.meetandeat.task.AddFoodTask;
+import net.gerardomedina.meetandeat.view.activity.BaseActivity;
 
 public class AddFoodDialog extends Dialog {
-    private final Activity activity;
+    private final BaseActivity activity;
     private EditText descriptionInput, amountInput;
     private ImageView selectedIcon;
+    private String selectedIconParameter;
 
-    public AddFoodDialog(Activity activity) {
+    public AddFoodDialog(BaseActivity activity) {
         super(activity);
         this.activity = activity;
     }
@@ -43,7 +46,9 @@ public class AddFoodDialog extends Dialog {
         ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                new AddFoodTask(activity,selectedIconParameter,
+                        descriptionInput.getText().toString(),
+                        amountInput.getText().toString());
             }
         });
 
@@ -59,10 +64,10 @@ public class AddFoodDialog extends Dialog {
     private void generateIconsTable(TableLayout table) {
         try {
             int counter = 0;
-            for (int i = 1; i <= 50; i++) {
+            for (int i = 1; i <= 40; i++) {
                 TableRow row = new TableRow(activity);
                 row.setGravity(Gravity.CENTER_HORIZONTAL);
-                for (int j = 1; j < 5; j++) {
+                for (int j = 1; j <= 5; j++) {
                     counter = counter+1;
                     int id = R.drawable.class.getField("ic_"+counter).getInt(0);
                     ImageView icon = new ImageView(activity);
@@ -73,6 +78,7 @@ public class AddFoodDialog extends Dialog {
                         public void onClick(View v) {
                             try {
                                 selectedIcon.setImageResource(R.drawable.class.getField("ic_"+ finalCounter).getInt(0));
+                                selectedIconParameter = "ic_"+ finalCounter;
                             } catch (IllegalAccessException e) {
                                 e.printStackTrace();
                             } catch (NoSuchFieldException e) {
