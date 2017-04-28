@@ -39,7 +39,7 @@ public class MeetingsAdapter extends CursorAdapter {
             @Override
             public void onClick(View v) {
                 activity.changeToActivity(MeetingActivity.class);
-                activity.overridePendingTransition(0,R.anim.slide_in_top);
+                activity.overridePendingTransition(0,R.anim.bounce);
             }
         });
 
