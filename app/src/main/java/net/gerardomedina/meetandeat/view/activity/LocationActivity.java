@@ -14,7 +14,7 @@ import net.gerardomedina.meetandeat.common.Meeting;
 
 public class LocationActivity extends BaseActivity implements OnMapReadyCallback {
 
-    private GoogleMap mMap;
+    private GoogleMap map;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,11 +28,12 @@ public class LocationActivity extends BaseActivity implements OnMapReadyCallback
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        mMap = googleMap;
+        map = googleMap;
         Meeting meeting = appCommon.getMeeting();
         String [] latlng = meeting.getLocation().split(",");
         LatLng location = new LatLng(Double.parseDouble(latlng[0]), Double.parseDouble(latlng[1]));
-        mMap.addMarker(new MarkerOptions().position(location).title(meeting.getTitle()));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(location));
+        map.addMarker(new MarkerOptions().position(location).title(meeting.getTitle()));
+        map.moveCamera(CameraUpdateFactory.newLatLng(location));
+        map.animateCamera(CameraUpdateFactory.zoomTo(15));
     }
 }

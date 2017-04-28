@@ -1,16 +1,26 @@
 package net.gerardomedina.meetandeat.common;
 
 public class Meeting {
+    private int id;
     private String title;
     private String location;
     private String date;
     private String color;
 
-    public Meeting(String title, String location, String date, String color) {
+    public Meeting(int id, String title, String location, String date, String color) {
+        this.id = id;
         this.title = title;
         this.location = location;
         this.date = date;
         this.color = color;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getTitle() {

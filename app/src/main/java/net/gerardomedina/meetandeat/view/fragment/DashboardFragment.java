@@ -59,6 +59,7 @@ public class DashboardFragment extends BaseFragment {
         db.delete(MeetingValues.TABLE_NAME, null, null);
         ContentValues values = new ContentValues();
         for (int i = 0; i < results.length(); i++) {
+            values.put(MeetingValues._ID, results.getJSONObject(i).getInt("id"));
             values.put(MeetingValues.COLUMN_NAME_TITLE, results.getJSONObject(i).getString("title"));
             values.put(MeetingValues.COLUMN_NAME_LOCATION, results.getJSONObject(i).getString("location"));
             values.put(MeetingValues.COLUMN_NAME_DATE, results.getJSONObject(i).getString("date"));
