@@ -1,5 +1,6 @@
 package net.gerardomedina.meetandeat.view.fragment;
 import android.content.DialogInterface;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceFragmentCompat;
@@ -7,6 +8,7 @@ import android.util.Log;
 
 import net.gerardomedina.meetandeat.R;
 import net.gerardomedina.meetandeat.common.AppCommon;
+import net.gerardomedina.meetandeat.persistence.local.DBHelper;
 import net.gerardomedina.meetandeat.view.activity.BaseActivity;
 import net.gerardomedina.meetandeat.view.activity.LoginActivity;
 
@@ -53,6 +55,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
             public boolean onPreferenceClick(Preference preference) {
                 appCommon.sharedRemoveValue(getActivity(),"id");
                 appCommon.sharedRemoveValue(getActivity(),"username");
+                getActivity().deleteDatabase(DBHelper.DATABASE_NAME);
                 ((BaseActivity)getActivity()).changeToActivity(LoginActivity.class);
                 getActivity().overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
                 return false;

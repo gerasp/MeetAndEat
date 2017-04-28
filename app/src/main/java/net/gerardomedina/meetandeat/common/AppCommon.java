@@ -4,11 +4,9 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.support.multidex.MultiDexApplication;
 import android.text.TextUtils;
 
 import net.gerardomedina.meetandeat.R;
-import net.gerardomedina.meetandeat.model.User;
 
 public class AppCommon {
 
@@ -27,7 +25,7 @@ public class AppCommon {
         return "Df5f5z7e6W5pR2D2yEMK7Vkb77cp23nP";
     }
     public String getBaseURL() {
-        return "http://192.168.1.46/ws/";
+        return "http://192.168.1.48/ws/";
     }
 
     public User getUser() {

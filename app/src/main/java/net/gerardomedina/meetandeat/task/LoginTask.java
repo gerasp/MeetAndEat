@@ -1,13 +1,10 @@
 package net.gerardomedina.meetandeat.task;
 
 import android.util.Log;
-import android.widget.EditText;
 
 import net.gerardomedina.meetandeat.R;
-import net.gerardomedina.meetandeat.model.User;
 import net.gerardomedina.meetandeat.view.activity.BaseActivity;
 import net.gerardomedina.meetandeat.view.activity.LoginActivity;
-import net.gerardomedina.meetandeat.view.activity.MainActivity;
 
 import org.json.JSONException;
 

@@ -23,9 +23,14 @@ import java.util.Map;
 public class Requester {
 
     private final AppCommon appCommon = AppCommon.getInstance();
+    private boolean cancel;
 
     public Requester() {
 
+    }
+
+    public void cancel() {
+        cancel = true;
     }
 
     public JSONObject httpRequest(String urlString, String method, Map<String,String> parameters) {
@@ -53,6 +58,7 @@ public class Requester {
                     String line;
                     while ((line = br.readLine()) != null) sb.append(line).append("\n");
                     br.close();
+                    if (cancel) return new JSONObject("{'code':-2}");
                     return new JSONObject(sb.toString());
                 default:
                     return new JSONObject("{'code':-1}");

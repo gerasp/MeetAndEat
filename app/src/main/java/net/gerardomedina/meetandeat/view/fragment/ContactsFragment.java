@@ -12,8 +12,9 @@ import android.widget.ListView;
 import android.widget.SearchView;
 
 import net.gerardomedina.meetandeat.R;
-import net.gerardomedina.meetandeat.persistence.local.ContactHelper;
+import net.gerardomedina.meetandeat.persistence.local.DBHelper;
 import net.gerardomedina.meetandeat.persistence.local.ContactValues;
+import net.gerardomedina.meetandeat.persistence.local.MeetingValues;
 import net.gerardomedina.meetandeat.task.GetContactsTask;
 import net.gerardomedina.meetandeat.view.adapter.ContactsAdapter;
 
@@ -22,10 +23,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class ContactsFragment extends BaseFragment {
-    private ListView contactList;
+    private ListView contactListView;
     private SearchView searchView;
     private ArrayList<String> contacts;
     private SQLiteOpenHelper dbHelper;
@@ -37,7 +37,7 @@ public class ContactsFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_contacts, container, false);
-        contactList = (ListView) view.findViewById(R.id.contacts);
+        contactListView = (ListView) view.findViewById(R.id.contacts);
 
         searchView = (SearchView) view.findViewById(R.id.contacts_searchbox);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -51,48 +51,36 @@ public class ContactsFragment extends BaseFragment {
             }
         });
 
-        dbHelper = new ContactHelper(getActivity());
-        if (appCommon.hasInternet(getActivity())) {
-            new GetContactsTask(this).execute();
-        } else {
-            populateContactListFromLocalDB();
-        }
+        dbHelper = new DBHelper(getActivity());
+        if (appCommon.hasInternet(getActivity())) new GetContactsTask(this).execute();
+        else loadContactListFromLocalDB();
         return view;
     }
 
-    private void populateContactListFromLocalDB() {
+    public void saveContactListToLocalDB(JSONObject response) throws JSONException {
+        contacts = new ArrayList<>();
+        JSONArray results = response.getJSONArray("results");
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        db.delete(ContactValues.TABLE_NAME, null, null);
+        ContentValues values = new ContentValues();
+        for (int i = 0; i < results.length(); i++) {
+            values.put(ContactValues.COLUMN_NAME_USERNAME, results.getJSONObject(i).getString("username"));
+            db.insert(ContactValues.TABLE_NAME, null, values);
+        }
+        loadContactListFromLocalDB();
+    }
+
+    private void loadContactListFromLocalDB() {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
-        String[] projection = {ContactValues._ID, ContactValues.COLUMN_NAME_USERNAME};
-        String sortOrder = ContactValues.COLUMN_NAME_USERNAME + " ASC";
-        Cursor cursor = db.query(
-                ContactValues.TABLE_NAME, projection, null, null, null, null,
-                sortOrder);
+        Cursor  cursor = db.rawQuery("select "+ContactValues.COLUMN_NAME_USERNAME+" from "+
+                ContactValues.TABLE_NAME+" order by "
+                +ContactValues.COLUMN_NAME_USERNAME+" ASC;",null);
         contacts = new ArrayList<>();
         for(cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext()) {
             contacts.add(cursor.getString(cursor.getColumnIndexOrThrow(ContactValues.COLUMN_NAME_USERNAME)));
         }
         cursor.close();
-        contactList.setAdapter(new ContactsAdapter(this, getActivity(),contacts));
-    }
-
-    public void populateContactListFromRemoteWS(JSONObject response) throws JSONException {
-        contacts = new ArrayList<>();
-        JSONArray results = response.getJSONArray("results");
-        for (int i = 0; i < results.length(); i++) {
-            contacts.add(results.getJSONObject(i).getString("username"));
-        }
-        contactList.setAdapter(new ContactsAdapter(this, getActivity(),contacts));
-        saveContactListToLocalDB(contacts);
-    }
-
-    private void saveContactListToLocalDB(List<String> contacts) {
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
-        db.delete(ContactValues.TABLE_NAME, null, null);
-        ContentValues values = new ContentValues();
-        for (String contact: contacts) {
-            values.put(ContactValues.COLUMN_NAME_USERNAME, contact);
-            db.insert(ContactValues.TABLE_NAME, null, values);
-        }
+        contactListView.setAdapter(new ContactsAdapter(this, getActivity(),contacts));
     }
 
 

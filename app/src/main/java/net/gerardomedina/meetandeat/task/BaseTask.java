@@ -1,6 +1,7 @@
 package net.gerardomedina.meetandeat.task;
 
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.os.AsyncTask;
 
 import net.gerardomedina.meetandeat.common.AppCommon;
@@ -23,6 +24,13 @@ public abstract class BaseTask extends AsyncTask<Void, Void, Boolean> {
         progressDialog.setMessage(activity.getString(messageId));
         progressDialog.setIndeterminate(false);
         progressDialog.setCancelable(false);
+        progressDialog.setButton(DialogInterface.BUTTON_NEGATIVE, activity.getString(android.R.string.cancel), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                requester.cancel();
+                dialog.dismiss();
+            }
+        });
         progressDialog.show();
     }
 }
