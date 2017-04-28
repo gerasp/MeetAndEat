@@ -32,9 +32,9 @@ public class MeetingsAdapter extends CursorAdapter {
         String title = cursor.getString(cursor.getColumnIndexOrThrow(MeetingValues.COLUMN_NAME_TITLE));
         String datetime = cursor.getString(cursor.getColumnIndexOrThrow(MeetingValues.COLUMN_NAME_DATE))
                 +" "+cursor.getString(cursor.getColumnIndexOrThrow(MeetingValues.COLUMN_NAME_TIME));
-        String color = (cursor.getString(cursor.getColumnIndexOrThrow(MeetingValues.COLUMN_NAME_COLOR)));
+        int color = (cursor.getInt(cursor.getColumnIndexOrThrow(MeetingValues.COLUMN_NAME_COLOR)));
         meetingTitle.setText(title);
         meetingDateTime.setText(datetime);
-        meetingColor.setBackgroundColor(Integer.valueOf(color, 16));
+        meetingColor.setBackgroundColor(color);
     }
 }
