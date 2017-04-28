@@ -7,16 +7,20 @@ import android.support.v4.widget.CursorAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import net.gerardomedina.meetandeat.R;
 import net.gerardomedina.meetandeat.persistence.local.MeetingValues;
+import net.gerardomedina.meetandeat.view.activity.BaseActivity;
+import net.gerardomedina.meetandeat.view.activity.MeetingActivity;
 
 public class MeetingsAdapter extends CursorAdapter {
 
-
-    public MeetingsAdapter(Context context, Cursor c, boolean autoRequery) {
+    private BaseActivity activity;
+    public MeetingsAdapter(Context context, BaseActivity activity, Cursor c, boolean autoRequery) {
         super(context, c, autoRequery);
+        this.activity = activity;
     }
 
     @Override
@@ -26,9 +30,18 @@ public class MeetingsAdapter extends CursorAdapter {
 
     @Override
     public void bindView(View view, Context context, Cursor cursor) {
+        RelativeLayout meeting = (RelativeLayout) view.findViewById(R.id.meeting);
         TextView meetingTitle = (TextView) view.findViewById(R.id.meeting_title);
         TextView meetingDateTime = (TextView) view.findViewById(R.id.meeting_datetime);
         View meetingColor = view.findViewById(R.id.meeting_color);
+
+        meeting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activity.changeToActivity(MeetingActivity.class);
+                activity.overridePendingTransition(0,R.anim.slide_in_top);
+            }
+        });
 
         String title = cursor.getString(cursor.getColumnIndexOrThrow(MeetingValues.COLUMN_NAME_TITLE));
         String datetime = cursor.getString(cursor.getColumnIndexOrThrow(MeetingValues.COLUMN_NAME_DATE))

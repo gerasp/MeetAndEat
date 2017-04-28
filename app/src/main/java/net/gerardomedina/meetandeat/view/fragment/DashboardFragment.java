@@ -75,7 +75,7 @@ public class DashboardFragment extends BaseFragment {
         Cursor cursor = db.rawQuery("select * from "+MeetingValues.TABLE_NAME+
                 " order by " +MeetingValues.COLUMN_NAME_DATE+","+MeetingValues.COLUMN_NAME_TIME+ " ASC;"
                 ,null);
-        meetingListView.setAdapter(new MeetingsAdapter(getActivity(),cursor,true));
+        meetingListView.setAdapter(new MeetingsAdapter(getActivity(), (BaseActivity) getActivity(),cursor,true));
     }
 
 }
