@@ -11,7 +11,8 @@ xmlns:android="http://schemas.android.com/apk/res/android"
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:baselineAligned="false">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -38,7 +39,7 @@ xmlns:android="http://schemas.android.com/apk/res/android"
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:orientation="vertical">
@@ -58,13 +59,21 @@ xmlns:android="http://schemas.android.com/apk/res/android"
 
     </LinearLayout>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/select_an_icon"
+        android:textAlignment="center" />
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <TableLayout
             android:id="@+id/iconsTable"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal" />
     </ScrollView>
 
 </LinearLayout>

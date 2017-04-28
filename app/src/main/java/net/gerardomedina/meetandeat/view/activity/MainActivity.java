@@ -28,8 +28,7 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.menu_notifications) ;
+        if (item.getItemId() == R.id.menu_notifications) ;
         return super.onOptionsItemSelected(item);
     }
 

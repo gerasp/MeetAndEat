@@ -1,6 +1,7 @@
 package net.gerardomedina.meetandeat.view.dialog;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.os.Bundle;
 import android.view.View;
@@ -11,7 +12,7 @@ import android.widget.TableRow;
 
 import net.gerardomedina.meetandeat.R;
 
-public class AddFoodDialog extends Dialog {
+public class AddFoodDialog extends AlertDialog {
     private final Activity activity;
     private EditText descriptionInput, amountInput;
     private ImageView selectedIcon;

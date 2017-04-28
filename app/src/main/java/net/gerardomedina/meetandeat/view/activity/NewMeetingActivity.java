@@ -58,8 +58,7 @@ public class NewMeetingActivity extends BaseActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.menu_new_meeting) attemptNewMeeting();
+        if (item.getItemId() == R.id.menu_new_meeting) attemptNewMeeting();
         return super.onOptionsItemSelected(item);
     }
 

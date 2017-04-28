@@ -1,6 +1,7 @@
 package net.gerardomedina.meetandeat.view.activity;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
@@ -11,11 +12,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.ScrollView;
-import android.widget.TableLayout;
-import android.widget.TableRow;
 
 import net.gerardomedina.meetandeat.R;
 import net.gerardomedina.meetandeat.common.Meeting;
@@ -24,7 +20,6 @@ import net.gerardomedina.meetandeat.view.dialog.AddFoodDialog;
 public class MeetingActivity extends BaseActivity {
 
     private Meeting meeting;
-    private AlertDialog alertDialog;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -35,7 +30,7 @@ public class MeetingActivity extends BaseActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
+        item.getItemId();
         return super.onOptionsItemSelected(item);
     }
 
@@ -70,28 +65,21 @@ public class MeetingActivity extends BaseActivity {
         addFoodButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                LinearLayout layout = new LinearLayout(getActivity());
-//                layout.setOrientation(LinearLayout.VERTICAL);
-//
-//                final EditText category = new EditText(getActivity());
-//                category.setHint("Title");
-//                layout.addView(category);
-//
-//                final EditText descriptionBox = new EditText(getActivity());
-//                descriptionBox.setHint("Description");
-//                layout.addView(descriptionBox);
-//
-//                dialog.setView(layout);
+                final AddFoodDialog addFoodDialog = new AddFoodDialog(getActivity());
+                addFoodDialog.setButton(DialogInterface.BUTTON_POSITIVE, getString(android.R.string.ok), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
 
-                showAddFoodDialog();
+                    }
+                });
+                addFoodDialog.setButton(DialogInterface.BUTTON_NEGATIVE, getString(android.R.string.cancel), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        addFoodDialog.dismiss();
+                    }
+                });
+                addFoodDialog.show();
             }
         });
     }
-
-    private void showAddFoodDialog() {
-        AddFoodDialog addFoodDialog = new AddFoodDialog(this);
-        addFoodDialog.show();
-    }
-
-
 }
