@@ -11,6 +11,10 @@ import net.gerardomedina.meetandeat.R;
 public class AppCommon {
 
     private static AppCommon singleton;
+
+    private User user;
+    private Meeting meeting;
+
     public static AppCommon getInstance() {
         if (singleton != null) return singleton;
         else {
@@ -18,8 +22,6 @@ public class AppCommon {
             return singleton;
         }
     }
-
-    private User user;
 
     public String getKey() {
         return "Df5f5z7e6W5pR2D2yEMK7Vkb77cp23nP";
@@ -34,6 +36,14 @@ public class AppCommon {
     public void setUser(User user) {
         this.user = user;
     }
+
+    public Meeting getMeeting() {
+        return meeting;
+    }
+    public void setMeeting(Meeting meeting) {
+        this.meeting = meeting;
+    }
+
 
     public boolean hasInternet(Context ctx) {
         ConnectivityManager conMgr = (ConnectivityManager) ctx.getSystemService(Context.CONNECTIVITY_SERVICE);

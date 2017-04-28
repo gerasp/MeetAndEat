@@ -11,12 +11,14 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import net.gerardomedina.meetandeat.R;
+import net.gerardomedina.meetandeat.common.AppCommon;
+import net.gerardomedina.meetandeat.common.Meeting;
 import net.gerardomedina.meetandeat.persistence.local.MeetingValues;
 import net.gerardomedina.meetandeat.view.activity.BaseActivity;
 import net.gerardomedina.meetandeat.view.activity.MeetingActivity;
 
 public class MeetingsAdapter extends CursorAdapter {
-
+    AppCommon appCommon = AppCommon.getInstance();
     private BaseActivity activity;
     public MeetingsAdapter(Context context, BaseActivity activity, Cursor c, boolean autoRequery) {
         super(context, c, autoRequery);
@@ -29,26 +31,29 @@ public class MeetingsAdapter extends CursorAdapter {
     }
 
     @Override
-    public void bindView(View view, Context context, Cursor cursor) {
+    public void bindView(View view, Context context, final Cursor cursor) {
         RelativeLayout meeting = (RelativeLayout) view.findViewById(R.id.meeting);
         TextView meetingTitle = (TextView) view.findViewById(R.id.meeting_title);
         TextView meetingDateTime = (TextView) view.findViewById(R.id.meeting_datetime);
         View meetingColor = view.findViewById(R.id.meeting_color);
 
+        final String title = cursor.getString(cursor.getColumnIndexOrThrow(MeetingValues.COLUMN_NAME_TITLE));
+        final String datetime = cursor.getString(cursor.getColumnIndexOrThrow(MeetingValues.COLUMN_NAME_DATE))
+                +" "+cursor.getString(cursor.getColumnIndexOrThrow(MeetingValues.COLUMN_NAME_TIME));
+        final String color = (cursor.getString(cursor.getColumnIndexOrThrow(MeetingValues.COLUMN_NAME_COLOR)));
+        meetingTitle.setText(title);
+        meetingDateTime.setText(datetime);
+        meetingColor.setBackgroundColor(Color.parseColor(color));
+
         meeting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 activity.changeToActivity(MeetingActivity.class);
-                activity.overridePendingTransition(0,R.anim.bounce);
+                activity.overridePendingTransition(R.anim.slide_down,R.anim.fade_out);
+                appCommon.setMeeting(new Meeting(title,
+                        cursor.getString(cursor.getColumnIndexOrThrow(MeetingValues.COLUMN_NAME_LOCATION)),
+                        datetime,color));
             }
         });
-
-        String title = cursor.getString(cursor.getColumnIndexOrThrow(MeetingValues.COLUMN_NAME_TITLE));
-        String datetime = cursor.getString(cursor.getColumnIndexOrThrow(MeetingValues.COLUMN_NAME_DATE))
-                +" "+cursor.getString(cursor.getColumnIndexOrThrow(MeetingValues.COLUMN_NAME_TIME));
-        String color = (cursor.getString(cursor.getColumnIndexOrThrow(MeetingValues.COLUMN_NAME_COLOR)));
-        meetingTitle.setText(title);
-        meetingDateTime.setText(datetime);
-        meetingColor.setBackgroundColor(Color.parseColor(color));
     }
 }
