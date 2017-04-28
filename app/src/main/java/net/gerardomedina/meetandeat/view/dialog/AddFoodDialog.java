@@ -33,7 +33,6 @@ public class AddFoodDialog extends AlertDialog {
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.dialog_addfood);
 
         selectedIcon = (ImageView) findViewById(R.id.selectedIcon);
         selectedIcon.setImageResource(R.drawable.ic_1);

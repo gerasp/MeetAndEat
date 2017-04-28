@@ -8,6 +8,7 @@ import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -67,6 +68,7 @@ public class MeetingActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 final AddFoodDialog addFoodDialog = new AddFoodDialog(getActivity());
+                addFoodDialog.setView(getActivity().getLayoutInflater().inflate(R.layout.dialog_addfood,null));
                 addFoodDialog.setButton(DialogInterface.BUTTON_POSITIVE, getString(android.R.string.ok), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
