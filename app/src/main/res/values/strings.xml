@@ -74,4 +74,5 @@
     <string name="selected_icon">Selected color</string>
     <string name="select_an_icon">Select an color from this list</string>
     <string name="error_adding_food">Error adding food</string>
+    <string name="adding_food">Adding food</string>
 </resources>

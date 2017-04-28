@@ -26,7 +26,7 @@ public class AddFoodTask extends BaseTask {
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
-        showProgressDialog(R.string.creating_meeting_dialog);
+        showProgressDialog(R.string.adding_food);
     }
 
 
@@ -34,6 +34,7 @@ public class AddFoodTask extends BaseTask {
     protected Boolean doInBackground(Void... params) {
         Map<String, String> parameters = new HashMap<>();
         parameters.put("user_id", appCommon.getUser().getId()+"");
+        parameters.put("meeting_id", appCommon.getMeeting().getId()+"");
         parameters.put("icon", icon);
         parameters.put("description", description);
         parameters.put("amount", amount);
