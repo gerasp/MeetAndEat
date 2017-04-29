@@ -2,6 +2,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="net.gerardomedina.meetandeat.view.activity.MeetingActivity">
+
+    <item
+        android:id="@+id/menu_add"
+        android:icon="@drawable/ic_map"
+        android:title="@string/location"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/menu_visitors"
+        android:icon="@drawable/ic_visitors"
+        android:title="@string/participants"
+        app:showAsAction="ifRoom" />
+
     <item
         android:id="@+id/menu_options"
         android:title="Options"

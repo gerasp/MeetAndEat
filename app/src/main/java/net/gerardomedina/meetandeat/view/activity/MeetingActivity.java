@@ -68,13 +68,13 @@ public class MeetingActivity extends BaseActivity {
         CollapsingToolbarLayout toolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.toolbar_layout);
         toolbarLayout.setBackgroundColor(Color.parseColor(meeting.getColor()));
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.locationFab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                changeToActivity(LocationActivity.class);
-            }
-        });
+//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.locationFab);
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                changeToActivity(LocationActivity.class);
+//            }
+//        });
 
 //        final Button addFoodButton = (Button) findViewById(R.id.add_food_button);
 //        addFoodButton.setOnClickListener(new View.OnClickListener() {

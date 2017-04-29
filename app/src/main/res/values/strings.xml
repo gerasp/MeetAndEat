@@ -89,5 +89,7 @@
     <string name="who">Who</string>
     <string name="how_many">#</string>
     <string name="add_participant_label">Add participant</string>
+    <string name="participants">Participants</string>
+    <string name="location">Location</string>
 
 </resources>

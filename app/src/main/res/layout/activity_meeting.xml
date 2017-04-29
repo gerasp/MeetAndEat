@@ -51,62 +51,42 @@
 
     </LinearLayout>
 
-    <LinearLayout
+    <com.github.clans.fab.FloatingActionMenu
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_anchor="@+id/app_bar"
-        app:layout_anchorGravity="top|right">
+        android:layout_margin="@dimen/fab_margin"
+        android:id="@+id/addMenu"
+        app:layout_anchor="@id/linearLayout"
+        app:layout_anchorGravity="bottom|end"
+        fab:menu_backgroundColor="@android:color/transparent"
+        fab:menu_colorNormal="@color/primary"
+        fab:menu_fab_size="normal"
+        fab:menu_icon="@drawable/fab_add"
+        fab:menu_labels_hideAnimation="@anim/fab_slide_out_to_right"
+        fab:menu_labels_position="left"
+        fab:menu_labels_showAnimation="@anim/fab_slide_in_from_right"
+        fab:menu_labels_showShadow="true"
+        fab:menu_labels_textColor="@color/inverted_text"
+        fab:menu_labels_textSize="15sp"
+        fab:menu_openDirection="up"
+        fab:menu_showShadow="true">
 
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/locationFab"
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/material_design_floating_action_menu_item1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom|right"
-            android:layout_margin="@dimen/fab_margin"
-            app:backgroundTint="@color/accent"
-            app:fabSize="normal"
-            app:srcCompat="@drawable/ic_map" />
-        <com.github.clans.fab.FloatingActionMenu
-            android:id="@+id/material_design_android_floating_action_menu"
+            app:srcCompat="@drawable/ic_delete"
+            fab:fab_label="@string/add_food_label"
+            fab:fab_size="mini" />
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/material_design_floating_action_menu_item2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            fab:menu_backgroundColor="@android:color/transparent"
-            fab:menu_colorNormal="@color/primary"
-            fab:menu_fab_size="normal"
-            fab:menu_icon="@drawable/fab_add"
-            fab:menu_labels_colorNormal="#333"
-            fab:menu_labels_hideAnimation="@anim/fab_slide_out_to_right"
-            fab:menu_labels_margin="0dp"
-            fab:menu_labels_padding="8dp"
-            fab:menu_labels_position="left"
-            fab:menu_labels_showAnimation="@anim/fab_slide_in_from_right"
-            fab:menu_labels_showShadow="true"
-            fab:menu_labels_singleLine="false"
-            fab:menu_labels_textColor="@color/primary_text"
-            fab:menu_labels_textSize="15sp"
-            fab:menu_openDirection="down"
-            fab:menu_showShadow="true">
+            app:srcCompat="@drawable/ic_delete"
+            fab:fab_label="@string/add_participant_label"
+            fab:fab_size="mini" />
 
-            <com.github.clans.fab.FloatingActionButton
-                android:id="@+id/material_design_floating_action_menu_item1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:srcCompat="@drawable/ic_delete"
-                fab:fab_label="@string/add_food_label"
-                fab:fab_size="mini" />
-
-            <com.github.clans.fab.FloatingActionButton
-                android:id="@+id/material_design_floating_action_menu_item2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:srcCompat="@drawable/ic_delete"
-                fab:fab_label="@string/add_participant_label"
-                fab:fab_size="mini" />
-
-        </com.github.clans.fab.FloatingActionMenu>
-    </LinearLayout>
-
-
+    </com.github.clans.fab.FloatingActionMenu>
 
 </android.support.design.widget.CoordinatorLayout>
