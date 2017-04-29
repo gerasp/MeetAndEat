@@ -48,8 +48,6 @@ public class MeetingsAdapter extends CursorAdapter {
         meeting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                activity.changeToActivity(MeetingActivity.class);
-                activity.overridePendingTransition(R.anim.overshoot,R.anim.fade_out);
                 appCommon.setSelectedMeeting(new Meeting(
                         cursor.getInt(cursor.getColumnIndexOrThrow(MeetingValues._ID)),
                         title,
@@ -57,6 +55,8 @@ public class MeetingsAdapter extends CursorAdapter {
                         date,
                         time,
                         color));
+                activity.changeToActivity(MeetingActivity.class);
+                activity.overridePendingTransition(R.anim.overshoot,R.anim.fade_out);
             }
         });
     }

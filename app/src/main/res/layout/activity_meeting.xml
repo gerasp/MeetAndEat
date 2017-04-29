@@ -37,7 +37,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:id="@+id/linearLayout">
+
+        <Button
+            android:id="@+id/add_food_button"
+            style="?android:textAppearanceSmall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:background="@color/accent"
+            android:text="@string/add_food_label"
+            android:textColor="@color/inverted_text"
+            android:textStyle="bold" />
 
         <net.gerardomedina.meetandeat.view.table.SortableFoodTableView
             android:id="@+id/foodTable"
@@ -47,17 +59,6 @@
             custom:tableView_headerColor="@color/grey"
             custom:tableView_headerElevation="10" />
 
-        <Button
-            android:id="@+id/add_food_button"
-            style="?android:textAppearanceSmall"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_margin="16dp"
-            android:layout_weight="1"
-            android:background="@color/accent"
-            android:text="@string/add_food_label"
-            android:textColor="@color/inverted_text"
-            android:textStyle="bold" />
     </LinearLayout>
 
 
