@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/navigation_logout"
-        android:icon="@drawable/ic_logout"
-        android:title="@string/logout" />
+        android:id="@+id/navigation_history"
+        android:icon="@drawable/ic_history"
+        android:title="@string/title_history" />
 
     <item
         android:id="@+id/navigation_contacts"

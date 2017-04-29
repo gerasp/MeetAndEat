@@ -7,23 +7,25 @@
     android:layout_margin="@dimen/activity_horizontal_margin">
 
     <CalendarView
-        android:layout_width="match_parent"
         android:layout_weight="0.7"
+        android:layout_width="match_parent"
         android:id="@+id/calendar"
         android:layout_height="0dp" />
 
     <TextView
         android:id="@+id/calendarInfo"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
         android:layout_width="match_parent"
-        android:layout_weight="0.1"
         android:layout_height="wrap_content"
         android:text="@string/no_meeting"
         android:textAlignment="center" />
 
     <Button
+        android:layout_margin="@dimen/activity_vertical_margin"
+        android:textColor="@color/inverted_text"
         android:id="@+id/setAlarmButton"
-        android:layout_weight="0.2"
         android:visibility="gone"
+        android:background="@color/accent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/set_alarm_button" />

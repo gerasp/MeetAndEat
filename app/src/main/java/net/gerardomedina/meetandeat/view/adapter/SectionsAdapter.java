@@ -9,6 +9,7 @@ import net.gerardomedina.meetandeat.view.activity.MainActivity;
 import net.gerardomedina.meetandeat.view.fragment.CalendarFragment;
 import net.gerardomedina.meetandeat.view.fragment.ContactsFragment;
 import net.gerardomedina.meetandeat.view.fragment.DashboardFragment;
+import net.gerardomedina.meetandeat.view.fragment.HistoryFragment;
 import net.gerardomedina.meetandeat.view.fragment.SettingsFragment;
 
 import java.util.ArrayList;
@@ -17,12 +18,14 @@ import java.util.List;
 public class SectionsAdapter extends FragmentPagerAdapter {
     private MainActivity mainActivity;
     private List<Fragment> fragmentList;
+    private int numberOfSections;
 
-    public SectionsAdapter(MainActivity mainActivity, FragmentManager fm) {
+    public SectionsAdapter(MainActivity mainActivity, FragmentManager fm, int numberOfSections) {
         super(fm);
         this.mainActivity = mainActivity;
+        this.numberOfSections = numberOfSections;
         this.fragmentList = new ArrayList<>();
-        fragmentList.add(new ContactsFragment());
+        fragmentList.add(new HistoryFragment());
         fragmentList.add(new ContactsFragment());
         fragmentList.add(new DashboardFragment());
         fragmentList.add(new CalendarFragment());
@@ -34,7 +37,7 @@ public class SectionsAdapter extends FragmentPagerAdapter {
     }
     @Override
     public int getCount() {
-        return 5;
+        return numberOfSections;
     }
     @Override
     public CharSequence getPageTitle(int position) {

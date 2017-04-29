@@ -1,6 +1,5 @@
 package net.gerardomedina.meetandeat.view.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -17,7 +16,8 @@ public class MainActivity extends BaseActivity {
     private ViewPager viewPager;
     private BottomNavigationView bottomNavigationView;
 
-    private final int DEFAULT_SECTION = 1;
+    private final int DEFAULT_SECTION = 2;
+    private final int NUMBER_OF_SECTIONS = 5;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -40,10 +40,11 @@ public class MainActivity extends BaseActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        SectionsAdapter sectionsAdapter = new SectionsAdapter(this, getSupportFragmentManager());
+        SectionsAdapter sectionsAdapter = new SectionsAdapter(this, getSupportFragmentManager(), NUMBER_OF_SECTIONS);
         viewPager = (ViewPager) findViewById(R.id.fragment_container);
         viewPager.setAdapter(sectionsAdapter);
         viewPager.setCurrentItem(DEFAULT_SECTION, true);
+        viewPager.setOffscreenPageLimit(NUMBER_OF_SECTIONS-1);
         viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {}
@@ -61,7 +62,7 @@ public class MainActivity extends BaseActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
-                    case R.id.navigation_logout:
+                    case R.id.navigation_history:
                         viewPager.setCurrentItem(0);
                         return true;
                     case R.id.navigation_contacts:
