@@ -1,14 +1,10 @@
 package net.gerardomedina.meetandeat.view.dialog;
 
-import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.View;
-import android.view.Window;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TableLayout;
@@ -16,7 +12,6 @@ import android.widget.TableRow;
 
 import net.gerardomedina.meetandeat.R;
 import net.gerardomedina.meetandeat.task.AddFoodTask;
-import net.gerardomedina.meetandeat.task.LoginTask;
 import net.gerardomedina.meetandeat.view.activity.BaseActivity;
 
 public class AddFoodDialog extends AlertDialog {
@@ -49,20 +44,25 @@ public class AddFoodDialog extends AlertDialog {
         descriptionInput.setError(null);
         amountInput.setError(null);
 
-        String username = descriptionInput.getText().toString();
-        String password = amountInput.getText().toString();
+        String description = descriptionInput.getText().toString();
+        String amount = amountInput.getText().toString();
 
         boolean cancel = false;
         View focusView = null;
 
-        if (TextUtils.isEmpty(password)) {
-            amountInput.setError(activity.getString(R.string.error_field_required));
-            focusView = amountInput;
-            cancel = true;
-        }
-        if (TextUtils.isEmpty(username)) {
+        if (TextUtils.isEmpty(description)) {
             descriptionInput.setError(activity.getString(R.string.error_field_required));
             focusView = descriptionInput;
+            cancel = true;
+        }
+        if (description.length() > 15) {
+            descriptionInput.setError(activity.getString(R.string.error_field_too_long));
+            focusView = descriptionInput;
+            cancel = true;
+        }
+        if (TextUtils.isEmpty(amount)) {
+            amountInput.setError(activity.getString(R.string.error_field_required));
+            focusView = amountInput;
             cancel = true;
         }
 

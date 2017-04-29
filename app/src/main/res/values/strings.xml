@@ -64,7 +64,7 @@
     <string name="choose_color">Choose color</string>
     <string name="error_creating_meeting">Error creating selectedMeeting</string>
     <string name="creating_meeting_dialog">Creating selectedMeeting</string>
-    <string name="error_title_too_long">Should be shorter than 20 characters</string>
+    <string name="error_field_too_long">Should be shorter</string>
 
     <string name="error_getting_contacts">Error getting contacts</string>
     <string name="error_getting_meetings">Error getting meetings</string>

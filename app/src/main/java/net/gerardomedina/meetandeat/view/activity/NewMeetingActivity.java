@@ -32,7 +32,6 @@ import net.gerardomedina.meetandeat.task.NewMeeetingTask;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -90,7 +89,7 @@ public class NewMeetingActivity extends BaseActivity {
         }
         if (titleInput.getText().length() > 20){
             int ecolor = getResources().getColor(R.color.white);
-            String estring = getString(R.string.error_title_too_long);
+            String estring = getString(R.string.error_field_too_long);
             ForegroundColorSpan fgcspan = new ForegroundColorSpan(ecolor);
             SpannableStringBuilder ssbuilder = new SpannableStringBuilder(estring);
             ssbuilder.setSpan(fgcspan, 0, estring.length(), 0);
