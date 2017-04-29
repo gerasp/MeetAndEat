@@ -102,21 +102,15 @@ public class MeetingActivity extends BaseActivity {
             }
         });
 
+        if (appCommon.hasInternet(this)) new GetFoodTask().execute();
+        else {
+            showSimpleDialog(getString(R.string.no_internet_connection));
+            changeToActivityNoBackStack(MainActivity.class);
+        }
 
-        List<Food> foodList = new ArrayList<>();
-        foodList.add(new Food("ic_1","fda",1, "pepe"));
-        foodList.add(new Food("ic_1","fda",1, "pepe"));
-        foodList.add(new Food("ic_1","fda",1, "pepe"));
-        foodList.add(new Food("ic_1","fda",1, "pepe"));
-        foodList.add(new Food("ic_1","fda",1, "pepe"));
-        foodList.add(new Food("ic_1","fda",1, "pepe"));
-        foodList.add(new Food("ic_1","fda",1, "pepe"));
-        foodList.add(new Food("ic_1","fda",1, "pepe"));
-        foodList.add(new Food("ic_1","fda",1, "pepe"));
-        foodList.add(new Food("ic_1","fda",1, "pepe"));
-        foodList.add(new Food("ic_2","fds",2, "juan"));
-        foodList.add(new Food("ic_3","fde",3, "pepino"));
+    }
 
+    public void populateFoodTable () {
         final SortableFoodTableView foodTableView = (SortableFoodTableView) findViewById(R.id.foodTable);
         final FoodAdapter foodAdapter = new FoodAdapter(this, foodList, foodTableView);
         foodTableView.setDataAdapter(foodAdapter);
@@ -132,7 +126,5 @@ public class MeetingActivity extends BaseActivity {
                 }, 3000);
             }
         });
-
-
     }
 }

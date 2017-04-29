@@ -5,7 +5,7 @@
     </string>
 
     <!-- General -->
-    <string name="no_internet_connection">To do that, you should have an Internet connection</string>
+    <string name="no_internet_connection">This feature requires an Internet connection</string>
     <string name="delete">Delete</string>
     <string name="error_field_required">This field is required</string>
 
