@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:theme="@style/AppTheme.AppBarOverlay"
     tools:context="net.gerardomedina.meetandeat.view.activity.NewMeetingActivity">
 
     <RelativeLayout
@@ -12,6 +11,7 @@
         android:layout_height="match_parent">
 
         <ScrollView
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             android:layout_width="match_parent"
             android:layout_height="476dp"
             android:layout_above="@+id/toolbar"
