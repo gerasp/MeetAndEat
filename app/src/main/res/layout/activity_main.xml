@@ -25,6 +25,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:background="?android:attr/windowBackground"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             app:menu="@menu/menu_navigation" />
 
         <View

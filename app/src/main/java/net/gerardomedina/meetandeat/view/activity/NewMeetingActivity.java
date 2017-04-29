@@ -174,7 +174,7 @@ public class NewMeetingActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 ColorPickerDialogBuilder.with(getActivity()).setTitle(getString(R.string.choose_color))
-                        .noSliders().wheelType(ColorPickerView.WHEEL_TYPE.CIRCLE).density(6)
+                        .noSliders().wheelType(ColorPickerView.WHEEL_TYPE.FLOWER).density(7)
                         .setPositiveButton(getString(android.R.string.ok), new ColorPickerClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int selectedColor, Integer[] allColors) {

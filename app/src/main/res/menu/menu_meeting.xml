@@ -11,7 +11,7 @@
 
     <item
         android:id="@+id/menu_visitors"
-        android:icon="@drawable/ic_visitors"
+        android:icon="@drawable/ic_participants"
         android:title="@string/participants"
         app:showAsAction="ifRoom" />
 
