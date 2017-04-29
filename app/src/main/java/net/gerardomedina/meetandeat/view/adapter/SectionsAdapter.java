@@ -11,37 +11,26 @@ import net.gerardomedina.meetandeat.view.fragment.ContactsFragment;
 import net.gerardomedina.meetandeat.view.fragment.DashboardFragment;
 import net.gerardomedina.meetandeat.view.fragment.SettingsFragment;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class SectionsAdapter extends FragmentPagerAdapter {
     private MainActivity mainActivity;
-    private ContactsFragment contactsFragment;
-    private DashboardFragment dashboardFragment;
-    private CalendarFragment calendarFragment;
-    private SettingsFragment settingsFragment;
+    private List<Fragment> fragmentList;
 
     public SectionsAdapter(MainActivity mainActivity, FragmentManager fm) {
         super(fm);
         this.mainActivity = mainActivity;
+        this.fragmentList = new ArrayList<>();
+        fragmentList.add(new ContactsFragment());
+        fragmentList.add(new ContactsFragment());
+        fragmentList.add(new DashboardFragment());
+        fragmentList.add(new CalendarFragment());
+        fragmentList.add(new SettingsFragment());
     }
     @Override
     public Fragment getItem(int position) {
-        switch (position) {
-            case 0:
-                contactsFragment = new ContactsFragment();
-                return contactsFragment;
-            case 1:
-                contactsFragment = new ContactsFragment();
-                return contactsFragment;
-            case 2:
-                dashboardFragment = new DashboardFragment();
-                return dashboardFragment;
-            case 3:
-                calendarFragment = new CalendarFragment();
-                return calendarFragment;
-            case 4:
-                settingsFragment = new SettingsFragment();
-                return settingsFragment;
-        }
-        return null;
+        return fragmentList.get(position);
     }
     @Override
     public int getCount() {
