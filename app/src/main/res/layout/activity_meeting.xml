@@ -47,12 +47,12 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <de.codecrafters.tableviewexample.SortableCarTableView
+            <net.gerardomedina.meetandeat.view.table.SortableFoodTableView
                 android:id="@+id/foodTable"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 custom:tableView_columnCount="4"
-                custom:tableView_headerColor="@color/primary"
+                custom:tableView_headerColor="@color/grey"
                 custom:tableView_headerElevation="10" />
 
             <Button

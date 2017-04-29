@@ -3,8 +3,10 @@ package net.gerardomedina.meetandeat.view.table;
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import net.gerardomedina.meetandeat.R;
 import net.gerardomedina.meetandeat.common.Food;
 
 import java.text.NumberFormat;
@@ -17,10 +19,12 @@ import de.codecrafters.tableview.toolkit.LongPressAwareTableDataAdapter;
 public class FoodAdapter extends LongPressAwareTableDataAdapter<Food> {
 
     private static final int TEXT_SIZE = 14;
+    private final Context context;
 
 
     public FoodAdapter(final Context context, final List<Food> data, final TableView<Food> tableView) {
         super(context, data, tableView);
+        this.context = context;
     }
 
     @Override
@@ -74,12 +78,18 @@ public class FoodAdapter extends LongPressAwareTableDataAdapter<Food> {
 //    }
 
 
-//    private View renderProducerLogo(final Food food, final ViewGroup parentView) {
+    private View renderProducerLogo(final Food food, final ViewGroup parentView) {
 //        final View view = getLayoutInflater().inflate(R.layout.table_cell_image, parentView, false);
-//        final ImageView imageView = (ImageView) view.findViewById(R.id.imageView);
-//        imageView.setImageResource(food.getProducer().getLogo());
-//        return view;
-//    }
+        ImageView imageView = new ImageView(context);
+        try {
+            imageView.setImageResource(R.drawable.class.getField(food.getIcon()).getInt(0));
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (NoSuchFieldException e) {
+            e.printStackTrace();
+        }
+        return imageView;
+    }
 
     private View renderString(final String value) {
         final TextView textView = new TextView(getContext());
