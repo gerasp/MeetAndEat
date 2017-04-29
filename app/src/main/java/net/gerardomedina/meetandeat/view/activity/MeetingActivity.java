@@ -27,8 +27,6 @@ import de.codecrafters.tableview.listeners.SwipeToRefreshListener;
 public class MeetingActivity extends BaseActivity {
 
     private Meeting meeting;
-    private static final String[][] DATA_TO_SHOW = {{"This", "is", "a", "test"},
-            {"and", "a", "second", "test"}};
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
