@@ -32,6 +32,7 @@ import net.gerardomedina.meetandeat.task.NewMeeetingTask;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -143,6 +144,7 @@ public class NewMeetingActivity extends BaseActivity {
                 dateInput.setText(dateFormatter.format(newDate.getTime()));
             }
         }, newCalendar.get(Calendar.YEAR), newCalendar.get(Calendar.MONTH), newCalendar.get(Calendar.DAY_OF_MONTH));
+        datePickerDialog.getDatePicker().setMinDate(newCalendar.getTime().getTime());
         dateInput = (TextView) findViewById(R.id.newMeetingDateInput);
         dateInput.setOnClickListener(new View.OnClickListener() {
             @Override
