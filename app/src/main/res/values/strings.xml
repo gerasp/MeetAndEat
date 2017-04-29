@@ -80,5 +80,7 @@
     <string name="set_alarm_button">Set a reminder</string>
     <string name="set_alarm_text">Your next meeting takes place on %1$s at %2$s</string>
     <string name="title_history">History</string>
+    <string name="get_old_meetings_dialog">Getting old meetings</string>
+    <string name="error_getting_old_meetings">Error getting old meetings</string>
 
 </resources>
