@@ -33,42 +33,32 @@
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
 
-    <android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        tools:context="net.gerardomedina.meetandeat.view.activity.MeetingActivity"
-        tools:showIn="@layout/activity_meeting">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <LinearLayout
+        <net.gerardomedina.meetandeat.view.table.SortableFoodTableView
+            android:id="@+id/foodTable"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            custom:tableView_columnCount="4"
+            custom:tableView_headerColor="@color/grey"
+            custom:tableView_headerElevation="10" />
 
-            <net.gerardomedina.meetandeat.view.table.SortableFoodTableView
-                android:id="@+id/foodTable"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                custom:tableView_columnCount="4"
-                custom:tableView_headerColor="@color/grey"
-                custom:tableView_headerElevation="10" />
-
-            <Button
-                android:id="@+id/add_food_button"
-                style="?android:textAppearanceSmall"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_margin="16dp"
-                android:layout_weight="1"
-                android:background="@color/accent"
-                android:text="@string/add_food_label"
-                android:textColor="@color/inverted_text"
-                android:textStyle="bold" />
-        </LinearLayout>
-
-    </android.support.v4.widget.NestedScrollView>
+        <Button
+            android:id="@+id/add_food_button"
+            style="?android:textAppearanceSmall"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_margin="16dp"
+            android:layout_weight="1"
+            android:background="@color/accent"
+            android:text="@string/add_food_label"
+            android:textColor="@color/inverted_text"
+            android:textStyle="bold" />
+    </LinearLayout>
 
 
     <android.support.design.widget.FloatingActionButton
