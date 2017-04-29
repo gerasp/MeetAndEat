@@ -15,6 +15,9 @@ import android.widget.Button;
 import net.gerardomedina.meetandeat.R;
 import net.gerardomedina.meetandeat.common.Meeting;
 import net.gerardomedina.meetandeat.view.dialog.AddFoodDialog;
+import net.gerardomedina.meetandeat.view.table.FoodTable;
+
+import de.codecrafters.tableview.TableView;
 
 public class MeetingActivity extends BaseActivity {
 
@@ -92,7 +95,8 @@ public class MeetingActivity extends BaseActivity {
                 addFoodDialog.show();
             }
         });
+
+        TableView tableView = (TableView) findViewById(R.id.foodTable);
+        FoodTable foodTable = new FoodTable(this, tableView);
     }
-
-
 }
