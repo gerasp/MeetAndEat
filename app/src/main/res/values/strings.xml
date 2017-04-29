@@ -84,5 +84,9 @@
     <string name="error_getting_old_meetings">Error getting old meetings</string>
     <string name="getting_food">Getting food</string>
     <string name="error_getting_food">Error getting food</string>
+    <string name="dummy" />
+    <string name="what">What</string>
+    <string name="who">Who</string>
+    <string name="how_many">How many</string>
 
 </resources>

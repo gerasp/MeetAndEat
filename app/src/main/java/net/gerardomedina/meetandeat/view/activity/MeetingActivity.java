@@ -135,13 +135,14 @@ public class MeetingActivity extends BaseActivity {
         final FoodAdapter foodAdapter = new FoodAdapter(this, foodList, foodTableView);
         foodTableView.setDataAdapter(foodAdapter);
         foodTableView.setSwipeToRefreshEnabled(true);
+        final BaseActivity activity = this;
         foodTableView.setSwipeToRefreshListener(new SwipeToRefreshListener() {
             @Override
             public void onRefresh(final RefreshIndicator refreshIndicator) {
                 foodTableView.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-
+                        new GetFoodTask(activity).execute();
                     }
                 }, 3000);
             }

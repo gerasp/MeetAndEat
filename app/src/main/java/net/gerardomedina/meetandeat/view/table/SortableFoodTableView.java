@@ -28,12 +28,12 @@ public class SortableFoodTableView extends SortableTableView<Food> {
         super(context, attributes, styleAttributes);
 
         final SimpleTableHeaderAdapter simpleTableHeaderAdapter =
-                new SimpleTableHeaderAdapter(context, R.string.selected_icon, R.string.prompt_description, R.string.prompt_amount, R.string.login_username);
-        simpleTableHeaderAdapter.setTextColor(ContextCompat.getColor(context, R.color.primary));
+                new SimpleTableHeaderAdapter(context, R.string.dummy, R.string.what, R.string.how_many, R.string.who);
+        simpleTableHeaderAdapter.setTextColor(ContextCompat.getColor(context, R.color.primary_text));
         setHeaderAdapter(simpleTableHeaderAdapter);
 
-        final int rowColorEven = ContextCompat.getColor(context, R.color.white);
-        final int rowColorOdd = ContextCompat.getColor(context, R.color.grey);
+        final int rowColorEven = ContextCompat.getColor(context, R.color.background);
+        final int rowColorOdd = ContextCompat.getColor(context, R.color.light_grey);
         setDataRowBackgroundProvider(TableDataRowBackgroundProviders.alternatingRowColors(rowColorEven, rowColorOdd));
         setHeaderSortStateViewProvider(SortStateViewProviders.brightArrows());
 
