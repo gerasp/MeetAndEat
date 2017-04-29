@@ -25,6 +25,9 @@ public class SectionsAdapter extends FragmentPagerAdapter {
     @Override
     public Fragment getItem(int position) {
         switch (position) {
+            case 0:
+                contactsFragment = new ContactsFragment();
+                return contactsFragment;
             case 1:
                 contactsFragment = new ContactsFragment();
                 return contactsFragment;
@@ -42,7 +45,7 @@ public class SectionsAdapter extends FragmentPagerAdapter {
     }
     @Override
     public int getCount() {
-        return 4;
+        return 5;
     }
     @Override
     public CharSequence getPageTitle(int position) {

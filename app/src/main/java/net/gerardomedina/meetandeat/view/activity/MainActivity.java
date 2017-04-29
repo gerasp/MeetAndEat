@@ -61,6 +61,9 @@ public class MainActivity extends BaseActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
+                    case R.id.navigation_logout:
+                        viewPager.setCurrentItem(0);
+                        return true;
                     case R.id.navigation_contacts:
                         viewPager.setCurrentItem(1);
                         return true;
