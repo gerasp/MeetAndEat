@@ -82,5 +82,7 @@
     <string name="title_history">History</string>
     <string name="get_old_meetings_dialog">Getting old meetings</string>
     <string name="error_getting_old_meetings">Error getting old meetings</string>
+    <string name="getting_food">Getting food</string>
+    <string name="error_getting_food">Error getting food</string>
 
 </resources>

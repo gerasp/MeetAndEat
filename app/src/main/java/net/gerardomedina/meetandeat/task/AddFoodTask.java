@@ -53,7 +53,7 @@ public class AddFoodTask extends BaseTask {
                         activity.showSimpleDialog(activity.getString(R.string.error_adding_food));
                         break;
                     case 2:
-                        activity.showSimpleDialog("BIE");
+                        new GetFoodTask(activity).execute();
                         break;
                 }
             } catch (JSONException e) {

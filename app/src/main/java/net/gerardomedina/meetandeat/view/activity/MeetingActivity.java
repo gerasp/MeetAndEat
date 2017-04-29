@@ -1,6 +1,8 @@
 package net.gerardomedina.meetandeat.view.activity;
 
+import android.content.ContentValues;
 import android.content.DialogInterface;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
@@ -15,9 +17,15 @@ import android.widget.Button;
 import net.gerardomedina.meetandeat.R;
 import net.gerardomedina.meetandeat.common.Food;
 import net.gerardomedina.meetandeat.common.Meeting;
+import net.gerardomedina.meetandeat.persistence.local.ContactValues;
+import net.gerardomedina.meetandeat.task.GetFoodTask;
 import net.gerardomedina.meetandeat.view.dialog.AddFoodDialog;
 import net.gerardomedina.meetandeat.view.table.FoodAdapter;
 import net.gerardomedina.meetandeat.view.table.SortableFoodTableView;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -102,7 +110,7 @@ public class MeetingActivity extends BaseActivity {
             }
         });
 
-        if (appCommon.hasInternet(this)) new GetFoodTask().execute();
+        if (appCommon.hasInternet(this)) new GetFoodTask(this).execute();
         else {
             showSimpleDialog(getString(R.string.no_internet_connection));
             changeToActivityNoBackStack(MainActivity.class);
@@ -110,7 +118,19 @@ public class MeetingActivity extends BaseActivity {
 
     }
 
-    public void populateFoodTable () {
+    public void populateFoodTable (JSONObject response) throws JSONException {
+        List<Food> foodList = new ArrayList<>();
+        JSONArray results = response.getJSONArray("results");
+        for (int i = 0; i < results.length(); i++) {
+            JSONObject jsonObject = results.getJSONObject(i);
+            foodList.add(new Food(jsonObject.getString("icon"),
+                    jsonObject.getString("description"),
+                    jsonObject.getInt("amount"),
+                    jsonObject.getString("username")
+            ));
+        }
+
+
         final SortableFoodTableView foodTableView = (SortableFoodTableView) findViewById(R.id.foodTable);
         final FoodAdapter foodAdapter = new FoodAdapter(this, foodList, foodTableView);
         foodTableView.setDataAdapter(foodAdapter);

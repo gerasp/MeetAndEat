@@ -60,12 +60,13 @@ public class DashboardFragment extends BaseFragment {
         db.delete(MeetingValues.TABLE_NAME, null, null);
         ContentValues values = new ContentValues();
         for (int i = 0; i < results.length(); i++) {
-            values.put(MeetingValues._ID, results.getJSONObject(i).getInt("id"));
-            values.put(MeetingValues.COLUMN_NAME_TITLE, results.getJSONObject(i).getString("title"));
-            values.put(MeetingValues.COLUMN_NAME_LOCATION, results.getJSONObject(i).getString("location"));
-            values.put(MeetingValues.COLUMN_NAME_DATE, results.getJSONObject(i).getString("date"));
-            values.put(MeetingValues.COLUMN_NAME_TIME, results.getJSONObject(i).getString("time"));
-            values.put(MeetingValues.COLUMN_NAME_COLOR, results.getJSONObject(i).getString("color"));
+            JSONObject jsonObject = results.getJSONObject(i);
+            values.put(MeetingValues._ID, jsonObject.getInt("id"));
+            values.put(MeetingValues.COLUMN_NAME_TITLE, jsonObject.getString("title"));
+            values.put(MeetingValues.COLUMN_NAME_LOCATION, jsonObject.getString("location"));
+            values.put(MeetingValues.COLUMN_NAME_DATE, jsonObject.getString("date"));
+            values.put(MeetingValues.COLUMN_NAME_TIME, jsonObject.getString("time"));
+            values.put(MeetingValues.COLUMN_NAME_COLOR, jsonObject.getString("color"));
             db.insert(MeetingValues.TABLE_NAME, null, values);
         }
         loadMeetingListFromLocalDB();

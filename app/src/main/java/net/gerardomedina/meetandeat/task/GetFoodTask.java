@@ -4,8 +4,7 @@ import android.util.Log;
 
 import net.gerardomedina.meetandeat.R;
 import net.gerardomedina.meetandeat.view.activity.BaseActivity;
-import net.gerardomedina.meetandeat.view.fragment.BaseFragment;
-import net.gerardomedina.meetandeat.view.fragment.DashboardFragment;
+import net.gerardomedina.meetandeat.view.activity.MeetingActivity;
 
 import org.json.JSONException;
 
@@ -14,24 +13,23 @@ import java.util.Map;
 
 public class GetFoodTask extends BaseTask {
 
-
-    public GetFoodTask(BaseFragment fragment) {
-        this.fragment = fragment;
-        this.activity = (BaseActivity)fragment.getActivity();
+    public GetFoodTask(BaseActivity activity) {
+        this.activity = activity;
     }
 
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
-        showProgressDialog(R.string.get_meetings_dialog);
+        showProgressDialog(R.string.getting_food);
     }
+
 
     @Override
     protected Boolean doInBackground(Void... params) {
-        Map<String,String> parameters = new HashMap<>();
-        parameters.put("user_id",appCommon.getUser().getId()+"");
+        Map<String, String> parameters = new HashMap<>();
+        parameters.put("meeting_id", appCommon.getSelectedMeeting().getId()+"");
 
-        response = requester.httpRequest("GetMeetings.php", "POST", parameters);
+        response = requester.httpRequest("GetFood.php", "POST", parameters);
         return true;
     }
 
@@ -41,10 +39,12 @@ public class GetFoodTask extends BaseTask {
         if (success) {
             try {
                 switch (response.getInt("code")) {
-                    case -1: activity.showSimpleDialog(activity.getString(R.string.error_getting_meetings));
-                            break;
-                    case 2: ((DashboardFragment)fragment).saveMeetingListToLocalDB(response);
-                            break;
+                    case 0:
+                        activity.showSimpleDialog(activity.getString(R.string.error_getting_food));
+                        break;
+                    case 2:
+                        ((MeetingActivity)activity).populateFoodTable(response);
+                        break;
                 }
             } catch (JSONException e) {
                 Log.e("JSON Parser", "Error parsing data: " + e.toString());
