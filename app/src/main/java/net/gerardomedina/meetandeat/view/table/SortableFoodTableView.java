@@ -29,7 +29,8 @@ public class SortableFoodTableView extends SortableTableView<Food> {
 
         final SimpleTableHeaderAdapter simpleTableHeaderAdapter =
                 new SimpleTableHeaderAdapter(context, R.string.dummy, R.string.what, R.string.how_many, R.string.who);
-        simpleTableHeaderAdapter.setTextColor(ContextCompat.getColor(context, R.color.primary_text));
+        simpleTableHeaderAdapter.setTextColor(ContextCompat.getColor(context, R.color.inverted_text));
+        simpleTableHeaderAdapter.setTextSize(14);
         setHeaderAdapter(simpleTableHeaderAdapter);
 
         final int rowColorEven = ContextCompat.getColor(context, R.color.background);
@@ -38,10 +39,10 @@ public class SortableFoodTableView extends SortableTableView<Food> {
         setHeaderSortStateViewProvider(SortStateViewProviders.brightArrows());
 
         final TableColumnWeightModel tableColumnWeightModel = new TableColumnWeightModel(4);
-        tableColumnWeightModel.setColumnWeight(0, 2);
-        tableColumnWeightModel.setColumnWeight(1, 3);
-        tableColumnWeightModel.setColumnWeight(2, 3);
-        tableColumnWeightModel.setColumnWeight(3, 2);
+        tableColumnWeightModel.setColumnWeight(0, 1);
+        tableColumnWeightModel.setColumnWeight(1, 4);
+        tableColumnWeightModel.setColumnWeight(2, 2);
+        tableColumnWeightModel.setColumnWeight(3, 3);
         setColumnModel(tableColumnWeightModel);
 
         setColumnComparator(1, FoodComparators.getFoodDescriptionComparator());

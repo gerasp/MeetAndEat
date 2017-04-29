@@ -56,7 +56,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             custom:tableView_columnCount="4"
-            custom:tableView_headerColor="@color/grey"
+            custom:tableView_headerColor="@color/accent"
             custom:tableView_headerElevation="10" />
 
     </LinearLayout>

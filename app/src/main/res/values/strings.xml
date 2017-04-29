@@ -87,6 +87,6 @@
     <string name="dummy" />
     <string name="what">What</string>
     <string name="who">Who</string>
-    <string name="how_many">How many</string>
+    <string name="how_many">#</string>
 
 </resources>

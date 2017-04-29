@@ -17,7 +17,7 @@ import de.codecrafters.tableview.toolkit.LongPressAwareTableDataAdapter;
 
 public class FoodAdapter extends LongPressAwareTableDataAdapter<Food> {
 
-    private static final int TEXT_SIZE = 14;
+    private static final int TEXT_SIZE = 12;
     private final Context context;
 
 
@@ -92,7 +92,7 @@ public class FoodAdapter extends LongPressAwareTableDataAdapter<Food> {
     private View renderString(final String value) {
         final TextView textView = new TextView(getContext());
         textView.setText(value);
-        textView.setPadding(20, 10, 20, 10);
+        textView.setPadding(10, 5, 10, 5);
         textView.setTextSize(TEXT_SIZE);
         return textView;
     }
