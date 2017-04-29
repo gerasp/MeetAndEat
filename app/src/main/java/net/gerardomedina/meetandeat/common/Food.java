@@ -4,11 +4,13 @@ public class Food {
     private String icon;
     private String description;
     private int amount;
+    private String username;
 
-    public Food(String icon, String description, int amount) {
+    public Food(String icon, String description, int amount, String username) {
         this.icon = icon;
         this.description = description;
         this.amount = amount;
+        this.username = username;
     }
 
     public void setIcon(String icon) {
@@ -19,21 +21,28 @@ public class Food {
         return icon;
     }
 
-    public String getdescription() {
+    public String getDescription() {
         return description;
     }
 
-    public void setdescription(String description) {
+    public void setDescription(String description) {
         this.description = description;
     }
 
-    public int getId() {
+    public int getAmount() {
         return amount;
     }
 
-    public void setId(int amount) {
+    public void setAmount(int amount) {
         this.amount = amount;
     }
 
 
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
 }

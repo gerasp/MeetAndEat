@@ -5,13 +5,13 @@ import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 
 import net.gerardomedina.meetandeat.R;
+import net.gerardomedina.meetandeat.common.Food;
 
 import de.codecrafters.tableview.SortableTableView;
 import de.codecrafters.tableview.model.TableColumnWeightModel;
 import de.codecrafters.tableview.toolkit.SimpleTableHeaderAdapter;
 import de.codecrafters.tableview.toolkit.SortStateViewProviders;
 import de.codecrafters.tableview.toolkit.TableDataRowBackgroundProviders;
-import de.codecrafters.tableviewexample.data.Food;
 
 
 public class SortableFoodTableView extends SortableTableView<Food> {
@@ -27,12 +27,13 @@ public class SortableFoodTableView extends SortableTableView<Food> {
     public SortableFoodTableView(final Context context, final AttributeSet attributes, final int styleAttributes) {
         super(context, attributes, styleAttributes);
 
-        final SimpleTableHeaderAdapter simpleTableHeaderAdapter = new SimpleTableHeaderAdapter(context, R.string.brand, R.string.model, R.string.power, R.string.price);
-        simpleTableHeaderAdapter.setTextColor(ContextCompat.getColor(context, R.color.table_header_text));
+        final SimpleTableHeaderAdapter simpleTableHeaderAdapter =
+                new SimpleTableHeaderAdapter(context, R.string.selected_icon, R.string.prompt_description, R.string.prompt_amount, R.string.login_username);
+        simpleTableHeaderAdapter.setTextColor(ContextCompat.getColor(context, R.color.primary));
         setHeaderAdapter(simpleTableHeaderAdapter);
 
-        final int rowColorEven = ContextCompat.getColor(context, R.color.table_data_row_even);
-        final int rowColorOdd = ContextCompat.getColor(context, R.color.table_data_row_odd);
+        final int rowColorEven = ContextCompat.getColor(context, R.color.white);
+        final int rowColorOdd = ContextCompat.getColor(context, R.color.grey);
         setDataRowBackgroundProvider(TableDataRowBackgroundProviders.alternatingRowColors(rowColorEven, rowColorOdd));
         setHeaderSortStateViewProvider(SortStateViewProviders.brightArrows());
 
@@ -43,10 +44,9 @@ public class SortableFoodTableView extends SortableTableView<Food> {
         tableColumnWeightModel.setColumnWeight(3, 2);
         setColumnModel(tableColumnWeightModel);
 
-        setColumnComparator(0, FoodComparators.getFoodProducerComparator());
-        setColumnComparator(1, FoodComparators.getFoodNameComparator());
-        setColumnComparator(2, FoodComparators.getFoodPowerComparator());
-        setColumnComparator(3, FoodComparators.getFoodPriceComparator());
+        setColumnComparator(1, FoodComparators.getFoodDescriptionComparator());
+        setColumnComparator(2, FoodComparators.getFoodAmountComparator());
+        setColumnComparator(3, FoodComparators.getFoodUsernameComparator());
     }
 
 }

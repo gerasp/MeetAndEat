@@ -16,11 +16,13 @@ import net.gerardomedina.meetandeat.R;
 import net.gerardomedina.meetandeat.common.Food;
 import net.gerardomedina.meetandeat.common.Meeting;
 import net.gerardomedina.meetandeat.view.dialog.AddFoodDialog;
-import net.gerardomedina.meetandeat.view.table.foodAdapter;
+import net.gerardomedina.meetandeat.view.table.FoodAdapter;
 import net.gerardomedina.meetandeat.view.table.SortableFoodTableView;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import de.codecrafters.tableview.listeners.SwipeToRefreshListener;
 
 public class MeetingActivity extends BaseActivity {
 
@@ -104,15 +106,13 @@ public class MeetingActivity extends BaseActivity {
 
 
         List<Food> foodList = new ArrayList<>();
-        foodList.add(new Food("ic_1","fda",1));
-        foodList.add(new Food("ic_2","fds",2));
-        foodList.add(new Food("ic_3","fde",3));
-        
+        foodList.add(new Food("ic_1","fda",1, "pepe"));
+        foodList.add(new Food("ic_2","fds",2, "juan"));
+        foodList.add(new Food("ic_3","fde",3, "pepino"));
+
         final SortableFoodTableView foodTableView = (SortableFoodTableView) findViewById(R.id.foodTable);
-        final foodAdapter foodAdapter = new foodAdapter(this, foodList, foodTableView);
+        final FoodAdapter foodAdapter = new FoodAdapter(this, foodList, foodTableView);
         foodTableView.setDataAdapter(foodAdapter);
-        foodTableView.addDataClickListener(new CarClickListener());
-        foodTableView.addDataLongClickListener(new CarLongClickListener());
         foodTableView.setSwipeToRefreshEnabled(true);
         foodTableView.setSwipeToRefreshListener(new SwipeToRefreshListener() {
             @Override
@@ -120,11 +120,7 @@ public class MeetingActivity extends BaseActivity {
                 foodTableView.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        final Food randomFood = getRandomCar();
-                        foodAdapter.getData().add(randomFood);
-                        foodAdapter.notifyDataSetChanged();
-                        refreshIndicator.hide();
-                        Toast.makeText(MainActivity.this, "Added: " + randomFood, Toast.LENGTH_SHORT).show();
+
                     }
                 }, 3000);
             }
