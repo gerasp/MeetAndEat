@@ -88,5 +88,6 @@
     <string name="what">What</string>
     <string name="who">Who</string>
     <string name="how_many">#</string>
+    <string name="add_participant_label">Add participant</string>
 
 </resources>
