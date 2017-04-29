@@ -31,6 +31,6 @@ public abstract class BaseTask extends AsyncTask<Void, Void, Boolean> {
                 dialog.dismiss();
             }
         });
-        progressDialog.show();
+//        progressDialog.show();
     }
 }

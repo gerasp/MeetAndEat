@@ -9,7 +9,6 @@ import android.widget.TextView;
 import net.gerardomedina.meetandeat.R;
 import net.gerardomedina.meetandeat.common.Food;
 
-import java.text.NumberFormat;
 import java.util.List;
 
 import de.codecrafters.tableview.TableView;
@@ -34,8 +33,7 @@ public class FoodAdapter extends LongPressAwareTableDataAdapter<Food> {
 
         switch (columnIndex) {
             case 0:
-                renderedView = renderString(food.getIcon());
-//                        renderProducerLogo(food, parentView);
+                renderedView = renderIcon(food, parentView);
                 break;
             case 1:
                 renderedView = renderString(food.getDescription());
@@ -78,7 +76,7 @@ public class FoodAdapter extends LongPressAwareTableDataAdapter<Food> {
 //    }
 
 
-    private View renderProducerLogo(final Food food, final ViewGroup parentView) {
+    private View renderIcon(final Food food, final ViewGroup parentView) {
 //        final View view = getLayoutInflater().inflate(R.layout.table_cell_image, parentView, false);
         ImageView imageView = new ImageView(context);
         try {
