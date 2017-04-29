@@ -34,7 +34,7 @@ public class AddFoodTask extends BaseTask {
     protected Boolean doInBackground(Void... params) {
         Map<String, String> parameters = new HashMap<>();
         parameters.put("user_id", appCommon.getUser().getId()+"");
-        parameters.put("meeting_id", appCommon.getMeeting().getId()+"");
+        parameters.put("meeting_id", appCommon.getSelectedMeeting().getId()+"");
         parameters.put("icon", icon);
         parameters.put("description", description);
         parameters.put("amount", amount);

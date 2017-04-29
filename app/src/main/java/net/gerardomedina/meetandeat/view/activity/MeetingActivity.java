@@ -1,6 +1,5 @@
 package net.gerardomedina.meetandeat.view.activity;
 
-import android.app.Activity;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -8,7 +7,6 @@ import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,7 +14,6 @@ import android.widget.Button;
 
 import net.gerardomedina.meetandeat.R;
 import net.gerardomedina.meetandeat.common.Meeting;
-import net.gerardomedina.meetandeat.task.SignupTask;
 import net.gerardomedina.meetandeat.view.dialog.AddFoodDialog;
 
 public class MeetingActivity extends BaseActivity {
@@ -45,7 +42,7 @@ public class MeetingActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_meeting);
 
-        meeting = appCommon.getMeeting();
+        meeting = appCommon.getSelectedMeeting();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle(meeting.getTitle());

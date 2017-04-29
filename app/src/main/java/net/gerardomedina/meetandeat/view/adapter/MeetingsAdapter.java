@@ -50,7 +50,7 @@ public class MeetingsAdapter extends CursorAdapter {
             public void onClick(View v) {
                 activity.changeToActivity(MeetingActivity.class);
                 activity.overridePendingTransition(R.anim.slide_down,R.anim.fade_out);
-                appCommon.setMeeting(new Meeting(
+                appCommon.setSelectedMeeting(new Meeting(
                         cursor.getInt(cursor.getColumnIndexOrThrow(MeetingValues._ID)),
                         title,
                         cursor.getString(cursor.getColumnIndexOrThrow(MeetingValues.COLUMN_NAME_LOCATION)),

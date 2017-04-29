@@ -29,7 +29,7 @@ public class LocationActivity extends BaseActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         map = googleMap;
-        Meeting meeting = appCommon.getMeeting();
+        Meeting meeting = appCommon.getSelectedMeeting();
         String [] latlng = meeting.getLocation().split(",");
         LatLng location = new LatLng(Double.parseDouble(latlng[0]), Double.parseDouble(latlng[1]));
         map.addMarker(new MarkerOptions().position(location).title(meeting.getTitle()));

@@ -13,7 +13,9 @@ public class AppCommon {
     private static AppCommon singleton;
 
     private User user;
-    private Meeting meeting;
+    private Meeting selectedMeeting;
+    private Meeting nextMeeting;
+
 
     public static AppCommon getInstance() {
         if (singleton != null) return singleton;
@@ -27,7 +29,7 @@ public class AppCommon {
         return "Df5f5z7e6W5pR2D2yEMK7Vkb77cp23nP";
     }
     public String getBaseURL() {
-        return "http://192.168.1.48/ws/";
+        return "http://192.168.1.49/ws/";
     }
 
     public User getUser() {
@@ -37,11 +39,11 @@ public class AppCommon {
         this.user = user;
     }
 
-    public Meeting getMeeting() {
-        return meeting;
+    public Meeting getSelectedMeeting() {
+        return selectedMeeting;
     }
-    public void setMeeting(Meeting meeting) {
-        this.meeting = meeting;
+    public void setSelectedMeeting(Meeting selectedMeeting) {
+        this.selectedMeeting = selectedMeeting;
     }
 
 
@@ -80,4 +82,11 @@ public class AppCommon {
         editShared.apply();
     }
 
+    public Meeting getNextMeeting() {
+        return nextMeeting;
+    }
+
+    public void setNextMeeting(Meeting nextMeeting) {
+        this.nextMeeting = nextMeeting;
+    }
 }
