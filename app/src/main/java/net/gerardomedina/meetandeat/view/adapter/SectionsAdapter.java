@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 import net.gerardomedina.meetandeat.R;
 import net.gerardomedina.meetandeat.view.activity.MainActivity;
+import net.gerardomedina.meetandeat.view.fragment.CalendarFragment;
 import net.gerardomedina.meetandeat.view.fragment.ContactsFragment;
 import net.gerardomedina.meetandeat.view.fragment.DashboardFragment;
 import net.gerardomedina.meetandeat.view.fragment.SettingsFragment;
@@ -14,6 +15,7 @@ public class SectionsAdapter extends FragmentPagerAdapter {
     private MainActivity mainActivity;
     private ContactsFragment contactsFragment;
     private DashboardFragment dashboardFragment;
+    private CalendarFragment calendarFragment;
     private SettingsFragment settingsFragment;
 
     public SectionsAdapter(MainActivity mainActivity, FragmentManager fm) {
@@ -23,13 +25,16 @@ public class SectionsAdapter extends FragmentPagerAdapter {
     @Override
     public Fragment getItem(int position) {
         switch (position) {
-            case 0:
+            case 1:
                 contactsFragment = new ContactsFragment();
                 return contactsFragment;
-            case 1:
+            case 2:
                 dashboardFragment = new DashboardFragment();
                 return dashboardFragment;
-            case 2:
+            case 3:
+                calendarFragment = new CalendarFragment();
+                return calendarFragment;
+            case 4:
                 settingsFragment = new SettingsFragment();
                 return settingsFragment;
         }
@@ -37,7 +42,7 @@ public class SectionsAdapter extends FragmentPagerAdapter {
     }
     @Override
     public int getCount() {
-        return 3;
+        return 4;
     }
     @Override
     public CharSequence getPageTitle(int position) {
