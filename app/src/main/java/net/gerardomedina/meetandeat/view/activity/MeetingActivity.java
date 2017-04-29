@@ -13,15 +13,20 @@ import android.view.View;
 import android.widget.Button;
 
 import net.gerardomedina.meetandeat.R;
+import net.gerardomedina.meetandeat.common.Food;
 import net.gerardomedina.meetandeat.common.Meeting;
 import net.gerardomedina.meetandeat.view.dialog.AddFoodDialog;
-import net.gerardomedina.meetandeat.view.table.FoodTable;
+import net.gerardomedina.meetandeat.view.table.foodAdapter;
+import net.gerardomedina.meetandeat.view.table.SortableFoodTableView;
 
-import de.codecrafters.tableview.TableView;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MeetingActivity extends BaseActivity {
 
     private Meeting meeting;
+    private static final String[][] DATA_TO_SHOW = {{"This", "is", "a", "test"},
+            {"and", "a", "second", "test"}};
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -68,10 +73,11 @@ public class MeetingActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 final AddFoodDialog addFoodDialog = new AddFoodDialog(getActivity());
-                addFoodDialog.setView(getActivity().getLayoutInflater().inflate(R.layout.dialog_addfood,null));
+                addFoodDialog.setView(getActivity().getLayoutInflater().inflate(R.layout.dialog_addfood, null));
                 addFoodDialog.setButton(DialogInterface.BUTTON_POSITIVE, getString(android.R.string.ok), new DialogInterface.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialog, int which) {}
+                    public void onClick(DialogInterface dialog, int which) {
+                    }
                 });
                 addFoodDialog.setButton(DialogInterface.BUTTON_NEGATIVE, getString(android.R.string.cancel), new DialogInterface.OnClickListener() {
                     @Override
@@ -96,7 +102,34 @@ public class MeetingActivity extends BaseActivity {
             }
         });
 
-        TableView tableView = (TableView) findViewById(R.id.foodTable);
-        FoodTable foodTable = new FoodTable(this, tableView);
+
+        List<Food> foodList = new ArrayList<>();
+        foodList.add(new Food("ic_1","fda",1));
+        foodList.add(new Food("ic_2","fds",2));
+        foodList.add(new Food("ic_3","fde",3));
+        
+        final SortableFoodTableView foodTableView = (SortableFoodTableView) findViewById(R.id.foodTable);
+        final foodAdapter foodAdapter = new foodAdapter(this, foodList, foodTableView);
+        foodTableView.setDataAdapter(foodAdapter);
+        foodTableView.addDataClickListener(new CarClickListener());
+        foodTableView.addDataLongClickListener(new CarLongClickListener());
+        foodTableView.setSwipeToRefreshEnabled(true);
+        foodTableView.setSwipeToRefreshListener(new SwipeToRefreshListener() {
+            @Override
+            public void onRefresh(final RefreshIndicator refreshIndicator) {
+                foodTableView.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        final Food randomFood = getRandomCar();
+                        foodAdapter.getData().add(randomFood);
+                        foodAdapter.notifyDataSetChanged();
+                        refreshIndicator.hide();
+                        Toast.makeText(MainActivity.this, "Added: " + randomFood, Toast.LENGTH_SHORT).show();
+                    }
+                }, 3000);
+            }
+        });
+
+
     }
 }
