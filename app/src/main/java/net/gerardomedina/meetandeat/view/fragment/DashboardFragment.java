@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 import net.gerardomedina.meetandeat.R;
+import net.gerardomedina.meetandeat.common.Meeting;
 import net.gerardomedina.meetandeat.persistence.local.MeetingValues;
 import net.gerardomedina.meetandeat.persistence.local.DBHelper;
 import net.gerardomedina.meetandeat.task.GetMeetingsTask;
@@ -76,7 +77,10 @@ public class DashboardFragment extends BaseFragment {
         Cursor cursor = db.rawQuery("select * from "+MeetingValues.TABLE_NAME+
                 " order by " +MeetingValues.COLUMN_NAME_DATE+","+MeetingValues.COLUMN_NAME_TIME+ " ASC;"
                 ,null);
-        if (cursor.getCount()>0 && cursor.moveToFirst())
+        if (cursor.getCount()>0 && cursor.moveToFirst()) appCommon.setNextMeeting(new Meeting(1,"","",
+                cursor.getString(cursor.getColumnIndexOrThrow(MeetingValues.COLUMN_NAME_DATE)),
+                cursor.getString(cursor.getColumnIndexOrThrow(MeetingValues.COLUMN_NAME_TIME)),
+                ""));
         meetingListView.setAdapter(new MeetingsAdapter(getActivity(), (BaseActivity) getActivity(),cursor,true));
     }
 

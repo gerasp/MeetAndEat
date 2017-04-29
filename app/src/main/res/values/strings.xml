@@ -78,4 +78,6 @@
     <string name="calendar">Calendar</string>
     <string name="no_meeting">You have no selectedMeeting. Create a new one on the dashboard screen!</string>
     <string name="set_alarm_button">Set a reminder</string>
+    <string name="set_alarm_text">Your next meeting takes place on %1$s at %2$s</string>
+
 </resources>

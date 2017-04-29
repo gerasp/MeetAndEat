@@ -38,11 +38,11 @@ public class MeetingsAdapter extends CursorAdapter {
         View meetingColor = view.findViewById(R.id.meeting_color);
 
         final String title = cursor.getString(cursor.getColumnIndexOrThrow(MeetingValues.COLUMN_NAME_TITLE));
-        final String datetime = cursor.getString(cursor.getColumnIndexOrThrow(MeetingValues.COLUMN_NAME_DATE))
-                +" "+cursor.getString(cursor.getColumnIndexOrThrow(MeetingValues.COLUMN_NAME_TIME));
+        final String date = cursor.getString(cursor.getColumnIndexOrThrow(MeetingValues.COLUMN_NAME_DATE));
+        final String time = cursor.getString(cursor.getColumnIndexOrThrow(MeetingValues.COLUMN_NAME_TIME));
         final String color = (cursor.getString(cursor.getColumnIndexOrThrow(MeetingValues.COLUMN_NAME_COLOR)));
         meetingTitle.setText(title);
-        meetingDateTime.setText(datetime);
+        meetingDateTime.setText(date + " | " + time);
         meetingColor.setBackgroundColor(Color.parseColor(color));
 
         meeting.setOnClickListener(new View.OnClickListener() {
@@ -54,7 +54,9 @@ public class MeetingsAdapter extends CursorAdapter {
                         cursor.getInt(cursor.getColumnIndexOrThrow(MeetingValues._ID)),
                         title,
                         cursor.getString(cursor.getColumnIndexOrThrow(MeetingValues.COLUMN_NAME_LOCATION)),
-                        datetime,color));
+                        date,
+                        time,
+                        color));
             }
         });
     }
