@@ -49,7 +49,7 @@ public class MeetingsAdapter extends CursorAdapter {
             @Override
             public void onClick(View v) {
                 activity.changeToActivity(MeetingActivity.class);
-                activity.overridePendingTransition(R.anim.slide_down,R.anim.fade_out);
+                activity.overridePendingTransition(R.anim.overshoot,R.anim.fade_out);
                 appCommon.setSelectedMeeting(new Meeting(
                         cursor.getInt(cursor.getColumnIndexOrThrow(MeetingValues._ID)),
                         title,
