@@ -1,6 +1,7 @@
 package net.gerardomedina.meetandeat.view.fragment;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -10,14 +11,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
+import com.github.fabtransitionactivity.SheetLayout;
+
 import net.gerardomedina.meetandeat.R;
 import net.gerardomedina.meetandeat.common.Meeting;
-import net.gerardomedina.meetandeat.persistence.local.MeetingValues;
 import net.gerardomedina.meetandeat.persistence.local.DBHelper;
+import net.gerardomedina.meetandeat.persistence.local.MeetingValues;
 import net.gerardomedina.meetandeat.task.GetMeetingsTask;
 import net.gerardomedina.meetandeat.view.activity.BaseActivity;
 import net.gerardomedina.meetandeat.view.activity.NewMeetingActivity;
-import net.gerardomedina.meetandeat.view.adapter.ContactsAdapter;
 import net.gerardomedina.meetandeat.view.adapter.MeetingsAdapter;
 
 import org.json.JSONArray;
@@ -25,6 +27,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class DashboardFragment extends BaseFragment {
+
+
     private View view;
     private ListView meetingListView;
     private DBHelper dbHelper;
@@ -84,5 +88,4 @@ public class DashboardFragment extends BaseFragment {
                 ""));
         meetingListView.setAdapter(new MeetingsAdapter(getActivity(), (BaseActivity) getActivity(),cursor,true));
     }
-
 }

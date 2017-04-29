@@ -6,6 +6,8 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.text.TextUtils;
 
+import com.github.fabtransitionactivity.SheetLayout;
+
 import net.gerardomedina.meetandeat.R;
 
 public class AppCommon {
@@ -15,7 +17,6 @@ public class AppCommon {
     private User user;
     private Meeting selectedMeeting;
     private Meeting nextMeeting;
-
 
     public static AppCommon getInstance() {
         if (singleton != null) return singleton;
@@ -89,4 +90,5 @@ public class AppCommon {
     public void setNextMeeting(Meeting nextMeeting) {
         this.nextMeeting = nextMeeting;
     }
+
 }

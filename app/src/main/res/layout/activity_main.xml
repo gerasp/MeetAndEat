@@ -52,4 +52,5 @@
             android:background="@drawable/shadow_up" />
 
     </RelativeLayout>
+
 </android.support.design.widget.AppBarLayout>
