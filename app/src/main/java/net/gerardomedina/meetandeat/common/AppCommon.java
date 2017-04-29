@@ -6,8 +6,6 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.text.TextUtils;
 
-import com.github.fabtransitionactivity.SheetLayout;
-
 import net.gerardomedina.meetandeat.R;
 
 public class AppCommon {

@@ -20,6 +20,7 @@ import net.gerardomedina.meetandeat.view.activity.MeetingActivity;
 public class MeetingsAdapter extends CursorAdapter {
     AppCommon appCommon = AppCommon.getInstance();
     private BaseActivity activity;
+
     public MeetingsAdapter(Context context, BaseActivity activity, Cursor c, boolean autoRequery) {
         super(context, c, autoRequery);
         this.activity = activity;
@@ -48,15 +49,19 @@ public class MeetingsAdapter extends CursorAdapter {
         meeting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                appCommon.setSelectedMeeting(new Meeting(
-                        cursor.getInt(cursor.getColumnIndexOrThrow(MeetingValues._ID)),
-                        title,
-                        cursor.getString(cursor.getColumnIndexOrThrow(MeetingValues.COLUMN_NAME_LOCATION)),
-                        date,
-                        time,
-                        color));
-                activity.changeToActivity(MeetingActivity.class);
-                activity.overridePendingTransition(R.anim.overshoot,R.anim.fade_out);
+                if (appCommon.hasInternet(activity)) {
+                    appCommon.setSelectedMeeting(new Meeting(
+                            cursor.getInt(cursor.getColumnIndexOrThrow(MeetingValues._ID)),
+                            title,
+                            cursor.getString(cursor.getColumnIndexOrThrow(MeetingValues.COLUMN_NAME_LOCATION)),
+                            date,
+                            time,
+                            color));
+                    activity.changeToActivity(MeetingActivity.class);
+                    activity.overridePendingTransition(R.anim.overshoot, R.anim.fade_out);
+                } else {
+                    activity.showSimpleDialog(activity.getString(R.string.no_internet_connection));
+                }
             }
         });
     }
