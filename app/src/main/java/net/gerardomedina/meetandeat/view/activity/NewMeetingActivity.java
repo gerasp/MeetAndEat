@@ -123,8 +123,8 @@ public class NewMeetingActivity extends BaseActivity {
                 newDate.set(year, monthOfYear, dayOfMonth);
                 SimpleDateFormat dateFormatter1 = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
                 SimpleDateFormat dateFormatter2 = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
-                selectedDate = dateFormatter1.format(newDate);
-                dateInput.setText(dateFormatter2.format(newDate));
+                selectedDate = dateFormatter1.format(newDate.getTime());
+                dateInput.setText(dateFormatter2.format(newDate.getTime()));
             }
         }, newCalendar.get(Calendar.YEAR), newCalendar.get(Calendar.MONTH), newCalendar.get(Calendar.DAY_OF_MONTH));
         datePickerDialog.getDatePicker().setMinDate(newCalendar.getTime().getTime());
@@ -141,10 +141,10 @@ public class NewMeetingActivity extends BaseActivity {
             public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                 Calendar newDate = Calendar.getInstance();
                 newDate.set(0,0,0,hourOfDay,minute,0);
-                SimpleDateFormat dateFormatter1 = new SimpleDateFormat("hh:mm:ss", Locale.getDefault());
-                SimpleDateFormat dateFormatter2 = new SimpleDateFormat("hh:mm", Locale.getDefault());
-                selectedTime = dateFormatter1.format(newDate);
-                timeInput.setText(dateFormatter2.format(newDate));
+                SimpleDateFormat dateFormatter1 = new SimpleDateFormat("HH:mm:ss", Locale.getDefault());
+                SimpleDateFormat dateFormatter2 = new SimpleDateFormat("HH:mm", Locale.getDefault());
+                selectedTime = dateFormatter1.format(newDate.getTime());
+                timeInput.setText(dateFormatter2.format(newDate.getTime()));
             }
         }, newCalendar.get(Calendar.HOUR_OF_DAY), newCalendar.get(Calendar.MINUTE), true);
         timeInput = (TextView) findViewById(R.id.newMeetingTimeInput);

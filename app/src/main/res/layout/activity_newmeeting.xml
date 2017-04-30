@@ -54,7 +54,7 @@
                         style="@style/NewMeetingInputStyle"
                         android:hint="@string/new_meeting_date"
                         android:imeActionLabel="@string/new_meeting_date"
-                        android:inputType="datetime" />
+                        android:inputType="date" />
                 </android.support.design.widget.TextInputLayout>
 
                 <android.support.design.widget.TextInputLayout style="@style/NewMeetingInputLabelStyle">
@@ -63,7 +63,8 @@
                         android:id="@+id/newMeetingTimeInput"
                         style="@style/NewMeetingInputStyle"
                         android:hint="@string/new_meeting_time"
-                        android:imeActionLabel="@string/new_meeting_time" />
+                        android:imeActionLabel="@string/new_meeting_time"
+                        android:inputType="time"/>
                 </android.support.design.widget.TextInputLayout>
 
                 <android.support.design.widget.TextInputLayout style="@style/NewMeetingInputLabelStyle">

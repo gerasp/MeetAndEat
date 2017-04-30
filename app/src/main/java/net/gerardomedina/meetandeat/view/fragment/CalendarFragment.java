@@ -41,8 +41,8 @@ public class CalendarFragment extends BaseFragment {
             SimpleDateFormat simpleDateFormat1 = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
             SimpleDateFormat simpleDateFormat2 = new SimpleDateFormat("hh:mm", Locale.getDefault());
             calendarInfo.setText(getResources().getString(R.string.set_alarm_text,
-                    simpleDateFormat1.format(nextMeeting.getDatetime()),
-                    simpleDateFormat2.format(nextMeeting.getDatetime())));
+                    simpleDateFormat1.format(nextMeeting.getDatetime().getTime()),
+                    simpleDateFormat2.format(nextMeeting.getDatetime().getTime())));
             Button setAlarmButton = (Button) view.findViewById(R.id.setAlarmButton);
             setAlarmButton.setVisibility(View.VISIBLE);
             setAlarmButton.setOnClickListener(new View.OnClickListener() {

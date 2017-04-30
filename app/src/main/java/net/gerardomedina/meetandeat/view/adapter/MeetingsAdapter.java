@@ -57,8 +57,8 @@ public class MeetingsAdapter extends CursorAdapter {
 
         meetingTitle.setText(meeting.getTitle());
         Calendar datetime = meeting.getDatetime();
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy | hh:mm", Locale.getDefault());
-        meetingDateTime.setText(simpleDateFormat.format(datetime));
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm", Locale.getDefault());
+        meetingDateTime.setText(simpleDateFormat.format(datetime.getTime()));
         meetingColor.setBackgroundColor(Color.parseColor(color));
 
         meetingLayout.setOnClickListener(new View.OnClickListener() {
