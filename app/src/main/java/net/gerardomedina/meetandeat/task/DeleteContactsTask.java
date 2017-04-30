@@ -43,7 +43,7 @@ public class DeleteContactsTask extends BaseTask {
         if (success) {
             try {
                 switch (response.getInt("code")) {
-                    case 0: activity.showSimpleDialog(activity.getString(R.string.error_deleting_contacts));
+                    case 0: activity.showSimpleDialog(R.string.error_deleting_contacts);
                             break;
                     case 2: new GetContactsTask(fragment).execute();
                             break;

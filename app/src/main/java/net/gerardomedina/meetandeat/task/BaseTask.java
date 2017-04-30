@@ -42,7 +42,7 @@ public abstract class BaseTask extends AsyncTask<Void, Void, Boolean> {
     @Override
     protected void onCancelled() {
         super.onCancelled();
-        activity.showSimpleDialog(activity.getString(R.string.error_retrieving_data));
+        activity.showSimpleDialog(R.string.error_retrieving_data);
     }
 
     @Override
@@ -50,7 +50,7 @@ public abstract class BaseTask extends AsyncTask<Void, Void, Boolean> {
         super.onPostExecute(success);
         if (progressDialog!= null)progressDialog.cancel();
         try {
-            if (!success || response.getInt("code") < 0 || response.getInt("code") > 2) activity.showSimpleDialog(activity.getString(R.string.error_retrieving_data));
+            if (!success || response.getInt("code") < 0 || response.getInt("code") > 2) activity.showSimpleDialog(R.string.error_retrieving_data);
         } catch (JSONException e) {
             Log.e("JSON Parser", "Error parsing data: " + e.toString());
         }

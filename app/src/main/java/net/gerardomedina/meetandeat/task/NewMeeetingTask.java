@@ -56,7 +56,7 @@ public class NewMeeetingTask extends BaseTask {
             try {
                 switch (response.getInt("code")) {
                     case 0:
-                        activity.showSimpleDialog(activity.getString(R.string.error_creating_meeting));
+                        activity.showSimpleDialog(R.string.error_creating_meeting);
                         break;
                     case 2:
                         activity.changeToActivityNoBackStack(MainActivity.class);

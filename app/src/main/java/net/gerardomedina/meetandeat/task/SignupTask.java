@@ -47,7 +47,7 @@ public class SignupTask extends BaseTask {
         if (success) {
             try {
                 switch (response.getInt("code")) {
-                    case 0: activity.showSimpleDialog(activity.getString(R.string.error_taken_email));
+                    case 0: activity.showToast(R.string.error_taken_email);
                             break;
                     case 2: activity.login(response.getInt("id"),response.getString("username"));
                             break;

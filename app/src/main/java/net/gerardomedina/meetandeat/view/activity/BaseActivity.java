@@ -15,6 +15,8 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     public AppCommon appCommon = AppCommon.getInstance();
 
+    public BaseActivity getBaseActivity() {return this;}
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,17 +50,15 @@ public abstract class BaseActivity extends AppCompatActivity {
         finish();
     }
 
-    public void showSimpleDialog(String message) {
+    public void showSimpleDialog(int stringId) {
         new android.support.v7.app.AlertDialog.Builder(this, R.style.MyAlertDialogStyle)
-                .setMessage(message)
+                .setMessage(getString(stringId))
                 .setPositiveButton(android.R.string.ok, null)
                 .show();
     }
 
-    public void showToast(String message) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    public void showToast(int stringId) {
+        Toast.makeText(this, getString(stringId), Toast.LENGTH_SHORT).show();
     }
-
-
 }
 

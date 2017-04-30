@@ -146,7 +146,7 @@ public class LoginActivity extends BaseActivity {
                     new SignupTask(activity, username, password, input.getText().toString()).execute((Void) null);
                 } else {
                     showEmailDialog(username, password);
-                    showToast(getString(R.string.error_invalid_email));
+                    showToast(R.string.error_invalid_email);
                 }
             }
         });

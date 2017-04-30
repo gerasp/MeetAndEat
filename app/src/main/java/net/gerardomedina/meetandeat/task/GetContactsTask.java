@@ -40,8 +40,6 @@ public class GetContactsTask extends BaseTask {
         if (success) {
             try {
                 switch (response.getInt("code")) {
-                    case -1: activity.showSimpleDialog(activity.getString(R.string.error_getting_contacts));
-                            break;
                     case 2: ((ContactsFragment)fragment).saveContactListToLocalDB(response);
                             break;
                 }

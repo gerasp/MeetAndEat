@@ -60,14 +60,16 @@ public class MeetingActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         meeting = appCommon.getSelectedMeeting();
         if (meeting == null) changeToActivityNoBackStack(MainActivity.class);
-        if (appCommon.isColorDark(meeting.getColor())) {
-            setTheme(R.style.AppTheme_AppBarOverlayDark);
-            menu.getItem(R.id.menu_location).setIcon(R.drawable.ic_location_white);
-        }
+        if (appCommon.isColorDark(meeting.getColor())) setTheme(R.style.AppTheme_AppBarOverlayDark);
         else setTheme(R.style.AppTheme_AppBarOverlay);
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_meeting);
+
+        if (appCommon.isColorDark(meeting.getColor())){
+            menu.getItem(0).setIcon(R.drawable.ic_location_white);
+            menu.getItem(1).setIcon(R.drawable.ic_participants_white);
+        }
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle(meeting.getTitle());
@@ -119,7 +121,7 @@ public class MeetingActivity extends BaseActivity {
 
         if (appCommon.hasInternet(this)) new GetFoodTask(this).execute();
         else {
-            showSimpleDialog(getString(R.string.no_internet_connection));
+            showSimpleDialog(R.string.no_internet_connection);
             changeToActivityNoBackStack(MainActivity.class);
         }
 

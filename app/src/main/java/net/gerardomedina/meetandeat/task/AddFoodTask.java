@@ -50,7 +50,7 @@ public class AddFoodTask extends BaseTask {
             try {
                 switch (response.getInt("code")) {
                     case 0:
-                        activity.showSimpleDialog(activity.getString(R.string.error_adding_food));
+                        activity.showSimpleDialog(R.string.error_adding_food);
                         break;
                     case 2:
                         new GetFoodTask(activity).execute();

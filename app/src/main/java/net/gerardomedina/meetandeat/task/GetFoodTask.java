@@ -39,8 +39,6 @@ public class GetFoodTask extends BaseTask {
         if (success) {
             try {
                 switch (response.getInt("code")) {
-                    case 0:
-                        break;
                     case 2:
                         ((MeetingActivity)activity).populateFoodTable(response);
                         break;
