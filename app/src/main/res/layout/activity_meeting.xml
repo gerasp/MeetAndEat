@@ -15,21 +15,21 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?attr/colorPrimary"
-        android:textAlignment="center"
         custom:popupTheme="@style/AppTheme.PopupOverlay" />
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/background">
 
         <net.gerardomedina.meetandeat.view.table.SortableFoodTableView
             android:id="@+id/foodTable"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_alignParentBottom="true"
+            android:layout_alignParentTop="true"
             custom:tableView_columnCount="4"
-            custom:tableView_headerElevation="10"
-            android:layout_alignParentTop="true">
+            custom:tableView_headerElevation="10">
 
         </net.gerardomedina.meetandeat.view.table.SortableFoodTableView>
 

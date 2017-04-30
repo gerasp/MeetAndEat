@@ -7,12 +7,12 @@
         android:id="@+id/menu_participants"
         android:title="@string/participants"
         android:icon="@drawable/ic_participants_black"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="never" />
     <item
         android:id="@+id/menu_location"
         android:title="@string/location"
         android:icon="@drawable/ic_map_black"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="never" />
 
 
     <item
