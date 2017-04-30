@@ -3,11 +3,13 @@ package net.gerardomedina.meetandeat.view.activity;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 
@@ -35,6 +37,7 @@ public class MeetingActivity extends BaseActivity {
     private Meeting meeting;
     private Menu menu;
     private SwipeToRefreshListener.RefreshIndicator refreshIndicator;
+    private AppBarLayout appBarLayout;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -93,6 +96,7 @@ public class MeetingActivity extends BaseActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         CollapsingToolbarLayout toolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.toolbar_layout);
         toolbarLayout.setBackgroundColor(Color.parseColor(meeting.getColor()));
+        appBarLayout = (AppBarLayout)findViewById(R.id.app_bar);
     }
 
     private void createAddFoodDialog() {
@@ -140,6 +144,13 @@ public class MeetingActivity extends BaseActivity {
         final SortableFoodTableView foodTableView = (SortableFoodTableView) findViewById(R.id.foodTable);
         final FoodAdapter foodAdapter = new FoodAdapter(this, foodList, foodTableView);
         foodTableView.setDataAdapter(foodAdapter);
+        foodTableView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                appBarLayout.setExpanded(false);
+                return false;
+            }
+        });
         foodTableView.setSwipeToRefreshEnabled(true);
         foodTableView.setSwipeToRefreshListener(new SwipeToRefreshListener() {
             @Override

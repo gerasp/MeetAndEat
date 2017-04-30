@@ -38,6 +38,7 @@ public class AddFoodDialog extends AlertDialog {
 
         descriptionInput = (EditText) findViewById(R.id.descriptionInput);
         amountInput = (EditText) findViewById(R.id.amountInput);
+        descriptionInput.requestFocus();
     }
 
     public void attemptAddFood () {
