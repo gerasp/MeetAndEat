@@ -1,5 +1,7 @@
 package net.gerardomedina.meetandeat.view.fragment;
 
+import android.app.AlarmManager;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,9 +11,7 @@ import android.widget.CalendarView;
 import android.widget.TextView;
 
 import net.gerardomedina.meetandeat.R;
-import net.gerardomedina.meetandeat.common.Meeting;
-
-import org.w3c.dom.Text;
+import net.gerardomedina.meetandeat.model.Meeting;
 
 import java.util.Calendar;
 import java.util.Locale;
@@ -35,9 +35,18 @@ public class CalendarFragment extends BaseFragment {
             calendarInfo.setText(getResources().getString(R.string.set_alarm_text, nextMeeting.getDate(), nextMeeting.getTime() ));
             Button setAlarmButton = (Button) view.findViewById(R.id.setAlarmButton);
             setAlarmButton.setVisibility(View.VISIBLE);
+            setAlarmButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    setAlarm();
+                }
+            });
         }
         return view;
     }
 
-
+    private void setAlarm() {
+        AlarmManager alarmManager = (AlarmManager) getActivity().getSystemService(Context.ALARM_SERVICE);
+        alarmManager.set(AlarmManager.RTC_WAKEUP, targetCal.getTimeInMillis());
+    }
 }

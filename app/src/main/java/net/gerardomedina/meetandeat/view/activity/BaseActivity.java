@@ -9,7 +9,7 @@ import android.widget.Toast;
 
 import net.gerardomedina.meetandeat.R;
 import net.gerardomedina.meetandeat.common.AppCommon;
-import net.gerardomedina.meetandeat.common.User;
+import net.gerardomedina.meetandeat.model.User;
 
 public abstract class BaseActivity extends AppCompatActivity {
 

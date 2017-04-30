@@ -1,19 +1,19 @@
-package net.gerardomedina.meetandeat.common;
+package net.gerardomedina.meetandeat.model;
+
+import java.util.Calendar;
 
 public class Meeting {
     private int id;
     private String title;
     private String location;
-    private String date;
-    private String time;
+    private Calendar datetime;
     private String color;
 
     public Meeting(int id, String title, String location, String date, String time, String color) {
         this.id = id;
         this.title = title;
         this.location = location;
-        this.date = date;
-        this.time = time;
+        setDate(date,time);
         this.color = color;
     }
 
@@ -41,12 +41,21 @@ public class Meeting {
         this.location = location;
     }
 
-    public String getDate() {
-        return date;
+    public Calendar getDatetime() {
+        return datetime;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setDate(String date, String time) {
+        this.datetime = Calendar.getInstance();
+        String [] splittedDate = date.split("-");
+        String [] splittedTime = time.split(":");
+        datetime.set(
+                Integer.parseInt(splittedDate[0]),
+                Integer.parseInt(splittedDate[1]),
+                Integer.parseInt(splittedDate[2]),
+                Integer.parseInt(splittedTime[0]),
+                Integer.parseInt(splittedTime[1]),
+                Integer.parseInt(splittedTime[2]));
     }
 
     public String getColor() {
@@ -57,11 +66,4 @@ public class Meeting {
         this.color = color;
     }
 
-    public String getTime() {
-        return time;
-    }
-
-    public void setTime(String time) {
-        this.time = time;
-    }
 }

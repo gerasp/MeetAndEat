@@ -7,7 +7,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import net.gerardomedina.meetandeat.R;
-import net.gerardomedina.meetandeat.common.Food;
+import net.gerardomedina.meetandeat.model.Food;
 
 import java.util.List;
 

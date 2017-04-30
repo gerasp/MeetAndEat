@@ -12,13 +12,12 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.TextView;
 
 import com.github.clans.fab.FloatingActionButton;
 
 import net.gerardomedina.meetandeat.R;
-import net.gerardomedina.meetandeat.common.Food;
-import net.gerardomedina.meetandeat.common.Meeting;
+import net.gerardomedina.meetandeat.model.Food;
+import net.gerardomedina.meetandeat.model.Meeting;
 import net.gerardomedina.meetandeat.task.GetFoodTask;
 import net.gerardomedina.meetandeat.view.dialog.AddFoodDialog;
 import net.gerardomedina.meetandeat.view.table.FoodAdapter;

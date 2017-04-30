@@ -8,6 +8,8 @@ import android.net.NetworkInfo;
 import android.text.TextUtils;
 
 import net.gerardomedina.meetandeat.R;
+import net.gerardomedina.meetandeat.model.Meeting;
+import net.gerardomedina.meetandeat.model.User;
 
 public class AppCommon {
 

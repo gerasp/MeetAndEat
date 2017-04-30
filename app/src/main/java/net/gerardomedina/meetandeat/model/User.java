@@ -1,4 +1,4 @@
-package net.gerardomedina.meetandeat.common;
+package net.gerardomedina.meetandeat.model;
 
 public class User {
     public User(int id, String username) {

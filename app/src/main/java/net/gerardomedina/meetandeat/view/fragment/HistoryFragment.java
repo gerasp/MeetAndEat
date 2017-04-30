@@ -11,13 +11,11 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 import net.gerardomedina.meetandeat.R;
-import net.gerardomedina.meetandeat.common.Meeting;
+import net.gerardomedina.meetandeat.model.Meeting;
 import net.gerardomedina.meetandeat.persistence.local.DBHelper;
 import net.gerardomedina.meetandeat.persistence.local.OldMeetingValues;
-import net.gerardomedina.meetandeat.task.GetMeetingsTask;
 import net.gerardomedina.meetandeat.task.GetOldMeetingsTask;
 import net.gerardomedina.meetandeat.view.activity.BaseActivity;
-import net.gerardomedina.meetandeat.view.activity.NewMeetingActivity;
 import net.gerardomedina.meetandeat.view.adapter.MeetingsAdapter;
 
 import org.json.JSONArray;

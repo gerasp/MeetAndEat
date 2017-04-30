@@ -1,6 +1,6 @@
 package net.gerardomedina.meetandeat.view.table;
 
-import net.gerardomedina.meetandeat.common.Food;
+import net.gerardomedina.meetandeat.model.Food;
 
 import java.util.Comparator;
 

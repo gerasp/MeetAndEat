@@ -7,8 +7,8 @@ import android.util.AttributeSet;
 
 import net.gerardomedina.meetandeat.R;
 import net.gerardomedina.meetandeat.common.AppCommon;
-import net.gerardomedina.meetandeat.common.Food;
-import net.gerardomedina.meetandeat.common.Meeting;
+import net.gerardomedina.meetandeat.model.Food;
+import net.gerardomedina.meetandeat.model.Meeting;
 
 import de.codecrafters.tableview.SortableTableView;
 import de.codecrafters.tableview.model.TableColumnWeightModel;

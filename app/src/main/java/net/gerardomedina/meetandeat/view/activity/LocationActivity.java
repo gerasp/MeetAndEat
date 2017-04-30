@@ -10,7 +10,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import net.gerardomedina.meetandeat.R;
-import net.gerardomedina.meetandeat.common.Meeting;
+import net.gerardomedina.meetandeat.model.Meeting;
 
 public class LocationActivity extends BaseActivity implements OnMapReadyCallback {
 
