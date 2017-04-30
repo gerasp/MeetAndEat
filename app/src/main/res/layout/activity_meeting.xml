@@ -2,10 +2,10 @@
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:custom="http://schemas.android.com/apk/res-auto"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:fab="http://schemas.android.com/apk/res-auto"
     android:fitsSystemWindows="true"
     tools:context="net.gerardomedina.meetandeat.view.activity.MeetingActivity">
 
@@ -34,33 +34,27 @@
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
 
-    <LinearLayout
+
+    <net.gerardomedina.meetandeat.view.table.SortableFoodTableView
+        android:id="@+id/foodTable"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        android:id="@+id/linearLayout">
+        custom:tableView_columnCount="4"
+        custom:tableView_headerColor="@color/accent"
+        custom:tableView_headerElevation="10" />
 
-        <net.gerardomedina.meetandeat.view.table.SortableFoodTableView
-            android:id="@+id/foodTable"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            custom:tableView_columnCount="4"
-            custom:tableView_headerColor="@color/accent"
-            custom:tableView_headerElevation="10" />
-
-    </LinearLayout>
 
     <com.github.clans.fab.FloatingActionMenu
+        android:id="@+id/addMenu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/fab_margin"
-        android:id="@+id/addMenu"
-        app:layout_anchor="@id/linearLayout"
+        app:layout_anchor="@id/foodTable"
         app:layout_anchorGravity="bottom|end"
+        app:menu_colorPressed="@color/primary_dark"
         fab:menu_backgroundColor="@android:color/transparent"
         fab:menu_colorNormal="@color/primary"
-        app:menu_colorPressed="@color/primary_dark"
         fab:menu_fab_size="normal"
         fab:menu_icon="@drawable/fab_add"
         fab:menu_labels_hideAnimation="@anim/fab_slide_out_to_right"

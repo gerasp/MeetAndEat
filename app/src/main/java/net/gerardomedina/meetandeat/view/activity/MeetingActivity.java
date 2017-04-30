@@ -34,11 +34,12 @@ public class MeetingActivity extends BaseActivity {
 
     private Meeting meeting;
     private Menu menu;
+    private SwipeToRefreshListener.RefreshIndicator refreshIndicator;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_meeting, menu);
-        if (meeting != null && appCommon.isColorDark(meeting.getColor())){
+        if (meeting != null && appCommon.isColorDark(meeting.getColor())) {
             menu.getItem(0).setIcon(R.drawable.ic_participants_white);
             menu.getItem(1).setIcon(R.drawable.ic_map_white);
         }
@@ -47,16 +48,12 @@ public class MeetingActivity extends BaseActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.menu_location:
                 changeToActivity(LocationActivity.class);
                 break;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    public BaseActivity getActivity() {
-        return this;
     }
 
     @Override
@@ -83,12 +80,6 @@ public class MeetingActivity extends BaseActivity {
         FloatingActionButton addFoodButton = (FloatingActionButton) findViewById(R.id.addFoodButton);
         addFoodButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                changeToActivity(LocationActivity.class);
-            }
-        });
-        addFoodButton.setOnClickListener(new View.OnClickListener() {
-            @Override
             public void onClick(View v) {
                 createAddFoodDialog();
             }
@@ -105,8 +96,8 @@ public class MeetingActivity extends BaseActivity {
     }
 
     private void createAddFoodDialog() {
-        final AddFoodDialog addFoodDialog = new AddFoodDialog(getActivity());
-        addFoodDialog.setView(getActivity().getLayoutInflater().inflate(R.layout.dialog_addfood, null));
+        final AddFoodDialog addFoodDialog = new AddFoodDialog(getBaseActivity());
+        addFoodDialog.setView(getBaseActivity().getLayoutInflater().inflate(R.layout.dialog_addfood, null));
         addFoodDialog.setButton(DialogInterface.BUTTON_POSITIVE, getString(android.R.string.ok), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -133,7 +124,7 @@ public class MeetingActivity extends BaseActivity {
         addFoodDialog.show();
     }
 
-    public void populateFoodTable (JSONObject response) throws JSONException {
+    public void populateFoodTable(JSONObject response) throws JSONException {
         List<Food> foodList = new ArrayList<>();
         JSONArray results = response.getJSONArray("results");
         for (int i = 0; i < results.length(); i++) {
@@ -150,17 +141,21 @@ public class MeetingActivity extends BaseActivity {
         final FoodAdapter foodAdapter = new FoodAdapter(this, foodList, foodTableView);
         foodTableView.setDataAdapter(foodAdapter);
         foodTableView.setSwipeToRefreshEnabled(true);
-        final BaseActivity activity = this;
         foodTableView.setSwipeToRefreshListener(new SwipeToRefreshListener() {
             @Override
             public void onRefresh(final RefreshIndicator refreshIndicator) {
-                foodTableView.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        new GetFoodTask(activity).execute();
-                    }
-                }, 3000);
+                new GetFoodTask(getBaseActivity()).execute();
+                setRefreshIndicator(refreshIndicator);
             }
         });
+    }
+
+
+    public void setRefreshIndicator(SwipeToRefreshListener.RefreshIndicator refreshIndicator) {
+        this.refreshIndicator = refreshIndicator;
+    }
+
+    public void hideRefreshIndicator() {
+        if (this.refreshIndicator != null) refreshIndicator.hide();
     }
 }

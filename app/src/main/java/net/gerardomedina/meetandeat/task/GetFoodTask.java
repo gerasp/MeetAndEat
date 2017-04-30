@@ -20,7 +20,7 @@ public class GetFoodTask extends BaseTask {
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
-        showProgressDialog(R.string.getting_food);
+//        showProgressDialog(R.string.getting_food);
     }
 
 
@@ -40,6 +40,7 @@ public class GetFoodTask extends BaseTask {
             try {
                 switch (response.getInt("code")) {
                     case 2:
+                        ((MeetingActivity)activity).hideRefreshIndicator();
                         ((MeetingActivity)activity).populateFoodTable(response);
                         break;
                 }
