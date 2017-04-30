@@ -23,7 +23,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class DashboardFragment extends BaseFragment {
+public class DashboardFragment extends BaseFragment implements InitiableFragment {
 
 
     private View view;

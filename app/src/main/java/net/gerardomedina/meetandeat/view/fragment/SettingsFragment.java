@@ -11,15 +11,26 @@ import net.gerardomedina.meetandeat.view.activity.BaseActivity;
 import net.gerardomedina.meetandeat.view.activity.LoginActivity;
 
 
-public class SettingsFragment extends PreferenceFragmentCompat {
+public class SettingsFragment extends PreferenceFragmentCompat implements InitiableFragment {
 
     AppCommon appCommon = AppCommon.getInstance();
+    private Preference editAccount;
+    private Preference deleteAccount;
+    private Preference logout;
 
     @Override
     public void onCreatePreferences(Bundle bundle, String s) {
         setPreferencesFromResource(R.xml.preferences, s);
 
-        Preference deleteAccount = getPreferenceManager().findPreference("delete_account");
+        editAccount = getPreferenceManager().findPreference("edit_account");
+        deleteAccount = getPreferenceManager().findPreference("delete_account");
+        logout = getPreferenceManager().findPreference("logout");
+
+        init();
+
+    }
+
+    public void init() {
         deleteAccount.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
@@ -38,8 +49,6 @@ public class SettingsFragment extends PreferenceFragmentCompat {
                 return false;
             }
         });
-
-        Preference editAccount = getPreferenceManager().findPreference("edit_account");
         editAccount.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
@@ -47,7 +56,6 @@ public class SettingsFragment extends PreferenceFragmentCompat {
             }
         });
 
-        Preference logout = getPreferenceManager().findPreference("logout");
         logout.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
@@ -60,7 +68,6 @@ public class SettingsFragment extends PreferenceFragmentCompat {
                 return false;
             }
         });
-
     }
 
     public void editAccount() {

@@ -22,7 +22,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class NotificationsFragment extends BaseFragment {
+public class NotificationsFragment extends BaseFragment implements InitiableFragment {
     private View view;
 
     public NotificationsFragment() {
@@ -35,5 +35,10 @@ public class NotificationsFragment extends BaseFragment {
         FloatingActionButton newMeetingButton = (FloatingActionButton) view.findViewById(R.id.newMeetingButton);
         new GetMeetingsTask(this).execute();
         return view;
+    }
+
+    @Override
+    public void init() {
+
     }
 }

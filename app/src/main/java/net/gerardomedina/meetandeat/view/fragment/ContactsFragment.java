@@ -24,7 +24,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class ContactsFragment extends BaseFragment {
+public class ContactsFragment extends BaseFragment implements InitiableFragment {
     private ListView contactListView;
     private SearchView searchView;
     private ArrayList<String> contacts;

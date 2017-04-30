@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 import net.gerardomedina.meetandeat.R;
 import net.gerardomedina.meetandeat.view.activity.MainActivity;
+import net.gerardomedina.meetandeat.view.fragment.BaseFragment;
 import net.gerardomedina.meetandeat.view.fragment.CalendarFragment;
 import net.gerardomedina.meetandeat.view.fragment.ContactsFragment;
 import net.gerardomedina.meetandeat.view.fragment.DashboardFragment;
@@ -17,7 +18,7 @@ import java.util.List;
 
 public class SectionsAdapter extends FragmentPagerAdapter {
     private MainActivity mainActivity;
-    private List<Fragment> fragmentList;
+    private List<BaseFragment> fragmentList;
     private int numberOfSections;
 
     public SectionsAdapter(MainActivity mainActivity, FragmentManager fm, int numberOfSections) {
@@ -33,6 +34,7 @@ public class SectionsAdapter extends FragmentPagerAdapter {
     }
     @Override
     public Fragment getItem(int position) {
+        fragmentList.get(position).init();
         return fragmentList.get(position);
     }
     @Override

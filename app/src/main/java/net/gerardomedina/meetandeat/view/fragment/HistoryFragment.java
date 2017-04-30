@@ -11,7 +11,6 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 import net.gerardomedina.meetandeat.R;
-import net.gerardomedina.meetandeat.model.Meeting;
 import net.gerardomedina.meetandeat.persistence.local.DBHelper;
 import net.gerardomedina.meetandeat.persistence.local.OldMeetingValues;
 import net.gerardomedina.meetandeat.task.GetOldMeetingsTask;
@@ -22,11 +21,11 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class HistoryFragment extends BaseFragment {
+public class HistoryFragment extends BaseFragment implements InitiableFragment {
     private View view;
     private ListView meetingListView;
     private DBHelper dbHelper;
-    private FloatingActionButton newMeetingButton;
+    private FloatingActionButton deleteOldMeetingsButton;
 
     public HistoryFragment() {
     }
@@ -36,21 +35,23 @@ public class HistoryFragment extends BaseFragment {
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_history, container, false);
 
-        newMeetingButton = (FloatingActionButton) view.findViewById(R.id.deleteOldMeetingsButton);
+        deleteOldMeetingsButton = (FloatingActionButton) view.findViewById(R.id.deleteOldMeetingsButton);
 
         meetingListView = (ListView) view.findViewById(R.id.meetings);
         dbHelper = new DBHelper(getActivity());
-        newMeetingButton.setOnClickListener(new View.OnClickListener() {
+
+        return view;
+    }
+
+    public void init() {
+        deleteOldMeetingsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
             }
         });
-
         if (appCommon.hasInternet(getActivity())) new GetOldMeetingsTask(this).execute();
         else loadMeetingListFromLocalDB();
-
-        return view;
     }
 
     public void saveMeetingListToLocalDB(JSONObject response) throws JSONException {

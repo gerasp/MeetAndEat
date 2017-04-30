@@ -20,7 +20,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
-public class CalendarFragment extends BaseFragment {
+public class CalendarFragment extends BaseFragment implements InitiableFragment {
 
     private DBHelper dbHelper;
     private SQLiteDatabase db;
