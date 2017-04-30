@@ -19,12 +19,11 @@ public class SplashActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-        progressBar = (ProgressBar) findViewById(R.id.splash_progress_bar);
-        ObjectAnimator animation = ObjectAnimator.ofInt(progressBar, "progress", 0, 100);
-        animation.setDuration(1500);
-        animation.setInterpolator(new DecelerateInterpolator());
-        animation.start();
+        animateProgressBar();
+        runInBackground();
+    }
 
+    private void runInBackground() {
         handler = new Handler();
         runnable = new Runnable() {
             public void run() {
@@ -37,6 +36,14 @@ public class SplashActivity extends BaseActivity {
             }
         };
         handler.postDelayed(runnable, 1500);
+    }
+
+    private void animateProgressBar() {
+        progressBar = (ProgressBar) findViewById(R.id.splash_progress_bar);
+        ObjectAnimator animation = ObjectAnimator.ofInt(progressBar, "progress", 0, 100);
+        animation.setDuration(1500);
+        animation.setInterpolator(new DecelerateInterpolator());
+        animation.start();
     }
 
     @Override
