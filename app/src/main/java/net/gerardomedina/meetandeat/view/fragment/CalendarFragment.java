@@ -75,7 +75,6 @@ public class CalendarFragment extends BaseFragment implements InitiableFragment 
     }
 
     private void setAlarm(Meeting nextMeeting) {
-
         Intent intent = new Intent(Intent.ACTION_EDIT);
         intent.setType("vnd.android.cursor.item/event");
         intent.putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, nextMeeting.getDatetime().getTimeInMillis());
@@ -83,7 +82,5 @@ public class CalendarFragment extends BaseFragment implements InitiableFragment 
         intent.putExtra(CalendarContract.Events.TITLE, nextMeeting.getTitle());
         intent.putExtra(CalendarContract.Events.EVENT_LOCATION, nextMeeting.getLocation().toString());
         startActivity(intent);
-
-
     }
 }
