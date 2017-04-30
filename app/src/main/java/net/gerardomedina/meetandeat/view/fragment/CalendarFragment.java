@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.provider.CalendarContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -75,13 +76,14 @@ public class CalendarFragment extends BaseFragment implements InitiableFragment 
 
     private void setAlarm(Meeting nextMeeting) {
 
-        Calendar cal = Calendar.getInstance();
         Intent intent = new Intent(Intent.ACTION_EDIT);
         intent.setType("vnd.android.cursor.item/event");
-        intent.putExtra("beginTime", nextMeeting.getDatetime().getTimeInMillis());
-        intent.putExtra("endTime", cal.getTimeInMillis()+60*60*1000);
-        intent.putExtra("title", nextMeeting.getTitle());
+        intent.putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, nextMeeting.getDatetime().getTimeInMillis());
+        intent.putExtra(CalendarContract.EXTRA_EVENT_END_TIME, nextMeeting.getDatetime().getTimeInMillis()+60*60*1000);
+        intent.putExtra(CalendarContract.Events.TITLE, nextMeeting.getTitle());
+        intent.putExtra(CalendarContract.Events.EVENT_LOCATION, nextMeeting.getLocation());
         startActivity(intent);
+
 
     }
 }
