@@ -56,8 +56,8 @@ public class MeetingActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         meeting = appCommon.getSelectedMeeting();
         if (meeting == null) changeToActivityNoBackStack(MainActivity.class);
-        if (appCommon.isColorDark(meeting.getColor())) setTheme(R.style.AppTheme_AppBarOverlay);
-        else setTheme(R.style.AppTheme_AppBarOverlayDark);
+        if (appCommon.isColorDark(meeting.getColor())) setTheme(R.style.AppTheme_AppBarOverlayDark);
+        else setTheme(R.style.AppTheme_AppBarOverlay);
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_meeting);

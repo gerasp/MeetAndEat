@@ -40,7 +40,6 @@ public class GetFoodTask extends BaseTask {
             try {
                 switch (response.getInt("code")) {
                     case 0:
-                        activity.showSimpleDialog(activity.getString(R.string.error_getting_food));
                         break;
                     case 2:
                         ((MeetingActivity)activity).populateFoodTable(response);
