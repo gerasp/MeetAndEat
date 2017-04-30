@@ -74,10 +74,6 @@ public class HistoryFragment extends BaseFragment {
         Cursor cursor = db.rawQuery("select * from "+ OldMeetingValues.TABLE_NAME+
                 " order by " + OldMeetingValues.COLUMN_NAME_DATE+","+ OldMeetingValues.COLUMN_NAME_TIME+ " ASC;"
                 ,null);
-        if (cursor.getCount()>0 && cursor.moveToFirst()) appCommon.setNextMeeting(new Meeting(1,"","",
-                cursor.getString(cursor.getColumnIndexOrThrow(OldMeetingValues.COLUMN_NAME_DATE)),
-                cursor.getString(cursor.getColumnIndexOrThrow(OldMeetingValues.COLUMN_NAME_TIME)),
-                ""));
         meetingListView.setAdapter(new MeetingsAdapter(getActivity(), (BaseActivity) getActivity(),cursor,true));
     }
 
