@@ -23,6 +23,7 @@ import com.flask.colorpicker.builder.ColorPickerClickListener;
 import com.flask.colorpicker.builder.ColorPickerDialogBuilder;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
+import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.ui.PlacePicker;
 import com.google.android.gms.maps.model.LatLng;
 
@@ -46,6 +47,7 @@ public class NewMeetingActivity extends BaseActivity {
     public static final int PLACE_PICKER_REQUEST = 1;
     private String selectedDate;
     private String selectedTime;
+    private String selectedLocation;
 
     Activity getActivity() {
         return this;
@@ -161,8 +163,9 @@ public class NewMeetingActivity extends BaseActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == NewMeetingActivity.PLACE_PICKER_REQUEST) {
             if (resultCode == RESULT_OK) {
-                LatLng latLng = PlacePicker.getPlace(data, this).getLatLng();
-                locationInput.setText(latLng.latitude + "," + latLng.longitude);
+                Place place = PlacePicker.getPlace(data, this);
+                locationInput.setText(place.getAddress());
+                selectedLocation = place.getLatLng().latitude + "," + place.getLatLng().longitude;
             }
         }
     }
@@ -205,7 +208,7 @@ public class NewMeetingActivity extends BaseActivity {
         if (cancel) focusView.requestFocus();
         else new NewMeeetingTask(this,
                 titleInput.getText().toString(),
-                locationInput.getText().toString(),
+                selectedLocation,
                 selectedDate,
                 selectedTime,
                 colorInput.getText().toString()).execute();
