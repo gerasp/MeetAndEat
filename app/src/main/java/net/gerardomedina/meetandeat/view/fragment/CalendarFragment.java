@@ -29,7 +29,7 @@ public class CalendarFragment extends BaseFragment {
         CalendarView calendarView = (CalendarView)view.findViewById(R.id.calendar);
         calendarView.setFirstDayOfWeek(Calendar.getInstance(Locale.getDefault()).getFirstDayOfWeek());
 
-        Meeting nextMeeting = appCommon.getNextMeeting();
+        final Meeting nextMeeting = appCommon.getNextMeeting();
         if (nextMeeting != null) {
             TextView calendarInfo = (TextView) view.findViewById(R.id.calendarInfo);
             calendarInfo.setText(getResources().getString(R.string.set_alarm_text, nextMeeting.getDate(), nextMeeting.getTime() ));
@@ -38,15 +38,16 @@ public class CalendarFragment extends BaseFragment {
             setAlarmButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    setAlarm();
+                    setAlarm(nextMeeting);
                 }
             });
         }
         return view;
     }
 
-    private void setAlarm() {
+    private void setAlarm(Meeting nextMeeting) {
         AlarmManager alarmManager = (AlarmManager) getActivity().getSystemService(Context.ALARM_SERVICE);
-        alarmManager.set(AlarmManager.RTC_WAKEUP, targetCal.getTimeInMillis());
+        alarmManager.set(AlarmManager.RTC_WAKEUP, nextMeeting.getDatetime());
+        
     }
 }

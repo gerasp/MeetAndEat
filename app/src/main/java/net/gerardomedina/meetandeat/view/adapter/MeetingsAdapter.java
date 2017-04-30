@@ -17,6 +17,10 @@ import net.gerardomedina.meetandeat.persistence.local.MeetingValues;
 import net.gerardomedina.meetandeat.view.activity.BaseActivity;
 import net.gerardomedina.meetandeat.view.activity.MeetingActivity;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
+
 public class MeetingsAdapter extends CursorAdapter {
     AppCommon appCommon = AppCommon.getInstance();
     private BaseActivity activity;
@@ -33,7 +37,7 @@ public class MeetingsAdapter extends CursorAdapter {
 
     @Override
     public void bindView(View view, Context context, final Cursor cursor) {
-        RelativeLayout meeting = (RelativeLayout) view.findViewById(R.id.meeting);
+        RelativeLayout meetingLayout = (RelativeLayout) view.findViewById(R.id.meeting);
         TextView meetingTitle = (TextView) view.findViewById(R.id.meeting_title);
         TextView meetingDateTime = (TextView) view.findViewById(R.id.meeting_datetime);
         View meetingColor = view.findViewById(R.id.meeting_color);
@@ -42,21 +46,26 @@ public class MeetingsAdapter extends CursorAdapter {
         final String date = cursor.getString(cursor.getColumnIndexOrThrow(MeetingValues.COLUMN_NAME_DATE));
         final String time = cursor.getString(cursor.getColumnIndexOrThrow(MeetingValues.COLUMN_NAME_TIME));
         final String color = (cursor.getString(cursor.getColumnIndexOrThrow(MeetingValues.COLUMN_NAME_COLOR)));
-        meetingTitle.setText(title);
-        meetingDateTime.setText(date + " | " + time);
+
+        final Meeting meeting = new Meeting(
+                cursor.getInt(cursor.getColumnIndexOrThrow(MeetingValues._ID)),
+                title,
+                cursor.getString(cursor.getColumnIndexOrThrow(MeetingValues.COLUMN_NAME_LOCATION)),
+                date,
+                time,
+                color);
+
+        meetingTitle.setText(meeting.getTitle());
+        Calendar datetime = meeting.getDatetime();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy | hh:mm", Locale.getDefault());
+        meetingDateTime.setText(simpleDateFormat.format(datetime));
         meetingColor.setBackgroundColor(Color.parseColor(color));
 
-        meeting.setOnClickListener(new View.OnClickListener() {
+        meetingLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (appCommon.hasInternet(activity)) {
-                    appCommon.setSelectedMeeting(new Meeting(
-                            cursor.getInt(cursor.getColumnIndexOrThrow(MeetingValues._ID)),
-                            title,
-                            cursor.getString(cursor.getColumnIndexOrThrow(MeetingValues.COLUMN_NAME_LOCATION)),
-                            date,
-                            time,
-                            color));
+                    appCommon.setSelectedMeeting(meeting);
                     activity.changeToActivity(MeetingActivity.class);
                     activity.overridePendingTransition(R.anim.overshoot, R.anim.fade_out);
                 } else {
