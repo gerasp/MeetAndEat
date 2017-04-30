@@ -1,89 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.AppBarLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:custom="http://schemas.android.com/apk/res-auto"
     xmlns:fab="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
+    android:theme="@style/AppTheme.AppBarOverlay"
     tools:context="net.gerardomedina.meetandeat.view.activity.MeetingActivity">
 
-    <android.support.design.widget.AppBarLayout
-        android:id="@+id/app_bar"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/app_bar_height"
-        android:fitsSystemWindows="true"
-        android:theme="@style/AppTheme.AppBarOverlay">
 
-        <android.support.design.widget.CollapsingToolbarLayout
-            android:id="@+id/toolbar_layout"
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        custom:popupTheme="@style/AppTheme.PopupOverlay" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <net.gerardomedina.meetandeat.view.table.SortableFoodTableView
+            android:id="@+id/foodTable"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:fitsSystemWindows="true"
-            app:contentScrim="?attr/colorPrimary"
-            app:expandedTitleGravity="bottom|center"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+            android:layout_alignParentBottom="true"
 
-            <android.support.v7.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                app:layout_collapseMode="pin"
-                app:popupTheme="@style/AppTheme.PopupOverlay" />
+            custom:tableView_columnCount="4"
+            custom:tableView_headerColor="@color/accent"
+            custom:tableView_headerElevation="10"
+            android:layout_alignParentTop="true">
 
-        </android.support.design.widget.CollapsingToolbarLayout>
-    </android.support.design.widget.AppBarLayout>
+        </net.gerardomedina.meetandeat.view.table.SortableFoodTableView>
 
-    <net.gerardomedina.meetandeat.view.table.SortableFoodTableView
-        android:id="@+id/foodTable"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        custom:tableView_columnCount="4"
-        custom:tableView_headerColor="@color/accent"
-        custom:tableView_headerElevation="10" />
-
-
-    <com.github.clans.fab.FloatingActionMenu
-        android:id="@+id/addMenu"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/fab_margin"
-        app:layout_anchor="@id/foodTable"
-        app:layout_anchorGravity="bottom|end"
-        app:menu_colorPressed="@color/primary_dark"
-        fab:menu_backgroundColor="@android:color/transparent"
-        fab:menu_colorNormal="@color/primary"
-        fab:menu_fab_size="normal"
-        fab:menu_icon="@drawable/fab_add"
-        fab:menu_labels_hideAnimation="@anim/fab_slide_out_to_right"
-        fab:menu_labels_position="left"
-        fab:menu_labels_showAnimation="@anim/fab_slide_in_from_right"
-        fab:menu_labels_showShadow="true"
-        fab:menu_labels_textColor="@color/inverted_text"
-        fab:menu_labels_textSize="15sp"
-        fab:menu_openDirection="up"
-        fab:menu_showShadow="true">
-
-        <com.github.clans.fab.FloatingActionButton
-            android:id="@+id/addFoodButton"
+        <com.github.clans.fab.FloatingActionMenu
+            android:id="@+id/addMenu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/accent"
-            android:src="@drawable/ic_restaurant"
-            fab:fab_label="@string/add_food_label"
-            fab:fab_size="mini" />
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_margin="@dimen/fab_margin"
+            app:menu_colorPressed="@color/primary_dark"
+            fab:menu_backgroundColor="@android:color/transparent"
+            fab:menu_colorNormal="@color/primary"
+            fab:menu_fab_size="normal"
+            fab:menu_icon="@drawable/fab_add"
+            fab:menu_labels_hideAnimation="@anim/fab_slide_out_to_right"
+            fab:menu_labels_position="left"
+            fab:menu_labels_showAnimation="@anim/fab_slide_in_from_right"
+            fab:menu_labels_showShadow="true"
+            fab:menu_labels_textColor="@color/inverted_text"
+            fab:menu_labels_textSize="15sp"
+            fab:menu_openDirection="up"
+            fab:menu_showShadow="true">
 
-        <com.github.clans.fab.FloatingActionButton
-            android:id="@+id/addParticipantButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/accent"
-            android:src="@drawable/ic_person_add"
-            fab:fab_label="@string/add_participant_label"
-            fab:fab_size="mini" />
+            <com.github.clans.fab.FloatingActionButton
+                android:id="@+id/addFoodButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/accent"
+                android:src="@drawable/ic_restaurant"
+                fab:fab_label="@string/add_food_label"
+                fab:fab_size="mini" />
 
-    </com.github.clans.fab.FloatingActionMenu>
+            <com.github.clans.fab.FloatingActionButton
+                android:id="@+id/addParticipantButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/accent"
+                android:src="@drawable/ic_person_add"
+                fab:fab_label="@string/add_participant_label"
+                fab:fab_size="mini" />
 
-</android.support.design.widget.CoordinatorLayout>
+        </com.github.clans.fab.FloatingActionMenu>
+
+    </RelativeLayout>
+
+</android.support.design.widget.AppBarLayout>
