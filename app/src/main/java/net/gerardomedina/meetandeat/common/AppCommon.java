@@ -2,6 +2,7 @@ package net.gerardomedina.meetandeat.common;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.text.TextUtils;
@@ -54,6 +55,13 @@ public class AppCommon {
 
     public boolean isEmailValid(CharSequence target) {
         return target != null && !TextUtils.isEmpty(target) && android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches();
+    }
+
+    public boolean isColorDark(String colorString){
+        int color = Color.parseColor(colorString);
+        double darkness = 1-(0.299* Color.red(color) + 0.587*Color.green(color) + 0.114*Color.blue(color))/255;
+        if(darkness<0.5) return false;
+        else return true;
     }
 
     public Object sharedGetValue(Context context, String valueName, int objectType) {

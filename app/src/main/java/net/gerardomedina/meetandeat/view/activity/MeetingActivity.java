@@ -3,6 +3,7 @@ package net.gerardomedina.meetandeat.view.activity;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
@@ -53,10 +54,13 @@ public class MeetingActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        meeting = appCommon.getSelectedMeeting();
+        if (meeting == null) changeToActivityNoBackStack(MainActivity.class);
+        if (appCommon.isColorDark(meeting.getColor())) setTheme(R.style.AppTheme_AppBarOverlay);
+        else setTheme(R.style.AppTheme_AppBarOverlayDark);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_meeting);
-
-        meeting = appCommon.getSelectedMeeting();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle(meeting.getTitle());

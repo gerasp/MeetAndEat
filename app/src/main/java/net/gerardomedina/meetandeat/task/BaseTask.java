@@ -32,7 +32,7 @@ public abstract class BaseTask extends AsyncTask<Void, Void, Boolean> {
         progressDialog.setButton(DialogInterface.BUTTON_NEGATIVE, activity.getString(android.R.string.cancel), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                requester.cancel();
+                onCancelled();
                 dialog.dismiss();
             }
         });
@@ -48,6 +48,7 @@ public abstract class BaseTask extends AsyncTask<Void, Void, Boolean> {
     @Override
     protected void onPostExecute(Boolean success) {
         super.onPostExecute(success);
+        progressDialog.cancel();
         try {
             if (!success || response.getInt("code") < 0 || response.getInt("code") > 2) activity.showSimpleDialog(activity.getString(R.string.error_retrieving_data));
         } catch (JSONException e) {
