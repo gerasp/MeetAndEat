@@ -43,6 +43,8 @@ public class CalendarFragment extends BaseFragment implements InitiableFragment 
 
         dbHelper = new DBHelper(getActivity());
         db = dbHelper.getReadableDatabase();
+
+        init();
         return view;
     }
 

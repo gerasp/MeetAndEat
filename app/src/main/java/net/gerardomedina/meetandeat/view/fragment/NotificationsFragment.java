@@ -34,6 +34,7 @@ public class NotificationsFragment extends BaseFragment implements InitiableFrag
         view = inflater.inflate(R.layout.fragment_dashboard, container, false);
         FloatingActionButton newMeetingButton = (FloatingActionButton) view.findViewById(R.id.newMeetingButton);
         new GetMeetingsTask(this).execute();
+        init();
         return view;
     }
 

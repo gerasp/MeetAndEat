@@ -20,7 +20,6 @@ import java.util.List;
 public class SectionsAdapter extends FragmentPagerAdapter {
     private MainActivity mainActivity;
     private List<InitiableFragment> fragmentList;
-    private List<Boolean> isInitialized;
     private int numberOfSections;
 
     public SectionsAdapter(MainActivity mainActivity, FragmentManager fm, int numberOfSections) {
@@ -33,15 +32,10 @@ public class SectionsAdapter extends FragmentPagerAdapter {
         fragmentList.add(new DashboardFragment());
         fragmentList.add(new CalendarFragment());
         fragmentList.add(new SettingsFragment());
-        isInitialized = new ArrayList<>(numberOfSections);
-        for (int i = 0; i < numberOfSections; i++) {
-            isInitialized.add(Boolean.FALSE);
-        }
-
     }
     @Override
     public Fragment getItem(int position) {
-        if (isInitialized.get(position))fragmentList.get(position).init();
+        if (position == 3) return new CalendarFragment();
         return (Fragment) fragmentList.get(position);
     }
     @Override

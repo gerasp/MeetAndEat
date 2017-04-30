@@ -52,6 +52,8 @@ public class ContactsFragment extends BaseFragment implements InitiableFragment 
         });
 
         dbHelper = new DBHelper(getActivity());
+
+        init();
         return view;
     }
 

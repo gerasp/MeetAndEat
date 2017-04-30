@@ -44,6 +44,7 @@ public class DashboardFragment extends BaseFragment implements InitiableFragment
         meetingListView = (ListView) view.findViewById(R.id.meetings);
         dbHelper = new DBHelper(getActivity());
 
+        init();
         return view;
     }
 
