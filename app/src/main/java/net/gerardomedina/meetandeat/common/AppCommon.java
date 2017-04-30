@@ -17,7 +17,6 @@ public class AppCommon {
 
     private User user;
     private Meeting selectedMeeting;
-    private Meeting nextMeeting;
 
     public static AppCommon getInstance() {
         if (singleton != null) return singleton;
@@ -90,13 +89,4 @@ public class AppCommon {
         editShared.remove(sharedName);
         editShared.apply();
     }
-
-    public Meeting getNextMeeting() {
-        return nextMeeting;
-    }
-
-    public void setNextMeeting(Meeting nextMeeting) {
-        this.nextMeeting = nextMeeting;
-    }
-
 }

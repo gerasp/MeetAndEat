@@ -77,12 +77,8 @@ public class DashboardFragment extends BaseFragment {
     private void loadMeetingListFromLocalDB() {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         Cursor cursor = db.rawQuery("select * from "+MeetingValues.TABLE_NAME+
-                " order by " +MeetingValues.COLUMN_NAME_DATE+","+MeetingValues.COLUMN_NAME_TIME+ " ASC;"
-                ,null);
-        if (cursor.getCount()>0 && cursor.moveToFirst()) appCommon.setNextMeeting(new Meeting(1,"","",
-                cursor.getString(cursor.getColumnIndexOrThrow(MeetingValues.COLUMN_NAME_DATE)),
-                cursor.getString(cursor.getColumnIndexOrThrow(MeetingValues.COLUMN_NAME_TIME)),
-                ""));
+                " order by " +MeetingValues.COLUMN_NAME_DATE+","+
+                MeetingValues.COLUMN_NAME_TIME+ " ASC;",null);
         meetingListView.setAdapter(new MeetingsAdapter(getActivity(), (BaseActivity) getActivity(),cursor,true));
     }
 }

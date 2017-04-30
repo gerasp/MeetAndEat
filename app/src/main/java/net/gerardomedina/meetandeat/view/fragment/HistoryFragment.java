@@ -72,8 +72,8 @@ public class HistoryFragment extends BaseFragment {
     private void loadMeetingListFromLocalDB() {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         Cursor cursor = db.rawQuery("select * from "+ OldMeetingValues.TABLE_NAME+
-                " order by " + OldMeetingValues.COLUMN_NAME_DATE+","+ OldMeetingValues.COLUMN_NAME_TIME+ " ASC;"
-                ,null);
+                " order by " + OldMeetingValues.COLUMN_NAME_DATE+","+
+                OldMeetingValues.COLUMN_NAME_TIME+ " ASC;",null);
         meetingListView.setAdapter(new MeetingsAdapter(getActivity(), (BaseActivity) getActivity(),cursor,true));
     }
 
