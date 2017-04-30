@@ -14,7 +14,8 @@
     <color name="white">#ffffff</color>
     <color name="dark_grey">#303030</color>
     <color name="grey">#838383</color>
-    <color name="light_grey">#cfd8dc</color>
+    <color name="odd_grey">#cfd8dc</color>
+    <color name="even_grey">#b0bec5</color>
 
     <color name="icons">#212121</color>
     <color name="divider">#BDBDBD</color>

@@ -15,6 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?attr/colorPrimary"
+        android:textAlignment="center"
         custom:popupTheme="@style/AppTheme.PopupOverlay" />
 
     <RelativeLayout
@@ -26,9 +27,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_alignParentBottom="true"
-
             custom:tableView_columnCount="4"
-            custom:tableView_headerColor="@color/accent"
             custom:tableView_headerElevation="10"
             android:layout_alignParentTop="true">
 
