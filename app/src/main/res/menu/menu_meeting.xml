@@ -7,13 +7,13 @@
         android:id="@+id/menu_location"
         android:title="@string/location"
         android:icon="@drawable/ic_location_black"
-        app:showAsAction="never" />
+        app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/menu_participants"
         android:title="@string/participants"
         android:icon="@drawable/ic_participants_black"
-        app:showAsAction="never" />
+        app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/menu_options"

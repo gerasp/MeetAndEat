@@ -38,7 +38,10 @@ public class MeetingActivity extends BaseActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_meeting, menu);
-        this.menu = menu;
+        if (meeting != null && appCommon.isColorDark(meeting.getColor())){
+            menu.getItem(0).setIcon(R.drawable.ic_location_white);
+            menu.getItem(1).setIcon(R.drawable.ic_participants_white);
+        }
         return true;
     }
 
@@ -66,19 +69,17 @@ public class MeetingActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_meeting);
 
-        if (appCommon.isColorDark(meeting.getColor())){
-//            menu.getItem(0).setIcon(R.drawable.ic_location_white);
-//            menu.getItem(1).setIcon(R.drawable.ic_participants_white);
+        if (appCommon.hasInternet(this)) new GetFoodTask(this).execute();
+        else {
+            showSimpleDialog(R.string.no_internet_connection);
+            changeToActivityNoBackStack(MainActivity.class);
         }
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle(meeting.getTitle());
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        setToolbarProperly();
+        setAddFoodButton();
+    }
 
-        CollapsingToolbarLayout toolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.toolbar_layout);
-        toolbarLayout.setBackgroundColor(Color.parseColor(meeting.getColor()));
-
+    private void setAddFoodButton() {
         FloatingActionButton addFoodButton = (FloatingActionButton) findViewById(R.id.addFoodButton);
         addFoodButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,42 +90,47 @@ public class MeetingActivity extends BaseActivity {
         addFoodButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final AddFoodDialog addFoodDialog = new AddFoodDialog(getActivity());
-                addFoodDialog.setView(getActivity().getLayoutInflater().inflate(R.layout.dialog_addfood, null));
-                addFoodDialog.setButton(DialogInterface.BUTTON_POSITIVE, getString(android.R.string.ok), new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                    }
-                });
-                addFoodDialog.setButton(DialogInterface.BUTTON_NEGATIVE, getString(android.R.string.cancel), new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        addFoodDialog.dismiss();
-                    }
-                });
-                addFoodDialog.setOnShowListener(new DialogInterface.OnShowListener() {
-                    @Override
-                    public void onShow(DialogInterface dialog) {
-                        Button b = addFoodDialog.getButton(AlertDialog.BUTTON_POSITIVE);
-                        b.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                addFoodDialog.attemptAddFood();
-                            }
-                        });
-                    }
-                });
-
-                addFoodDialog.show();
+                createAddFoodDialog();
             }
         });
+    }
 
-        if (appCommon.hasInternet(this)) new GetFoodTask(this).execute();
-        else {
-            showSimpleDialog(R.string.no_internet_connection);
-            changeToActivityNoBackStack(MainActivity.class);
-        }
+    private void setToolbarProperly() {
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle(meeting.getTitle());
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        CollapsingToolbarLayout toolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.toolbar_layout);
+        toolbarLayout.setBackgroundColor(Color.parseColor(meeting.getColor()));
+    }
 
+    private void createAddFoodDialog() {
+        final AddFoodDialog addFoodDialog = new AddFoodDialog(getActivity());
+        addFoodDialog.setView(getActivity().getLayoutInflater().inflate(R.layout.dialog_addfood, null));
+        addFoodDialog.setButton(DialogInterface.BUTTON_POSITIVE, getString(android.R.string.ok), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+            }
+        });
+        addFoodDialog.setButton(DialogInterface.BUTTON_NEGATIVE, getString(android.R.string.cancel), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                addFoodDialog.dismiss();
+            }
+        });
+        addFoodDialog.setOnShowListener(new DialogInterface.OnShowListener() {
+            @Override
+            public void onShow(DialogInterface dialog) {
+                Button b = addFoodDialog.getButton(AlertDialog.BUTTON_POSITIVE);
+                b.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        addFoodDialog.attemptAddFood();
+                    }
+                });
+            }
+        });
+        addFoodDialog.show();
     }
 
     public void populateFoodTable (JSONObject response) throws JSONException {

@@ -45,16 +45,20 @@ public class LoginActivity extends BaseActivity {
         LinearLayout loginForm = (LinearLayout) findViewById(R.id.email_login_form);
         loginForm.startAnimation(AnimationUtils.loadAnimation(this, R.anim.slide_in_bottom));
 
-        carouselView = (CarouselView) findViewById(R.id.carouselView);
-        carouselView.setPageCount(sampleImages.length);
-        carouselView.startAnimation(AnimationUtils.loadAnimation(this, R.anim.slide_in_top));
-        carouselView.setImageListener(new ImageListener() {
+        setCarouselView();
+        setInputs();
+
+        Button signInButton = (Button) findViewById(R.id.sign_in_button);
+        signInButton.setOnClickListener(new OnClickListener() {
             @Override
-            public void setImageForPosition(int position, ImageView imageView) {
-                imageView.setImageResource(sampleImages[position]);
+            public void onClick(View view) {
+                attemptLogin();
             }
         });
 
+    }
+
+    private void setInputs() {
         usernameView = (EditText) findViewById(R.id.username);
         usernameView.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
@@ -78,15 +82,18 @@ public class LoginActivity extends BaseActivity {
                 else carouselView.setVisibility(View.VISIBLE);
             }
         });
+    }
 
-        Button signInButton = (Button) findViewById(R.id.sign_in_button);
-        signInButton.setOnClickListener(new OnClickListener() {
+    private void setCarouselView() {
+        carouselView = (CarouselView) findViewById(R.id.carouselView);
+        carouselView.setPageCount(sampleImages.length);
+        carouselView.startAnimation(AnimationUtils.loadAnimation(this, R.anim.slide_in_top));
+        carouselView.setImageListener(new ImageListener() {
             @Override
-            public void onClick(View view) {
-                attemptLogin();
+            public void setImageForPosition(int position, ImageView imageView) {
+                imageView.setImageResource(sampleImages[position]);
             }
         });
-
     }
 
     private void attemptLogin() {

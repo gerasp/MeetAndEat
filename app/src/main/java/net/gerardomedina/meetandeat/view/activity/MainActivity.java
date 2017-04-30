@@ -40,6 +40,12 @@ public class MainActivity extends BaseActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        setViewPager();
+
+        setBottomNavigationView();
+    }
+
+    private void setViewPager() {
         SectionsAdapter sectionsAdapter = new SectionsAdapter(this, getSupportFragmentManager(), NUMBER_OF_SECTIONS);
         viewPager = (ViewPager) findViewById(R.id.fragment_container);
         viewPager.setAdapter(sectionsAdapter);
@@ -55,7 +61,9 @@ public class MainActivity extends BaseActivity {
             @Override
             public void onPageScrollStateChanged(int state) {}
         });
+    }
 
+    private void setBottomNavigationView() {
         bottomNavigationView = (BottomNavigationView) findViewById(R.id.navigation);
         bottomNavigationView.getMenu().getItem(DEFAULT_SECTION).setChecked(true);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
