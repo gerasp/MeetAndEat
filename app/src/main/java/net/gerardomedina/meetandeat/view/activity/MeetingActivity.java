@@ -1,10 +1,8 @@
 package net.gerardomedina.meetandeat.view.activity;
 
 import android.content.DialogInterface;
-import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
@@ -35,11 +33,12 @@ import de.codecrafters.tableview.listeners.SwipeToRefreshListener;
 public class MeetingActivity extends BaseActivity {
 
     private Meeting meeting;
+    private Menu menu;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_meeting, menu);
-        menu.getItem(0).setEnabled(true);
+        this.menu = menu;
         return true;
     }
 
@@ -61,7 +60,10 @@ public class MeetingActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         meeting = appCommon.getSelectedMeeting();
         if (meeting == null) changeToActivityNoBackStack(MainActivity.class);
-        if (appCommon.isColorDark(meeting.getColor())) setTheme(R.style.AppTheme_AppBarOverlayDark);
+        if (appCommon.isColorDark(meeting.getColor())) {
+            setTheme(R.style.AppTheme_AppBarOverlayDark);
+            menu.getItem(R.id.menu_location).setIcon(R.drawable.ic_location_white);
+        }
         else setTheme(R.style.AppTheme_AppBarOverlay);
 
         super.onCreate(savedInstanceState);
