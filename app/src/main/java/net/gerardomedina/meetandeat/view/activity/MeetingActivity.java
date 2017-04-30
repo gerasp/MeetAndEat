@@ -1,12 +1,9 @@
 package net.gerardomedina.meetandeat.view.activity;
 
-import android.content.ContentValues;
 import android.content.DialogInterface;
-import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -14,10 +11,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import com.github.clans.fab.FloatingActionButton;
+
 import net.gerardomedina.meetandeat.R;
 import net.gerardomedina.meetandeat.common.Food;
 import net.gerardomedina.meetandeat.common.Meeting;
-import net.gerardomedina.meetandeat.persistence.local.ContactValues;
 import net.gerardomedina.meetandeat.task.GetFoodTask;
 import net.gerardomedina.meetandeat.view.dialog.AddFoodDialog;
 import net.gerardomedina.meetandeat.view.table.FoodAdapter;
@@ -68,6 +66,46 @@ public class MeetingActivity extends BaseActivity {
         CollapsingToolbarLayout toolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.toolbar_layout);
         toolbarLayout.setBackgroundColor(Color.parseColor(meeting.getColor()));
 
+        FloatingActionButton addFoodButton = (FloatingActionButton) findViewById(R.id.addFoodButton);
+        addFoodButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                changeToActivity(LocationActivity.class);
+            }
+        });
+        addFoodButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final AddFoodDialog addFoodDialog = new AddFoodDialog(getActivity());
+                addFoodDialog.setView(getActivity().getLayoutInflater().inflate(R.layout.dialog_addfood, null));
+                addFoodDialog.setButton(DialogInterface.BUTTON_POSITIVE, getString(android.R.string.ok), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                    }
+                });
+                addFoodDialog.setButton(DialogInterface.BUTTON_NEGATIVE, getString(android.R.string.cancel), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        addFoodDialog.dismiss();
+                    }
+                });
+                addFoodDialog.setOnShowListener(new DialogInterface.OnShowListener() {
+                    @Override
+                    public void onShow(DialogInterface dialog) {
+                        Button b = addFoodDialog.getButton(AlertDialog.BUTTON_POSITIVE);
+                        b.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                addFoodDialog.attemptAddFood();
+                            }
+                        });
+                    }
+                });
+
+                addFoodDialog.show();
+            }
+        });
+
 //        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.locationFab);
 //        fab.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -77,38 +115,7 @@ public class MeetingActivity extends BaseActivity {
 //        });
 
 //        final Button addFoodButton = (Button) findViewById(R.id.add_food_button);
-//        addFoodButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                final AddFoodDialog addFoodDialog = new AddFoodDialog(getActivity());
-//                addFoodDialog.setView(getActivity().getLayoutInflater().inflate(R.layout.dialog_addfood, null));
-//                addFoodDialog.setButton(DialogInterface.BUTTON_POSITIVE, getString(android.R.string.ok), new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialog, int which) {
-//                    }
-//                });
-//                addFoodDialog.setButton(DialogInterface.BUTTON_NEGATIVE, getString(android.R.string.cancel), new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialog, int which) {
-//                        addFoodDialog.dismiss();
-//                    }
-//                });
-//                addFoodDialog.setOnShowListener(new DialogInterface.OnShowListener() {
-//                    @Override
-//                    public void onShow(DialogInterface dialog) {
-//                        Button b = addFoodDialog.getButton(AlertDialog.BUTTON_POSITIVE);
-//                        b.setOnClickListener(new View.OnClickListener() {
-//                            @Override
-//                            public void onClick(View view) {
-//                                addFoodDialog.attemptAddFood();
-//                            }
-//                        });
-//                    }
-//                });
 //
-//                addFoodDialog.show();
-//            }
-//        });
 
         if (appCommon.hasInternet(this)) new GetFoodTask(this).execute();
         else {

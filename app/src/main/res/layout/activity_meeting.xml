@@ -78,7 +78,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/accent"
-            android:src="@drawable/ic_add_food"
+            android:src="@drawable/ic_restaurant"
             fab:fab_label="@string/add_food_label"
             fab:fab_size="mini" />
 
@@ -87,7 +87,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/accent"
-            android:src="@drawable/ic_add_participant"
+            android:src="@drawable/ic_person"
             fab:fab_label="@string/add_participant_label"
             fab:fab_size="mini" />
 

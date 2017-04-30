@@ -91,5 +91,6 @@
     <string name="add_participant_label">Add participant</string>
     <string name="participants">Participants</string>
     <string name="location">Location</string>
+    <string name="error_retrieving_data">Error retrieving or posting data</string>
 
 </resources>

@@ -39,7 +39,7 @@ public class DeleteContactsTask extends BaseTask {
 
     @Override
     protected void onPostExecute(final Boolean success) {
-        progressDialog.cancel();
+        super.onPostExecute(success);
         if (success) {
             try {
                 switch (response.getInt("code")) {
