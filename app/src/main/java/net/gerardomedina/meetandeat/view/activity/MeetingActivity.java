@@ -67,8 +67,8 @@ public class MeetingActivity extends BaseActivity {
         setContentView(R.layout.activity_meeting);
 
         if (appCommon.isColorDark(meeting.getColor())){
-            menu.getItem(0).setIcon(R.drawable.ic_location_white);
-            menu.getItem(1).setIcon(R.drawable.ic_participants_white);
+//            menu.getItem(0).setIcon(R.drawable.ic_location_white);
+//            menu.getItem(1).setIcon(R.drawable.ic_participants_white);
         }
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);

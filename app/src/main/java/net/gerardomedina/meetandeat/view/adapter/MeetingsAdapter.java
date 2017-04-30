@@ -60,7 +60,7 @@ public class MeetingsAdapter extends CursorAdapter {
                     activity.changeToActivity(MeetingActivity.class);
                     activity.overridePendingTransition(R.anim.overshoot, R.anim.fade_out);
                 } else {
-                    activity.showSimpleDialog(activity.getString(R.string.no_internet_connection));
+                    activity.showSimpleDialog(R.string.no_internet_connection);
                 }
             }
         });
