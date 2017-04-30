@@ -81,7 +81,7 @@ public class CalendarFragment extends BaseFragment implements InitiableFragment 
         intent.putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, nextMeeting.getDatetime().getTimeInMillis());
         intent.putExtra(CalendarContract.EXTRA_EVENT_END_TIME, nextMeeting.getDatetime().getTimeInMillis()+60*60*1000);
         intent.putExtra(CalendarContract.Events.TITLE, nextMeeting.getTitle());
-        intent.putExtra(CalendarContract.Events.EVENT_LOCATION, nextMeeting.getLocation());
+        intent.putExtra(CalendarContract.Events.EVENT_LOCATION, nextMeeting.getLocation().toString());
         startActivity(intent);
 
 

@@ -1,18 +1,20 @@
 package net.gerardomedina.meetandeat.model;
 
+import com.google.android.gms.maps.model.LatLng;
+
 import java.util.Calendar;
 
 public class Meeting {
     private int id;
     private String title;
-    private String location;
+    private LatLng location;
     private Calendar datetime;
     private String color;
 
     public Meeting(int id, String title, String location, String date, String time, String color) {
         this.id = id;
         this.title = title;
-        this.location = location;
+        setLocation(location);
         setDate(date,time);
         this.color = color;
     }
@@ -33,12 +35,13 @@ public class Meeting {
         this.title = title;
     }
 
-    public String getLocation() {
+    public LatLng getLocation() {
         return location;
     }
 
     public void setLocation(String location) {
-        this.location = location;
+        String [] latlng = location.split(",");
+        this.location = new LatLng(Double.parseDouble(latlng[0]), Double.parseDouble(latlng[1]));
     }
 
     public Calendar getDatetime() {

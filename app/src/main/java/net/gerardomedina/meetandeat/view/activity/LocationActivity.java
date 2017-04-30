@@ -20,7 +20,6 @@ public class LocationActivity extends BaseActivity implements OnMapReadyCallback
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_location);
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
@@ -30,10 +29,9 @@ public class LocationActivity extends BaseActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         map = googleMap;
         Meeting meeting = appCommon.getSelectedMeeting();
-        String [] latlng = meeting.getLocation().split(",");
-        LatLng location = new LatLng(Double.parseDouble(latlng[0]), Double.parseDouble(latlng[1]));
-        map.addMarker(new MarkerOptions().position(location).title(meeting.getTitle()));
-        map.moveCamera(CameraUpdateFactory.newLatLng(location));
+
+        map.addMarker(new MarkerOptions().position(meeting.getLocation()).title(meeting.getTitle()));
+        map.moveCamera(CameraUpdateFactory.newLatLng(meeting.getLocation()));
         map.animateCamera(CameraUpdateFactory.zoomTo(15));
     }
 }
