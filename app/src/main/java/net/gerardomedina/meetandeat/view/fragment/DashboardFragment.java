@@ -29,6 +29,7 @@ public class DashboardFragment extends BaseFragment {
     private View view;
     private ListView meetingListView;
     private DBHelper dbHelper;
+    private FloatingActionButton newMeetingButton;
 
     public DashboardFragment() {
     }
@@ -38,7 +39,15 @@ public class DashboardFragment extends BaseFragment {
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_dashboard, container, false);
 
-        FloatingActionButton newMeetingButton = (FloatingActionButton) view.findViewById(R.id.newMeetingButton);
+        newMeetingButton = (FloatingActionButton) view.findViewById(R.id.newMeetingButton);
+
+        meetingListView = (ListView) view.findViewById(R.id.meetings);
+        dbHelper = new DBHelper(getActivity());
+
+        return view;
+    }
+
+    public void init() {
         newMeetingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -46,13 +55,8 @@ public class DashboardFragment extends BaseFragment {
                 getActivity().overridePendingTransition(R.anim.slide_in_bottom,R.anim.slide_out_top);
             }
         });
-
-        meetingListView = (ListView) view.findViewById(R.id.meetings);
-        dbHelper = new DBHelper(getActivity());
         if (appCommon.hasInternet(getActivity())) new GetMeetingsTask(this).execute();
         else loadMeetingListFromLocalDB();
-
-        return view;
     }
 
     public void saveMeetingListToLocalDB(JSONObject response) throws JSONException {

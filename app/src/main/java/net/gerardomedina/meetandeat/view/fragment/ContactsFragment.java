@@ -52,9 +52,12 @@ public class ContactsFragment extends BaseFragment {
         });
 
         dbHelper = new DBHelper(getActivity());
+        return view;
+    }
+
+    public void init() {
         if (appCommon.hasInternet(getActivity())) new GetContactsTask(this).execute();
         else loadContactListFromLocalDB();
-        return view;
     }
 
     public void saveContactListToLocalDB(JSONObject response) throws JSONException {

@@ -1,15 +1,9 @@
 package net.gerardomedina.meetandeat.view.fragment;
 
-import android.Manifest;
-import android.content.ContentResolver;
-import android.content.ContentValues;
-import android.content.pm.PackageManager;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.net.Uri;
 import android.os.Bundle;
-import android.provider.CalendarContract;
-import android.support.v4.app.ActivityCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,9 +19,13 @@ import net.gerardomedina.meetandeat.persistence.local.MeetingValues;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
-import java.util.TimeZone;
 
 public class CalendarFragment extends BaseFragment {
+
+    private DBHelper dbHelper;
+    private SQLiteDatabase db;
+    private Button setAlarmButton;
+    private TextView calendarInfo;
 
     public CalendarFragment() {
     }
@@ -40,8 +38,15 @@ public class CalendarFragment extends BaseFragment {
         CalendarView calendarView = (CalendarView) view.findViewById(R.id.calendar);
         calendarView.setFirstDayOfWeek(Calendar.getInstance(Locale.getDefault()).getFirstDayOfWeek());
 
-        DBHelper dbHelper = new DBHelper(getActivity());
-        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        setAlarmButton = (Button) view.findViewById(R.id.setAlarmButton);
+        calendarInfo = (TextView) view.findViewById(R.id.calendarInfo);
+
+        dbHelper = new DBHelper(getActivity());
+        db = dbHelper.getReadableDatabase();
+        return view;
+    }
+
+    public void init() {
         Cursor cursor = db.rawQuery("select * from " + MeetingValues.TABLE_NAME +
                 " order by " + MeetingValues.COLUMN_NAME_DATE + "," +
                 MeetingValues.COLUMN_NAME_TIME + " ASC;", null);
@@ -51,13 +56,11 @@ public class CalendarFragment extends BaseFragment {
                     cursor.getString(cursor.getColumnIndexOrThrow(MeetingValues.COLUMN_NAME_LOCATION)),
                     cursor.getString(cursor.getColumnIndexOrThrow(MeetingValues.COLUMN_NAME_DATE)),
                     cursor.getString(cursor.getColumnIndexOrThrow(MeetingValues.COLUMN_NAME_TIME)), "");
-            TextView calendarInfo = (TextView) view.findViewById(R.id.calendarInfo);
             SimpleDateFormat simpleDateFormat1 = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
             SimpleDateFormat simpleDateFormat2 = new SimpleDateFormat("hh:mm", Locale.getDefault());
             calendarInfo.setText(getResources().getString(R.string.set_alarm_text,
                     simpleDateFormat1.format(nextMeeting.getDatetime().getTime()),
                     simpleDateFormat2.format(nextMeeting.getDatetime().getTime())));
-            Button setAlarmButton = (Button) view.findViewById(R.id.setAlarmButton);
             setAlarmButton.setVisibility(View.VISIBLE);
             setAlarmButton.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -66,29 +69,17 @@ public class CalendarFragment extends BaseFragment {
                 }
             });
         }
-        return view;
     }
 
     private void setAlarm(Meeting nextMeeting) {
-        ContentResolver cr = getActivity().getContentResolver();
-        ContentValues values = new ContentValues();
 
-        values.put(CalendarContract.Events.DTSTART, nextMeeting.getDatetime().getTimeInMillis());
-        values.put(CalendarContract.Events.TITLE, nextMeeting.getTitle());
-        values.put(CalendarContract.Events.DESCRIPTION, "");
-        TimeZone timeZone = TimeZone.getDefault();
-        values.put(CalendarContract.Events.EVENT_TIMEZONE, timeZone.getID());
-        values.put(CalendarContract.Events.CALENDAR_ID, 1);
-        values.put(CalendarContract.Events.RRULE, "FREQ=DAILY");
-        values.put(CalendarContract.Events.DURATION, "+P1H");
-        values.put(CalendarContract.Events.HAS_ALARM, 1);
-
-        if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.WRITE_CALENDAR) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(getActivity(),
-                    new String[]{Manifest.permission.WRITE_CALENDAR}, 4);
-        }
-        if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.WRITE_CALENDAR) == PackageManager.PERMISSION_GRANTED)
-            cr.insert(CalendarContract.Events.CONTENT_URI, values);
+        Calendar cal = Calendar.getInstance();
+        Intent intent = new Intent(Intent.ACTION_EDIT);
+        intent.setType("vnd.android.cursor.item/event");
+        intent.putExtra("beginTime", nextMeeting.getDatetime().getTimeInMillis());
+        intent.putExtra("endTime", cal.getTimeInMillis()+60*60*1000);
+        intent.putExtra("title", nextMeeting.getTitle());
+        startActivity(intent);
 
     }
 }

@@ -26,6 +26,7 @@ public class HistoryFragment extends BaseFragment {
     private View view;
     private ListView meetingListView;
     private DBHelper dbHelper;
+    private FloatingActionButton newMeetingButton;
 
     public HistoryFragment() {
     }
@@ -35,7 +36,10 @@ public class HistoryFragment extends BaseFragment {
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_history, container, false);
 
-        FloatingActionButton newMeetingButton = (FloatingActionButton) view.findViewById(R.id.deleteOldMeetingsButton);
+        newMeetingButton = (FloatingActionButton) view.findViewById(R.id.deleteOldMeetingsButton);
+
+        meetingListView = (ListView) view.findViewById(R.id.meetings);
+        dbHelper = new DBHelper(getActivity());
         newMeetingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -43,8 +47,6 @@ public class HistoryFragment extends BaseFragment {
             }
         });
 
-        meetingListView = (ListView) view.findViewById(R.id.meetings);
-        dbHelper = new DBHelper(getActivity());
         if (appCommon.hasInternet(getActivity())) new GetOldMeetingsTask(this).execute();
         else loadMeetingListFromLocalDB();
 
