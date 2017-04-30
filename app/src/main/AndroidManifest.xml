@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.WRITE_CALENDAR" />
 
     <application
         android:allowBackup="true"
@@ -35,7 +36,7 @@
             android:name=".view.activity.MeetingActivity"
             android:label="@string/title_activity_scrolling"
             android:parentActivityName=".view.activity.MainActivity"
-            android:theme="@style/AppTheme" >
+            android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:theme="@style/AppTheme"
@@ -58,8 +59,6 @@
         <activity
             android:name=".view.activity.LocationActivity"
             android:label="@string/title_activity_location" />
-        <receiver android:name=".common.AlarmReceiver" android:process=":remote" />
-
     </application>
 
 </manifest>
