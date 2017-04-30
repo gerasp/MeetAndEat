@@ -58,6 +58,8 @@
         <activity
             android:name=".view.activity.LocationActivity"
             android:label="@string/title_activity_location" />
+        <receiver android:name=".common.AlarmReceiver" android:process=":remote" />
+
     </application>
 
 </manifest>

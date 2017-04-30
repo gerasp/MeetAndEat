@@ -44,6 +44,8 @@ public class NewMeetingActivity extends BaseActivity {
     private TextView colorInput;
     private TextView contactsInput;
     public static final int PLACE_PICKER_REQUEST = 1;
+    private String selectedDate;
+    private String selectedTime;
 
     Activity getActivity() {
         return this;
@@ -62,50 +64,6 @@ public class NewMeetingActivity extends BaseActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void attemptNewMeeting() {
-
-        List<TextView> inputs = new ArrayList<>();
-        inputs.add(titleInput);
-        inputs.add(locationInput);
-        inputs.add(dateInput);
-        inputs.add(timeInput);
-        inputs.add(colorInput);
-// TODO       inputs.add(contactsInput);
-
-        boolean cancel = false;
-        View focusView = null;
-        for (TextView input : inputs) {
-            input.setError(null);
-            if (TextUtils.isEmpty(input.getText())){
-                int ecolor = getResources().getColor(R.color.white);
-                String estring = getString(R.string.error_field_required);
-                ForegroundColorSpan fgcspan = new ForegroundColorSpan(ecolor);
-                SpannableStringBuilder ssbuilder = new SpannableStringBuilder(estring);
-                ssbuilder.setSpan(fgcspan, 0, estring.length(), 0);
-                input.setError(ssbuilder);
-                focusView = input;
-                cancel = true;
-            }
-        }
-        if (titleInput.getText().length() > 20){
-            int ecolor = getResources().getColor(R.color.white);
-            String estring = getString(R.string.error_field_too_long);
-            ForegroundColorSpan fgcspan = new ForegroundColorSpan(ecolor);
-            SpannableStringBuilder ssbuilder = new SpannableStringBuilder(estring);
-            ssbuilder.setSpan(fgcspan, 0, estring.length(), 0);
-            titleInput.setError(ssbuilder);
-        }
-
-        if (cancel) focusView.requestFocus();
-        else new NewMeeetingTask(this,
-                titleInput.getText().toString(),
-                locationInput.getText().toString(),
-                dateInput.getText().toString(),
-                timeInput.getText().toString(),
-                colorInput.getText().toString()).execute();
-
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -115,10 +73,15 @@ public class NewMeetingActivity extends BaseActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        final Activity activity = this;
 
         titleInput = (TextView) findViewById(R.id.newMeetingTitleInput);
 
+        setLocationInput();
+        setDateAndTimePicker();
+        setColorPicker();
+    }
+
+    private void setLocationInput() {
         locationInput = (TextView) findViewById(R.id.newMeetingLocationInput);
         locationInput.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -126,21 +89,42 @@ public class NewMeetingActivity extends BaseActivity {
                 PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
                 Intent intent;
                 try {
-                    intent = builder.build(activity);
+                    intent = builder.build(getActivity());
                     startActivityForResult(intent, PLACE_PICKER_REQUEST);
                 } catch (GooglePlayServicesRepairableException | GooglePlayServicesNotAvailableException e) {
                     Log.e("Google Play", e.getMessage());
                 }
             }
         });
+    }
 
+    private void setColorPicker() {
+        colorInput = (TextView) findViewById(R.id.newMeetingColorInput);
+        colorInput.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ColorPickerDialogBuilder.with(getActivity()).setTitle(getString(R.string.choose_color))
+                        .noSliders().wheelType(ColorPickerView.WHEEL_TYPE.FLOWER).density(7)
+                        .setPositiveButton(getString(android.R.string.ok), new ColorPickerClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int selectedColor, Integer[] allColors) {
+                                colorInput.setText("#" + Integer.toHexString(selectedColor));
+                            }
+                        }).build().show();
+            }
+        });
+    }
+
+    private void setDateAndTimePicker() {
         Calendar newCalendar = Calendar.getInstance();
-        final DatePickerDialog datePickerDialog  = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+        final DatePickerDialog datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
                 Calendar newDate = Calendar.getInstance();
-                SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
                 newDate.set(year, monthOfYear, dayOfMonth);
-                dateInput.setText(dateFormatter.format(newDate.getTime()));
+                SimpleDateFormat dateFormatter1 = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+                SimpleDateFormat dateFormatter2 = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
+                selectedDate = dateFormatter1.format(newDate);
+                dateInput.setText(dateFormatter2.format(newDate));
             }
         }, newCalendar.get(Calendar.YEAR), newCalendar.get(Calendar.MONTH), newCalendar.get(Calendar.DAY_OF_MONTH));
         datePickerDialog.getDatePicker().setMinDate(newCalendar.getTime().getTime());
@@ -155,10 +139,12 @@ public class NewMeetingActivity extends BaseActivity {
         final TimePickerDialog timePickerDialog = new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                timeInput.setText((hourOfDay > 9 ? "" + hourOfDay : "0" + hourOfDay)
-                        + ":"
-                        + (minute > 9 ? "" + minute : "0" + minute)
-                        + ":00");
+                Calendar newDate = Calendar.getInstance();
+                newDate.set(0,0,0,hourOfDay,minute,0);
+                SimpleDateFormat dateFormatter1 = new SimpleDateFormat("hh:mm:ss", Locale.getDefault());
+                SimpleDateFormat dateFormatter2 = new SimpleDateFormat("hh:mm", Locale.getDefault());
+                selectedTime = dateFormatter1.format(newDate);
+                timeInput.setText(dateFormatter2.format(newDate));
             }
         }, newCalendar.get(Calendar.HOUR_OF_DAY), newCalendar.get(Calendar.MINUTE), true);
         timeInput = (TextView) findViewById(R.id.newMeetingTimeInput);
@@ -168,23 +154,7 @@ public class NewMeetingActivity extends BaseActivity {
                 timePickerDialog.show();
             }
         });
-
-        colorInput = (TextView) findViewById(R.id.newMeetingColorInput);
-        colorInput.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ColorPickerDialogBuilder.with(getActivity()).setTitle(getString(R.string.choose_color))
-                        .noSliders().wheelType(ColorPickerView.WHEEL_TYPE.FLOWER).density(7)
-                        .setPositiveButton(getString(android.R.string.ok), new ColorPickerClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int selectedColor, Integer[] allColors) {
-                                colorInput.setText("#"+Integer.toHexString(selectedColor));
-                            }
-                        }).build().show();
-            }
-        });
     }
-
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -192,8 +162,53 @@ public class NewMeetingActivity extends BaseActivity {
         if (requestCode == NewMeetingActivity.PLACE_PICKER_REQUEST) {
             if (resultCode == RESULT_OK) {
                 LatLng latLng = PlacePicker.getPlace(data, this).getLatLng();
-                locationInput.setText(latLng.latitude+","+latLng.longitude);
+                locationInput.setText(latLng.latitude + "," + latLng.longitude);
             }
         }
+    }
+
+
+    private void attemptNewMeeting() {
+        List<TextView> inputs = new ArrayList<>();
+        inputs.add(titleInput);
+        inputs.add(locationInput);
+        inputs.add(dateInput);
+        inputs.add(timeInput);
+        inputs.add(colorInput);
+// TODO       inputs.add(contactsInput);
+
+        for (TextView input : inputs) input.setError(null);
+
+        boolean cancel = false;
+        View focusView = null;
+        for (TextView input : inputs) {
+            if (TextUtils.isEmpty(input.getText())) {
+                int ecolor = getResources().getColor(R.color.white);
+                String estring = getString(R.string.error_field_required);
+                ForegroundColorSpan fgcspan = new ForegroundColorSpan(ecolor);
+                SpannableStringBuilder ssbuilder = new SpannableStringBuilder(estring);
+                ssbuilder.setSpan(fgcspan, 0, estring.length(), 0);
+                input.setError(ssbuilder);
+                focusView = input;
+                cancel = true;
+            }
+        }
+        if (titleInput.getText().length() > 20) {
+            int ecolor = getResources().getColor(R.color.white);
+            String estring = getString(R.string.error_field_too_long);
+            ForegroundColorSpan fgcspan = new ForegroundColorSpan(ecolor);
+            SpannableStringBuilder ssbuilder = new SpannableStringBuilder(estring);
+            ssbuilder.setSpan(fgcspan, 0, estring.length(), 0);
+            titleInput.setError(ssbuilder);
+        }
+
+        if (cancel) focusView.requestFocus();
+        else new NewMeeetingTask(this,
+                titleInput.getText().toString(),
+                locationInput.getText().toString(),
+                selectedDate,
+                selectedTime,
+                colorInput.getText().toString()).execute();
+
     }
 }
