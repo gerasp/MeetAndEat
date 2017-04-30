@@ -4,16 +4,14 @@
     tools:context="net.gerardomedina.meetandeat.view.activity.MeetingActivity">
 
     <item
-        android:id="@+id/menu_add"
-        android:icon="@drawable/ic_map"
+        android:id="@+id/menu_location"
         android:title="@string/location"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="never" />
 
     <item
         android:id="@+id/menu_visitors"
-        android:icon="@drawable/ic_participants"
         android:title="@string/participants"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="never" />
 
     <item
         android:id="@+id/menu_options"

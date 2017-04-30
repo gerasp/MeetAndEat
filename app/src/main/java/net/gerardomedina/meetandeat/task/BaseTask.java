@@ -48,7 +48,7 @@ public abstract class BaseTask extends AsyncTask<Void, Void, Boolean> {
     @Override
     protected void onPostExecute(Boolean success) {
         super.onPostExecute(success);
-        progressDialog.cancel();
+        if (progressDialog!= null)progressDialog.cancel();
         try {
             if (!success || response.getInt("code") < 0 || response.getInt("code") > 2) activity.showSimpleDialog(activity.getString(R.string.error_retrieving_data));
         } catch (JSONException e) {

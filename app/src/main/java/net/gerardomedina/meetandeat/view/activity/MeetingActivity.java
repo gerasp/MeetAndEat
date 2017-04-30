@@ -1,6 +1,7 @@
 package net.gerardomedina.meetandeat.view.activity;
 
 import android.content.DialogInterface;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
@@ -44,7 +45,11 @@ public class MeetingActivity extends BaseActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        item.getItemId();
+        switch (item.getItemId()){
+            case R.id.menu_location:
+                changeToActivity(LocationActivity.class);
+                break;
+        }
         return super.onOptionsItemSelected(item);
     }
 
@@ -109,17 +114,6 @@ public class MeetingActivity extends BaseActivity {
                 addFoodDialog.show();
             }
         });
-
-//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.locationFab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                changeToActivity(LocationActivity.class);
-//            }
-//        });
-
-//        final Button addFoodButton = (Button) findViewById(R.id.add_food_button);
-//
 
         if (appCommon.hasInternet(this)) new GetFoodTask(this).execute();
         else {

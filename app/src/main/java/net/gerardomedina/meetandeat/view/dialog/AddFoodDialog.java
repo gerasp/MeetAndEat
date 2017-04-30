@@ -31,6 +31,7 @@ public class AddFoodDialog extends AlertDialog {
 
         selectedIcon = (ImageView) findViewById(R.id.selectedIcon);
         selectedIcon.setImageResource(R.drawable.ic_1);
+        selectedIconParameter = "ic_1";
 
         TableLayout iconsTable = (TableLayout) findViewById(R.id.iconsTable);
         generateIconsTable(iconsTable);
