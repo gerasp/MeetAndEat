@@ -99,5 +99,6 @@
     <string name="no_spaces_allowed">Spaces are not allowed</string>
     <string name="adding_contact">Adding contact</string>
     <string name="error_adding_contact">Error adding contact</string>
+    <string name="contact_added_successfully">Contact added successfully</string>
 
 </resources>

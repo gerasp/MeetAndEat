@@ -65,7 +65,7 @@ public class ContactsAdapter extends ArrayAdapter<String> {
                                 }
                             })
                             .setNegativeButton(android.R.string.no, null)
-                            .setIcon(android.R.drawable.ic_dialog_alert)
+                            .setIcon(R.drawable.ic_warning)
                             .show();
                     return false;
                 }
