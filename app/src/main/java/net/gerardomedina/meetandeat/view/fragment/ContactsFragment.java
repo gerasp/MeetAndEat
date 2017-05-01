@@ -1,6 +1,7 @@
 package net.gerardomedina.meetandeat.view.fragment;
 
 import android.content.ContentValues;
+import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -8,6 +9,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.TextView;
@@ -60,6 +62,8 @@ public class ContactsFragment extends BaseFragment implements InitiableFragment 
             @Override
             public boolean onQueryTextSubmit(String s) {
                 new SearchTask(getBaseFragment(), s).execute();
+                InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
                 return false;
             }
 
