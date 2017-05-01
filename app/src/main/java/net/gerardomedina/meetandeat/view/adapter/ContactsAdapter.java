@@ -41,27 +41,36 @@ public class ContactsAdapter extends ArrayAdapter<String> {
         username.setText(contactUsername);
 
         if (isSearch) {
+            ImageView addContactIcon = (ImageView) convertView.findViewById(R.id.addContactIcon);
+            addContactIcon.setVisibility(View.VISIBLE);
+            convertView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
 
+                }
+            });
+        } else {
+            convertView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    new AlertDialog.Builder(contactsFragment.getActivity())
+                            .setTitle(contactsFragment.getString(R.string.confirmation))
+                            .setMessage(contactsFragment.getString(R.string.confirmation_delete_contact))
+                            .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    if (contactsFragment.appCommon.hasInternet(contactsFragment.getActivity())) {
+                                        new DeleteContactsTask(contactsFragment.getBaseFragment(), contactUsername).execute();
+                                    } else
+                                        ((BaseActivity) contactsFragment.getActivity()).showSimpleDialog(R.string.no_internet_connection);
+                                }
+                            })
+                            .setNegativeButton(android.R.string.no, null)
+                            .setIcon(android.R.drawable.ic_dialog_alert)
+                            .show();
+                    return false;
+                }
+            });
         }
-        convertView.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                new AlertDialog.Builder(contactsFragment.getActivity())
-                        .setTitle(contactsFragment.getString(R.string.confirmation))
-                        .setMessage(contactsFragment.getString(R.string.confirmation_delete_contact))
-                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                if (contactsFragment.appCommon.hasInternet(contactsFragment.getActivity())) {
-                                    new DeleteContactsTask(contactsFragment.getBaseFragment(), contactUsername).execute();
-                                } else ((BaseActivity) contactsFragment.getActivity()).showSimpleDialog(R.string.no_internet_connection);
-                            }
-                        })
-                        .setNegativeButton(android.R.string.no, null)
-                        .setIcon(android.R.drawable.ic_dialog_alert)
-                        .show();
-                return false;
-            }
-        });
 
         return convertView;
     }

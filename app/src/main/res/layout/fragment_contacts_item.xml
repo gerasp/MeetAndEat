@@ -19,7 +19,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end|center"
-        android:id="@+id/addContactButton"
+        android:id="@+id/addContactIcon"
         app:srcCompat="@drawable/ic_contact_add"
         android:visibility="gone"
         android:contentDescription="@string/delete" />
