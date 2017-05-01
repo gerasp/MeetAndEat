@@ -60,7 +60,11 @@ public class ContactsFragment extends BaseFragment implements InitiableFragment 
                 return false;
             }
             @Override
-            public boolean onQueryTextChange(String s) { return false; }
+            public boolean onQueryTextChange(String s) {
+                if (s.equals("")) loadContactListFromLocalDB();
+                if (s.contains(" ")) showToast(R.string.no_spaces_allowed);
+                return false;
+            }
         });
     }
 

@@ -12,11 +12,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import net.gerardomedina.meetandeat.R;
-import net.gerardomedina.meetandeat.task.DeleteContactsTask;
+import net.gerardomedina.meetandeat.task.AddContactTask;
+import net.gerardomedina.meetandeat.task.DeleteContactTask;
 import net.gerardomedina.meetandeat.view.activity.BaseActivity;
 import net.gerardomedina.meetandeat.view.fragment.ContactsFragment;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ContactsAdapter extends ArrayAdapter<String> {
@@ -46,7 +46,7 @@ public class ContactsAdapter extends ArrayAdapter<String> {
             convertView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
+                    new AddContactTask(contactsFragment,contactUsername).execute();
                 }
             });
         } else {
@@ -59,7 +59,7 @@ public class ContactsAdapter extends ArrayAdapter<String> {
                             .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int which) {
                                     if (contactsFragment.appCommon.hasInternet(contactsFragment.getActivity())) {
-                                        new DeleteContactsTask(contactsFragment.getBaseFragment(), contactUsername).execute();
+                                        new DeleteContactTask(contactsFragment.getBaseFragment(), contactUsername).execute();
                                     } else
                                         ((BaseActivity) contactsFragment.getActivity()).showSimpleDialog(R.string.no_internet_connection);
                                 }

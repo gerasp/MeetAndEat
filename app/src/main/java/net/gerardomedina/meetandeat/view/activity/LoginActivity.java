@@ -131,11 +131,11 @@ public class LoginActivity extends BaseActivity {
     }
 
     private boolean isUsernameValid(String username) {
-        return username.length() > 5;
+        return username.length() > 5 && !username.contains(" ");
     }
 
     private boolean isPasswordValid(String password) {
-        return password.length() > 5;
+        return password.length() > 5 && !password.contains(" ");
     }
 
     public void showEmailDialog(final String username, final String password) {

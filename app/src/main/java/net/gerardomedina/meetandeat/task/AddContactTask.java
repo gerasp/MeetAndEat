@@ -5,17 +5,18 @@ import android.util.Log;
 import net.gerardomedina.meetandeat.R;
 import net.gerardomedina.meetandeat.view.activity.BaseActivity;
 import net.gerardomedina.meetandeat.view.fragment.BaseFragment;
+import net.gerardomedina.meetandeat.view.fragment.ContactsFragment;
 
 import org.json.JSONException;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class DeleteContactsTask extends BaseTask {
+public class AddContactTask extends BaseTask {
 
     private final String user2Username;
 
-    public DeleteContactsTask(BaseFragment fragment, String user2Username) {
+    public AddContactTask(BaseFragment fragment, String user2Username) {
         this.fragment = fragment;
         this.activity = (BaseActivity)fragment.getActivity();
         this.user2Username = user2Username;
@@ -24,7 +25,7 @@ public class DeleteContactsTask extends BaseTask {
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
-        showProgressDialog(R.string.delete_contacts_dialog);
+        showProgressDialog(R.string.adding_contact);
     }
 
     @Override
@@ -33,7 +34,7 @@ public class DeleteContactsTask extends BaseTask {
         parameters.put("user_id",appCommon.getUser().getId()+"");
         parameters.put("user2_username", user2Username +"");
 
-        response = requester.httpRequest("DeleteContact.php", "POST", parameters);
+        response = requester.httpRequest("AddContact.php", "POST", parameters);
         return true;
     }
 
@@ -43,7 +44,7 @@ public class DeleteContactsTask extends BaseTask {
         if (success) {
             try {
                 switch (response.getInt("code")) {
-                    case 0: activity.showSimpleDialog(R.string.error_deleting_contacts);
+                    case 0: activity.showSimpleDialog(R.string.error_adding_contact);
                             break;
                     case 2: new GetContactsTask(fragment).execute();
                             break;

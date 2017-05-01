@@ -14,8 +14,8 @@
     <string name="login_username">Username</string>
     <string name="login_password">Password</string>
     <string name="action_sign_in">Sign in (or sign up)</string>
-    <string name="error_invalid_username">This username is too short</string>
-    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_invalid_username">This username is invalidt</string>
+    <string name="error_invalid_password">This password is invalid</string>
     <string name="error_invalid_email">This email is invalid</string>
     <string name="error_incorrect_password">This password is incorrect</string>
     <string name="error_taken_email">This email is already taken</string>
@@ -96,5 +96,8 @@
     <string name="confirmation_delete_contact">Are you sure you want to delete this contact?</string>
     <string name="searching">Searching</string>
     <string name="no_user_found">No user found with that criteria</string>
+    <string name="no_spaces_allowed">Spaces are not allowed</string>
+    <string name="adding_contact">Adding contact</string>
+    <string name="error_adding_contact">Error adding contact</string>
 
 </resources>
