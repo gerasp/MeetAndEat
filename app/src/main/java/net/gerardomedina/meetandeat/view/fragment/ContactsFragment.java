@@ -91,6 +91,8 @@ public class ContactsFragment extends BaseFragment implements InitiableFragment 
                 ContactValues.TABLE_NAME + " order by "
                 + ContactValues.COLUMN_NAME_USERNAME + " ASC;", null);
         contacts = new ArrayList<>();
+        if (cursor.getCount()>0)setContactsInfoText(R.string.long_tap_to_delete_contact);
+        else setContactsInfoText(R.string.no_contact);
         for (cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext()) {
             contacts.add(cursor.getString(cursor.getColumnIndexOrThrow(ContactValues.COLUMN_NAME_USERNAME)));
         }
