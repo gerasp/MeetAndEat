@@ -17,7 +17,9 @@
         android:layout_height="wrap_content"
         android:text="@string/no_meeting"
         android:textAlignment="center"
-        android:layout_margin="@dimen/text_margin"
+        android:layout_marginTop="@dimen/text_margin"
+        android:layout_marginLeft="@dimen/text_margin"
+        android:layout_marginRight="@dimen/text_margin"
         android:layout_above="@+id/setAlarmButton" />
 
     <Button

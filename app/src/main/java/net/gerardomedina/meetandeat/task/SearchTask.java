@@ -44,8 +44,7 @@ public class SearchTask extends BaseTask {
         if (success) {
             try {
                 switch (response.getInt("code")) {
-                    case 0: fragment.showToast(R.string.no_user_found);
-                            ((ContactsFragment)fragment).loadContactListFromLocalDB();
+                    case 0: ((ContactsFragment)fragment).setContactsInfoText(R.string.no_user_found);
                             break;
                     case 2: ((ContactsFragment)fragment).populateWithSearchResults(response);
                             break;

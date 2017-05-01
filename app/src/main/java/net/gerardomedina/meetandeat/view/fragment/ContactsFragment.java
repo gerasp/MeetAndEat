@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.SearchView;
+import android.widget.TextView;
 
 import net.gerardomedina.meetandeat.R;
 import net.gerardomedina.meetandeat.persistence.local.DBHelper;
@@ -31,6 +32,7 @@ public class ContactsFragment extends BaseFragment implements InitiableFragment 
     private List<String> contacts;
     private SQLiteOpenHelper dbHelper;
     private View view;
+    private TextView contactsInfo;
 
     public ContactsFragment() {
     }
@@ -47,6 +49,7 @@ public class ContactsFragment extends BaseFragment implements InitiableFragment 
 
     public void init() {
         setSearchView();
+        contactsInfo = (TextView) view.findViewById(R.id.contactsInfo);
         if (appCommon.hasInternet(getActivity())) new GetContactsTask(this).execute();
         else loadContactListFromLocalDB();
     }
@@ -56,9 +59,10 @@ public class ContactsFragment extends BaseFragment implements InitiableFragment 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
-                new SearchTask(getBaseFragment(),s).execute();
+                new SearchTask(getBaseFragment(), s).execute();
                 return false;
             }
+
             @Override
             public boolean onQueryTextChange(String s) {
                 if (s.equals("")) loadContactListFromLocalDB();
@@ -83,15 +87,15 @@ public class ContactsFragment extends BaseFragment implements InitiableFragment 
 
     public void loadContactListFromLocalDB() {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
-        Cursor  cursor = db.rawQuery("select "+ContactValues.COLUMN_NAME_USERNAME+" from "+
-                ContactValues.TABLE_NAME+" order by "
-                +ContactValues.COLUMN_NAME_USERNAME+" ASC;",null);
+        Cursor cursor = db.rawQuery("select " + ContactValues.COLUMN_NAME_USERNAME + " from " +
+                ContactValues.TABLE_NAME + " order by "
+                + ContactValues.COLUMN_NAME_USERNAME + " ASC;", null);
         contacts = new ArrayList<>();
-        for(cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext()) {
+        for (cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext()) {
             contacts.add(cursor.getString(cursor.getColumnIndexOrThrow(ContactValues.COLUMN_NAME_USERNAME)));
         }
         cursor.close();
-        contactListView.setAdapter(new ContactsAdapter(this, getActivity(),contacts,false));
+        contactListView.setAdapter(new ContactsAdapter(this, getActivity(), contacts, false));
     }
 
 
@@ -101,6 +105,11 @@ public class ContactsFragment extends BaseFragment implements InitiableFragment 
         for (int i = 0; i < results.length(); i++) {
             contacts.add(results.getJSONObject(i).getString("username"));
         }
-        contactListView.setAdapter(new ContactsAdapter(this, getActivity(),contacts,true));
+        setContactsInfoText(R.string.tap_to_add_contact);
+        contactListView.setAdapter(new ContactsAdapter(this, getActivity(), contacts, true));
+    }
+
+    public void setContactsInfoText(int stringId) {
+        contactsInfo.setText(getString(stringId));
     }
 }
