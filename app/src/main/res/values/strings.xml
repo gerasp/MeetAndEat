@@ -92,5 +92,9 @@
     <string name="participants">Participants</string>
     <string name="location">Location</string>
     <string name="error_retrieving_data">Error retrieving or posting data</string>
+    <string name="confirmation">Confirmation</string>
+    <string name="confirmation_delete_contact">Are you sure you want to delete this contact?</string>
+    <string name="searching">Searching</string>
+    <string name="no_user_found">No user found with that criteria</string>
 
 </resources>

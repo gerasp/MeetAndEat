@@ -1,7 +1,9 @@
 package net.gerardomedina.meetandeat.view.adapter;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,11 +17,12 @@ import net.gerardomedina.meetandeat.view.activity.BaseActivity;
 import net.gerardomedina.meetandeat.view.fragment.ContactsFragment;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ContactsAdapter extends ArrayAdapter<String> {
     private ContactsFragment contactsFragment;
 
-    public ContactsAdapter(ContactsFragment contactsFragment, Context context, ArrayList<String> contacts) {
+    public ContactsAdapter(ContactsFragment contactsFragment, Context context, List<String> contacts) {
         super(context, 0, contacts);
         this.contactsFragment = contactsFragment;
     }
@@ -35,13 +38,23 @@ public class ContactsAdapter extends ArrayAdapter<String> {
         TextView username = (TextView) convertView.findViewById(R.id.contactLabel);
         username.setText(contactUsername);
 
-        ImageView delete = (ImageView) convertView.findViewById(R.id.deleteContactButton);
-        delete.setOnClickListener(new View.OnClickListener() {
+        convertView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
-            public void onClick(View v) {
-                if (contactsFragment.appCommon.hasInternet(contactsFragment.getActivity())) {
-                    new DeleteContactsTask(contactsFragment.getBaseFragment(), contactUsername).execute();
-                } else ((BaseActivity) contactsFragment.getActivity()).showSimpleDialog(R.string.no_internet_connection);
+            public boolean onLongClick(View v) {
+                new AlertDialog.Builder(contactsFragment.getActivity())
+                        .setTitle(contactsFragment.getString(R.string.confirmation))
+                        .setMessage(contactsFragment.getString(R.string.confirmation_delete_contact))
+                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                if (contactsFragment.appCommon.hasInternet(contactsFragment.getActivity())) {
+                                    new DeleteContactsTask(contactsFragment.getBaseFragment(), contactUsername).execute();
+                                } else ((BaseActivity) contactsFragment.getActivity()).showSimpleDialog(R.string.no_internet_connection);
+                            }
+                        })
+                        .setNegativeButton(android.R.string.no, null)
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .show();
+                return false;
             }
         });
 

@@ -14,8 +14,8 @@ import android.widget.SearchView;
 import net.gerardomedina.meetandeat.R;
 import net.gerardomedina.meetandeat.persistence.local.DBHelper;
 import net.gerardomedina.meetandeat.persistence.local.ContactValues;
-import net.gerardomedina.meetandeat.persistence.local.MeetingValues;
 import net.gerardomedina.meetandeat.task.GetContactsTask;
+import net.gerardomedina.meetandeat.task.SearchTask;
 import net.gerardomedina.meetandeat.view.adapter.ContactsAdapter;
 
 import org.json.JSONArray;
@@ -23,12 +23,14 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ContactsFragment extends BaseFragment implements InitiableFragment {
     private ListView contactListView;
     private SearchView searchView;
-    private ArrayList<String> contacts;
+    private List<String> contacts;
     private SQLiteOpenHelper dbHelper;
+    private View view;
 
     public ContactsFragment() {
     }
@@ -36,30 +38,30 @@ public class ContactsFragment extends BaseFragment implements InitiableFragment 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_contacts, container, false);
+        view = inflater.inflate(R.layout.fragment_contacts, container, false);
         contactListView = (ListView) view.findViewById(R.id.contacts);
-
-        searchView = (SearchView) view.findViewById(R.id.contacts_searchbox);
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String s) {
-                return false;
-            }
-            @Override
-            public boolean onQueryTextChange(String s) {
-                return false;
-            }
-        });
-
         dbHelper = new DBHelper(getActivity());
-
         init();
         return view;
     }
 
     public void init() {
+        setSearchView();
         if (appCommon.hasInternet(getActivity())) new GetContactsTask(this).execute();
         else loadContactListFromLocalDB();
+    }
+
+    public void setSearchView() {
+        searchView = (SearchView) view.findViewById(R.id.contactsSearchBox);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                new SearchTask(getBaseFragment(),s);
+                return false;
+            }
+            @Override
+            public boolean onQueryTextChange(String s) { return false; }
+        });
     }
 
     public void saveContactListToLocalDB(JSONObject response) throws JSONException {
@@ -89,4 +91,12 @@ public class ContactsFragment extends BaseFragment implements InitiableFragment 
     }
 
 
+    public void populateWithSearchResults(JSONObject response) throws JSONException {
+        contacts = new ArrayList<>();
+        JSONArray results = response.getJSONArray("results");
+        for (int i = 0; i < results.length(); i++) {
+            contacts.add(results.getJSONObject(i).getString("username"));
+        }
+        contactListView.setAdapter(new ContactsAdapter(this, getActivity(),contacts));
+    }
 }
