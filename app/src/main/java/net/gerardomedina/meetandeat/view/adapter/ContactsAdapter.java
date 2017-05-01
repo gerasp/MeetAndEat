@@ -21,10 +21,12 @@ import java.util.List;
 
 public class ContactsAdapter extends ArrayAdapter<String> {
     private ContactsFragment contactsFragment;
+    private boolean isSearch;
 
-    public ContactsAdapter(ContactsFragment contactsFragment, Context context, List<String> contacts) {
+    public ContactsAdapter(ContactsFragment contactsFragment, Context context, List<String> contacts, boolean isSearch) {
         super(context, 0, contacts);
         this.contactsFragment = contactsFragment;
+        this.isSearch = isSearch;
     }
 
     @NonNull
@@ -38,6 +40,9 @@ public class ContactsAdapter extends ArrayAdapter<String> {
         TextView username = (TextView) convertView.findViewById(R.id.contactLabel);
         username.setText(contactUsername);
 
+        if (isSearch) {
+
+        }
         convertView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {

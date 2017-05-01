@@ -56,7 +56,7 @@ public class ContactsFragment extends BaseFragment implements InitiableFragment 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
-                new SearchTask(getBaseFragment(),s);
+                new SearchTask(getBaseFragment(),s).execute();
                 return false;
             }
             @Override
@@ -77,7 +77,7 @@ public class ContactsFragment extends BaseFragment implements InitiableFragment 
         loadContactListFromLocalDB();
     }
 
-    private void loadContactListFromLocalDB() {
+    public void loadContactListFromLocalDB() {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         Cursor  cursor = db.rawQuery("select "+ContactValues.COLUMN_NAME_USERNAME+" from "+
                 ContactValues.TABLE_NAME+" order by "
@@ -87,7 +87,7 @@ public class ContactsFragment extends BaseFragment implements InitiableFragment 
             contacts.add(cursor.getString(cursor.getColumnIndexOrThrow(ContactValues.COLUMN_NAME_USERNAME)));
         }
         cursor.close();
-        contactListView.setAdapter(new ContactsAdapter(this, getActivity(),contacts));
+        contactListView.setAdapter(new ContactsAdapter(this, getActivity(),contacts,false));
     }
 
 
@@ -97,6 +97,6 @@ public class ContactsFragment extends BaseFragment implements InitiableFragment 
         for (int i = 0; i < results.length(); i++) {
             contacts.add(results.getJSONObject(i).getString("username"));
         }
-        contactListView.setAdapter(new ContactsAdapter(this, getActivity(),contacts));
+        contactListView.setAdapter(new ContactsAdapter(this, getActivity(),contacts,true));
     }
 }
