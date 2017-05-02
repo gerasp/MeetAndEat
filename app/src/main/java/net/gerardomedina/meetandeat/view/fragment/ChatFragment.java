@@ -10,15 +10,18 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ListView;
 
 import com.github.clans.fab.FloatingActionButton;
 
 import net.gerardomedina.meetandeat.R;
 import net.gerardomedina.meetandeat.model.Food;
 import net.gerardomedina.meetandeat.model.Meeting;
+import net.gerardomedina.meetandeat.model.Message;
 import net.gerardomedina.meetandeat.task.GetFoodTask;
 import net.gerardomedina.meetandeat.view.activity.BaseActivity;
 import net.gerardomedina.meetandeat.view.activity.MainActivity;
+import net.gerardomedina.meetandeat.view.adapter.MessageAdapter;
 import net.gerardomedina.meetandeat.view.dialog.AddFoodDialog;
 import net.gerardomedina.meetandeat.view.table.FoodAdapter;
 import net.gerardomedina.meetandeat.view.table.SortableFoodTableView;
@@ -56,7 +59,17 @@ public class ChatFragment extends BaseFragment implements InitiableFragment {
 //        }
 
         setMessageInput();
+        setMessageList();
 
+    }
+
+    private void setMessageList() {
+        ListView messageList = (ListView) view.findViewById(R.id.messageList);
+        List<Message> messages = new ArrayList<>();
+        messages.add(new Message("hola",1,"untio"));
+        messages.add(new Message("234",12,"asf"));
+        messages.add(new Message("hey",816584705,"untio"));
+        messageList.setAdapter(new MessageAdapter(getBaseActivity(),messages));
 
     }
 
