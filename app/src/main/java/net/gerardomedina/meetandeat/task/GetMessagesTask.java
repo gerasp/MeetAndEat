@@ -14,8 +14,11 @@ import java.util.Map;
 
 public class GetMessagesTask extends BaseTask {
 
+    private BaseFragment fragment;
+
     public GetMessagesTask(BaseFragment fragment) {
         this.activity = fragment.getBaseActivity();
+        this.fragment = fragment;
     }
 
     @Override
