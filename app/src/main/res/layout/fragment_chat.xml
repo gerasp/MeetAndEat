@@ -30,6 +30,7 @@
 
     <ListView
         android:id="@+id/messageList"
+        android:rotation="180"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/messageInput"

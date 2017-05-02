@@ -6,14 +6,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import net.gerardomedina.meetandeat.R;
 import net.gerardomedina.meetandeat.common.AppCommon;
 import net.gerardomedina.meetandeat.model.Message;
-import net.gerardomedina.meetandeat.task.AddContactTask;
-import net.gerardomedina.meetandeat.view.fragment.ContactsFragment;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -33,7 +30,7 @@ public class MessageAdapter extends ArrayAdapter<Message> {
     public View getView(final int position, View convertView, @NonNull ViewGroup parent) {
         final Message message = getItem(position);
         if (convertView == null) {
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.fragment_messages_item, parent, false);
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.fragment_chat_item, parent, false);
         }
 
         TextView content = (TextView) convertView.findViewById(R.id.messageContent);
