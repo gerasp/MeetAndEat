@@ -19,6 +19,7 @@ import net.gerardomedina.meetandeat.model.Food;
 import net.gerardomedina.meetandeat.model.Meeting;
 import net.gerardomedina.meetandeat.model.Message;
 import net.gerardomedina.meetandeat.task.GetFoodTask;
+import net.gerardomedina.meetandeat.task.SendMessageTask;
 import net.gerardomedina.meetandeat.view.activity.BaseActivity;
 import net.gerardomedina.meetandeat.view.activity.MainActivity;
 import net.gerardomedina.meetandeat.view.adapter.MessageAdapter;
@@ -79,10 +80,20 @@ public class ChatFragment extends BaseFragment implements InitiableFragment {
     }
 
     public void setMessageInput() {
-        EditText messageInput = (EditText) view.findViewById(R.id.messageInput);
+        final EditText messageInput = (EditText) view.findViewById(R.id.messageInput);
         ImageView sendButton = (ImageView) view.findViewById(R.id.sendButton);
+        sendButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (messageInput.getText().length()>0) new SendMessageTask(getBaseFragment(),messageInput.getText().toString()).execute();
+            }
+        });
         selectedMeeting = appCommon.getSelectedMeeting();
         messageInput.setBackgroundColor(Color.parseColor(selectedMeeting.getColor()));
         sendButton.setBackgroundColor(Color.parseColor(selectedMeeting.getColor()));
+    }
+
+    public void populateMessageList(JSONObject response) {
+
     }
 }
