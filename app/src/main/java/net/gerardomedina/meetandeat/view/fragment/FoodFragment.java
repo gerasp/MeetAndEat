@@ -47,15 +47,12 @@ public class FoodFragment extends BaseFragment implements InitiableFragment {
     private SwipeToRefreshListener.RefreshIndicator refreshIndicator;
 
 
-    public FoodFragment() {
-    }
+    public FoodFragment() {}
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_calendar, container, false);
-
-
         init();
         return view;
     }
@@ -117,7 +114,6 @@ public class FoodFragment extends BaseFragment implements InitiableFragment {
                     jsonObject.getString("username")
             ));
         }
-
 
         final SortableFoodTableView foodTableView = (SortableFoodTableView) view.findViewById(R.id.foodTable);
         final FoodAdapter foodAdapter = new FoodAdapter(getActivity(), foodList, foodTableView);

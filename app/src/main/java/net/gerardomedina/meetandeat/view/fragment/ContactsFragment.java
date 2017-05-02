@@ -62,8 +62,7 @@ public class ContactsFragment extends BaseFragment implements InitiableFragment 
             @Override
             public boolean onQueryTextSubmit(String s) {
                 new SearchTask(getBaseFragment(), s).execute();
-                InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-                imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+                appCommon.hideKeyboard(getActivity());
                 return false;
             }
 

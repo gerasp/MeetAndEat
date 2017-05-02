@@ -1,11 +1,14 @@
 package net.gerardomedina.meetandeat.common;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.text.TextUtils;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 
 import net.gerardomedina.meetandeat.R;
 import net.gerardomedina.meetandeat.model.Meeting;
@@ -63,6 +66,12 @@ public class AppCommon {
         double darkness = 1-(0.299* Color.red(color) + 0.587*Color.green(color) + 0.114*Color.blue(color))/255;
         if(darkness<0.5) return false;
         else return true;
+    }
+
+    public void hideKeyboard(Activity activity) {
+        InputMethodManager imm = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
+        View view = activity.getCurrentFocus();
+        if (view != null && imm.isActive()) imm.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
     }
 
     public Object sharedGetValue(Context context, String valueName, int objectType) {
