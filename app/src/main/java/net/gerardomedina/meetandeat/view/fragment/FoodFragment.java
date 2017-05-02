@@ -52,7 +52,7 @@ public class FoodFragment extends BaseFragment implements InitiableFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_calendar, container, false);
+        view = inflater.inflate(R.layout.fragment_food, container, false);
         init();
         return view;
     }
@@ -75,7 +75,7 @@ public class FoodFragment extends BaseFragment implements InitiableFragment {
         });
     }
     private void createAddFoodDialog() {
-        final AddFoodDialog addFoodDialog = new AddFoodDialog((BaseActivity)getActivity());
+        final AddFoodDialog addFoodDialog = new AddFoodDialog(this);
         addFoodDialog.setView(getActivity().getLayoutInflater().inflate(R.layout.dialog_addfood, null));
         addFoodDialog.setButton(DialogInterface.BUTTON_POSITIVE, getString(android.R.string.ok), new DialogInterface.OnClickListener() {
             @Override
@@ -116,7 +116,7 @@ public class FoodFragment extends BaseFragment implements InitiableFragment {
         }
 
         final SortableFoodTableView foodTableView = (SortableFoodTableView) view.findViewById(R.id.foodTable);
-        final FoodAdapter foodAdapter = new FoodAdapter(getActivity(), foodList, foodTableView);
+        final FoodAdapter foodAdapter = new FoodAdapter(getBaseActivity(), foodList, foodTableView);
         foodTableView.setDataAdapter(foodAdapter);
         foodTableView.setSwipeToRefreshEnabled(true);
         foodTableView.setSwipeToRefreshListener(new SwipeToRefreshListener() {
