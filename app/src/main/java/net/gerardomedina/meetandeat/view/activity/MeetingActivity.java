@@ -19,10 +19,12 @@ import net.gerardomedina.meetandeat.view.fragment.FoodFragment;
 public class MeetingActivity extends BaseActivity {
 
     private Meeting meeting;
+    private Menu menu;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_meeting, menu);
+        this.menu = menu;
         if (meeting != null && appCommon.isColorDark(meeting.getColor())) {
             menu.getItem(0).setIcon(R.drawable.ic_chat_white);
             menu.getItem(1).setIcon(R.drawable.ic_menu_restaurant_white);
@@ -62,6 +64,10 @@ public class MeetingActivity extends BaseActivity {
     }
 
     public void changeToFoodFragment() {
+        if (menu != null) {
+            menu.getItem(0).setVisible(true);
+            menu.getItem(1).setVisible(false);
+        }
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right);
         transaction.replace(R.id.fragment_container, new FoodFragment());
@@ -69,6 +75,10 @@ public class MeetingActivity extends BaseActivity {
     }
 
     public void changeToChatFragment() {
+        if (menu != null) {
+            menu.getItem(0).setVisible(false);
+            menu.getItem(1).setVisible(true);
+        }
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left);
         transaction.replace(R.id.fragment_container, new ChatFragment());
