@@ -60,8 +60,8 @@ public class FoodFragment extends BaseFragment implements InitiableFragment {
     public void init() {
         if (appCommon.hasInternet(getActivity())) new GetFoodTask(this).execute();
         else {
-            ((BaseActivity)getActivity()).showSimpleDialog(R.string.no_internet_connection);
-            ((BaseActivity)getActivity()).changeToActivityNoBackStack(MainActivity.class);
+            getBaseActivity().showSimpleDialog(R.string.no_internet_connection);
+            getBaseActivity().changeToActivityNoBackStack(MainActivity.class);
         }
     }
 

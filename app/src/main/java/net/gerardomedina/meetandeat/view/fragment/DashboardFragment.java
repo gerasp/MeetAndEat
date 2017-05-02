@@ -52,7 +52,7 @@ public class DashboardFragment extends BaseFragment implements InitiableFragment
         newMeetingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((BaseActivity)getActivity()).changeToActivity(NewMeetingActivity.class);
+                getBaseActivity().changeToActivity(NewMeetingActivity.class);
                 getActivity().overridePendingTransition(R.anim.slide_in_bottom,R.anim.slide_out_top);
             }
         });

@@ -62,7 +62,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Initia
                 appCommon.sharedRemoveValue(getActivity(),"id");
                 appCommon.sharedRemoveValue(getActivity(),"username");
                 getActivity().deleteDatabase(DBHelper.DATABASE_NAME);
-                ((BaseActivity)getActivity()).changeToActivityNoBackStack(LoginActivity.class);
+                getBaseActivity().changeToActivityNoBackStack(LoginActivity.class);
                 getActivity().overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
                 getActivity().finish();
                 return false;
