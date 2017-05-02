@@ -18,7 +18,7 @@ public class AddContactTask extends BaseTask {
 
     public AddContactTask(BaseFragment fragment, String user2Username) {
         this.fragment = fragment;
-        this.activity = (BaseActivity)fragment.getActivity();
+        this.activity = fragment.getBaseActivity();
         this.user2Username = user2Username;
     }
 

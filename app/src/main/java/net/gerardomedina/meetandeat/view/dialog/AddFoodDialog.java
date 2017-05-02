@@ -1,7 +1,9 @@
 package net.gerardomedina.meetandeat.view.dialog;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.View;
@@ -13,16 +15,20 @@ import android.widget.TableRow;
 import net.gerardomedina.meetandeat.R;
 import net.gerardomedina.meetandeat.task.AddFoodTask;
 import net.gerardomedina.meetandeat.view.activity.BaseActivity;
+import net.gerardomedina.meetandeat.view.fragment.BaseFragment;
 
 public class AddFoodDialog extends AlertDialog {
-    private final BaseActivity activity;
+    private final BaseFragment fragment;
+    private final Activity activity;
     private EditText descriptionInput, amountInput;
     private ImageView selectedIcon;
     private String selectedIconParameter;
 
-    public AddFoodDialog(BaseActivity activity) {
-        super(activity);
-        this.activity = activity;
+
+    public AddFoodDialog(BaseFragment fragment) {
+        super(fragment.getActivity());
+        this.fragment = fragment;
+        this.activity = fragment.getActivity();
     }
 
     @Override
@@ -70,7 +76,7 @@ public class AddFoodDialog extends AlertDialog {
 
         if (cancel) focusView.requestFocus();
         else {
-            new AddFoodTask(activity,selectedIconParameter,
+            new AddFoodTask(fragment,selectedIconParameter,
                     descriptionInput.getText().toString(),
                     amountInput.getText().toString()).execute();
             dismiss();

@@ -4,6 +4,7 @@ import android.util.Log;
 
 import net.gerardomedina.meetandeat.R;
 import net.gerardomedina.meetandeat.view.activity.BaseActivity;
+import net.gerardomedina.meetandeat.view.fragment.BaseFragment;
 
 import org.json.JSONException;
 
@@ -16,8 +17,9 @@ public class AddFoodTask extends BaseTask {
     private String description;
     private String amount;
 
-    public AddFoodTask(BaseActivity activity, String icon, String description, String amount) {
-        this.activity = activity;
+    public AddFoodTask(BaseFragment fragment, String icon, String description, String amount) {
+
+        this.activity = fragment.getBaseActivity();
         this.icon = icon;
         this.description = description;
         this.amount = amount;
@@ -53,7 +55,7 @@ public class AddFoodTask extends BaseTask {
                         activity.showSimpleDialog(R.string.error_adding_food);
                         break;
                     case 2:
-                        new GetFoodTask(activity).execute();
+                        new GetFoodTask(fragment).execute();
                         break;
                 }
             } catch (JSONException e) {

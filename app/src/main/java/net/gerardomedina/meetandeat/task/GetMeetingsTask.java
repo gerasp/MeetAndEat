@@ -17,7 +17,7 @@ public class GetMeetingsTask extends BaseTask {
 
     public GetMeetingsTask(BaseFragment fragment) {
         this.fragment = fragment;
-        this.activity = (BaseActivity)fragment.getActivity();
+        this.activity = fragment.getBaseActivity();
     }
 
     @Override

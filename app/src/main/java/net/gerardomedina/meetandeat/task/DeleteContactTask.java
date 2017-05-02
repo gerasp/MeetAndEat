@@ -17,7 +17,7 @@ public class DeleteContactTask extends BaseTask {
 
     public DeleteContactTask(BaseFragment fragment, String user2Username) {
         this.fragment = fragment;
-        this.activity = (BaseActivity)fragment.getActivity();
+        this.activity = fragment.getBaseActivity();
         this.user2Username = user2Username;
     }
 

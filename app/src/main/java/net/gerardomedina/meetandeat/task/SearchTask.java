@@ -19,7 +19,7 @@ public class SearchTask extends BaseTask {
     public SearchTask(BaseFragment fragment, String username) {
         this.username = username;
         this.fragment = fragment;
-        this.activity = (BaseActivity)fragment.getActivity();
+        this.activity = fragment.getBaseActivity();
     }
 
     @Override

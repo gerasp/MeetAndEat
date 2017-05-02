@@ -4,6 +4,7 @@ import android.support.v4.app.Fragment;
 import android.widget.Toast;
 
 import net.gerardomedina.meetandeat.common.AppCommon;
+import net.gerardomedina.meetandeat.view.activity.BaseActivity;
 
 public abstract class BaseFragment extends Fragment {
     public AppCommon appCommon = AppCommon.getInstance();
@@ -12,6 +13,7 @@ public abstract class BaseFragment extends Fragment {
     public BaseFragment() {
     }
 
+    public BaseActivity getBaseActivity() { return (BaseActivity) this.getActivity();}
     public BaseFragment getBaseFragment() {
         return this;
     }
