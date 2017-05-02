@@ -30,7 +30,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import de.codecrafters.tableview.listeners.SwipeToRefreshListener;
@@ -66,9 +69,11 @@ public class ChatFragment extends BaseFragment implements InitiableFragment {
     private void setMessageList() {
         ListView messageList = (ListView) view.findViewById(R.id.messageList);
         List<Message> messages = new ArrayList<>();
+
         messages.add(new Message("hola",1,"untio"));
         messages.add(new Message("234",12,"asf"));
         messages.add(new Message("hey",816584705,"untio"));
+        messages.add(new Message("hey",(int) (new Date().getTime()/1000),"asf"));
         messageList.setAdapter(new MessageAdapter(getBaseActivity(),messages));
 
     }

@@ -2,10 +2,10 @@ package net.gerardomedina.meetandeat.model;
 
 public class Message {
     private String content;
-    private long timestamp;
+    private int timestamp;
     private String username;
 
-    public Message(String content, long timestamp, String username) {
+    public Message(String content, int timestamp, String username) {
         this.content = content;
         this.timestamp = timestamp;
         this.username = username;
@@ -19,11 +19,11 @@ public class Message {
         this.content = content;
     }
 
-    public long getTimestamp() {
+    public int getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(long timestamp) {
+    public void setTimestamp(int timestamp) {
         this.timestamp = timestamp;
     }
 
