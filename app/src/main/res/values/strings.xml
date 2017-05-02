@@ -103,5 +103,6 @@
     <string name="no_contact">You have no contacts. Please look for them with the upper search box</string>
     <string name="tap_to_add_contact">Tap on the user to add it to your contact list</string>
     <string name="long_tap_to_delete_contact">Long press to delete a contact</string>
+    <string name="chat">Chat</string>
 
 </resources>

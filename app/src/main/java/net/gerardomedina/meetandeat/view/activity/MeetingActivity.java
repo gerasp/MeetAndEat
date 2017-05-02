@@ -42,8 +42,7 @@ public class MeetingActivity extends BaseActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_meeting, menu);
         if (meeting != null && appCommon.isColorDark(meeting.getColor())) {
-            menu.getItem(0).setIcon(R.drawable.ic_participants_white);
-            menu.getItem(1).setIcon(R.drawable.ic_map_white);
+            menu.getItem(0).setIcon(R.drawable.ic_chat_white);
         }
 
         return true;
@@ -75,7 +74,7 @@ public class MeetingActivity extends BaseActivity {
             changeToActivityNoBackStack(MainActivity.class);
         }
 
-        setToolbarProperly();
+        setToolbar();
         setAddFoodButton();
     }
 
@@ -89,7 +88,7 @@ public class MeetingActivity extends BaseActivity {
         });
     }
 
-    private void setToolbarProperly() {
+    private void setToolbar() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

@@ -37,12 +37,16 @@ public class MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        setToolbar();
 
         setViewPager();
 
         setBottomNavigationView();
+    }
+
+    private void setToolbar() {
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
     }
 
     private void setViewPager() {
@@ -50,16 +54,20 @@ public class MainActivity extends BaseActivity {
         viewPager = (ViewPager) findViewById(R.id.fragment_container);
         viewPager.setAdapter(sectionsAdapter);
         viewPager.setCurrentItem(DEFAULT_SECTION, true);
-        viewPager.setOffscreenPageLimit(NUMBER_OF_SECTIONS-1);
+        viewPager.setOffscreenPageLimit(NUMBER_OF_SECTIONS - 1);
         viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {}
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+            }
+
             @Override
             public void onPageSelected(int position) {
                 bottomNavigationView.getMenu().getItem(position).setChecked(true);
             }
+
             @Override
-            public void onPageScrollStateChanged(int state) {}
+            public void onPageScrollStateChanged(int state) {
+            }
         });
     }
 

@@ -68,10 +68,7 @@ public class NewMeetingActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_newmeeting);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("");
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        setToolbar();
 
 
         titleInput = (TextView) findViewById(R.id.newMeetingTitleInput);
@@ -79,6 +76,13 @@ public class NewMeetingActivity extends BaseActivity {
         setLocationPicker();
         setDateAndTimePicker();
         setColorPicker();
+    }
+
+    private void setToolbar() {
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle("");
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     private void setLocationPicker() {
