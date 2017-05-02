@@ -36,7 +36,6 @@ public class MeetingActivity extends BaseActivity {
 
     private Meeting meeting;
     private Menu menu;
-    private SwipeToRefreshListener.RefreshIndicator refreshIndicator;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -68,25 +67,12 @@ public class MeetingActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_meeting);
 
-        if (appCommon.hasInternet(this)) new GetFoodTask(this).execute();
-        else {
-            showSimpleDialog(R.string.no_internet_connection);
-            changeToActivityNoBackStack(MainActivity.class);
-        }
+
 
         setToolbar();
-        setAddFoodButton();
     }
 
-    private void setAddFoodButton() {
-        FloatingActionButton addFoodButton = (FloatingActionButton) findViewById(R.id.addFoodButton);
-        addFoodButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                createAddFoodDialog();
-            }
-        });
-    }
+
 
     private void setToolbar() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -102,66 +88,4 @@ public class MeetingActivity extends BaseActivity {
         }
     }
 
-    private void createAddFoodDialog() {
-        final AddFoodDialog addFoodDialog = new AddFoodDialog(getBaseActivity());
-        addFoodDialog.setView(getBaseActivity().getLayoutInflater().inflate(R.layout.dialog_addfood, null));
-        addFoodDialog.setButton(DialogInterface.BUTTON_POSITIVE, getString(android.R.string.ok), new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-            }
-        });
-        addFoodDialog.setButton(DialogInterface.BUTTON_NEGATIVE, getString(android.R.string.cancel), new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                addFoodDialog.dismiss();
-            }
-        });
-        addFoodDialog.setOnShowListener(new DialogInterface.OnShowListener() {
-            @Override
-            public void onShow(DialogInterface dialog) {
-                Button b = addFoodDialog.getButton(AlertDialog.BUTTON_POSITIVE);
-                b.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        addFoodDialog.attemptAddFood();
-                    }
-                });
-            }
-        });
-        addFoodDialog.show();
-    }
-
-    public void populateFoodTable(JSONObject response) throws JSONException {
-        List<Food> foodList = new ArrayList<>();
-        JSONArray results = response.getJSONArray("results");
-        for (int i = 0; i < results.length(); i++) {
-            JSONObject jsonObject = results.getJSONObject(i);
-            foodList.add(new Food(jsonObject.getString("icon"),
-                    jsonObject.getString("description"),
-                    jsonObject.getInt("amount"),
-                    jsonObject.getString("username")
-            ));
-        }
-
-
-        final SortableFoodTableView foodTableView = (SortableFoodTableView) findViewById(R.id.foodTable);
-        final FoodAdapter foodAdapter = new FoodAdapter(this, foodList, foodTableView);
-        foodTableView.setDataAdapter(foodAdapter);
-        foodTableView.setSwipeToRefreshEnabled(true);
-        foodTableView.setSwipeToRefreshListener(new SwipeToRefreshListener() {
-            @Override
-            public void onRefresh(final RefreshIndicator refreshIndicator) {
-                new GetFoodTask(getBaseActivity()).execute();
-                setRefreshIndicator(refreshIndicator);
-            }
-        });
-    }
-
-    public void setRefreshIndicator(SwipeToRefreshListener.RefreshIndicator refreshIndicator) {
-        this.refreshIndicator = refreshIndicator;
-    }
-
-    public void hideRefreshIndicator() {
-        if (this.refreshIndicator != null) refreshIndicator.hide();
-    }
 }

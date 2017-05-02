@@ -5,6 +5,8 @@ import android.util.Log;
 import net.gerardomedina.meetandeat.R;
 import net.gerardomedina.meetandeat.view.activity.BaseActivity;
 import net.gerardomedina.meetandeat.view.activity.MeetingActivity;
+import net.gerardomedina.meetandeat.view.fragment.BaseFragment;
+import net.gerardomedina.meetandeat.view.fragment.FoodFragment;
 
 import org.json.JSONException;
 
@@ -13,8 +15,9 @@ import java.util.Map;
 
 public class GetFoodTask extends BaseTask {
 
-    public GetFoodTask(BaseActivity activity) {
-        this.activity = activity;
+    public GetFoodTask(BaseFragment fragment) {
+        this.fragment = fragment;
+        this.activity = (BaseActivity) fragment.getActivity();
     }
 
     @Override
@@ -40,8 +43,8 @@ public class GetFoodTask extends BaseTask {
             try {
                 switch (response.getInt("code")) {
                     case 2:
-                        ((MeetingActivity)activity).hideRefreshIndicator();
-                        ((MeetingActivity)activity).populateFoodTable(response);
+                        ((FoodFragment)fragment).hideRefreshIndicator();
+                        ((FoodFragment)fragment).populateFoodTable(response);
                         break;
                 }
             } catch (JSONException e) {
