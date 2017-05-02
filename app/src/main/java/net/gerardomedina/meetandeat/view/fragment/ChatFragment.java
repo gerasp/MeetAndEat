@@ -55,12 +55,16 @@ public class ChatFragment extends BaseFragment implements InitiableFragment {
 //            getBaseActivity().changeToActivityNoBackStack(MainActivity.class);
 //        }
 
+        setMessageInput();
+
+
+    }
+
+    public void setMessageInput() {
         EditText messageInput = (EditText) view.findViewById(R.id.messageInput);
         ImageView sendButton = (ImageView) view.findViewById(R.id.sendButton);
-
         selectedMeeting = appCommon.getSelectedMeeting();
         messageInput.setBackgroundColor(Color.parseColor(selectedMeeting.getColor()));
         sendButton.setBackgroundColor(Color.parseColor(selectedMeeting.getColor()));
-
     }
 }
