@@ -13,6 +13,7 @@ import android.widget.FrameLayout;
 
 import net.gerardomedina.meetandeat.R;
 import net.gerardomedina.meetandeat.model.Meeting;
+import net.gerardomedina.meetandeat.view.fragment.ChatFragment;
 import net.gerardomedina.meetandeat.view.fragment.FoodFragment;
 
 public class MeetingActivity extends BaseActivity {
@@ -49,15 +50,21 @@ public class MeetingActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_meeting);
 
-        changeToFoodFragment();
-
         setToolbar();
+        changeToFoodFragment();
     }
 
     public void changeToFoodFragment() {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right);
         transaction.replace(R.id.fragment_container, new FoodFragment());
+        transaction.commit();
+    }
+
+    public void changeToChatFragment() {
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left);
+        transaction.replace(R.id.fragment_container, new ChatFragment());
         transaction.commit();
     }
 

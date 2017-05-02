@@ -44,6 +44,7 @@ public class ChatFragment extends BaseFragment implements InitiableFragment {
     }
 
     public void init() {
+
 //        if (appCommon.hasInternet(getActivity())) new GetMessages(this).execute();
 //        else {
 //            getBaseActivity().showSimpleDialog(R.string.no_internet_connection);
