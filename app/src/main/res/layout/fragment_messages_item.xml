@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <TextView
+        android:id="@+id/messageContent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Message"
+        android:textColor="@color/primary_text"
+        android:textSize="25sp" />
+
+    <TextView
+        android:id="@+id/messageDatetimeAndUser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Message datetime and user"
+        android:textColor="@color/secondary_text"
+        android:textSize="20sp"
+        android:layout_below="@+id/messageContent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+</RelativeLayout>

@@ -1,9 +1,7 @@
 package net.gerardomedina.meetandeat.view.adapter;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,64 +10,42 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import net.gerardomedina.meetandeat.R;
+import net.gerardomedina.meetandeat.common.AppCommon;
+import net.gerardomedina.meetandeat.model.Message;
 import net.gerardomedina.meetandeat.task.AddContactTask;
-import net.gerardomedina.meetandeat.task.DeleteContactTask;
-import net.gerardomedina.meetandeat.view.activity.BaseActivity;
 import net.gerardomedina.meetandeat.view.fragment.ContactsFragment;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
-public class MessageAdapter extends ArrayAdapter<String> {
-    private ContactsFragment contactsFragment;
-    private boolean isSearch;
+public class MessageAdapter extends ArrayAdapter<Message> {
+    AppCommon appCommon = AppCommon.getInstance();
+    private SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm", Locale.getDefault());
 
-    public MessageAdapter(ContactsFragment contactsFragment, Context context, List<String> contacts, boolean isSearch) {
-        super(context, 0, contacts);
-        this.contactsFragment = contactsFragment;
-        this.isSearch = isSearch;
+    public MessageAdapter(Context context, List<Message> messages) {
+        super(context, 0, messages);
     }
 
     @NonNull
     @Override
     public View getView(final int position, View convertView, @NonNull ViewGroup parent) {
-        final String contactUsername = getItem(position);
+        final Message message = getItem(position);
         if (convertView == null) {
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.fragment_contacts_item, parent, false);
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.fragment_messages_item, parent, false);
         }
 
-        TextView username = (TextView) convertView.findViewById(R.id.contactLabel);
-        username.setText(contactUsername);
+        TextView content = (TextView) convertView.findViewById(R.id.messageContent);
+        content.setText(message.getContent());
 
-        if (isSearch) {
-            ImageView addContactIcon = (ImageView) convertView.findViewById(R.id.addContactIcon);
-            addContactIcon.setVisibility(View.VISIBLE);
-            convertView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    new AddContactTask(contactsFragment,contactUsername).execute();
-                }
-            });
+        TextView datetimeAndUser = (TextView) convertView.findViewById(R.id.messageDatetimeAndUser);
+        datetimeAndUser.setText(message.getUsername() + " | " + formatter.format(new Date(message.getTimestamp())));
+
+        if (appCommon.getUser().getUsername().equals(message.getUsername())) {
+
         } else {
-            convertView.setOnLongClickListener(new View.OnLongClickListener() {
-                @Override
-                public boolean onLongClick(View v) {
-                    new AlertDialog.Builder(contactsFragment.getActivity())
-                            .setTitle(contactsFragment.getString(R.string.confirmation))
-                            .setMessage(contactsFragment.getString(R.string.confirmation_delete_contact))
-                            .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int which) {
-                                    if (contactsFragment.appCommon.hasInternet(contactsFragment.getActivity())) {
-                                        new DeleteContactTask(contactsFragment.getBaseFragment(), contactUsername).execute();
-                                    } else
-                                        ((BaseActivity) contactsFragment.getActivity()).showSimpleDialog(R.string.no_internet_connection);
-                                }
-                            })
-                            .setNegativeButton(android.R.string.no, null)
-                            .setIcon(R.drawable.ic_warning)
-                            .show();
-                    return false;
-                }
-            });
+
         }
 
         return convertView;

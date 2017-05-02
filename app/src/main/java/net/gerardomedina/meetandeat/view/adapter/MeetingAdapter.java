@@ -38,9 +38,9 @@ public class MeetingAdapter extends CursorAdapter {
     @Override
     public void bindView(View view, Context context, final Cursor cursor) {
         RelativeLayout meetingLayout = (RelativeLayout) view.findViewById(R.id.meeting);
-        TextView meetingTitle = (TextView) view.findViewById(R.id.meeting_title);
-        TextView meetingDateTime = (TextView) view.findViewById(R.id.meeting_datetime);
-        View meetingColor = view.findViewById(R.id.meeting_color);
+        TextView meetingTitle = (TextView) view.findViewById(R.id.meetingTitle);
+        TextView meetingDateTime = (TextView) view.findViewById(R.id.meetingDatetime);
+        View meetingColor = view.findViewById(R.id.meetingColor);
 
         final String title = cursor.getString(cursor.getColumnIndexOrThrow(MeetingValues.COLUMN_NAME_TITLE));
         final String date = cursor.getString(cursor.getColumnIndexOrThrow(MeetingValues.COLUMN_NAME_DATE));
