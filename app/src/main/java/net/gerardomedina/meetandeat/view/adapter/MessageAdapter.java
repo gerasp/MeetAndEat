@@ -37,7 +37,8 @@ public class MessageAdapter extends ArrayAdapter<Message> {
         content.setText(message.getContent());
 
         TextView datetimeAndUser = (TextView) convertView.findViewById(R.id.messageDatetimeAndUser);
-        datetimeAndUser.setText(message.getUsername() + " | " + formatter.format(new Date(message.getTimestamp())));
+        datetimeAndUser.setText(message.getUsername() + " | " +
+                formatter.format(new Date(((long)message.getTimestamp())*1000L)));
 
         if (appCommon.getUser().getUsername().equals(message.getUsername())) {
 
