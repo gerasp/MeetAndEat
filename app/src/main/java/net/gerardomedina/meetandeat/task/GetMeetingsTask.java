@@ -43,6 +43,8 @@ public class GetMeetingsTask extends BaseTask {
                 switch (response.getInt("code")) {
                     case 2: ((DashboardFragment)fragment).saveMeetingListToLocalDB(response);
                             break;
+                    case 2: ((DashboardFragment)fragment).saveMeetingListToLocalDB(response);
+                            break;
                 }
             } catch (JSONException e) {
                 Log.e("JSON Parser", "Error parsing data: " + e.toString());
