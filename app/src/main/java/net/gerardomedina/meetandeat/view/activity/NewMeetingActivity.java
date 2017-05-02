@@ -109,6 +109,7 @@ public class NewMeetingActivity extends BaseActivity {
                             @Override
                             public void onClick(DialogInterface dialog, int selectedColor, Integer[] allColors) {
                                 colorInput.setText("#" + Integer.toHexString(selectedColor));
+                                colorInput.setTextColor(selectedColor);
                             }
                         }).build().show();
             }

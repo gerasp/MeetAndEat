@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="net.gerardomedina.meetandeat.view.activity.NewMeetingActivity"
-    android:theme="@style/AppTheme.AppBarOverlay">
+    android:theme="@style/AppTheme.AppBarOverlayDark"
+    tools:context="net.gerardomedina.meetandeat.view.activity.NewMeetingActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -96,7 +96,8 @@
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:background="?attr/colorPrimary" />
+            android:background="?attr/colorPrimary"
+            android:theme="@style/AppTheme.AppBarOverlay"/>
     </RelativeLayout>
 
 
