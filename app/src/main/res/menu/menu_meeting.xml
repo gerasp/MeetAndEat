@@ -11,6 +11,7 @@
         android:id="@+id/menu_food"
         android:title="@string/food"
         android:icon="@drawable/ic_menu_restaurant"
+        android:visible="false"
         app:showAsAction="always" />
     <item
         android:id="@+id/menu_participants"

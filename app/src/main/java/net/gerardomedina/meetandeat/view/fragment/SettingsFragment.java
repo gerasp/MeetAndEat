@@ -70,6 +70,11 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Initia
         });
     }
 
+    @Override
+    public BaseActivity getBaseActivity() {
+        return (BaseActivity)getActivity();
+    }
+
     public void editAccount() {
 
     }
