@@ -14,7 +14,7 @@
     <string name="login_username">Username</string>
     <string name="login_password">Password</string>
     <string name="action_sign_in">Sign in (or sign up)</string>
-    <string name="error_invalid_username">This username is invalidt</string>
+    <string name="error_invalid_username">This username is invalid</string>
     <string name="error_invalid_password">This password is invalid</string>
     <string name="error_invalid_email">This email is invalid</string>
     <string name="error_incorrect_password">This password is incorrect</string>
@@ -104,5 +104,6 @@
     <string name="tap_to_add_contact">Tap on the user to add it to your contact list</string>
     <string name="long_tap_to_delete_contact">Long press to delete a contact</string>
     <string name="chat">Chat</string>
+    <string name="send_a_message">Send a message</string>
 
 </resources>

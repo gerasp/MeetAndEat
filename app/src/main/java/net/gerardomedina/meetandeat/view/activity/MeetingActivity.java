@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.FrameLayout;
 
 import net.gerardomedina.meetandeat.R;
 import net.gerardomedina.meetandeat.model.Meeting;
@@ -66,6 +67,9 @@ public class MeetingActivity extends BaseActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(meeting.getTitle());
         toolbar.setBackgroundColor(Color.parseColor(meeting.getColor()));
+
+        FrameLayout fragmentContainer = (FrameLayout)findViewById(R.id.fragment_container);
+        fragmentContainer.setBackgroundColor(Color.parseColor(meeting.getColor()));
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = getWindow();
