@@ -7,6 +7,7 @@ import net.gerardomedina.meetandeat.view.fragment.BaseFragment;
 
 import org.json.JSONException;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -31,6 +32,7 @@ public class SendMessageTask extends BaseTask {
     protected Boolean doInBackground(Void... params) {
         Map<String, String> parameters = new HashMap<>();
         parameters.put("user", appCommon.getUser().getUsername());
+        parameters.put("timestamp", (int) (new Date().getTime()/1000) + "");
         parameters.put("meeting_id", appCommon.getSelectedMeeting().getId() + "");
         parameters.put("content", content);
 

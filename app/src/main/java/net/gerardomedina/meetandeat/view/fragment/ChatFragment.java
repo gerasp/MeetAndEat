@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -86,6 +87,7 @@ public class ChatFragment extends BaseFragment implements InitiableFragment {
     public void populateMessageList(JSONObject response) throws JSONException {
         ListView messageList = (ListView) view.findViewById(R.id.messageList);
         List<Message> messages = new ArrayList<>();
+        Log.e("HOAL",response.toString());
         JSONArray results = response.getJSONArray("results");
         for (int i = 0; i < results.length(); i++) {
             messages.add(new Message(results.getJSONObject(i).getString("content"),
