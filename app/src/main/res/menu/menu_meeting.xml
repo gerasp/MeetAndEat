@@ -8,6 +8,11 @@
         android:icon="@drawable/ic_chat"
         app:showAsAction="always" />
     <item
+        android:id="@+id/menu_food"
+        android:title="@string/food"
+        android:icon="@drawable/ic_menu_restaurant"
+        app:showAsAction="always" />
+    <item
         android:id="@+id/menu_participants"
         android:title="@string/participants"
         app:showAsAction="never" />

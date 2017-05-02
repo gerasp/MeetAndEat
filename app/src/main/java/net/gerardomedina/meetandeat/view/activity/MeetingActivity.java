@@ -25,6 +25,7 @@ public class MeetingActivity extends BaseActivity {
         getMenuInflater().inflate(R.menu.menu_meeting, menu);
         if (meeting != null && appCommon.isColorDark(meeting.getColor())) {
             menu.getItem(0).setIcon(R.drawable.ic_chat_white);
+            menu.getItem(1).setIcon(R.drawable.ic_menu_restaurant_white);
         }
 
         return true;
@@ -33,6 +34,12 @@ public class MeetingActivity extends BaseActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
+            case R.id.menu_chat:
+                changeToChatFragment();
+                break;
+            case R.id.menu_food:
+                changeToFoodFragment();
+                break;
             case R.id.menu_location:
                 changeToActivity(LocationActivity.class);
                 break;
