@@ -73,7 +73,7 @@ public class HistoryFragment extends BaseFragment implements InitiableFragment {
 
     }
 
-    private void loadMeetingListFromLocalDB() {
+    public void loadMeetingListFromLocalDB() {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         Cursor cursor = db.rawQuery("select * from "+ OldMeetingValues.TABLE_NAME+
                 " order by " + OldMeetingValues.COLUMN_NAME_DATE+","+

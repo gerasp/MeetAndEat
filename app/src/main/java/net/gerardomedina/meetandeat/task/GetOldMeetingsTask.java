@@ -18,7 +18,7 @@ public class GetOldMeetingsTask extends BaseTask {
 
     public GetOldMeetingsTask(BaseFragment fragment) {
         this.fragment = fragment;
-        this.activity = (BaseActivity)fragment.getActivity();
+        this.activity = (BaseActivity) fragment.getActivity();
     }
 
     @Override
@@ -29,8 +29,8 @@ public class GetOldMeetingsTask extends BaseTask {
 
     @Override
     protected Boolean doInBackground(Void... params) {
-        Map<String,String> parameters = new HashMap<>();
-        parameters.put("user_id",appCommon.getUser().getId()+"");
+        Map<String, String> parameters = new HashMap<>();
+        parameters.put("user_id", appCommon.getUser().getId() + "");
 
         response = requester.httpRequest("GetOldMeetings.php", "POST", parameters);
         return true;
@@ -42,8 +42,12 @@ public class GetOldMeetingsTask extends BaseTask {
         if (success) {
             try {
                 switch (response.getInt("code")) {
-                    case 2: ((HistoryFragment)fragment).saveMeetingListToLocalDB(response);
-                            break;
+                    case 0:
+                        ((HistoryFragment) fragment).loadMeetingListFromLocalDB();
+                        break;
+                    case 2:
+                        ((HistoryFragment) fragment).saveMeetingListToLocalDB(response);
+                        break;
                 }
             } catch (JSONException e) {
                 Log.e("JSON Parser", "Error parsing data: " + e.toString());

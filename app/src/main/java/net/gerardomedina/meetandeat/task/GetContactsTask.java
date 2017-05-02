@@ -16,7 +16,7 @@ public class GetContactsTask extends BaseTask {
 
     public GetContactsTask(BaseFragment fragment) {
         this.fragment = fragment;
-        this.activity = (BaseActivity)fragment.getActivity();
+        this.activity = (BaseActivity) fragment.getActivity();
     }
 
     @Override
@@ -27,8 +27,8 @@ public class GetContactsTask extends BaseTask {
 
     @Override
     protected Boolean doInBackground(Void... params) {
-        Map<String,String> parameters = new HashMap<>();
-        parameters.put("user_id",appCommon.getUser().getId()+"");
+        Map<String, String> parameters = new HashMap<>();
+        parameters.put("user_id", appCommon.getUser().getId() + "");
 
         response = requester.httpRequest("GetContacts.php", "POST", parameters);
         return true;
@@ -40,8 +40,12 @@ public class GetContactsTask extends BaseTask {
         if (success) {
             try {
                 switch (response.getInt("code")) {
-                    case 2: ((ContactsFragment)fragment).saveContactListToLocalDB(response);
-                            break;
+                    case 0:
+                        ((ContactsFragment) fragment).loadContactListFromLocalDB();
+                        break;
+                    case 2:
+                        ((ContactsFragment) fragment).saveContactListToLocalDB(response);
+                        break;
                 }
             } catch (JSONException e) {
                 Log.e("JSON Parser", "Error parsing data: " + e.toString());
