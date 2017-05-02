@@ -1,17 +1,21 @@
 package net.gerardomedina.meetandeat.view.fragment;
 
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
 
 import com.github.clans.fab.FloatingActionButton;
 
 import net.gerardomedina.meetandeat.R;
 import net.gerardomedina.meetandeat.model.Food;
+import net.gerardomedina.meetandeat.model.Meeting;
 import net.gerardomedina.meetandeat.task.GetFoodTask;
 import net.gerardomedina.meetandeat.view.activity.BaseActivity;
 import net.gerardomedina.meetandeat.view.activity.MainActivity;
@@ -32,6 +36,7 @@ public class ChatFragment extends BaseFragment implements InitiableFragment {
 
 
     private View view;
+    private Meeting selectedMeeting;
 
     public ChatFragment() {}
 
@@ -44,12 +49,18 @@ public class ChatFragment extends BaseFragment implements InitiableFragment {
     }
 
     public void init() {
-
 //        if (appCommon.hasInternet(getActivity())) new GetMessages(this).execute();
 //        else {
 //            getBaseActivity().showSimpleDialog(R.string.no_internet_connection);
 //            getBaseActivity().changeToActivityNoBackStack(MainActivity.class);
 //        }
+
+        EditText messageInput = (EditText) view.findViewById(R.id.messageInput);
+        ImageView sendButton = (ImageView) view.findViewById(R.id.sendButton);
+
+        selectedMeeting = appCommon.getSelectedMeeting();
+        messageInput.setBackgroundColor(Color.parseColor(selectedMeeting.getColor()));
+        sendButton.setBackgroundColor(Color.parseColor(selectedMeeting.getColor()));
 
     }
 }
