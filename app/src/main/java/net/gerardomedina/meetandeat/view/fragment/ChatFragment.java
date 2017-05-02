@@ -1,6 +1,8 @@
 package net.gerardomedina.meetandeat.view.fragment;
 
+import android.content.ContentValues;
 import android.content.DialogInterface;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
@@ -18,7 +20,9 @@ import net.gerardomedina.meetandeat.R;
 import net.gerardomedina.meetandeat.model.Food;
 import net.gerardomedina.meetandeat.model.Meeting;
 import net.gerardomedina.meetandeat.model.Message;
+import net.gerardomedina.meetandeat.persistence.local.ContactValues;
 import net.gerardomedina.meetandeat.task.GetFoodTask;
+import net.gerardomedina.meetandeat.task.GetMessagesTask;
 import net.gerardomedina.meetandeat.task.SendMessageTask;
 import net.gerardomedina.meetandeat.view.activity.BaseActivity;
 import net.gerardomedina.meetandeat.view.activity.MainActivity;
@@ -56,27 +60,13 @@ public class ChatFragment extends BaseFragment implements InitiableFragment {
     }
 
     public void init() {
-//        if (appCommon.hasInternet(getActivity())) new GetMessages(this).execute();
-//        else {
-//            getBaseActivity().showSimpleDialog(R.string.no_internet_connection);
-//            getBaseActivity().changeToActivityNoBackStack(MainActivity.class);
-//        }
+        if (appCommon.hasInternet(getActivity())) new GetMessagesTask(this).execute();
+        else {
+            getBaseActivity().showSimpleDialog(R.string.no_internet_connection);
+            getBaseActivity().changeToActivityNoBackStack(MainActivity.class);
+        }
 
         setMessageInput();
-        setMessageList();
-
-    }
-
-    private void setMessageList() {
-        ListView messageList = (ListView) view.findViewById(R.id.messageList);
-        List<Message> messages = new ArrayList<>();
-
-        messages.add(new Message("hola",1,"untio"));
-        messages.add(new Message("234",12,"asf"));
-        messages.add(new Message("hey",816584705,"untio"));
-        messages.add(new Message("hey",(int) (new Date().getTime()/1000),"asf"));
-        messageList.setAdapter(new MessageAdapter(getBaseActivity(),messages));
-
     }
 
     public void setMessageInput() {
@@ -93,7 +83,15 @@ public class ChatFragment extends BaseFragment implements InitiableFragment {
         sendButton.setBackgroundColor(Color.parseColor(selectedMeeting.getColor()));
     }
 
-    public void populateMessageList(JSONObject response) {
-
+    public void populateMessageList(JSONObject response) throws JSONException {
+        ListView messageList = (ListView) view.findViewById(R.id.messageList);
+        List<Message> messages = new ArrayList<>();
+        JSONArray results = response.getJSONArray("results");
+        for (int i = 0; i < results.length(); i++) {
+            messages.add(new Message(results.getJSONObject(i).getString("content"),
+                    results.getJSONObject(i).getInt("timestamp"),
+                    results.getJSONObject(i).getString("user")));
+        }
+        messageList.setAdapter(new MessageAdapter(getBaseActivity(),messages));
     }
 }
