@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="net.gerardomedina.meetandeat.view.activity.NewMeetingActivity">
+    tools:context="net.gerardomedina.meetandeat.view.activity.NewMeetingActivity"
+    android:theme="@style/AppTheme.AppBarOverlay">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <ScrollView
-            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             android:layout_width="match_parent"
             android:layout_height="476dp"
             android:layout_above="@+id/toolbar"
@@ -96,8 +96,7 @@
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
+            android:background="?attr/colorPrimary" />
     </RelativeLayout>
 
 

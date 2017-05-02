@@ -2,7 +2,7 @@
 <resources>
 
     <color name="primary">#FFC107</color>
-    <color name="primary_dark">#FFC107</color>
+    <color name="primary_dark">@color/black</color>
     <color name="primary_light">#FFECB3</color>
     <color name="accent">#607D8B</color>
     <color name="primary_text">@color/black</color>
@@ -17,7 +17,7 @@
     <color name="odd_grey">#cfd8dc</color>
     <color name="even_grey">#b0bec5</color>
 
-    <color name="icons">#212121</color>
+    <color name="icons">@color/black</color>
     <color name="divider">#BDBDBD</color>
 
 </resources>

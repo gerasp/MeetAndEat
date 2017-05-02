@@ -25,7 +25,6 @@ import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
 import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.ui.PlacePicker;
-import com.google.android.gms.maps.model.LatLng;
 
 import net.gerardomedina.meetandeat.R;
 import net.gerardomedina.meetandeat.task.NewMeeetingTask;
@@ -44,10 +43,9 @@ public class NewMeetingActivity extends BaseActivity {
     private TextView timeInput;
     private TextView colorInput;
     private TextView contactsInput;
-    public static final int PLACE_PICKER_REQUEST = 1;
     private String selectedDate;
     private String selectedTime;
-    private String selectedLocation;
+    public static final int PLACE_PICKER_REQUEST = 1;
 
     Activity getActivity() {
         return this;
@@ -78,12 +76,12 @@ public class NewMeetingActivity extends BaseActivity {
 
         titleInput = (TextView) findViewById(R.id.newMeetingTitleInput);
 
-        setLocationInput();
+        setLocationPicker();
         setDateAndTimePicker();
         setColorPicker();
     }
 
-    private void setLocationInput() {
+    private void setLocationPicker() {
         locationInput = (TextView) findViewById(R.id.newMeetingLocationInput);
         locationInput.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -164,8 +162,7 @@ public class NewMeetingActivity extends BaseActivity {
         if (requestCode == NewMeetingActivity.PLACE_PICKER_REQUEST) {
             if (resultCode == RESULT_OK) {
                 Place place = PlacePicker.getPlace(data, this);
-                locationInput.setText(place.getAddress());
-                selectedLocation = place.getLatLng().latitude + "," + place.getLatLng().longitude;
+                locationInput.setText(place.getLatLng().latitude + "," + place.getLatLng().longitude);
             }
         }
     }
@@ -208,7 +205,7 @@ public class NewMeetingActivity extends BaseActivity {
         if (cancel) focusView.requestFocus();
         else new NewMeeetingTask(this,
                 titleInput.getText().toString(),
-                selectedLocation,
+                locationInput.getText().toString(),
                 selectedDate,
                 selectedTime,
                 colorInput.getText().toString()).execute();
