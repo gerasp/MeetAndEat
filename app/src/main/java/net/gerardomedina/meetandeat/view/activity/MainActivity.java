@@ -9,7 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import net.gerardomedina.meetandeat.R;
-import net.gerardomedina.meetandeat.view.adapter.SectionsAdapter;
+import net.gerardomedina.meetandeat.view.adapter.SectionAdapter;
 
 public class MainActivity extends BaseActivity {
 
@@ -50,9 +50,9 @@ public class MainActivity extends BaseActivity {
     }
 
     private void setViewPager() {
-        SectionsAdapter sectionsAdapter = new SectionsAdapter(this, getSupportFragmentManager(), NUMBER_OF_SECTIONS);
+        SectionAdapter sectionAdapter = new SectionAdapter(this, getSupportFragmentManager(), NUMBER_OF_SECTIONS);
         viewPager = (ViewPager) findViewById(R.id.fragment_container);
-        viewPager.setAdapter(sectionsAdapter);
+        viewPager.setAdapter(sectionAdapter);
         viewPager.setCurrentItem(DEFAULT_SECTION, true);
         viewPager.setOffscreenPageLimit(NUMBER_OF_SECTIONS - 1);
         viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {

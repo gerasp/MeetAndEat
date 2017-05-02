@@ -11,13 +11,12 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 import net.gerardomedina.meetandeat.R;
-import net.gerardomedina.meetandeat.model.Meeting;
 import net.gerardomedina.meetandeat.persistence.local.DBHelper;
 import net.gerardomedina.meetandeat.persistence.local.MeetingValues;
 import net.gerardomedina.meetandeat.task.GetMeetingsTask;
 import net.gerardomedina.meetandeat.view.activity.BaseActivity;
 import net.gerardomedina.meetandeat.view.activity.NewMeetingActivity;
-import net.gerardomedina.meetandeat.view.adapter.MeetingsAdapter;
+import net.gerardomedina.meetandeat.view.adapter.MeetingAdapter;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -84,6 +83,6 @@ public class DashboardFragment extends BaseFragment implements InitiableFragment
         Cursor cursor = db.rawQuery("select * from "+MeetingValues.TABLE_NAME+
                 " order by " +MeetingValues.COLUMN_NAME_DATE+","+
                 MeetingValues.COLUMN_NAME_TIME+ " ASC;",null);
-        meetingListView.setAdapter(new MeetingsAdapter(getActivity(), (BaseActivity) getActivity(),cursor,true));
+        meetingListView.setAdapter(new MeetingAdapter(getActivity(), (BaseActivity) getActivity(),cursor,true));
     }
 }

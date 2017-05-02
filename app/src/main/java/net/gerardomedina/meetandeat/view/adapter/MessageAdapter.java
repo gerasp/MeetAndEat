@@ -19,11 +19,11 @@ import net.gerardomedina.meetandeat.view.fragment.ContactsFragment;
 
 import java.util.List;
 
-public class ContactsAdapter extends ArrayAdapter<String> {
+public class MessageAdapter extends ArrayAdapter<String> {
     private ContactsFragment contactsFragment;
     private boolean isSearch;
 
-    public ContactsAdapter(ContactsFragment contactsFragment, Context context, List<String> contacts, boolean isSearch) {
+    public MessageAdapter(ContactsFragment contactsFragment, Context context, List<String> contacts, boolean isSearch) {
         super(context, 0, contacts);
         this.contactsFragment = contactsFragment;
         this.isSearch = isSearch;

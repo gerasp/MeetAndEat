@@ -17,12 +17,12 @@ import net.gerardomedina.meetandeat.view.fragment.SettingsFragment;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SectionsAdapter extends FragmentPagerAdapter {
+public class SectionAdapter extends FragmentPagerAdapter {
     private MainActivity mainActivity;
     private List<InitiableFragment> fragmentList;
     private int numberOfSections;
 
-    public SectionsAdapter(MainActivity mainActivity, FragmentManager fm, int numberOfSections) {
+    public SectionAdapter(MainActivity mainActivity, FragmentManager fm, int numberOfSections) {
         super(fm);
         this.mainActivity = mainActivity;
         this.numberOfSections = numberOfSections;

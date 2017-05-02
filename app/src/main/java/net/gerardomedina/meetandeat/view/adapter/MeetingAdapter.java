@@ -21,11 +21,11 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
-public class MeetingsAdapter extends CursorAdapter {
+public class MeetingAdapter extends CursorAdapter {
     AppCommon appCommon = AppCommon.getInstance();
     private BaseActivity activity;
 
-    public MeetingsAdapter(Context context, BaseActivity activity, Cursor c, boolean autoRequery) {
+    public MeetingAdapter(Context context, BaseActivity activity, Cursor c, boolean autoRequery) {
         super(context, c, autoRequery);
         this.activity = activity;
     }

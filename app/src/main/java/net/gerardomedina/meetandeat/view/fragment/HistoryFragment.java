@@ -15,7 +15,7 @@ import net.gerardomedina.meetandeat.persistence.local.DBHelper;
 import net.gerardomedina.meetandeat.persistence.local.OldMeetingValues;
 import net.gerardomedina.meetandeat.task.GetOldMeetingsTask;
 import net.gerardomedina.meetandeat.view.activity.BaseActivity;
-import net.gerardomedina.meetandeat.view.adapter.MeetingsAdapter;
+import net.gerardomedina.meetandeat.view.adapter.MeetingAdapter;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -78,7 +78,7 @@ public class HistoryFragment extends BaseFragment implements InitiableFragment {
         Cursor cursor = db.rawQuery("select * from "+ OldMeetingValues.TABLE_NAME+
                 " order by " + OldMeetingValues.COLUMN_NAME_DATE+","+
                 OldMeetingValues.COLUMN_NAME_TIME+ " ASC;",null);
-        meetingListView.setAdapter(new MeetingsAdapter(getActivity(), (BaseActivity) getActivity(),cursor,true));
+        meetingListView.setAdapter(new MeetingAdapter(getActivity(), (BaseActivity) getActivity(),cursor,true));
     }
 
 }

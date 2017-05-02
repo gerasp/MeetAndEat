@@ -1,7 +1,6 @@
 package net.gerardomedina.meetandeat.view.fragment;
 
 import android.content.ContentValues;
-import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -9,7 +8,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.TextView;
@@ -19,7 +17,7 @@ import net.gerardomedina.meetandeat.persistence.local.DBHelper;
 import net.gerardomedina.meetandeat.persistence.local.ContactValues;
 import net.gerardomedina.meetandeat.task.GetContactsTask;
 import net.gerardomedina.meetandeat.task.SearchTask;
-import net.gerardomedina.meetandeat.view.adapter.ContactsAdapter;
+import net.gerardomedina.meetandeat.view.adapter.ContactAdapter;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -100,7 +98,7 @@ public class ContactsFragment extends BaseFragment implements InitiableFragment 
             contacts.add(cursor.getString(cursor.getColumnIndexOrThrow(ContactValues.COLUMN_NAME_USERNAME)));
         }
         cursor.close();
-        contactListView.setAdapter(new ContactsAdapter(this, getActivity(), contacts, false));
+        contactListView.setAdapter(new ContactAdapter(this, getActivity(), contacts, false));
     }
 
 
@@ -111,7 +109,7 @@ public class ContactsFragment extends BaseFragment implements InitiableFragment 
             contacts.add(results.getJSONObject(i).getString("username"));
         }
         setContactsInfoText(R.string.tap_to_add_contact);
-        contactListView.setAdapter(new ContactsAdapter(this, getActivity(), contacts, true));
+        contactListView.setAdapter(new ContactAdapter(this, getActivity(), contacts, true));
     }
 
     public void setContactsInfoText(int stringId) {
