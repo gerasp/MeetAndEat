@@ -2,10 +2,14 @@ package net.gerardomedina.meetandeat.view.activity;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
@@ -27,6 +31,8 @@ import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.ui.PlacePicker;
 
 import net.gerardomedina.meetandeat.R;
+import net.gerardomedina.meetandeat.persistence.local.ContactValues;
+import net.gerardomedina.meetandeat.persistence.local.DBHelper;
 import net.gerardomedina.meetandeat.task.NewMeeetingTask;
 
 import java.text.SimpleDateFormat;
@@ -46,6 +52,7 @@ public class NewMeetingActivity extends BaseActivity {
     private String selectedDate;
     private String selectedTime;
     public static final int PLACE_PICKER_REQUEST = 1;
+    private DBHelper dbHelper;
 
     Activity getActivity() {
         return this;
@@ -72,10 +79,59 @@ public class NewMeetingActivity extends BaseActivity {
 
 
         titleInput = (TextView) findViewById(R.id.newMeetingTitleInput);
+        dbHelper = new DBHelper(getActivity());
 
         setLocationPicker();
         setDateAndTimePicker();
         setColorPicker();
+        setContactsPicker();
+    }
+
+    private void setContactsPicker() {
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        Cursor cursor = db.rawQuery("select " + ContactValues.COLUMN_NAME_USERNAME + " from " +
+                ContactValues.TABLE_NAME + " order by "
+                + ContactValues.COLUMN_NAME_USERNAME + " ASC;", null);
+
+        if (cursor.getCount() > 0) {
+            final String[] contacts = new String[cursor.getCount()];
+            int i = 0;
+            for (cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext()) {
+                contacts[i] = cursor.getString(cursor.getColumnIndexOrThrow(ContactValues.COLUMN_NAME_USERNAME));
+                i++;
+            }
+            final boolean[] isChecked = new boolean[contacts.length];
+            final List<String> selectedContacts = new ArrayList<>();
+            contactsInput = (TextView) findViewById(R.id.newMeetingContactsInput);
+            contactsInput.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    new AlertDialog.Builder(getBaseActivity())
+                            .setTitle(getString(R.string.participants))
+                            .setMessage(getString(R.string.select_from_contacts))
+                            .setMultiChoiceItems(contacts, isChecked, new DialogInterface.OnMultiChoiceClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which, boolean isChecked) {
+                                    if (isChecked) selectedContacts.add(contacts[which]);
+                                    else selectedContacts.remove(contacts[which]);
+                                }
+                            })
+                            .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    String result = "";
+                                    for (String selectedContact : selectedContacts) {
+                                        result = result + selectedContact;
+                                    }
+                                    contactsInput.setText(result);
+                                }
+                            })
+                            .create().show();
+                }
+            });
+        } else {
+            getBaseActivity().showSimpleDialog(R.string.new_meeting_no_contact);
+        }
     }
 
     private void setToolbar() {
@@ -145,7 +201,7 @@ public class NewMeetingActivity extends BaseActivity {
             @Override
             public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                 Calendar newDate = Calendar.getInstance();
-                newDate.set(0,0,0,hourOfDay,minute,0);
+                newDate.set(0, 0, 0, hourOfDay, minute, 0);
                 SimpleDateFormat dateFormatter1 = new SimpleDateFormat("HH:mm:ss", Locale.getDefault());
                 SimpleDateFormat dateFormatter2 = new SimpleDateFormat("HH:mm", Locale.getDefault());
                 selectedTime = dateFormatter1.format(newDate.getTime());
@@ -180,7 +236,7 @@ public class NewMeetingActivity extends BaseActivity {
         inputs.add(dateInput);
         inputs.add(timeInput);
         inputs.add(colorInput);
-// TODO       inputs.add(contactsInput);
+        inputs.add(contactsInput);
 
         for (TextView input : inputs) input.setError(null);
 
