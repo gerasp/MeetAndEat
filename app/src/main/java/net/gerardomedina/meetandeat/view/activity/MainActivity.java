@@ -28,7 +28,8 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.menu_notifications) ;
+        changeToActivity(InvitationsActivity.class);
+        overridePendingTransition(R.anim.slide_down,R.anim.fade_out);
         return super.onOptionsItemSelected(item);
     }
 

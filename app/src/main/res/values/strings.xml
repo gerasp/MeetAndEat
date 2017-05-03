@@ -42,7 +42,7 @@
     <string name="title_activity_scrolling">Meeting</string>
 
 
-    <string name="title_notifications">Invitations</string>
+    <string name="title_invitations">Invitations</string>
 
     <!-- Contacts -->
     <string name="get_contacts_dialog">Getting contacts</string>

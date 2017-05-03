@@ -3,7 +3,7 @@
 
     <item
         android:id="@+id/menu_notifications"
-        android:title="@string/title_notifications"
+        android:title="@string/title_invitations"
         android:icon="@drawable/ic_notifications"
         app:showAsAction="always" />
 </menu>

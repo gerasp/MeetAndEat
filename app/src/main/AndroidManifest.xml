@@ -59,6 +59,7 @@
         <activity
             android:name=".view.activity.LocationActivity"
             android:label="@string/title_activity_location" />
+        <activity android:name=".view.activity.InvitationsActivity"></activity>
     </application>
 
 </manifest>
