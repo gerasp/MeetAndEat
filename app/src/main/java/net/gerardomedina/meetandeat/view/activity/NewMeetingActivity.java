@@ -265,7 +265,8 @@ public class NewMeetingActivity extends BaseActivity {
                 locationInput.getText().toString(),
                 selectedDate,
                 selectedTime,
-                colorInput.getText().toString()).execute();
+                colorInput.getText().toString(),
+                participantsInput.getText().toString()).execute();
 
     }
 }
