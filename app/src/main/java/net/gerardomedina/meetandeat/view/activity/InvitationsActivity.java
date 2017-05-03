@@ -12,14 +12,14 @@ public class InvitationsActivity extends BaseActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu_invitations, menu);
         menu.getItem(0).setEnabled(true);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        changeToActivity(InvitationsActivity.class);
+        changeToActivityNoBackStack(MainActivity.class);
         overridePendingTransition(R.anim.fade_in,R.anim.slide_up);
         return super.onOptionsItemSelected(item);
     }
@@ -30,5 +30,6 @@ public class InvitationsActivity extends BaseActivity {
         setContentView(R.layout.activity_invitations);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle(R.string.title_invitations);
+        setSupportActionBar(toolbar);
     }
 }

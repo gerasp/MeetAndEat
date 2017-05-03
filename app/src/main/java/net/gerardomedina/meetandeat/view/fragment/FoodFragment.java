@@ -63,6 +63,7 @@ public class FoodFragment extends BaseFragment implements InitiableFragment {
             getBaseActivity().showSimpleDialog(R.string.no_internet_connection);
             getBaseActivity().changeToActivityNoBackStack(MainActivity.class);
         }
+        setAddFoodButton();
     }
 
     private void setAddFoodButton() {
