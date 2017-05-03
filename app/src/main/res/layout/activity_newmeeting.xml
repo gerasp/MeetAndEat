@@ -81,8 +81,8 @@
                     <EditText
                         android:id="@+id/newMeetingContactsInput"
                         style="@style/NewMeetingInputStyle"
-                        android:hint="@string/new_meeting_contacts"
-                        android:imeActionLabel="@string/new_meeting_contacts" />
+                        android:hint="@string/new_meeting_participants"
+                        android:imeActionLabel="@string/new_meeting_participants" />
 
 
                 </android.support.design.widget.TextInputLayout>

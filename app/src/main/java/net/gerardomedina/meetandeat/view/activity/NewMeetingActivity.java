@@ -2,7 +2,6 @@ package net.gerardomedina.meetandeat.view.activity;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
-import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -48,7 +47,7 @@ public class NewMeetingActivity extends BaseActivity {
     private TextView dateInput;
     private TextView timeInput;
     private TextView colorInput;
-    private TextView contactsInput;
+    private TextView participantsInput;
     private String selectedDate;
     private String selectedTime;
     public static final int PLACE_PICKER_REQUEST = 1;
@@ -102,13 +101,12 @@ public class NewMeetingActivity extends BaseActivity {
             }
             final boolean[] isChecked = new boolean[contacts.length];
             final List<String> selectedContacts = new ArrayList<>();
-            contactsInput = (TextView) findViewById(R.id.newMeetingContactsInput);
-            contactsInput.setOnClickListener(new View.OnClickListener() {
+            participantsInput = (TextView) findViewById(R.id.newMeetingContactsInput);
+            participantsInput.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     new AlertDialog.Builder(getBaseActivity())
-                            .setTitle(getString(R.string.participants))
-                            .setMessage(getString(R.string.select_from_contacts))
+                            .setTitle(getString(R.string.select_from_contacts))
                             .setMultiChoiceItems(contacts, isChecked, new DialogInterface.OnMultiChoiceClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which, boolean isChecked) {
@@ -123,7 +121,7 @@ public class NewMeetingActivity extends BaseActivity {
                                     for (String selectedContact : selectedContacts) {
                                         result = result + selectedContact;
                                     }
-                                    contactsInput.setText(result);
+                                    participantsInput.setText(result);
                                 }
                             })
                             .create().show();
@@ -236,7 +234,7 @@ public class NewMeetingActivity extends BaseActivity {
         inputs.add(dateInput);
         inputs.add(timeInput);
         inputs.add(colorInput);
-        inputs.add(contactsInput);
+        inputs.add(participantsInput);
 
         for (TextView input : inputs) input.setError(null);
 

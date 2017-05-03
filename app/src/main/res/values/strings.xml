@@ -60,7 +60,7 @@
     <string name="new_meeting_date">Date</string>
     <string name="new_meeting_time">Time</string>
     <string name="new_meeting_color">Color</string>
-    <string name="new_meeting_contacts">Contacts</string>
+    <string name="new_meeting_participants">Participants</string>
     <string name="choose_color">Choose color</string>
     <string name="error_creating_meeting">Error creating meeting</string>
     <string name="creating_meeting_dialog">Creating meeting</string>
