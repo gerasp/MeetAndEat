@@ -233,7 +233,6 @@ public class NewMeetingActivity extends BaseActivity {
         inputs.add(dateInput);
         inputs.add(timeInput);
         inputs.add(colorInput);
-        inputs.add(participantsInput);
 
         for (TextView input : inputs) input.setError(null);
 

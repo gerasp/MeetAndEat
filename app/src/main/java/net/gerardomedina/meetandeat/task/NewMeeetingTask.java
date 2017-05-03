@@ -18,14 +18,17 @@ public class NewMeeetingTask extends BaseTask {
     private String date;
     private String time;
     private String color;
+    private String participants;
 
-    public NewMeeetingTask(BaseActivity activity, String title, String location, String date, String time, String color) {
+    public NewMeeetingTask(BaseActivity activity, String title, String location,
+                           String date, String time, String color, String participants) {
         this.activity = activity;
         this.title = title;
         this.location = location;
         this.date = date;
         this.time = time;
         this.color = color;
+        this.participants = participants;
     }
 
     @Override
@@ -44,6 +47,7 @@ public class NewMeeetingTask extends BaseTask {
         parameters.put("date", date);
         parameters.put("time", time);
         parameters.put("color", color);
+        parameters.put("participants", participants);
 
         response = requester.httpRequest("NewMeeting.php", "POST", parameters);
         return true;
