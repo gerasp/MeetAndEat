@@ -42,8 +42,8 @@ public class InvitationAdapter extends ArrayAdapter<Invitation> {
             @Override
             public void onClick(View v) {
                 new AlertDialog.Builder(invitationsActivity)
-                        .setTitle(invitationsActivity.getString(R.string.confirmation))
-                        .setMessage(invitationsActivity.getString(R.string.confirmation_delete_contact))
+                        .setTitle(invitation.getTitle())
+                        .setMessage(invitationsActivity.getString(R.string.confirmation_accept_invitation))
                         .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 if (appCommon.hasInternet(invitationsActivity)) {

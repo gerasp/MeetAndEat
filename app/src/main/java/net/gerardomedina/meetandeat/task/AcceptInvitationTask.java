@@ -48,8 +48,9 @@ public class AcceptInvitationTask extends BaseTask {
         if (success) {
             try {
                 switch (response.getInt("code")) {
+                    case 1:
                     case 2:
-                        activity.showSimpleDialog(R.string.tap_to_add_contact);
+                        activity.changeToActivity(MainActivity.class);
                         break;
                 }
             } catch (JSONException e) {
