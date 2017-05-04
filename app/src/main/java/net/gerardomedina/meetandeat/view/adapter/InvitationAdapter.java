@@ -27,10 +27,10 @@ public class InvitationAdapter extends ArrayAdapter<Invitation> {
     public View getView(final int position, View convertView, @NonNull ViewGroup parent) {
         final Invitation invitation = getItem(position);
         if (convertView == null) {
-            convertView = LayoutInflater.from(getContext()).inflate(android.R.layout.simple_list_item_1, parent, false);
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.activity_invitations_item, parent, false);
         }
-        TextView invitationLabel = (TextView) convertView.findViewById(android.R.id.text1);
-        invitationLabel.setText(invitation.getTitle());
+        TextView invitationLabel = (TextView) convertView.findViewById(R.id.invitationLabel);
+        invitationLabel.setText(invitationsActivity.getString(R.string.invitation,invitation.getTitle()));
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

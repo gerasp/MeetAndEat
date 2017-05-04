@@ -113,5 +113,6 @@
     <string name="new_meeting_no_contact">You have no contacts to invite. You can also create the meeting and then add some contacts.</string>
     <string name="exit">Exit</string>
     <string name="getting_invitations">Getting invitations</string>
-
+    <string name="enter">Enter</string>
+    <string name="invitation">Someone has invited you to %1$s.</string>
 </resources>
