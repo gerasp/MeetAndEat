@@ -1,5 +1,8 @@
 package net.gerardomedina.meetandeat.view.activity;
 
+import android.content.Context;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -14,6 +17,7 @@ import android.widget.TextView;
 
 import net.gerardomedina.meetandeat.R;
 import net.gerardomedina.meetandeat.view.adapter.SectionAdapter;
+import net.gerardomedina.meetandeat.view.drawable.BadgeDrawable;
 
 public class MainActivity extends BaseActivity {
 
@@ -28,15 +32,22 @@ public class MainActivity extends BaseActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         menu.getItem(0).setEnabled(true);
-        final View notifications = menu.findItem(R.id.menu_invitations).getActionView();
-        counter = (TextView) notifications.findViewById(R.id.txtCount);
-        notifications.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-            }
-        });
+        MenuItem itemInvitations = menu.findItem(R.id.menu_invitations);
+        LayerDrawable icon = (LayerDrawable) itemInvitations.getIcon();
+        setBadgeCount(this, icon, "9");
         return true;
     }
+
+    public static void setBadgeCount(Context context, LayerDrawable icon, String count) {
+        BadgeDrawable badge;
+        Drawable reuse = icon.findDrawableByLayerId(R.id.ic_badge);
+        if (reuse != null && reuse instanceof BadgeDrawable) badge = (BadgeDrawable) reuse;
+        else badge = new BadgeDrawable(context);
+        badge.setCount(count);
+        icon.mutate();
+        icon.setDrawableByLayerId(R.id.ic_badge, badge);
+    }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

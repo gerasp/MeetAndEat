@@ -4,7 +4,6 @@
     <item
         android:id="@+id/menu_invitations"
         android:title="@string/title_invitations"
-        android:icon="@drawable/ic_notifications"
-        android:actionLayout="@layout/icon_badge"
+        android:icon="@drawable/badge"
         app:showAsAction="always" />
 </menu>
