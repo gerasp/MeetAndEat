@@ -16,6 +16,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import net.gerardomedina.meetandeat.R;
+import net.gerardomedina.meetandeat.task.GetInvitationsTask;
 import net.gerardomedina.meetandeat.view.adapter.SectionAdapter;
 import net.gerardomedina.meetandeat.view.drawable.BadgeDrawable;
 
@@ -27,18 +28,19 @@ public class MainActivity extends BaseActivity {
     private final int DEFAULT_SECTION = 2;
     private final int NUMBER_OF_SECTIONS = 5;
     private TextView counter;
+    private LayerDrawable icon;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         menu.getItem(0).setEnabled(true);
         MenuItem itemInvitations = menu.findItem(R.id.menu_invitations);
-        LayerDrawable icon = (LayerDrawable) itemInvitations.getIcon();
-        setBadgeCount(this, icon, "9");
+        icon = (LayerDrawable) itemInvitations.getIcon();
+        setBadgeCount(this, "9");
         return true;
     }
 
-    public static void setBadgeCount(Context context, LayerDrawable icon, String count) {
+    public void setBadgeCount(Context context, String count) {
         BadgeDrawable badge;
         Drawable reuse = icon.findDrawableByLayerId(R.id.ic_badge);
         if (reuse != null && reuse instanceof BadgeDrawable) badge = (BadgeDrawable) reuse;
@@ -66,6 +68,8 @@ public class MainActivity extends BaseActivity {
         setViewPager();
 
         setBottomNavigationView();
+
+        if (appCommon.hasInternet(this)) new GetInvitationsTask(this).execute();
     }
 
     private void setToolbar() {
