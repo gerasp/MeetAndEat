@@ -28,8 +28,14 @@ public class InvitationAdapter extends ArrayAdapter<String> {
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(android.R.layout.simple_list_item_1, parent, false);
         }
-        TextView invitation = (TextView) convertView.findViewById(R.id.text1);
+        TextView invitation = (TextView) convertView.findViewById(android.R.id.text1);
         invitation.setText(invitationLabel);
+        convertView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
         return convertView;
     }
 }

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.support.v4.widget.CursorAdapter;
+import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,7 +38,7 @@ public class MeetingAdapter extends CursorAdapter {
 
     @Override
     public void bindView(View view, Context context, final Cursor cursor) {
-        RelativeLayout meetingLayout = (RelativeLayout) view.findViewById(R.id.meeting);
+        CardView meetingLayout = (CardView) view.findViewById(R.id.meeting);
         TextView meetingTitle = (TextView) view.findViewById(R.id.meetingTitle);
         TextView meetingDateTime = (TextView) view.findViewById(R.id.meetingDatetime);
         View meetingColor = view.findViewById(R.id.meetingColor);

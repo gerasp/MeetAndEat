@@ -1,35 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/meeting"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/meeting">
-
-    <TextView
-        android:id="@+id/meetingTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="start|center"
-        android:text="Meeting"
-        android:textColor="@color/primary_text"
-        android:textSize="25sp"
-        android:layout_marginLeft="9dp"
-        android:layout_marginStart="9dp"
-        android:layout_above="@+id/meetingDatetime"
-        android:layout_toRightOf="@+id/meetingColor"
-        android:layout_toEndOf="@+id/meetingColor" />
-
-    <TextView
-        android:id="@+id/meetingDatetime"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="start|center"
-        android:text="Meeting date"
-        android:textColor="@color/secondary_text"
-        android:textSize="20sp"
-        android:layout_alignBottom="@+id/meetingColor"
-        android:layout_alignLeft="@+id/meetingTitle"
-        android:layout_alignStart="@+id/meetingTitle"
-        android:layout_marginBottom="9dp" />
+    android:layout_gravity="center"
+    card_view:cardCornerRadius="4dp">
 
     <View
         android:id="@+id/meetingColor"
@@ -37,4 +13,32 @@
         android:layout_height="80dp"
         android:layout_gravity="start|center"
         android:background="@color/primary" />
-</RelativeLayout>
+
+    <TextView
+        android:id="@+id/meetingTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/meetingDatetime"
+        android:layout_gravity="start|center"
+        android:layout_marginLeft="9dp"
+        android:layout_marginStart="9dp"
+        android:layout_toEndOf="@+id/meetingColor"
+        android:layout_toRightOf="@+id/meetingColor"
+        android:text="Meeting"
+        android:textColor="@color/primary_text"
+        android:textSize="25sp" />
+
+    <TextView
+        android:id="@+id/meetingDatetime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/meetingColor"
+        android:layout_alignLeft="@+id/meetingTitle"
+        android:layout_alignStart="@+id/meetingTitle"
+        android:layout_gravity="start|center"
+        android:layout_marginBottom="9dp"
+        android:text="Meeting date"
+        android:textColor="@color/secondary_text"
+        android:textSize="20sp" />
+
+</android.support.v7.widget.CardView>
