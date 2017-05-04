@@ -5,8 +5,12 @@
 
     <ListView
         android:id="@+id/meetings"
+        android:padding="@dimen/cardview_padding"
+        android:divider="@color/transparent"
+        android:dividerHeight="4dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/deleteOldMeetingsButton"
