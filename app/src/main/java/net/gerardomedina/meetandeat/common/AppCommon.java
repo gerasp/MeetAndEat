@@ -11,8 +11,11 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
 import net.gerardomedina.meetandeat.R;
+import net.gerardomedina.meetandeat.model.Invitation;
 import net.gerardomedina.meetandeat.model.Meeting;
 import net.gerardomedina.meetandeat.model.User;
+
+import java.util.List;
 
 public class AppCommon {
 
@@ -20,6 +23,7 @@ public class AppCommon {
 
     private User user;
     private Meeting selectedMeeting;
+    private List<Invitation> invitations;
 
     public static AppCommon getInstance() {
         if (singleton != null) return singleton;
@@ -97,5 +101,13 @@ public class AppCommon {
         SharedPreferences.Editor editShared = confShared.edit();
         editShared.remove(sharedName);
         editShared.apply();
+    }
+
+    public void setInvitations(List<Invitation> invitations) {
+        this.invitations = invitations;
+    }
+
+    public List<Invitation> getInvitations() {
+        return invitations;
     }
 }

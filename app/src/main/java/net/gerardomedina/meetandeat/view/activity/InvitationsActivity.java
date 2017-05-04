@@ -11,6 +11,7 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
 import net.gerardomedina.meetandeat.R;
+import net.gerardomedina.meetandeat.model.Invitation;
 import net.gerardomedina.meetandeat.view.adapter.InvitationAdapter;
 
 import java.util.ArrayList;
@@ -42,10 +43,10 @@ public class InvitationsActivity extends BaseActivity {
 
     private void setInvitationsList() {
         ListView invitationsList = (ListView) findViewById(R.id.invitations);
-
-
-
-        invitationsList.setAdapter(new InvitationAdapter(this,new ArrayList<String>()));
+        List<Invitation> invitations = appCommon.getInvitations();
+        if (invitations != null) {
+            invitationsList.setAdapter(new InvitationAdapter(this,invitations));
+        }
     }
 
     private void setToolbar() {

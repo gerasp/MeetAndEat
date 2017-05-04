@@ -36,7 +36,7 @@ public class MainActivity extends BaseActivity {
         menu.getItem(0).setEnabled(true);
         MenuItem itemInvitations = menu.findItem(R.id.menu_invitations);
         icon = (LayerDrawable) itemInvitations.getIcon();
-        setBadgeCount(this, "9");
+        setBadgeCount(this,"0");
         return true;
     }
 
