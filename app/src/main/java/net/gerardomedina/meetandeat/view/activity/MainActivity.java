@@ -3,10 +3,14 @@ package net.gerardomedina.meetandeat.view.activity;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import net.gerardomedina.meetandeat.R;
 import net.gerardomedina.meetandeat.view.adapter.SectionAdapter;
@@ -18,11 +22,19 @@ public class MainActivity extends BaseActivity {
 
     private final int DEFAULT_SECTION = 2;
     private final int NUMBER_OF_SECTIONS = 5;
+    private TextView counter;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         menu.getItem(0).setEnabled(true);
+        final View notifications = menu.findItem(R.id.menu_invitations).getActionView();
+        counter = (TextView) notifications.findViewById(R.id.txtCount);
+        notifications.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            }
+        });
         return true;
     }
 

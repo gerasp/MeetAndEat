@@ -2,8 +2,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/menu_notifications"
+        android:id="@+id/menu_invitations"
         android:title="@string/title_invitations"
         android:icon="@drawable/ic_notifications"
+        android:actionLayout="@layout/icon_badge"
         app:showAsAction="always" />
 </menu>
