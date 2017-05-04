@@ -61,6 +61,9 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Initia
             public boolean onPreferenceClick(Preference preference) {
                 appCommon.sharedRemoveValue(getActivity(),"id");
                 appCommon.sharedRemoveValue(getActivity(),"username");
+                appCommon.setUser(null);
+                appCommon.setInvitations(null);
+                appCommon.setSelectedMeeting(null);
                 getActivity().deleteDatabase(DBHelper.DATABASE_NAME);
                 getBaseActivity().changeToActivityNoBackStack(LoginActivity.class);
                 getActivity().overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
