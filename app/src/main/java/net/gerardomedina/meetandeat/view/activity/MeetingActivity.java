@@ -47,7 +47,7 @@ public class MeetingActivity extends BaseActivity {
                 break;
             case R.id.menu_participants:
                 new AlertDialog.Builder(getBaseActivity())
-                        .setTitle(getString(R.string.select_from_contacts))
+                        .setTitle(getString(R.string.participants))
                         .setItems(meeting.getParticipants().toArray(new String[0]),null)
                         .create().show();
                 break;

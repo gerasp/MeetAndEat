@@ -172,7 +172,6 @@ public class FoodFragment extends BaseFragment implements InitiableFragment {
 
         final SortableFoodTableView foodTableView = (SortableFoodTableView) view.findViewById(R.id.foodTable);
         final FoodAdapter foodAdapter = new FoodAdapter(getBaseActivity(), foodList, foodTableView);
-        foodTableView.setDataAdapter(null);
         foodTableView.setDataAdapter(foodAdapter);
         foodTableView.setSwipeToRefreshEnabled(true);
         foodTableView.setSwipeToRefreshListener(new SwipeToRefreshListener() {
