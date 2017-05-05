@@ -51,14 +51,12 @@ public class CalendarFragment extends BaseFragment implements InitiableFragment 
 
     public void init() {
         Cursor cursor = db.rawQuery("select * from " + MeetingValues.TABLE_NAME +
-                " order by " + MeetingValues.COLUMN_NAME_DATE + "," +
-                MeetingValues.COLUMN_NAME_TIME + " ASC;", null);
+                " order by " + MeetingValues.COLUMN_NAME_DATETIME + " ASC;", null);
         if (cursor.getCount() > 0 && cursor.moveToFirst()) {
             final Meeting nextMeeting = new Meeting(1,
                     cursor.getString(cursor.getColumnIndexOrThrow(MeetingValues.COLUMN_NAME_TITLE)),
                     cursor.getString(cursor.getColumnIndexOrThrow(MeetingValues.COLUMN_NAME_LOCATION)),
-                    cursor.getString(cursor.getColumnIndexOrThrow(MeetingValues.COLUMN_NAME_DATE)),
-                    cursor.getString(cursor.getColumnIndexOrThrow(MeetingValues.COLUMN_NAME_TIME)), "");
+                    cursor.getString(cursor.getColumnIndexOrThrow(MeetingValues.COLUMN_NAME_DATETIME)), "");
             SimpleDateFormat simpleDateFormat1 = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
             SimpleDateFormat simpleDateFormat2 = new SimpleDateFormat("hh:mm", Locale.getDefault());
             calendarInfo.setText(getResources().getString(R.string.set_alarm_text,

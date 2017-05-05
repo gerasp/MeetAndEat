@@ -69,8 +69,7 @@ public class DashboardFragment extends BaseFragment implements InitiableFragment
             values.put(MeetingValues._ID, jsonObject.getInt("id"));
             values.put(MeetingValues.COLUMN_NAME_TITLE, jsonObject.getString("title"));
             values.put(MeetingValues.COLUMN_NAME_LOCATION, jsonObject.getString("location"));
-            values.put(MeetingValues.COLUMN_NAME_DATE, jsonObject.getString("date"));
-            values.put(MeetingValues.COLUMN_NAME_TIME, jsonObject.getString("time"));
+            values.put(MeetingValues.COLUMN_NAME_DATETIME, jsonObject.getString("datetime"));
             values.put(MeetingValues.COLUMN_NAME_COLOR, jsonObject.getString("color"));
             db.insert(MeetingValues.TABLE_NAME, null, values);
         }
@@ -81,8 +80,7 @@ public class DashboardFragment extends BaseFragment implements InitiableFragment
     public void loadMeetingListFromLocalDB() {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         Cursor cursor = db.rawQuery("select * from "+MeetingValues.TABLE_NAME+
-                " order by " +MeetingValues.COLUMN_NAME_DATE+","+
-                MeetingValues.COLUMN_NAME_TIME+ " ASC;",null);
+                " order by " +MeetingValues.COLUMN_NAME_DATETIME+", ASC;",null);
         meetingListView.setAdapter(new MeetingAdapter(getActivity(), (BaseActivity) getActivity(),cursor,true));
     }
 }

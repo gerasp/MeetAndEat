@@ -44,22 +44,20 @@ public class MeetingAdapter extends CursorAdapter {
         View meetingColor = view.findViewById(R.id.meetingColor);
 
         final String title = cursor.getString(cursor.getColumnIndexOrThrow(MeetingValues.COLUMN_NAME_TITLE));
-        final String date = cursor.getString(cursor.getColumnIndexOrThrow(MeetingValues.COLUMN_NAME_DATE));
-        final String time = cursor.getString(cursor.getColumnIndexOrThrow(MeetingValues.COLUMN_NAME_TIME));
+        final String datetime = cursor.getString(cursor.getColumnIndexOrThrow(MeetingValues.COLUMN_NAME_DATETIME));
         final String color = (cursor.getString(cursor.getColumnIndexOrThrow(MeetingValues.COLUMN_NAME_COLOR)));
 
         final Meeting meeting = new Meeting(
                 cursor.getInt(cursor.getColumnIndexOrThrow(MeetingValues._ID)),
                 title,
                 cursor.getString(cursor.getColumnIndexOrThrow(MeetingValues.COLUMN_NAME_LOCATION)),
-                date,
-                time,
+                datetime,
                 color);
 
         meetingTitle.setText(meeting.getTitle());
-        Calendar datetime = meeting.getDatetime();
+        Calendar datetimeCalendar = meeting.getDatetime();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm", Locale.getDefault());
-        meetingDateTime.setText(simpleDateFormat.format(datetime.getTime()));
+        meetingDateTime.setText(simpleDateFormat.format(datetimeCalendar.getTime()));
         meetingColor.setBackgroundColor(Color.parseColor(color));
 
         meetingLayout.setOnClickListener(new View.OnClickListener() {

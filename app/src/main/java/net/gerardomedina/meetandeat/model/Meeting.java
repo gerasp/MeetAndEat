@@ -11,11 +11,11 @@ public class Meeting {
     private Calendar datetime;
     private String color;
 
-    public Meeting(int id, String title, String location, String date, String time, String color) {
+    public Meeting(int id, String title, String location, String datetime, String color) {
         this.id = id;
         this.title = title;
         setLocation(location);
-        setDate(date,time);
+        setDate(datetime);
         this.color = color;
     }
 
@@ -48,11 +48,12 @@ public class Meeting {
         return datetime;
     }
 
-    public void setDate(String date, String time) {
+    public void setDate(String datetime) {
         this.datetime = Calendar.getInstance();
-        String [] splittedDate = date.split("-");
-        String [] splittedTime = time.split(":");
-        datetime.set(
+        String [] splitted = datetime.split(" ");
+        String [] splittedDate = splitted[0].split("-");
+        String [] splittedTime = splitted[1].split(":");
+        this.datetime.set(
                 Integer.parseInt(splittedDate[0]),
                 Integer.parseInt(splittedDate[1]),
                 Integer.parseInt(splittedDate[2]),

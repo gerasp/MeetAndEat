@@ -64,8 +64,7 @@ public class HistoryFragment extends BaseFragment implements InitiableFragment {
             values.put(OldMeetingValues._ID, results.getJSONObject(i).getInt("id"));
             values.put(OldMeetingValues.COLUMN_NAME_TITLE, results.getJSONObject(i).getString("title"));
             values.put(OldMeetingValues.COLUMN_NAME_LOCATION, results.getJSONObject(i).getString("location"));
-            values.put(OldMeetingValues.COLUMN_NAME_DATE, results.getJSONObject(i).getString("date"));
-            values.put(OldMeetingValues.COLUMN_NAME_TIME, results.getJSONObject(i).getString("time"));
+            values.put(OldMeetingValues.COLUMN_NAME_DATETIME, results.getJSONObject(i).getString("datetime"));
             values.put(OldMeetingValues.COLUMN_NAME_COLOR, results.getJSONObject(i).getString("color"));
             db.insert(OldMeetingValues.TABLE_NAME, null, values);
         }
@@ -76,8 +75,7 @@ public class HistoryFragment extends BaseFragment implements InitiableFragment {
     public void loadMeetingListFromLocalDB() {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         Cursor cursor = db.rawQuery("select * from "+ OldMeetingValues.TABLE_NAME+
-                " order by " + OldMeetingValues.COLUMN_NAME_DATE+","+
-                OldMeetingValues.COLUMN_NAME_TIME+ " ASC;",null);
+                " order by " + OldMeetingValues.COLUMN_NAME_DATETIME+" ASC;",null);
         meetingListView.setAdapter(new MeetingAdapter(getActivity(), (BaseActivity) getActivity(),cursor,true));
     }
 
