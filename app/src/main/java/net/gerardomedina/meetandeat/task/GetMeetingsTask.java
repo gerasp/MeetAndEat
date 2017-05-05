@@ -38,12 +38,12 @@ public class GetMeetingsTask extends BaseTask {
     @Override
     protected void onPostExecute(final Boolean success) {
         super.onPostExecute(success);
+        fragment.stopRefreshing();
         if (success) {
             try {
                 switch (response.getInt("code")) {
                     case 2:
                         ((DashboardFragment) fragment).saveMeetingListToLocalDB(response);
-                        fragment.stopRefreshing();
                         break;
                 }
             } catch (JSONException e) {

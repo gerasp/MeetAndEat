@@ -37,12 +37,12 @@ public class GetContactsTask extends BaseTask {
     @Override
     protected void onPostExecute(final Boolean success) {
         super.onPostExecute(success);
+        fragment.stopRefreshing();
         if (success) {
             try {
                 switch (response.getInt("code")) {
                     case 2:
                         ((ContactsFragment) fragment).saveContactListToLocalDB(response);
-                        fragment.stopRefreshing();
                         break;
                 }
             } catch (JSONException e) {

@@ -27,7 +27,7 @@ public abstract class BaseFragment extends Fragment {
     }
 
     public void stopRefreshing() {
-        if (refreshLayout.isRefreshing()) refreshLayout.setRefreshing(false);
+        if (refreshLayout != null && refreshLayout.isRefreshing()) refreshLayout.setRefreshing(false);
     }
 
 
