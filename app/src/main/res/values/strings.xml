@@ -57,8 +57,7 @@
     <string name="new_meeting">New meeting</string>
     <string name="new_meeting_title">Title</string>
     <string name="new_meeting_location">Location</string>
-    <string name="new_meeting_date">Date</string>
-    <string name="new_meeting_time">Time</string>
+    <string name="new_meeting_datetime">Date and time</string>
     <string name="new_meeting_color">Color</string>
     <string name="new_meeting_participants">Participants</string>
     <string name="choose_color">Choose color</string>

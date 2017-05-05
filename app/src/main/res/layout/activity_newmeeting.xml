@@ -50,21 +50,11 @@
                 <android.support.design.widget.TextInputLayout style="@style/NewMeetingInputLabelStyle">
 
                     <EditText
-                        android:id="@+id/newMeetingDateInput"
+                        android:id="@+id/newMeetingDatetimeInput"
                         style="@style/NewMeetingInputStyle"
-                        android:hint="@string/new_meeting_date"
-                        android:imeActionLabel="@string/new_meeting_date"
-                        android:inputType="date" />
-                </android.support.design.widget.TextInputLayout>
-
-                <android.support.design.widget.TextInputLayout style="@style/NewMeetingInputLabelStyle">
-
-                    <EditText
-                        android:id="@+id/newMeetingTimeInput"
-                        style="@style/NewMeetingInputStyle"
-                        android:hint="@string/new_meeting_time"
-                        android:imeActionLabel="@string/new_meeting_time"
-                        android:inputType="time"/>
+                        android:hint="@string/new_meeting_datetime"
+                        android:imeActionLabel="@string/new_meeting_datetime"
+                        android:inputType="datetime" />
                 </android.support.design.widget.TextInputLayout>
 
                 <android.support.design.widget.TextInputLayout style="@style/NewMeetingInputLabelStyle">

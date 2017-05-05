@@ -44,12 +44,11 @@ public class NewMeetingActivity extends BaseActivity {
 
     private TextView titleInput;
     private TextView locationInput;
-    private TextView dateInput;
-    private TextView timeInput;
+    private TextView datetimeInput;
     private TextView colorInput;
     private TextView participantsInput;
-    private String selectedDate;
-    private String selectedTime;
+    private String selectedDatetime;
+    private String selectedParticipants;
     public static final int PLACE_PICKER_REQUEST = 1;
     private DBHelper dbHelper;
 
@@ -83,10 +82,80 @@ public class NewMeetingActivity extends BaseActivity {
         setLocationPicker();
         setDateAndTimePicker();
         setColorPicker();
-        setContactsPicker();
+        setParticipantsPicker();
     }
 
-    private void setContactsPicker() {
+    private void setToolbar() {
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle("");
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
+
+    private void setLocationPicker() {
+        locationInput = (TextView) findViewById(R.id.newMeetingLocationInput);
+        locationInput.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
+                Intent intent;
+                try {
+                    intent = builder.build(getActivity());
+                    startActivityForResult(intent, PLACE_PICKER_REQUEST);
+                } catch (GooglePlayServicesRepairableException | GooglePlayServicesNotAvailableException e) {
+                    Log.e("Google Play", e.getMessage());
+                }
+            }
+        });
+    }
+
+    private void setDateAndTimePicker() {
+        final Calendar newCalendar = Calendar.getInstance();
+        final DatePickerDialog datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+            public void onDateSet(DatePicker view, final int year, final int monthOfYear, final int dayOfMonth) {
+                final SimpleDateFormat dateFormatter1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+                final SimpleDateFormat dateFormatter2 = new SimpleDateFormat("dd-MM-yyyy HH:mm", Locale.getDefault());
+                new TimePickerDialog(getBaseActivity(), new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                        Calendar newDate = Calendar.getInstance();
+                        newDate.set(year, monthOfYear, dayOfMonth, hourOfDay, minute, 0);
+                        selectedDatetime = dateFormatter1.format(newDate.getTime());
+                        datetimeInput.setText(dateFormatter2.format(newDate.getTime()));
+                    }
+                }, newCalendar.get(Calendar.HOUR_OF_DAY), newCalendar.get(Calendar.MINUTE), true).show();
+            }
+        }, newCalendar.get(Calendar.YEAR), newCalendar.get(Calendar.MONTH), newCalendar.get(Calendar.DAY_OF_MONTH));
+        datePickerDialog.getDatePicker().setMinDate(newCalendar.getTime().getTime());
+        datetimeInput = (TextView) findViewById(R.id.newMeetingDatetimeInput);
+        datetimeInput.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                datePickerDialog.show();
+            }
+        });
+
+    }
+
+    private void setColorPicker() {
+        colorInput = (TextView) findViewById(R.id.newMeetingColorInput);
+        colorInput.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ColorPickerDialogBuilder.with(getActivity()).setTitle(getString(R.string.choose_color))
+                        .noSliders().wheelType(ColorPickerView.WHEEL_TYPE.FLOWER).density(7)
+                        .setPositiveButton(getString(android.R.string.ok), new ColorPickerClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int selectedColor, Integer[] allColors) {
+                                colorInput.setText("#" + Integer.toHexString(selectedColor));
+                                colorInput.setTextColor(selectedColor);
+                            }
+                        }).build().show();
+            }
+        });
+    }
+
+    private void setParticipantsPicker() {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         Cursor cursor = db.rawQuery("select " + ContactValues.COLUMN_NAME_USERNAME + " from " +
                 ContactValues.TABLE_NAME + " order by "
@@ -131,89 +200,6 @@ public class NewMeetingActivity extends BaseActivity {
         }
     }
 
-    private void setToolbar() {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("");
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-    }
-
-    private void setLocationPicker() {
-        locationInput = (TextView) findViewById(R.id.newMeetingLocationInput);
-        locationInput.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
-                Intent intent;
-                try {
-                    intent = builder.build(getActivity());
-                    startActivityForResult(intent, PLACE_PICKER_REQUEST);
-                } catch (GooglePlayServicesRepairableException | GooglePlayServicesNotAvailableException e) {
-                    Log.e("Google Play", e.getMessage());
-                }
-            }
-        });
-    }
-
-    private void setColorPicker() {
-        colorInput = (TextView) findViewById(R.id.newMeetingColorInput);
-        colorInput.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ColorPickerDialogBuilder.with(getActivity()).setTitle(getString(R.string.choose_color))
-                        .noSliders().wheelType(ColorPickerView.WHEEL_TYPE.FLOWER).density(7)
-                        .setPositiveButton(getString(android.R.string.ok), new ColorPickerClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int selectedColor, Integer[] allColors) {
-                                colorInput.setText("#" + Integer.toHexString(selectedColor));
-                                colorInput.setTextColor(selectedColor);
-                            }
-                        }).build().show();
-            }
-        });
-    }
-
-    private void setDateAndTimePicker() {
-        Calendar newCalendar = Calendar.getInstance();
-        final DatePickerDialog datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
-            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                Calendar newDate = Calendar.getInstance();
-                newDate.set(year, monthOfYear, dayOfMonth);
-                SimpleDateFormat dateFormatter1 = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
-                SimpleDateFormat dateFormatter2 = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
-                selectedDate = dateFormatter1.format(newDate.getTime());
-                dateInput.setText(dateFormatter2.format(newDate.getTime()));
-            }
-        }, newCalendar.get(Calendar.YEAR), newCalendar.get(Calendar.MONTH), newCalendar.get(Calendar.DAY_OF_MONTH));
-        datePickerDialog.getDatePicker().setMinDate(newCalendar.getTime().getTime());
-        dateInput = (TextView) findViewById(R.id.newMeetingDateInput);
-        dateInput.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                datePickerDialog.show();
-            }
-        });
-
-        final TimePickerDialog timePickerDialog = new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
-            @Override
-            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                Calendar newDate = Calendar.getInstance();
-                newDate.set(0, 0, 0, hourOfDay, minute, 0);
-                SimpleDateFormat dateFormatter1 = new SimpleDateFormat("HH:mm:ss", Locale.getDefault());
-                SimpleDateFormat dateFormatter2 = new SimpleDateFormat("HH:mm", Locale.getDefault());
-                selectedTime = dateFormatter1.format(newDate.getTime());
-                timeInput.setText(dateFormatter2.format(newDate.getTime()));
-            }
-        }, newCalendar.get(Calendar.HOUR_OF_DAY), newCalendar.get(Calendar.MINUTE), true);
-        timeInput = (TextView) findViewById(R.id.newMeetingTimeInput);
-        timeInput.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                timePickerDialog.show();
-            }
-        });
-    }
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -230,8 +216,7 @@ public class NewMeetingActivity extends BaseActivity {
         List<TextView> inputs = new ArrayList<>();
         inputs.add(titleInput);
         inputs.add(locationInput);
-        inputs.add(dateInput);
-        inputs.add(timeInput);
+        inputs.add(datetimeInput);
         inputs.add(colorInput);
 
         for (TextView input : inputs) input.setError(null);
@@ -258,15 +243,15 @@ public class NewMeetingActivity extends BaseActivity {
             ssbuilder.setSpan(fgcspan, 0, estring.length(), 0);
             titleInput.setError(ssbuilder);
         }
-
+        if (participantsInput.getText() != null) selectedParticipants = participantsInput.getText().toString();
+        else selectedParticipants = ",";
         if (cancel) focusView.requestFocus();
         else new NewMeeetingTask(this,
                 titleInput.getText().toString(),
                 locationInput.getText().toString(),
-                selectedDate,
-                selectedTime,
+                selectedDatetime,
                 colorInput.getText().toString(),
-                participantsInput.getText().toString()).execute();
+                selectedParticipants).execute();
 
     }
 }

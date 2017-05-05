@@ -15,18 +15,16 @@ public class NewMeeetingTask extends BaseTask {
 
     private String title;
     private String location;
-    private String date;
-    private String time;
+    private String datetime;
     private String color;
     private String participants;
 
     public NewMeeetingTask(BaseActivity activity, String title, String location,
-                           String date, String time, String color, String participants) {
+                           String datetime, String color, String participants) {
         this.activity = activity;
         this.title = title;
         this.location = location;
-        this.date = date;
-        this.time = time;
+        this.datetime = datetime;
         this.color = color;
         this.participants = participants;
     }
@@ -44,8 +42,7 @@ public class NewMeeetingTask extends BaseTask {
         parameters.put("user_id", appCommon.getUser().getId()+"");
         parameters.put("title", title);
         parameters.put("location", location);
-        parameters.put("date", date);
-        parameters.put("time", time);
+        parameters.put("datetime", datetime);
         parameters.put("color", color);
         parameters.put("participants", participants);
 
