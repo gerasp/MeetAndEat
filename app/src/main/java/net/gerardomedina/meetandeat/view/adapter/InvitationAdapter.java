@@ -50,7 +50,7 @@ public class InvitationAdapter extends ArrayAdapter<Invitation> {
                             .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int which) {
                                     if (appCommon.hasInternet(invitationsActivity)) {
-                                        new AcceptInvitationTask(invitationsActivity, 1, invitation.getId()).execute();
+                                        new AcceptInvitationTask(invitationsActivity, 1, invitation.getId(), invitation.getType()).execute();
                                     } else invitationsActivity.showSimpleDialog(R.string.no_internet_connection);
                                 }
                             })
@@ -58,7 +58,7 @@ public class InvitationAdapter extends ArrayAdapter<Invitation> {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
                                     if (appCommon.hasInternet(invitationsActivity)) {
-                                        new AcceptInvitationTask(invitationsActivity, 0, invitation.getId()).execute();
+                                        new AcceptInvitationTask(invitationsActivity, 0, invitation.getId(), invitation.getType()).execute();
                                     } else invitationsActivity.showSimpleDialog(R.string.no_internet_connection);
                                 }
                             })
@@ -78,6 +78,7 @@ public class InvitationAdapter extends ArrayAdapter<Invitation> {
                             .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int which) {
                                     if (appCommon.hasInternet(invitationsActivity)) {
+                                        new AcceptInvitationTask(invitationsActivity, 1, invitation.getId(), invitation.getType()).execute();
                                     } else invitationsActivity.showSimpleDialog(R.string.no_internet_connection);
                                 }
                             })
@@ -85,6 +86,7 @@ public class InvitationAdapter extends ArrayAdapter<Invitation> {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
                                     if (appCommon.hasInternet(invitationsActivity)) {
+                                        new AcceptInvitationTask(invitationsActivity, 0, invitation.getId(), invitation.getType()).execute();
                                     } else invitationsActivity.showSimpleDialog(R.string.no_internet_connection);
                                 }
                             })

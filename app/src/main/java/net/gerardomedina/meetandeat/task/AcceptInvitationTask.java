@@ -18,11 +18,13 @@ import java.util.Map;
 public class AcceptInvitationTask extends BaseTask {
     private int meetingId;
     private int accept;
+    private int type;
 
-    public AcceptInvitationTask(BaseActivity activity, int accept, int meetingId) {
+    public AcceptInvitationTask(BaseActivity activity, int accept, int meetingId, int type) {
         this.activity = activity;
         this.meetingId = meetingId;
         this.accept = accept;
+        this.type = type;
     }
 
     @Override
@@ -37,6 +39,7 @@ public class AcceptInvitationTask extends BaseTask {
         parameters.put("user_id", appCommon.getUser().getId() + "");
         parameters.put("meeting_id", meetingId +"");
         parameters.put("accept", accept +"");
+        parameters.put("type", type +"");
 
         response = requester.httpRequest("AcceptInvitation.php", "POST", parameters);
         return true;
