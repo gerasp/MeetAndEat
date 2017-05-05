@@ -38,7 +38,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Initia
         deleteAccount.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
-                new android.support.v7.app.AlertDialog.Builder(getActivity(), R.style.MyAlertDialogStyle)
+                new android.support.v7.app.AlertDialog.Builder(getActivity(), R.style.Theme_AppCompat_Dialog)
                         .setMessage("")
                         .setNegativeButton(getString(android.R.string.cancel), new DialogInterface.OnClickListener() {
                             @Override

@@ -3,7 +3,6 @@ package net.gerardomedina.meetandeat.view.dialog;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
 import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.View;
@@ -14,7 +13,6 @@ import android.widget.TableRow;
 
 import net.gerardomedina.meetandeat.R;
 import net.gerardomedina.meetandeat.task.AddFoodTask;
-import net.gerardomedina.meetandeat.view.activity.BaseActivity;
 import net.gerardomedina.meetandeat.view.fragment.BaseFragment;
 
 public class AddFoodDialog extends AlertDialog {
@@ -34,7 +32,6 @@ public class AddFoodDialog extends AlertDialog {
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         selectedIcon = (ImageView) findViewById(R.id.selectedIcon);
         selectedIcon.setImageResource(R.drawable.ic_1);
         selectedIconParameter = "ic_1";

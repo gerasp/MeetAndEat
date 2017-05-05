@@ -22,6 +22,7 @@ public class MeetingActivity extends BaseActivity {
 
     private Meeting meeting;
     private Menu menu;
+    private Toolbar toolbar;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -61,11 +62,12 @@ public class MeetingActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         meeting = appCommon.getSelectedMeeting();
         if (meeting == null) changeToActivityNoBackStack(MainActivity.class);
-        if (appCommon.isColorDark(meeting.getColor())) setTheme(R.style.AppTheme_AppBarOverlayDark);
-        else setTheme(R.style.AppTheme_AppBarOverlay);
-
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_meeting);
+        if (appCommon.isColorDark(meeting.getColor())){
+            setContentView(R.layout.activity_meeting_white);
+        } else {
+            setContentView(R.layout.activity_meeting);
+        }
         init();
     }
 
@@ -99,7 +101,7 @@ public class MeetingActivity extends BaseActivity {
     }
 
     private void setToolbar() {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(meeting.getTitle());

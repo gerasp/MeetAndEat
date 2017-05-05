@@ -51,7 +51,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     public void showSimpleDialog(int stringId) {
-        new android.support.v7.app.AlertDialog.Builder(this, R.style.MyAlertDialogStyle)
+        new android.support.v7.app.AlertDialog.Builder(this, R.style.Theme_AppCompat_Dialog)
                 .setMessage(getString(stringId))
                 .setPositiveButton(android.R.string.ok, null)
                 .show();
