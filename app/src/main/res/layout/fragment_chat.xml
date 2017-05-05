@@ -37,6 +37,7 @@
         android:divider="@color/transparent"
         android:dividerHeight="@dimen/button_margin"
         android:padding="@dimen/button_margin"
+        android:clipToPadding="false"
         android:rotation="180" />
 
 </RelativeLayout>
