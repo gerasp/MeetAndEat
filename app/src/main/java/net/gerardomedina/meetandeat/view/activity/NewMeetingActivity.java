@@ -160,7 +160,7 @@ public class NewMeetingActivity extends BaseActivity {
         Cursor cursor = db.rawQuery("select " + ContactValues.COLUMN_NAME_USERNAME + " from " +
                 ContactValues.TABLE_NAME + " order by "
                 + ContactValues.COLUMN_NAME_USERNAME + " ASC;", null);
-
+        participantsInput = (TextView) findViewById(R.id.newMeetingContactsInput);
         if (cursor.getCount() > 0) {
             final String[] contacts = new String[cursor.getCount()];
             int i = 0;
@@ -170,7 +170,6 @@ public class NewMeetingActivity extends BaseActivity {
             }
             final boolean[] isChecked = new boolean[contacts.length];
             final List<String> selectedContacts = new ArrayList<>();
-            participantsInput = (TextView) findViewById(R.id.newMeetingContactsInput);
             participantsInput.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -243,15 +242,13 @@ public class NewMeetingActivity extends BaseActivity {
             ssbuilder.setSpan(fgcspan, 0, estring.length(), 0);
             titleInput.setError(ssbuilder);
         }
-        if (participantsInput.getText() != null) selectedParticipants = participantsInput.getText().toString();
-        else selectedParticipants = ",";
         if (cancel) focusView.requestFocus();
         else new NewMeeetingTask(this,
                 titleInput.getText().toString(),
                 locationInput.getText().toString(),
                 selectedDatetime,
                 colorInput.getText().toString(),
-                selectedParticipants).execute();
+                participantsInput.getText().toString()).execute();
 
     }
 }

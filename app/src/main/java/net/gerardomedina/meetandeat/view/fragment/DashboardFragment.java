@@ -52,7 +52,7 @@ public class DashboardFragment extends BaseFragment implements InitiableFragment
             @Override
             public void onClick(View v) {
                 getBaseActivity().changeToActivity(NewMeetingActivity.class);
-                getActivity().overridePendingTransition(R.anim.slide_in_bottom,R.anim.slide_out_top);
+                getActivity().overridePendingTransition(R.anim.slide_in_top,R.anim.slide_out_bottom);
             }
         });
         if (appCommon.hasInternet(getActivity())) new GetMeetingsTask(this).execute();

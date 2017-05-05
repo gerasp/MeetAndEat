@@ -37,7 +37,7 @@ public class AppCommon {
         return "Df5f5z7e6W5pR2D2yEMK7Vkb77cp23nP";
     }
     public String getBaseURL() {
-        return "http://192.168.1.49/ws/";
+        return "http://192.168.1.12/ws/";
     }
 
     public User getUser() {

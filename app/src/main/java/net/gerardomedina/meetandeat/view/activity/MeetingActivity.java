@@ -69,7 +69,7 @@ public class MeetingActivity extends BaseActivity {
             menu.getItem(1).setVisible(false);
         }
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.setCustomAnimations(R.anim.slide_in_top, R.anim.slide_out_bottom);
+        transaction.setCustomAnimations(R.anim.slide_in_bottom, R.anim.slide_out_top);
         transaction.replace(R.id.fragment_container, new FoodFragment());
         transaction.commit();
     }
@@ -80,7 +80,7 @@ public class MeetingActivity extends BaseActivity {
             menu.getItem(1).setVisible(true);
         }
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.setCustomAnimations(R.anim.slide_in_bottom, R.anim.slide_out_top);
+        transaction.setCustomAnimations(R.anim.slide_in_top, R.anim.slide_out_bottom);
         transaction.replace(R.id.fragment_container, new ChatFragment());
         transaction.commit();
     }
