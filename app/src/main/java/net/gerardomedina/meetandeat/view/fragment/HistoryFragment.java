@@ -25,7 +25,6 @@ public class HistoryFragment extends BaseFragment implements InitiableFragment {
     private View view;
     private ListView meetingListView;
     private DBHelper dbHelper;
-    private FloatingActionButton deleteOldMeetingsButton;
 
     public HistoryFragment() {
     }
@@ -35,8 +34,6 @@ public class HistoryFragment extends BaseFragment implements InitiableFragment {
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_history, container, false);
 
-        deleteOldMeetingsButton = (FloatingActionButton) view.findViewById(R.id.deleteOldMeetingsButton);
-
         meetingListView = (ListView) view.findViewById(R.id.meetings);
         dbHelper = new DBHelper(getActivity());
 
@@ -45,12 +42,6 @@ public class HistoryFragment extends BaseFragment implements InitiableFragment {
     }
 
     public void init() {
-        deleteOldMeetingsButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
         if (appCommon.hasInternet(getActivity())) new GetOldMeetingsTask(this).execute();
         else loadMeetingListFromLocalDB();
     }

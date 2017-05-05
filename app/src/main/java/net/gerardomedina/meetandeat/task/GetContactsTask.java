@@ -16,7 +16,7 @@ public class GetContactsTask extends BaseTask {
 
     public GetContactsTask(BaseFragment fragment) {
         this.fragment = fragment;
-        this.activity = (BaseActivity) fragment.getActivity();
+        this.activity = fragment.getBaseActivity();
     }
 
     @Override

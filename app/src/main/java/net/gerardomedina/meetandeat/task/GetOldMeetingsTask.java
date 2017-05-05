@@ -18,7 +18,7 @@ public class GetOldMeetingsTask extends BaseTask {
 
     public GetOldMeetingsTask(BaseFragment fragment) {
         this.fragment = fragment;
-        this.activity = (BaseActivity) fragment.getActivity();
+        this.activity = fragment.getBaseActivity();
     }
 
     @Override

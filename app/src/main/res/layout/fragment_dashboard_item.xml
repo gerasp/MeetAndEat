@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     card_view:cardBackgroundColor="@color/light_grey"
-    card_view:cardCornerRadius="4dp"
-    card_view:cardElevation="8dp">
+    card_view:cardCornerRadius="@dimen/cardview_default_radius"
+    card_view:cardElevation="@dimen/cardview_default_elevation">
 
     <View
         android:id="@+id/meetingColor"

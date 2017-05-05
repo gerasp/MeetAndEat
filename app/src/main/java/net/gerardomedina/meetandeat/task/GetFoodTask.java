@@ -17,7 +17,7 @@ public class GetFoodTask extends BaseTask {
 
     public GetFoodTask(BaseFragment fragment) {
         this.fragment = fragment;
-        this.activity = (BaseActivity) fragment.getActivity();
+        this.activity = fragment.getBaseActivity();
     }
 
     @Override
