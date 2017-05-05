@@ -120,4 +120,5 @@
     <string name="no_chat">You can not use this chat anymore</string>
     <string name="no_contact_to_invite">You have no contacts to invite. Add them in the main menu.</string>
     <string name="invitation_contact">%1$s wants to be your contact.</string>
+    <string name="welcome">Welcome %1$s</string>
 </resources>

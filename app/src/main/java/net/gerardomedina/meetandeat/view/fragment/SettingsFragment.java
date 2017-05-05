@@ -14,6 +14,7 @@ import net.gerardomedina.meetandeat.view.activity.LoginActivity;
 public class SettingsFragment extends PreferenceFragmentCompat implements InitiableFragment {
 
     AppCommon appCommon = AppCommon.getInstance();
+    private Preference welcome;
     private Preference editAccount;
     private Preference deleteAccount;
     private Preference logout;
@@ -22,6 +23,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Initia
     public void onCreatePreferences(Bundle bundle, String s) {
         setPreferencesFromResource(R.xml.preferences, s);
 
+        welcome = getPreferenceManager().findPreference("welcome");
         editAccount = getPreferenceManager().findPreference("edit_account");
         deleteAccount = getPreferenceManager().findPreference("delete_account");
         logout = getPreferenceManager().findPreference("logout");
@@ -31,6 +33,8 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Initia
     }
 
     public void init() {
+        welcome.setTitle(getString(R.string.welcome,appCommon.getUser().getUsername()));
+
         deleteAccount.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
