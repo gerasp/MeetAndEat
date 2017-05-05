@@ -40,7 +40,9 @@ public class FoodFragment extends BaseFragment implements InitiableFragment {
     private View view;
     private SwipeToRefreshListener.RefreshIndicator refreshIndicator;
     private Meeting meeting;
-
+    private List<Food> foodList;
+    private SortableFoodTableView foodTableView;
+    private FoodAdapter foodAdapter;
 
     public FoodFragment() {
     }
@@ -61,7 +63,22 @@ public class FoodFragment extends BaseFragment implements InitiableFragment {
             getBaseActivity().showSimpleDialog(R.string.no_internet_connection);
             getBaseActivity().changeToActivityNoBackStack(MainActivity.class);
         }
+        setTable();
         setAddButton();
+    }
+
+    public void setTable() {
+        foodTableView = (SortableFoodTableView) view.findViewById(R.id.foodTable);
+        foodAdapter = new FoodAdapter(getBaseActivity(), foodList, foodTableView);
+        foodTableView.setDataAdapter(foodAdapter);
+        foodTableView.setSwipeToRefreshEnabled(true);
+        foodTableView.setSwipeToRefreshListener(new SwipeToRefreshListener() {
+            @Override
+            public void onRefresh(final RefreshIndicator refreshIndicator) {
+                new GetFoodTask(getBaseFragment()).execute();
+                setRefreshIndicator(refreshIndicator);
+            }
+        });
     }
 
     private void setAddButton() {
@@ -149,7 +166,7 @@ public class FoodFragment extends BaseFragment implements InitiableFragment {
     }
 
     public void populateFoodTable(JSONObject response) throws JSONException {
-        List<Food> foodList = new ArrayList<>();
+        foodList = new ArrayList<>();
         JSONArray results = response.getJSONArray("results");
         for (int i = 0; i < results.length(); i++) {
             JSONObject jsonObject = results.getJSONObject(i);
@@ -159,18 +176,7 @@ public class FoodFragment extends BaseFragment implements InitiableFragment {
                     jsonObject.getString("username")
             ));
         }
-
-        final SortableFoodTableView foodTableView = (SortableFoodTableView) view.findViewById(R.id.foodTable);
-        final FoodAdapter foodAdapter = new FoodAdapter(getBaseActivity(), foodList, foodTableView);
-        foodTableView.setDataAdapter(foodAdapter);
-        foodTableView.setSwipeToRefreshEnabled(true);
-        foodTableView.setSwipeToRefreshListener(new SwipeToRefreshListener() {
-            @Override
-            public void onRefresh(final RefreshIndicator refreshIndicator) {
-                new GetFoodTask(getBaseFragment()).execute();
-                setRefreshIndicator(refreshIndicator);
-            }
-        });
+        foodAdapter.notifyDataSetChanged();
     }
 
     public void setRefreshIndicator(SwipeToRefreshListener.RefreshIndicator refreshIndicator) {

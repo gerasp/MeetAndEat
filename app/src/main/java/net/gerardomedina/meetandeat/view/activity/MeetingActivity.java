@@ -1,6 +1,5 @@
 package net.gerardomedina.meetandeat.view.activity;
 
-import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -71,9 +70,9 @@ public class MeetingActivity extends BaseActivity {
     }
 
     private void init() {
+        changeToFoodFragment();
         new GetParticipantsTask(this).execute();
         setToolbar();
-        changeToFoodFragment();
     }
 
 
