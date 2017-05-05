@@ -33,7 +33,7 @@ public class MessageAdapter extends ArrayAdapter<Message> {
             if (appCommon.getUser().getUsername().equals(message.getUsername()))
                 convertView = LayoutInflater.from(getContext()).inflate(R.layout.fragment_chat_out, parent, false);
             else
-                convertView = LayoutInflater.from(getContext()).inflate(R.layout.fragment_chat_out, parent, false);
+                convertView = LayoutInflater.from(getContext()).inflate(R.layout.fragment_chat_in, parent, false);
 
         }
 
