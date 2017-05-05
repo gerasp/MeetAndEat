@@ -3,18 +3,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/oldMeetingsInfo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_margin="@dimen/text_margin"
-        android:text="@string/old_meetings_info"
-        android:textAlignment="center" />
 
     <android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/swipeRefresh"
+        android:layout_above="@+id/oldMeetingsInfo"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -22,11 +14,18 @@
             android:id="@+id/meetings"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/oldMeetingsInfo"
             android:divider="@color/transparent"
             android:dividerHeight="8dp"
             android:padding="@dimen/cardview_padding" />
     </android.support.v4.widget.SwipeRefreshLayout>
+    <TextView
+        android:id="@+id/oldMeetingsInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="@dimen/text_margin"
+        android:text="@string/old_meetings_info"
+        android:textAlignment="center" />
 
 
 </RelativeLayout>

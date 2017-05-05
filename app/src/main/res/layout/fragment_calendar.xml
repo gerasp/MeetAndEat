@@ -4,12 +4,6 @@
     android:layout_height="match_parent"
     android:layout_margin="@dimen/activity_horizontal_margin">
 
-    <CalendarView
-        android:layout_width="match_parent"
-        android:id="@+id/calendar"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/calendarInfo"
-        android:layout_alignParentTop="true" />
 
     <TextView
         android:id="@+id/calendarInfo"
@@ -17,10 +11,10 @@
         android:layout_height="wrap_content"
         android:text="@string/no_meeting"
         android:textAlignment="center"
-        android:layout_marginTop="@dimen/text_margin"
-        android:layout_marginLeft="@dimen/text_margin"
-        android:layout_marginRight="@dimen/text_margin"
-        android:layout_above="@+id/setAlarmButton" />
+        android:layout_margin="@dimen/text_margin"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <Button
         android:id="@+id/setAlarmButton"
@@ -30,8 +24,14 @@
         android:text="@string/set_alarm_button"
         android:textColor="@color/inverted_text"
         android:visibility="visible"
-        android:layout_margin="@dimen/button_margin"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_above="@id/calendarInfo"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"/>
 
+    <CalendarView
+        android:layout_width="match_parent"
+        android:id="@+id/calendar"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_above="@id/setAlarmButton"/>
 </RelativeLayout>

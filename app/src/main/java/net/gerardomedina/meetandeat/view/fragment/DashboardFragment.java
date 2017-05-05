@@ -45,7 +45,8 @@ public class DashboardFragment extends BaseFragment implements InitiableFragment
         FloatingActionButton newMeetingButton = (FloatingActionButton) view.findViewById(R.id.newMeetingButton);
         meetingListView = (ListView) view.findViewById(R.id.meetings);
         dbHelper = new DBHelper(getActivity());
-        ((SwipeRefreshLayout) view.findViewById(R.id.swipeRefresh)).setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+        refreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipeRefresh);
+        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 new GetMeetingsTask(getBaseFragment());

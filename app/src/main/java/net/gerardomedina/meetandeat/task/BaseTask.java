@@ -24,19 +24,19 @@ public abstract class BaseTask extends AsyncTask<Void, Void, Boolean> {
     private int messageId;
 
     void showProgressDialog(int messageId) {
-        this.messageId = messageId;
-        progressDialog = new ProgressDialog(activity);
-        progressDialog.setMessage(activity.getString(this.messageId));
-        progressDialog.setIndeterminate(false);
-        progressDialog.setCancelable(false);
-        progressDialog.setButton(DialogInterface.BUTTON_NEGATIVE, activity.getString(android.R.string.cancel), new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                onCancelled();
-                dialog.dismiss();
-            }
-        });
-        progressDialog.show();
+//        this.messageId = messageId;
+//        progressDialog = new ProgressDialog(activity);
+//        progressDialog.setMessage(activity.getString(this.messageId));
+//        progressDialog.setIndeterminate(false);
+//        progressDialog.setCancelable(false);
+//        progressDialog.setButton(DialogInterface.BUTTON_NEGATIVE, activity.getString(android.R.string.cancel), new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int which) {
+//                onCancelled();
+//                dialog.dismiss();
+//            }
+//        });
+//        progressDialog.show();
     }
 
     @Override

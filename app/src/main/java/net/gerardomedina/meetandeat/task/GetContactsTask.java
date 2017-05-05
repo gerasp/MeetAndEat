@@ -42,6 +42,7 @@ public class GetContactsTask extends BaseTask {
                 switch (response.getInt("code")) {
                     case 2:
                         ((ContactsFragment) fragment).saveContactListToLocalDB(response);
+                        fragment.stopRefreshing();
                         break;
                 }
             } catch (JSONException e) {

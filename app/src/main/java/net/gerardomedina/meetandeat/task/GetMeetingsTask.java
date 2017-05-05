@@ -28,8 +28,8 @@ public class GetMeetingsTask extends BaseTask {
 
     @Override
     protected Boolean doInBackground(Void... params) {
-        Map<String,String> parameters = new HashMap<>();
-        parameters.put("user_id",appCommon.getUser().getId()+"");
+        Map<String, String> parameters = new HashMap<>();
+        parameters.put("user_id", appCommon.getUser().getId() + "");
 
         response = requester.httpRequest("GetMeetings.php", "POST", parameters);
         return true;
@@ -41,8 +41,10 @@ public class GetMeetingsTask extends BaseTask {
         if (success) {
             try {
                 switch (response.getInt("code")) {
-                    case 2: ((DashboardFragment)fragment).saveMeetingListToLocalDB(response);
-                            break;
+                    case 2:
+                        ((DashboardFragment) fragment).saveMeetingListToLocalDB(response);
+                        fragment.stopRefreshing();
+                        break;
                 }
             } catch (JSONException e) {
                 Log.e("JSON Parser", "Error parsing data: " + e.toString());

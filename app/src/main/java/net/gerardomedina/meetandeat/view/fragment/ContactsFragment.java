@@ -14,8 +14,8 @@ import android.widget.SearchView;
 import android.widget.TextView;
 
 import net.gerardomedina.meetandeat.R;
-import net.gerardomedina.meetandeat.persistence.local.DBHelper;
 import net.gerardomedina.meetandeat.persistence.local.ContactValues;
+import net.gerardomedina.meetandeat.persistence.local.DBHelper;
 import net.gerardomedina.meetandeat.task.GetContactsTask;
 import net.gerardomedina.meetandeat.task.SearchTask;
 import net.gerardomedina.meetandeat.view.adapter.ContactAdapter;
@@ -48,7 +48,8 @@ public class ContactsFragment extends BaseFragment implements InitiableFragment 
     public void init() {
         dbHelper = new DBHelper(getActivity());
         contactListView = (ListView) view.findViewById(R.id.contacts);
-        ((SwipeRefreshLayout) view.findViewById(R.id.swipeRefresh)).setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+        refreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipeRefresh);
+        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 new GetContactsTask(getBaseFragment());
@@ -103,8 +104,8 @@ public class ContactsFragment extends BaseFragment implements InitiableFragment 
         for (cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext()) {
             contacts.add(cursor.getString(cursor.getColumnIndexOrThrow(ContactValues.COLUMN_NAME_USERNAME)));
         }
-        cursor.close();
         contactListView.setAdapter(new ContactAdapter(this, getActivity(), contacts, false));
+        cursor.close();
     }
 
 

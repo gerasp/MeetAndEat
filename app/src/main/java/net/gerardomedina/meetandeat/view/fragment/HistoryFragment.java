@@ -42,7 +42,8 @@ public class HistoryFragment extends BaseFragment implements InitiableFragment {
     public void init() {
         meetingListView = (ListView) view.findViewById(R.id.meetings);
         dbHelper = new DBHelper(getActivity());
-        ((SwipeRefreshLayout) view.findViewById(R.id.swipeRefresh)).setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+        refreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipeRefresh);
+        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 new GetOldMeetingsTask(getBaseFragment());
@@ -74,6 +75,7 @@ public class HistoryFragment extends BaseFragment implements InitiableFragment {
         Cursor cursor = db.rawQuery("select * from "+ OldMeetingValues.TABLE_NAME+
                 " order by " + OldMeetingValues.COLUMN_NAME_DATETIME+" ASC;",null);
         meetingListView.setAdapter(new MeetingAdapter(getActivity(), (BaseActivity) getActivity(),cursor,true,true));
+        cursor.close();
     }
 
 }

@@ -44,6 +44,7 @@ public class GetOldMeetingsTask extends BaseTask {
                 switch (response.getInt("code")) {
                     case 2:
                         ((HistoryFragment) fragment).saveMeetingListToLocalDB(response);
+                        fragment.stopRefreshing();
                         break;
                 }
             } catch (JSONException e) {
