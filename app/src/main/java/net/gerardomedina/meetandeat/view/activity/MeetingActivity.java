@@ -1,9 +1,11 @@
 package net.gerardomedina.meetandeat.view.activity;
 
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -42,6 +44,12 @@ public class MeetingActivity extends BaseActivity {
                 break;
             case R.id.menu_food:
                 changeToFoodFragment();
+                break;
+            case R.id.menu_participants:
+                new AlertDialog.Builder(getBaseActivity())
+                        .setTitle(getString(R.string.select_from_contacts))
+                        .setItems(meeting.getParticipants().toArray(new String[0]),null)
+                        .create().show();
                 break;
             case R.id.menu_location:
                 changeToActivity(LocationActivity.class);
