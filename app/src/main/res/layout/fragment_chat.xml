@@ -34,6 +34,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/messageInput"
+        android:layout_margin="@dimen/button_margin"
+        android:divider="@color/transparent"
+        android:dividerHeight="@dimen/button_margin"
         android:layout_alignParentTop="true" />
 
 </RelativeLayout>
