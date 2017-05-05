@@ -23,7 +23,6 @@ import java.util.List;
 public class InvitationAdapter extends ArrayAdapter<Invitation> {
     private InvitationsActivity invitationsActivity;
     AppCommon appCommon = AppCommon.getInstance();
-
     public InvitationAdapter(InvitationsActivity invitationsActivity, List<Invitation> invitations) {
         super(invitationsActivity, 0, invitations);
         this.invitationsActivity = invitationsActivity;
@@ -36,33 +35,39 @@ public class InvitationAdapter extends ArrayAdapter<Invitation> {
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.activity_invitations_item, parent, false);
         }
-        TextView invitationLabel = (TextView) convertView.findViewById(R.id.invitationLabel);
-        invitationLabel.setText(invitationsActivity.getString(R.string.invitation,invitation.getTitle()));
-        convertView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                new AlertDialog.Builder(invitationsActivity)
-                        .setTitle(invitation.getTitle())
-                        .setMessage(invitationsActivity.getString(R.string.confirmation_accept_invitation))
-                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                if (appCommon.hasInternet(invitationsActivity)) {
-                                    new AcceptInvitationTask(invitationsActivity, 1, invitation.getId()).execute();
-                                } else invitationsActivity.showSimpleDialog(R.string.no_internet_connection);
-                            }
-                        })
-                        .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                if (appCommon.hasInternet(invitationsActivity)) {
-                                    new AcceptInvitationTask(invitationsActivity, 0, invitation.getId()).execute();
-                                } else invitationsActivity.showSimpleDialog(R.string.no_internet_connection);
-                            }
-                        })
-                        .setIcon(R.drawable.ic_info)
-                        .show();
-            }
-        });
+
+        if (invitation.getType() == 0) {
+
+            TextView invitationLabel = (TextView) convertView.findViewById(R.id.invitationLabel);
+            invitationLabel.setText(invitationsActivity.getString(R.string.invitation,invitation.getTitle()));
+            convertView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    new AlertDialog.Builder(invitationsActivity)
+                            .setTitle(invitation.getTitle())
+                            .setMessage(invitationsActivity.getString(R.string.confirmation_accept_invitation))
+                            .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    if (appCommon.hasInternet(invitationsActivity)) {
+                                        new AcceptInvitationTask(invitationsActivity, 1, invitation.getId()).execute();
+                                    } else invitationsActivity.showSimpleDialog(R.string.no_internet_connection);
+                                }
+                            })
+                            .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    if (appCommon.hasInternet(invitationsActivity)) {
+                                        new AcceptInvitationTask(invitationsActivity, 0, invitation.getId()).execute();
+                                    } else invitationsActivity.showSimpleDialog(R.string.no_internet_connection);
+                                }
+                            })
+                            .setIcon(R.drawable.ic_info)
+                            .show();
+                }
+            });
+        } else {
+
+        }
         return convertView;
     }
 }

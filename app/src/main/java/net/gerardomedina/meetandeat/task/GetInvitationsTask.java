@@ -45,9 +45,14 @@ public class GetInvitationsTask extends BaseTask {
                         ((MainActivity)activity).setBadgeCount(activity,response.getJSONArray("results").length()+"");
                         List<Invitation> invitations = new ArrayList<>();
                         JSONArray results = response.getJSONArray("results");
+                        JSONArray results2 = response.getJSONArray("results2");
                         for (int i = 0; i < results.length(); i++) {
                             invitations.add(new Invitation(results.getJSONObject(i).getInt("id"),
-                                    results.getJSONObject(i).getString("title")));
+                                    results.getJSONObject(i).getString("title"), 0));
+                        }
+                        for (int i = 0; i < results2.length(); i++) {
+                            invitations.add(new Invitation(results.getJSONObject(i).getInt("id"),
+                                    results.getJSONObject(i).getString("username"), 1));
                         }
                         appCommon.setInvitations(invitations);
                         break;
