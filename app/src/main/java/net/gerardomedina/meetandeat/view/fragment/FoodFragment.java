@@ -41,7 +41,6 @@ public class FoodFragment extends BaseFragment implements InitiableFragment {
     private SwipeToRefreshListener.RefreshIndicator refreshIndicator;
     private Meeting meeting;
     private List<Food> foodList;
-    private SortableFoodTableView foodTableView;
     private FoodAdapter foodAdapter;
 
     public FoodFragment() {
@@ -68,7 +67,8 @@ public class FoodFragment extends BaseFragment implements InitiableFragment {
     }
 
     public void setTable() {
-        foodTableView = (SortableFoodTableView) view.findViewById(R.id.foodTable);
+        foodList = new ArrayList<>();
+        SortableFoodTableView foodTableView = (SortableFoodTableView) view.findViewById(R.id.foodTable);
         foodAdapter = new FoodAdapter(getBaseActivity(), foodList, foodTableView);
         foodTableView.setDataAdapter(foodAdapter);
         foodTableView.setSwipeToRefreshEnabled(true);

@@ -36,7 +36,7 @@ public class GetInvitationsTask extends BaseTask {
             try {
                 switch (response.getInt("code")) {
                     case 2:
-                        ((MainActivity)activity).setBadgeCount(activity,
+                        ((MainActivity)activity).setBadgeCountNoUI(
                                 (response.getJSONArray("results").length()
                                         + response.getJSONArray("results2").length())+"");
                         List<Invitation> invitations = new ArrayList<>();

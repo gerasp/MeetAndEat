@@ -42,7 +42,7 @@ public class MeetingActivity extends BaseActivity {
                 changeToChatFragment();
                 break;
             case R.id.menu_food:
-                changeToFoodFragment();
+                changeToFoodFragment(true);
                 break;
             case R.id.menu_participants:
                 new AlertDialog.Builder(getBaseActivity())
@@ -70,19 +70,19 @@ public class MeetingActivity extends BaseActivity {
     }
 
     private void init() {
-        changeToFoodFragment();
+        changeToFoodFragment(false);
         new GetParticipantsTask(this).execute();
         setToolbar();
     }
 
 
-    public void changeToFoodFragment() {
+    public void changeToFoodFragment(boolean animate) {
         if (menu != null) {
             menu.getItem(0).setVisible(true);
             menu.getItem(1).setVisible(false);
         }
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.setCustomAnimations(R.anim.slide_in_bottom, R.anim.slide_out_top);
+        if (animate) transaction.setCustomAnimations(R.anim.slide_in_bottom, R.anim.slide_out_top);
         transaction.replace(R.id.fragment_container, new FoodFragment());
         transaction.commit();
     }

@@ -6,13 +6,10 @@ import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
-import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import net.gerardomedina.meetandeat.R;
@@ -29,6 +26,8 @@ public class MainActivity extends BaseActivity {
     private final int NUMBER_OF_SECTIONS = 5;
     private TextView counter;
     private LayerDrawable icon;
+    public boolean realBadge = false;
+    public String count;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -36,11 +35,12 @@ public class MainActivity extends BaseActivity {
         menu.getItem(0).setEnabled(true);
         MenuItem itemInvitations = menu.findItem(R.id.menu_invitations);
         icon = (LayerDrawable) itemInvitations.getIcon();
-        setBadgeCount(this,"0");
+        setBadgeCount(this);
         return true;
     }
 
-    public void setBadgeCount(Context context, String count) {
+    public void setBadgeCount(Context context) {
+        if (!realBadge) count = "0";
         BadgeDrawable badge;
         Drawable reuse = icon.findDrawableByLayerId(R.id.ic_badge);
         if (reuse != null && reuse instanceof BadgeDrawable) badge = (BadgeDrawable) reuse;
@@ -50,6 +50,11 @@ public class MainActivity extends BaseActivity {
         icon.setDrawableByLayerId(R.id.ic_badge, badge);
     }
 
+
+    public void setBadgeCountNoUI(String s) {
+        realBadge = true;
+        count = s;
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
