@@ -80,7 +80,7 @@ public class DashboardFragment extends BaseFragment implements InitiableFragment
     public void loadMeetingListFromLocalDB() {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         Cursor cursor = db.rawQuery("select * from "+MeetingValues.TABLE_NAME+
-                " order by " +MeetingValues.COLUMN_NAME_DATETIME+", ASC;",null);
+                " order by " +MeetingValues.COLUMN_NAME_DATETIME+" ASC;",null);
         meetingListView.setAdapter(new MeetingAdapter(getActivity(), (BaseActivity) getActivity(),cursor,true));
     }
 }
