@@ -40,19 +40,13 @@ public abstract class BaseTask extends AsyncTask<Void, Void, Boolean> {
     }
 
     @Override
-    protected void onCancelled() {
-        super.onCancelled();
-        activity.showSimpleDialog(R.string.error_retrieving_data);
-    }
-
-    @Override
     protected void onPostExecute(Boolean success) {
         super.onPostExecute(success);
         if (progressDialog!= null)progressDialog.cancel();
-//        try {
-//            if (!success || response.getInt("code") < 0 || response.getInt("code") > 2) activity.showSimpleDialog(R.string.error_retrieving_data);
-//        } catch (JSONException e) {
-//            Log.e("JSON Parser", "Error parsing data: " + e.toString());
-//        }
+        try {
+            if (!success || response.getInt("code") < 0 || response.getInt("code") > 2) activity.showSimpleDialog(R.string.error_retrieving_data);
+        } catch (JSONException e) {
+            Log.e("JSON Parser", "Error parsing data: " + e.toString());
+        }
     }
 }
