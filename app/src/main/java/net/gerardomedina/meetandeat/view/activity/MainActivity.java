@@ -1,6 +1,5 @@
 package net.gerardomedina.meetandeat.view.activity;
 
-import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
@@ -35,16 +34,16 @@ public class MainActivity extends BaseActivity {
         menu.getItem(0).setEnabled(true);
         MenuItem itemInvitations = menu.findItem(R.id.menu_invitations);
         icon = (LayerDrawable) itemInvitations.getIcon();
-        setBadgeCount(this);
+        setBadgeCount();
         return true;
     }
 
-    public void setBadgeCount(Context context) {
+    public void setBadgeCount() {
         if (!realBadge) count = "0";
         BadgeDrawable badge;
         Drawable reuse = icon.findDrawableByLayerId(R.id.ic_badge);
         if (reuse != null && reuse instanceof BadgeDrawable) badge = (BadgeDrawable) reuse;
-        else badge = new BadgeDrawable(context);
+        else badge = new BadgeDrawable(this);
         badge.setCount(count);
         icon.mutate();
         icon.setDrawableByLayerId(R.id.ic_badge, badge);
@@ -54,6 +53,7 @@ public class MainActivity extends BaseActivity {
     public void setBadgeCountNoUI(String s) {
         realBadge = true;
         count = s;
+        if (icon != null) setBadgeCount();
     }
 
     @Override
