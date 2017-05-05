@@ -51,9 +51,8 @@ public class AcceptInvitationTask extends BaseTask {
         if (success) {
             try {
                 switch (response.getInt("code")) {
-                    case 1:
                     case 2:
-                        activity.changeToActivity(MainActivity.class);
+                        activity.changeToActivityNoBackStack(MainActivity.class);
                         break;
                 }
             } catch (JSONException e) {
