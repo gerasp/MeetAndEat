@@ -18,7 +18,7 @@ public class AddFoodTask extends BaseTask {
     private String amount;
 
     public AddFoodTask(BaseFragment fragment, String icon, String description, String amount) {
-
+        this.fragment = fragment;
         this.activity = fragment.getBaseActivity();
         this.icon = icon;
         this.description = description;
