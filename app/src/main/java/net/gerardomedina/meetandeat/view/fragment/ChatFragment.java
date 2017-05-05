@@ -62,9 +62,11 @@ public class ChatFragment extends BaseFragment implements InitiableFragment {
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (messageInput.getText().length() > 0)
+                if (messageInput.getText().length() > 0) {
                     new SendMessageTask(fragment, messageInput.getText().toString()).execute();
                     new GetMessagesTask(fragment).execute();
+                    messageInput.setText("");
+                }
             }
         });
         messageInput.setBackgroundColor(Color.parseColor(meeting.getColor()));
