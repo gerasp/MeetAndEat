@@ -6,12 +6,12 @@
     android:layout_height="match_parent"
     card_view:cardBackgroundColor="@color/light_grey"
     card_view:cardCornerRadius="4dp"
-    card_view:cardElevation="@dimen/cardview_default_elevation">
+    card_view:cardElevation="8dp">
 
     <View
         android:id="@+id/meetingColor"
         android:layout_width="15dp"
-        android:layout_height="80dp"
+        android:layout_height="60dp"
         android:layout_gravity="start|center"
         android:background="@color/primary" />
 
@@ -19,9 +19,9 @@
         android:id="@+id/meetingTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="top|center"
-        android:layout_marginLeft="9dp"
-        android:layout_marginStart="9dp"
+        android:layout_gravity="top|start"
+        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp"
         android:text="Meeting"
         android:textColor="@color/primary_text"
         android:textSize="25sp" />
@@ -30,7 +30,9 @@
         android:id="@+id/meetingDatetime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|center"
+        android:layout_gravity="bottom|start"
+        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp"
         android:text="Meeting date"
         android:textColor="@color/secondary_text"
         android:textSize="20sp" />
