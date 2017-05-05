@@ -2,7 +2,6 @@ package net.gerardomedina.meetandeat.task;
 
 import android.util.Log;
 
-import net.gerardomedina.meetandeat.R;
 import net.gerardomedina.meetandeat.model.Invitation;
 import net.gerardomedina.meetandeat.view.activity.BaseActivity;
 import net.gerardomedina.meetandeat.view.activity.MainActivity;
@@ -21,11 +20,6 @@ public class GetInvitationsTask extends BaseTask {
         this.activity = activity;
     }
 
-    @Override
-    protected void onPreExecute() {
-        super.onPreExecute();
-        showProgressDialog(R.string.getting_invitations);
-    }
     @Override
     protected Boolean doInBackground(Void... params) {
         Map<String, String> parameters = new HashMap<>();

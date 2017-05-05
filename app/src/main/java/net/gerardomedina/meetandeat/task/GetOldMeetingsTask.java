@@ -2,10 +2,7 @@ package net.gerardomedina.meetandeat.task;
 
 import android.util.Log;
 
-import net.gerardomedina.meetandeat.R;
-import net.gerardomedina.meetandeat.view.activity.BaseActivity;
 import net.gerardomedina.meetandeat.view.fragment.BaseFragment;
-import net.gerardomedina.meetandeat.view.fragment.DashboardFragment;
 import net.gerardomedina.meetandeat.view.fragment.HistoryFragment;
 
 import org.json.JSONException;
@@ -15,16 +12,9 @@ import java.util.Map;
 
 public class GetOldMeetingsTask extends BaseTask {
 
-
     public GetOldMeetingsTask(BaseFragment fragment) {
         this.fragment = fragment;
         this.activity = fragment.getBaseActivity();
-    }
-
-    @Override
-    protected void onPreExecute() {
-        super.onPreExecute();
-        showProgressDialog(R.string.get_old_meetings_dialog);
     }
 
     @Override

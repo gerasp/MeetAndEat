@@ -18,31 +18,12 @@ public abstract class BaseTask extends AsyncTask<Void, Void, Boolean> {
     AppCommon appCommon = AppCommon.getInstance();
     Requester requester = new Requester();
     JSONObject response;
-    ProgressDialog progressDialog;
     BaseActivity activity;
     BaseFragment fragment;
-    private int messageId;
-
-    void showProgressDialog(int messageId) {
-//        this.messageId = messageId;
-//        progressDialog = new ProgressDialog(activity);
-//        progressDialog.setMessage(activity.getString(this.messageId));
-//        progressDialog.setIndeterminate(false);
-//        progressDialog.setCancelable(false);
-//        progressDialog.setButton(DialogInterface.BUTTON_NEGATIVE, activity.getString(android.R.string.cancel), new DialogInterface.OnClickListener() {
-//            @Override
-//            public void onClick(DialogInterface dialog, int which) {
-//                onCancelled();
-//                dialog.dismiss();
-//            }
-//        });
-//        progressDialog.show();
-    }
 
     @Override
     protected void onPostExecute(Boolean success) {
         super.onPostExecute(success);
-        if (progressDialog!= null)progressDialog.cancel();
         if(fragment != null) fragment.stopRefreshing();
         try {
             if (!success || response.getInt("code") < 0 || response.getInt("code") > 2) activity.showSimpleDialog(R.string.error_retrieving_data);

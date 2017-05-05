@@ -22,13 +22,6 @@ public class SendMessageTask extends BaseTask {
     }
 
     @Override
-    protected void onPreExecute() {
-        super.onPreExecute();
-        showProgressDialog(R.string.sending_message);
-    }
-
-
-    @Override
     protected Boolean doInBackground(Void... params) {
         Map<String, String> parameters = new HashMap<>();
         parameters.put("user", appCommon.getUser().getUsername());

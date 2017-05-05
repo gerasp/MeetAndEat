@@ -3,7 +3,6 @@ package net.gerardomedina.meetandeat.task;
 import android.util.Log;
 
 import net.gerardomedina.meetandeat.R;
-import net.gerardomedina.meetandeat.view.activity.BaseActivity;
 import net.gerardomedina.meetandeat.view.fragment.BaseFragment;
 import net.gerardomedina.meetandeat.view.fragment.ContactsFragment;
 
@@ -20,12 +19,6 @@ public class SearchTask extends BaseTask {
         this.username = username;
         this.fragment = fragment;
         this.activity = fragment.getBaseActivity();
-    }
-
-    @Override
-    protected void onPreExecute() {
-        super.onPreExecute();
-        showProgressDialog(R.string.searching);
     }
 
     @Override

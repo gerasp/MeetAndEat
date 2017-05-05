@@ -23,13 +23,6 @@ public class LoginTask extends BaseTask {
     }
 
     @Override
-    protected void onPreExecute() {
-        super.onPreExecute();
-        showProgressDialog(R.string.login_dialog);
-    }
-
-
-    @Override
     protected Boolean doInBackground(Void... params) {
         Map<String, String> parameters = new HashMap<>();
         parameters.put("username", username);

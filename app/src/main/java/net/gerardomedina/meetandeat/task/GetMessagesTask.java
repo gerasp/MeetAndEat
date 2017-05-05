@@ -2,8 +2,6 @@ package net.gerardomedina.meetandeat.task;
 
 import android.util.Log;
 
-import net.gerardomedina.meetandeat.R;
-import net.gerardomedina.meetandeat.view.activity.BaseActivity;
 import net.gerardomedina.meetandeat.view.fragment.BaseFragment;
 import net.gerardomedina.meetandeat.view.fragment.ChatFragment;
 
@@ -19,12 +17,6 @@ public class GetMessagesTask extends BaseTask {
     public GetMessagesTask(BaseFragment fragment) {
         this.activity = fragment.getBaseActivity();
         this.fragment = fragment;
-    }
-
-    @Override
-    protected void onPreExecute() {
-        super.onPreExecute();
-        showProgressDialog(R.string.getting_messages);
     }
 
     @Override

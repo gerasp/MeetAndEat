@@ -2,9 +2,6 @@ package net.gerardomedina.meetandeat.task;
 
 import android.util.Log;
 
-import net.gerardomedina.meetandeat.R;
-import net.gerardomedina.meetandeat.view.activity.BaseActivity;
-import net.gerardomedina.meetandeat.view.activity.MeetingActivity;
 import net.gerardomedina.meetandeat.view.fragment.BaseFragment;
 import net.gerardomedina.meetandeat.view.fragment.FoodFragment;
 
@@ -19,13 +16,6 @@ public class GetFoodTask extends BaseTask {
         this.fragment = fragment;
         this.activity = fragment.getBaseActivity();
     }
-
-    @Override
-    protected void onPreExecute() {
-        super.onPreExecute();
-//        showProgressDialog(R.string.getting_food);
-    }
-
 
     @Override
     protected Boolean doInBackground(Void... params) {

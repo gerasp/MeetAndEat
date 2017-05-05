@@ -4,7 +4,6 @@ import android.util.Log;
 
 import net.gerardomedina.meetandeat.R;
 import net.gerardomedina.meetandeat.view.activity.BaseActivity;
-import net.gerardomedina.meetandeat.view.activity.MainActivity;
 
 import org.json.JSONException;
 
@@ -22,12 +21,6 @@ public class SignupTask extends BaseTask {
         this.username = username;
         this.password = password;
         this.email = email;
-    }
-
-    @Override
-    protected void onPreExecute() {
-        super.onPreExecute();
-        showProgressDialog(R.string.signup_dialog);
     }
 
     @Override

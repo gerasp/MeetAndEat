@@ -3,9 +3,7 @@ package net.gerardomedina.meetandeat.task;
 import android.util.Log;
 
 import net.gerardomedina.meetandeat.R;
-import net.gerardomedina.meetandeat.view.activity.BaseActivity;
 import net.gerardomedina.meetandeat.view.fragment.BaseFragment;
-import net.gerardomedina.meetandeat.view.fragment.ContactsFragment;
 
 import org.json.JSONException;
 
@@ -20,12 +18,6 @@ public class AddContactTask extends BaseTask {
         this.fragment = fragment;
         this.activity = fragment.getBaseActivity();
         this.user2Username = user2Username;
-    }
-
-    @Override
-    protected void onPreExecute() {
-        super.onPreExecute();
-        showProgressDialog(R.string.adding_contact);
     }
 
     @Override

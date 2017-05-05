@@ -61,8 +61,6 @@
     <string name="new_meeting_color">Color</string>
     <string name="new_meeting_participants">Participants</string>
     <string name="choose_color">Choose color</string>
-    <string name="error_creating_meeting">Error creating meeting</string>
-    <string name="creating_meeting_dialog">Creating meeting</string>
     <string name="error_field_too_long">Should be shorter</string>
 
     <string name="add_food_label">Add food</string>
@@ -95,9 +93,9 @@
     <string name="adding_contact">Adding contact</string>
     <string name="error_adding_contact">Error adding contact</string>
     <string name="contact_added_successfully">Contact invited</string>
-    <string name="no_contact">You have no contacts. Please look for them with the upper search box</string>
+    <string name="no_contact">You have no contacts. Please look for them with the upper search box or swipe to refresh.</string>
     <string name="tap_to_add_contact">Tap on the user to add it to your contact list</string>
-    <string name="long_tap_to_delete_contact">Long press to delete a contact</string>
+    <string name="long_tap_to_delete_contact">Long press to delete a contact or swipe to refresh</string>
     <string name="chat">Chat</string>
     <string name="send_a_message">Send a message</string>
     <string name="food">Food</string>

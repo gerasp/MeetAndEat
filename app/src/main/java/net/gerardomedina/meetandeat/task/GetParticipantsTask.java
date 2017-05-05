@@ -3,8 +3,6 @@ package net.gerardomedina.meetandeat.task;
 import android.util.Log;
 
 import net.gerardomedina.meetandeat.view.activity.BaseActivity;
-import net.gerardomedina.meetandeat.view.fragment.BaseFragment;
-import net.gerardomedina.meetandeat.view.fragment.FoodFragment;
 
 import org.json.JSONException;
 
@@ -16,13 +14,6 @@ public class GetParticipantsTask extends BaseTask {
     public GetParticipantsTask(BaseActivity activity) {
         this.activity = activity;
     }
-
-    @Override
-    protected void onPreExecute() {
-        super.onPreExecute();
-//        showProgressDialog(R.string.getting_food);
-    }
-
 
     @Override
     protected Boolean doInBackground(Void... params) {

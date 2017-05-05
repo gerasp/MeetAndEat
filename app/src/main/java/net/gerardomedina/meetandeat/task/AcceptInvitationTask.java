@@ -2,17 +2,12 @@ package net.gerardomedina.meetandeat.task;
 
 import android.util.Log;
 
-import net.gerardomedina.meetandeat.R;
-import net.gerardomedina.meetandeat.model.Invitation;
 import net.gerardomedina.meetandeat.view.activity.BaseActivity;
 import net.gerardomedina.meetandeat.view.activity.MainActivity;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class AcceptInvitationTask extends BaseTask {
@@ -28,18 +23,12 @@ public class AcceptInvitationTask extends BaseTask {
     }
 
     @Override
-    protected void onPreExecute() {
-        super.onPreExecute();
-        showProgressDialog(R.string.accepting_invitation);
-    }
-
-    @Override
     protected Boolean doInBackground(Void... params) {
         Map<String, String> parameters = new HashMap<>();
         parameters.put("user_id", appCommon.getUser().getId() + "");
-        parameters.put("meeting_id", meetingId +"");
-        parameters.put("accept", accept +"");
-        parameters.put("type", type +"");
+        parameters.put("meeting_id", meetingId + "");
+        parameters.put("accept", accept + "");
+        parameters.put("type", type + "");
 
         response = requester.httpRequest("AcceptInvitation.php", "POST", parameters);
         return true;
