@@ -42,8 +42,6 @@ public class GetMessagesTask extends BaseTask {
         if (success) {
             try {
                 switch (response.getInt("code")) {
-                    case 0: activity.showSimpleDialog(R.string.error_retrieving_data);
-                            break;
                     case 2: ((ChatFragment)fragment).populateMessageList(response);
                             break;
                 }

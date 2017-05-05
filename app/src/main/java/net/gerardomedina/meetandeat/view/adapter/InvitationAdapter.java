@@ -52,6 +52,7 @@ public class InvitationAdapter extends ArrayAdapter<Invitation> {
                                     if (appCommon.hasInternet(invitationsActivity)) {
                                         new AcceptInvitationTask(invitationsActivity, 1, invitation.getId(), invitation.getType()).execute();
                                     } else invitationsActivity.showSimpleDialog(R.string.no_internet_connection);
+                                    appCommon.getInvitations().remove(invitation);
                                 }
                             })
                             .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
@@ -60,6 +61,7 @@ public class InvitationAdapter extends ArrayAdapter<Invitation> {
                                     if (appCommon.hasInternet(invitationsActivity)) {
                                         new AcceptInvitationTask(invitationsActivity, 0, invitation.getId(), invitation.getType()).execute();
                                     } else invitationsActivity.showSimpleDialog(R.string.no_internet_connection);
+                                    appCommon.getInvitations().remove(invitation);
                                 }
                             })
                             .setIcon(R.drawable.ic_info)
@@ -80,6 +82,7 @@ public class InvitationAdapter extends ArrayAdapter<Invitation> {
                                     if (appCommon.hasInternet(invitationsActivity)) {
                                         new AcceptInvitationTask(invitationsActivity, 1, invitation.getId(), invitation.getType()).execute();
                                     } else invitationsActivity.showSimpleDialog(R.string.no_internet_connection);
+                                    appCommon.getInvitations().remove(invitation);
                                 }
                             })
                             .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
@@ -88,6 +91,7 @@ public class InvitationAdapter extends ArrayAdapter<Invitation> {
                                     if (appCommon.hasInternet(invitationsActivity)) {
                                         new AcceptInvitationTask(invitationsActivity, 0, invitation.getId(), invitation.getType()).execute();
                                     } else invitationsActivity.showSimpleDialog(R.string.no_internet_connection);
+                                    appCommon.getInvitations().remove(invitation);
                                 }
                             })
                             .setIcon(R.drawable.ic_info)

@@ -40,9 +40,6 @@ public class GetContactsTask extends BaseTask {
         if (success) {
             try {
                 switch (response.getInt("code")) {
-                    case 0:
-                        ((ContactsFragment) fragment).loadContactListFromLocalDB();
-                        break;
                     case 2:
                         ((ContactsFragment) fragment).saveContactListToLocalDB(response);
                         break;

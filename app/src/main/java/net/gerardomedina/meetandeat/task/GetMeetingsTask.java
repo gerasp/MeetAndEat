@@ -41,8 +41,6 @@ public class GetMeetingsTask extends BaseTask {
         if (success) {
             try {
                 switch (response.getInt("code")) {
-                    case 0: ((DashboardFragment)fragment).loadMeetingListFromLocalDB();
-                            break;
                     case 2: ((DashboardFragment)fragment).saveMeetingListToLocalDB(response);
                             break;
                 }
