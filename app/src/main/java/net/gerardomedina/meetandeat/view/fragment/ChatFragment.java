@@ -39,8 +39,12 @@ public class ChatFragment extends BaseFragment implements InitiableFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_chat, container, false);
         meeting = appCommon.getSelectedMeeting();
+        if (appCommon.isColorDark(meeting.getColor())){
+            view = inflater.inflate(R.layout.fragment_chat_white, container, false);
+        } else {
+            view = inflater.inflate(R.layout.fragment_chat, container, false);
+        }
         init();
         return view;
     }
