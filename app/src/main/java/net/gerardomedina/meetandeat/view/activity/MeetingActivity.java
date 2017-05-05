@@ -13,6 +13,7 @@ import android.widget.FrameLayout;
 
 import net.gerardomedina.meetandeat.R;
 import net.gerardomedina.meetandeat.model.Meeting;
+import net.gerardomedina.meetandeat.task.GetParticipantsTask;
 import net.gerardomedina.meetandeat.view.fragment.ChatFragment;
 import net.gerardomedina.meetandeat.view.fragment.FoodFragment;
 
@@ -58,6 +59,11 @@ public class MeetingActivity extends BaseActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_meeting);
+        init();
+    }
+
+    private void init() {
+        new GetParticipantsTask(this).execute();
         setToolbar();
         changeToFoodFragment();
     }

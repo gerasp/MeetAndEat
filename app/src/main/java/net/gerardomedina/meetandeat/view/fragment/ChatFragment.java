@@ -83,6 +83,7 @@ public class ChatFragment extends BaseFragment implements InitiableFragment {
         messageInput.setBackgroundColor(Color.parseColor(meeting.getColor()));
         sendButton.setBackgroundColor(Color.parseColor(meeting.getColor()));
         if(meeting.isOld()) {
+            messageInput.setText(R.string.no_chat);
             sendButton.setEnabled(false);
         }
     }

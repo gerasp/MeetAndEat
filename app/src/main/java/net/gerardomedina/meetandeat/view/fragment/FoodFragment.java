@@ -4,6 +4,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.provider.CalendarContract;
 import android.support.v7.app.AlertDialog;
@@ -13,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
@@ -20,6 +22,7 @@ import com.github.clans.fab.FloatingActionMenu;
 import net.gerardomedina.meetandeat.R;
 import net.gerardomedina.meetandeat.model.Food;
 import net.gerardomedina.meetandeat.model.Meeting;
+import net.gerardomedina.meetandeat.persistence.local.ContactValues;
 import net.gerardomedina.meetandeat.persistence.local.DBHelper;
 import net.gerardomedina.meetandeat.persistence.local.MeetingValues;
 import net.gerardomedina.meetandeat.task.GetFoodTask;
@@ -49,7 +52,8 @@ public class FoodFragment extends BaseFragment implements InitiableFragment {
     private Meeting meeting;
 
 
-    public FoodFragment() {}
+    public FoodFragment() {
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -81,7 +85,50 @@ public class FoodFragment extends BaseFragment implements InitiableFragment {
                 createAddFoodDialog();
             }
         });
+
+        FloatingActionButton addParticipantButton = (FloatingActionButton) view.findViewById(R.id.addParticipantButton);
+        addParticipantButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                createAddParticipantDialog();
+            }
+        });
     }
+
+    private void createAddParticipantDialog() {
+        SQLiteOpenHelper dbHelper = new DBHelper(getBaseActivity());
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        Cursor cursor = db.rawQuery("select " + ContactValues.COLUMN_NAME_USERNAME + " from " +
+                ContactValues.TABLE_NAME + " order by "
+                + ContactValues.COLUMN_NAME_USERNAME + " ASC;", null);
+        List<String> contacts = new ArrayList<>();
+        for (cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext()) {
+            contacts.add(cursor.getString(cursor.getColumnIndexOrThrow(ContactValues.COLUMN_NAME_USERNAME)));
+        }
+        cursor.close();
+        contacts.removeAll(meeting.getParticipants());
+        if (contacts.size() > 0) {
+            new AlertDialog.Builder(getBaseActivity())
+                    .setTitle(getString(R.string.select_from_contacts))
+                    .setSingleChoiceItems(contacts.toArray(new String[0]), 0, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    })
+                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    })
+                    .create().show();
+
+        } else {
+            getBaseActivity().showSimpleDialog(R.string.no_contact);
+        }
+    }
+
     private void createAddFoodDialog() {
         final AddFoodDialog addFoodDialog = new AddFoodDialog(this);
         addFoodDialog.setView(getActivity().getLayoutInflater().inflate(R.layout.dialog_addfood, null));

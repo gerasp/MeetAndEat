@@ -1,8 +1,19 @@
 package net.gerardomedina.meetandeat.model;
 
+import android.content.ContentValues;
+import android.database.sqlite.SQLiteDatabase;
+
 import com.google.android.gms.maps.model.LatLng;
 
+import net.gerardomedina.meetandeat.persistence.local.MeetingValues;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 public class Meeting {
     private int id;
@@ -12,6 +23,8 @@ public class Meeting {
     private String color;
     private boolean isOld;
 
+    private List<String> participants;
+
     public Meeting(int id, String title, String location, String datetime, String color) {
         this.id = id;
         this.title = title;
@@ -19,6 +32,7 @@ public class Meeting {
         setDate(datetime);
         this.color = color;
         this.isOld = false;
+        this.participants = new ArrayList<>();
     }
 
     public int getId() {
@@ -78,5 +92,17 @@ public class Meeting {
 
     public void setOld(boolean old) {
         isOld = old;
+    }
+
+    public void setParticipants(JSONObject response) throws JSONException {
+        JSONArray results = response.getJSONArray("results");
+        participants = new ArrayList<>();
+        for (int i = 0; i < results.length(); i++) {
+            participants.add(results.getJSONObject(i).getString("username"));
+        }
+    }
+
+    public List<String> getParticipants() {
+        return participants;
     }
 }
