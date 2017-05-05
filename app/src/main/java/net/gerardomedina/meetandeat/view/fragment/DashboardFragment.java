@@ -86,6 +86,5 @@ public class DashboardFragment extends BaseFragment implements InitiableFragment
         Cursor cursor = db.rawQuery("select * from "+MeetingValues.TABLE_NAME+
                 " order by " +MeetingValues.COLUMN_NAME_DATETIME+" ASC;",null);
         meetingListView.setAdapter(new MeetingAdapter(getActivity(), (BaseActivity) getActivity(),cursor,true,false));
-        cursor.close();
     }
 }

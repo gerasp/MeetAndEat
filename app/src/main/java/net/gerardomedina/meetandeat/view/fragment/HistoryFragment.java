@@ -75,7 +75,6 @@ public class HistoryFragment extends BaseFragment implements InitiableFragment {
         Cursor cursor = db.rawQuery("select * from "+ OldMeetingValues.TABLE_NAME+
                 " order by " + OldMeetingValues.COLUMN_NAME_DATETIME+" ASC;",null);
         meetingListView.setAdapter(new MeetingAdapter(getActivity(), (BaseActivity) getActivity(),cursor,true,true));
-        cursor.close();
     }
 
 }
