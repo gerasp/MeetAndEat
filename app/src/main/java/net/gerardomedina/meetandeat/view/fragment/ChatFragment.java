@@ -48,7 +48,7 @@ public class ChatFragment extends BaseFragment implements InitiableFragment {
 
 
     private View view;
-    private Meeting selectedMeeting;
+    private Meeting meeting;
 
     public ChatFragment() {}
 
@@ -56,6 +56,7 @@ public class ChatFragment extends BaseFragment implements InitiableFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_chat, container, false);
+        meeting = appCommon.getSelectedMeeting();
         init();
         return view;
     }
@@ -79,15 +80,16 @@ public class ChatFragment extends BaseFragment implements InitiableFragment {
                 if (messageInput.getText().length()>0) new SendMessageTask(getBaseFragment(),messageInput.getText().toString()).execute();
             }
         });
-        selectedMeeting = appCommon.getSelectedMeeting();
-        messageInput.setBackgroundColor(Color.parseColor(selectedMeeting.getColor()));
-        sendButton.setBackgroundColor(Color.parseColor(selectedMeeting.getColor()));
+        messageInput.setBackgroundColor(Color.parseColor(meeting.getColor()));
+        sendButton.setBackgroundColor(Color.parseColor(meeting.getColor()));
+        if(meeting.isOld()) {
+            sendButton.setEnabled(false);
+        }
     }
 
     public void populateMessageList(JSONObject response) throws JSONException {
         ListView messageList = (ListView) view.findViewById(R.id.messageList);
         List<Message> messages = new ArrayList<>();
-        Log.e("HOAL",response.toString());
         JSONArray results = response.getJSONArray("results");
         for (int i = 0; i < results.length(); i++) {
             messages.add(new Message(results.getJSONObject(i).getString("content"),

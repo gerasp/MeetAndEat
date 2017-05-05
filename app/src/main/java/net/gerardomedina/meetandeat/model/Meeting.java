@@ -10,6 +10,7 @@ public class Meeting {
     private LatLng location;
     private Calendar datetime;
     private String color;
+    private boolean isOld;
 
     public Meeting(int id, String title, String location, String datetime, String color) {
         this.id = id;
@@ -17,6 +18,7 @@ public class Meeting {
         setLocation(location);
         setDate(datetime);
         this.color = color;
+        this.isOld = false;
     }
 
     public int getId() {
@@ -70,4 +72,11 @@ public class Meeting {
         this.color = color;
     }
 
+    public boolean isOld() {
+        return isOld;
+    }
+
+    public void setOld(boolean old) {
+        isOld = old;
+    }
 }

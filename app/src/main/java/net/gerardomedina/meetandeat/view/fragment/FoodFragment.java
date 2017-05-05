@@ -15,6 +15,7 @@ import android.widget.CalendarView;
 import android.widget.TextView;
 
 import com.github.clans.fab.FloatingActionButton;
+import com.github.clans.fab.FloatingActionMenu;
 
 import net.gerardomedina.meetandeat.R;
 import net.gerardomedina.meetandeat.model.Food;
@@ -45,6 +46,7 @@ public class FoodFragment extends BaseFragment implements InitiableFragment {
 
     private View view;
     private SwipeToRefreshListener.RefreshIndicator refreshIndicator;
+    private Meeting meeting;
 
 
     public FoodFragment() {}
@@ -53,7 +55,9 @@ public class FoodFragment extends BaseFragment implements InitiableFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_food, container, false);
+        meeting = appCommon.getSelectedMeeting();
         init();
+
         return view;
     }
 
@@ -63,10 +67,13 @@ public class FoodFragment extends BaseFragment implements InitiableFragment {
             getBaseActivity().showSimpleDialog(R.string.no_internet_connection);
             getBaseActivity().changeToActivityNoBackStack(MainActivity.class);
         }
-        setAddFoodButton();
+        setAddButton();
     }
 
-    private void setAddFoodButton() {
+    private void setAddButton() {
+        FloatingActionMenu floatingActionMenu = (FloatingActionMenu) view.findViewById(R.id.addMenu);
+        if (meeting.isOld()) floatingActionMenu.setVisibility(View.GONE);
+
         FloatingActionButton addFoodButton = (FloatingActionButton) view.findViewById(R.id.addFoodButton);
         addFoodButton.setOnClickListener(new View.OnClickListener() {
             @Override

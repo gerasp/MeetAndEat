@@ -23,12 +23,14 @@ import java.util.Calendar;
 import java.util.Locale;
 
 public class MeetingAdapter extends CursorAdapter {
+    private final boolean isOld;
     AppCommon appCommon = AppCommon.getInstance();
     private BaseActivity activity;
 
-    public MeetingAdapter(Context context, BaseActivity activity, Cursor c, boolean autoRequery) {
+    public MeetingAdapter(Context context, BaseActivity activity, Cursor c, boolean autoRequery, boolean isOld) {
         super(context, c, autoRequery);
         this.activity = activity;
+        this.isOld = isOld;
     }
 
     @Override
@@ -53,6 +55,8 @@ public class MeetingAdapter extends CursorAdapter {
                 cursor.getString(cursor.getColumnIndexOrThrow(MeetingValues.COLUMN_NAME_LOCATION)),
                 datetime,
                 color);
+
+        if (isOld) meeting.setOld(true);
 
         meetingTitle.setText(meeting.getTitle());
         Calendar datetimeCalendar = meeting.getDatetime();

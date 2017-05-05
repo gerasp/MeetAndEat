@@ -58,10 +58,10 @@ public class MeetingActivity extends BaseActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_meeting);
-
         setToolbar();
         changeToFoodFragment();
     }
+
 
     public void changeToFoodFragment() {
         if (menu != null) {
