@@ -25,6 +25,6 @@
         android:layout_alignBottom="@+id/invitationLabel"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:id="@+id/imageView" />
+        android:id="@+id/invitationIcon" />
 
 </RelativeLayout>

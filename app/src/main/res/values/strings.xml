@@ -113,10 +113,11 @@
     <string name="exit">Exit</string>
     <string name="getting_invitations">Getting invitations</string>
     <string name="enter">Enter</string>
-    <string name="invitation">Someone has invited you to %1$s.</string>
-    <string name="accepting_invitation">Acceptin invitation</string>
+    <string name="invitation_meeting">Someone has invited you to %1$s.</string>
+    <string name="accepting_invitation">Accepting invitation</string>
     <string name="confirmation_accept_invitation">Do you accept this invitation?</string>
     <string name="old_meetings_info">Old meetings will be automatically deleted after 10 days</string>
     <string name="no_chat">You can not use this chat anymore</string>
     <string name="no_contact_to_invite">You have no contacts to invite. Add them in the main menu.</string>
+    <string name="invitation_contact">%1$s wants to be your contact.</string>
 </resources>
