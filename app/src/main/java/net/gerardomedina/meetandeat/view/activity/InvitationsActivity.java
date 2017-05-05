@@ -44,6 +44,7 @@ public class InvitationsActivity extends BaseActivity {
     private void setInvitationsList() {
         ListView invitationsList = (ListView) findViewById(R.id.invitations);
         List<Invitation> invitations = appCommon.getInvitations();
+        invitationsList.setAdapter(null);
         if (invitations != null) {
             invitationsList.setAdapter(new InvitationAdapter(this,invitations));
         }

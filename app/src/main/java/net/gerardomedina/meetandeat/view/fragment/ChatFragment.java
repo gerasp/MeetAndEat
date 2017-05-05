@@ -97,6 +97,7 @@ public class ChatFragment extends BaseFragment implements InitiableFragment {
                     results.getJSONObject(i).getInt("timestamp"),
                     results.getJSONObject(i).getString("user")));
         }
+        messageList.setAdapter(null);
         messageList.setAdapter(new MessageAdapter(getBaseActivity(),messages));
     }
 }

@@ -98,6 +98,7 @@ public class ContactsFragment extends BaseFragment implements InitiableFragment 
             contacts.add(cursor.getString(cursor.getColumnIndexOrThrow(ContactValues.COLUMN_NAME_USERNAME)));
         }
         cursor.close();
+        contactListView.setAdapter(null);
         contactListView.setAdapter(new ContactAdapter(this, getActivity(), contacts, false));
     }
 

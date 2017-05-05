@@ -65,8 +65,6 @@
     <string name="creating_meeting_dialog">Creating meeting</string>
     <string name="error_field_too_long">Should be shorter</string>
 
-    <string name="error_getting_contacts">Error getting contacts</string>
-    <string name="error_getting_meetings">Error getting meetings</string>
     <string name="add_food_label">Add food</string>
     <string name="prompt_description">Description</string>
     <string name="prompt_amount">Amount</string>
@@ -80,9 +78,7 @@
     <string name="set_alarm_text">Your next meeting takes place on %1$s at %2$s</string>
     <string name="title_history">History</string>
     <string name="get_old_meetings_dialog">Getting old meetings</string>
-    <string name="error_getting_old_meetings">Error getting old meetings</string>
     <string name="getting_food">Getting food</string>
-    <string name="error_getting_food">Error getting food</string>
     <string name="dummy" />
     <string name="what">What</string>
     <string name="who">Who</string>
