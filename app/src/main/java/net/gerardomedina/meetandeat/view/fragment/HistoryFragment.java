@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import android.widget.ListView;
 import net.gerardomedina.meetandeat.R;
 import net.gerardomedina.meetandeat.persistence.local.DBHelper;
 import net.gerardomedina.meetandeat.persistence.local.OldMeetingValues;
+import net.gerardomedina.meetandeat.task.GetContactsTask;
 import net.gerardomedina.meetandeat.task.GetOldMeetingsTask;
 import net.gerardomedina.meetandeat.view.activity.BaseActivity;
 import net.gerardomedina.meetandeat.view.adapter.MeetingAdapter;
@@ -33,15 +35,19 @@ public class HistoryFragment extends BaseFragment implements InitiableFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_history, container, false);
-
-        meetingListView = (ListView) view.findViewById(R.id.meetings);
-        dbHelper = new DBHelper(getActivity());
-
         init();
         return view;
     }
 
     public void init() {
+        meetingListView = (ListView) view.findViewById(R.id.meetings);
+        dbHelper = new DBHelper(getActivity());
+        ((SwipeRefreshLayout) view.findViewById(R.id.swipeRefresh)).setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                new GetOldMeetingsTask(getBaseFragment());
+            }
+        });
         if (appCommon.hasInternet(getActivity())) new GetOldMeetingsTask(this).execute();
         else loadMeetingListFromLocalDB();
     }

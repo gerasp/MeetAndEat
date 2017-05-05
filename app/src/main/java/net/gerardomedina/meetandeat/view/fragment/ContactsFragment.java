@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,7 +29,6 @@ import java.util.List;
 
 public class ContactsFragment extends BaseFragment implements InitiableFragment {
     private ListView contactListView;
-    private SearchView searchView;
     private List<String> contacts;
     private SQLiteOpenHelper dbHelper;
     private View view;
@@ -41,13 +41,19 @@ public class ContactsFragment extends BaseFragment implements InitiableFragment 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_contacts, container, false);
-        contactListView = (ListView) view.findViewById(R.id.contacts);
-        dbHelper = new DBHelper(getActivity());
         init();
         return view;
     }
 
     public void init() {
+        dbHelper = new DBHelper(getActivity());
+        contactListView = (ListView) view.findViewById(R.id.contacts);
+        ((SwipeRefreshLayout) view.findViewById(R.id.swipeRefresh)).setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                new GetContactsTask(getBaseFragment());
+            }
+        });
         setSearchView();
         contactsInfo = (TextView) view.findViewById(R.id.contactsInfo);
         if (appCommon.hasInternet(getActivity())) new GetContactsTask(this).execute();
@@ -55,7 +61,7 @@ public class ContactsFragment extends BaseFragment implements InitiableFragment 
     }
 
     public void setSearchView() {
-        searchView = (SearchView) view.findViewById(R.id.contactsSearchBox);
+        SearchView searchView = (SearchView) view.findViewById(R.id.contactsSearchBox);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {

@@ -5,13 +5,19 @@
     android:layout_height="match_parent"
     tools:context="net.gerardomedina.meetandeat.view.fragment.BaseFragment">
 
-    <ListView
-        android:id="@+id/meetings"
-        android:padding="@dimen/cardview_padding"
-        android:divider="@color/transparent"
-        android:dividerHeight="4dp"
+    <android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/swipeRefresh"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent">
+
+        <ListView
+            android:id="@+id/meetings"
+            android:padding="@dimen/cardview_padding"
+            android:divider="@color/transparent"
+            android:dividerHeight="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </android.support.v4.widget.SwipeRefreshLayout>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/newMeetingButton"

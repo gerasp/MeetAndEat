@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,7 +29,6 @@ public class DashboardFragment extends BaseFragment implements InitiableFragment
     private View view;
     private ListView meetingListView;
     private DBHelper dbHelper;
-    private FloatingActionButton newMeetingButton;
 
     public DashboardFragment() {
     }
@@ -37,17 +37,20 @@ public class DashboardFragment extends BaseFragment implements InitiableFragment
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_dashboard, container, false);
-
-        newMeetingButton = (FloatingActionButton) view.findViewById(R.id.newMeetingButton);
-
-        meetingListView = (ListView) view.findViewById(R.id.meetings);
-        dbHelper = new DBHelper(getActivity());
-
         init();
         return view;
     }
 
     public void init() {
+        FloatingActionButton newMeetingButton = (FloatingActionButton) view.findViewById(R.id.newMeetingButton);
+        meetingListView = (ListView) view.findViewById(R.id.meetings);
+        dbHelper = new DBHelper(getActivity());
+        ((SwipeRefreshLayout) view.findViewById(R.id.swipeRefresh)).setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                new GetMeetingsTask(getBaseFragment());
+            }
+        });
         newMeetingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -82,5 +85,6 @@ public class DashboardFragment extends BaseFragment implements InitiableFragment
         Cursor cursor = db.rawQuery("select * from "+MeetingValues.TABLE_NAME+
                 " order by " +MeetingValues.COLUMN_NAME_DATETIME+" ASC;",null);
         meetingListView.setAdapter(new MeetingAdapter(getActivity(), (BaseActivity) getActivity(),cursor,true,false));
+        cursor.close();
     }
 }
