@@ -125,7 +125,7 @@ public class FoodFragment extends BaseFragment implements InitiableFragment {
                     .create().show();
 
         } else {
-            getBaseActivity().showSimpleDialog(R.string.no_contact);
+            getBaseActivity().showSimpleDialog(R.string.no_contact_to_invite);
         }
     }
 
