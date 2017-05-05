@@ -6,6 +6,7 @@
 
     <EditText
         android:id="@+id/messageInput"
+        android:theme="@style/AppTheme.AppBarOverlay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -17,6 +18,7 @@
         android:padding="@dimen/appbar_padding_top" />
 
     <ImageView
+        android:theme="@style/AppTheme.AppBarOverlay"
         android:id="@+id/sendButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
