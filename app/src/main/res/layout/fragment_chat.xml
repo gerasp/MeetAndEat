@@ -30,13 +30,13 @@
 
     <ListView
         android:id="@+id/messageList"
-        android:rotation="180"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/messageInput"
-        android:layout_margin="@dimen/button_margin"
+        android:layout_alignParentTop="true"
         android:divider="@color/transparent"
         android:dividerHeight="@dimen/button_margin"
-        android:layout_alignParentTop="true" />
+        android:padding="@dimen/button_margin"
+        android:rotation="180" />
 
 </RelativeLayout>

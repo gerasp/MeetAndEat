@@ -5,8 +5,10 @@
     android:background="@drawable/shape_incoming"
     android:paddingTop="10dp"
     android:paddingBottom="10dp"
-    android:paddingLeft="20dp"
+    android:paddingLeft="25dp"
     android:paddingRight="10dp"
+    android:layout_marginLeft="@dimen/button_margin"
+    android:layout_marginRight="@dimen/button_margin"
     android:rotation="180">
 
     <TextView
@@ -15,7 +17,7 @@
         android:layout_height="wrap_content"
         android:text="Message"
         android:textColor="@color/primary_text"
-        android:textSize="18sp" />
+        android:textSize="16sp" />
 
     <TextView
         android:id="@+id/messageDatetimeAndUser"

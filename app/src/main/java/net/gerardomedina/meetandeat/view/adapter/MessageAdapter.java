@@ -29,12 +29,10 @@ public class MessageAdapter extends ArrayAdapter<Message> {
     @Override
     public View getView(final int position, View convertView, @NonNull ViewGroup parent) {
         final Message message = getItem(position);
-        if (convertView == null) {
-            if (appCommon.getUser().getUsername().equals(message.getUsername()))
-                convertView = LayoutInflater.from(getContext()).inflate(R.layout.fragment_chat_out, parent, false);
-            else
-                convertView = LayoutInflater.from(getContext()).inflate(R.layout.fragment_chat_in, parent, false);
-
+        if (appCommon.getUser().getUsername().equals(message.getUsername())) {
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.fragment_chat_out, parent, false);
+        } else {
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.fragment_chat_in, parent, false);
         }
 
         TextView content = (TextView) convertView.findViewById(R.id.messageContent);
@@ -42,7 +40,7 @@ public class MessageAdapter extends ArrayAdapter<Message> {
 
         TextView datetimeAndUser = (TextView) convertView.findViewById(R.id.messageDatetimeAndUser);
         datetimeAndUser.setText(message.getUsername() + " | " +
-        formatter.format(new Date(((long)message.getTimestamp())*1000L)));
+                formatter.format(new Date(((long) message.getTimestamp()) * 1000L)));
         return convertView;
     }
 }
