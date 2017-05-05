@@ -57,12 +57,12 @@ public class FoodFragment extends BaseFragment implements InitiableFragment {
     }
 
     public void init() {
+        setTable();
         if (appCommon.hasInternet(getActivity())) new GetFoodTask(this).execute();
         else {
             getBaseActivity().showSimpleDialog(R.string.no_internet_connection);
             getBaseActivity().changeToActivityNoBackStack(MainActivity.class);
         }
-        setTable();
         setAddButton();
     }
 
@@ -166,7 +166,7 @@ public class FoodFragment extends BaseFragment implements InitiableFragment {
     }
 
     public void populateFoodTable(JSONObject response) throws JSONException {
-        foodList = new ArrayList<>();
+        foodList.clear();
         JSONArray results = response.getJSONArray("results");
         for (int i = 0; i < results.length(); i++) {
             JSONObject jsonObject = results.getJSONObject(i);

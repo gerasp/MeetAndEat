@@ -33,6 +33,7 @@ public class ContactsFragment extends BaseFragment implements InitiableFragment 
     private SQLiteOpenHelper dbHelper;
     private View view;
     private TextView contactsInfo;
+    private ContactAdapter contactsAdapter;
 
     public ContactsFragment() {
     }
@@ -47,24 +48,26 @@ public class ContactsFragment extends BaseFragment implements InitiableFragment 
 
     public void init() {
         dbHelper = new DBHelper(getActivity());
-        contactListView = (ListView) view.findViewById(R.id.contacts);
-        refreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipeRefresh);
-        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        new GetContactsTask(getBaseFragment());
-                        refreshLayout.setRefreshing(false);
-                    }
-                }, 1000);
-            }
-        });
+        setContactList();
         setSearchView();
         contactsInfo = (TextView) view.findViewById(R.id.contactsInfo);
         if (appCommon.hasInternet(getActivity())) new GetContactsTask(this).execute();
         else loadContactListFromLocalDB();
+    }
+
+    public void setContactList() {
+        contactListView = (ListView) view.findViewById(R.id.contacts);
+        contacts = new ArrayList<>();
+        contactsAdapter = new ContactAdapter(this,getBaseActivity(),contacts,false);
+        contactListView.setAdapter(contactsAdapter);
+        refreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipeRefresh);
+        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                new GetContactsTask(getBaseFragment()).execute();
+            }
+        });
+
     }
 
     public void setSearchView() {
@@ -87,7 +90,6 @@ public class ContactsFragment extends BaseFragment implements InitiableFragment 
     }
 
     public void saveContactListToLocalDB(JSONObject response) throws JSONException {
-        contacts = new ArrayList<>();
         JSONArray results = response.getJSONArray("results");
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         db.delete(ContactValues.TABLE_NAME, null, null);
@@ -100,22 +102,22 @@ public class ContactsFragment extends BaseFragment implements InitiableFragment 
     }
 
     public void loadContactListFromLocalDB() {
+        contacts.clear();
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         Cursor cursor = db.rawQuery("select " + ContactValues.COLUMN_NAME_USERNAME + " from " +
                 ContactValues.TABLE_NAME + " order by "
                 + ContactValues.COLUMN_NAME_USERNAME + " ASC;", null);
-        contacts = new ArrayList<>();
         if (cursor.getCount()>0)setContactsInfoText(R.string.long_tap_to_delete_contact);
         else setContactsInfoText(R.string.no_contact);
         for (cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext()) {
             contacts.add(cursor.getString(cursor.getColumnIndexOrThrow(ContactValues.COLUMN_NAME_USERNAME)));
         }
-        contactListView.setAdapter(new ContactAdapter(this, getActivity(), contacts, false));
+        contactsAdapter.notifyDataSetChanged();
     }
 
 
     public void populateWithSearchResults(JSONObject response) throws JSONException {
-        contacts = new ArrayList<>();
+        contacts.clear();
         JSONArray results = response.getJSONArray("results");
         for (int i = 0; i < results.length(); i++) {
             contacts.add(results.getJSONObject(i).getString("username"));

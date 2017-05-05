@@ -44,13 +44,7 @@ public class HistoryFragment extends BaseFragment implements InitiableFragment {
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        new GetOldMeetingsTask(getBaseFragment());
-                        refreshLayout.setRefreshing(false);
-                    }
-                }, 1000);
+                new GetOldMeetingsTask(getBaseFragment()).execute();
             }
         });
         if (appCommon.hasInternet(getActivity())) new GetOldMeetingsTask(this).execute();

@@ -24,10 +24,5 @@
             android:title="@string/logout" />
     </PreferenceCategory>
 
-    <Preference
-        android:key="copyright"
-        android:selectable="false"
-        android:summary="@string/copyright" />
-
 
 </PreferenceScreen>

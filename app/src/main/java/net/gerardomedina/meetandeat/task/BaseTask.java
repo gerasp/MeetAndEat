@@ -1,7 +1,5 @@
 package net.gerardomedina.meetandeat.task;
 
-import android.app.ProgressDialog;
-import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.util.Log;
 
