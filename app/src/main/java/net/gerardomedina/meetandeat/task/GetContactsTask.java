@@ -37,7 +37,6 @@ public class GetContactsTask extends BaseTask {
     @Override
     protected void onPostExecute(final Boolean success) {
         super.onPostExecute(success);
-        fragment.stopRefreshing();
         if (success) {
             try {
                 switch (response.getInt("code")) {

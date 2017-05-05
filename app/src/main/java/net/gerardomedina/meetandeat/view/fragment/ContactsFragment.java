@@ -52,7 +52,13 @@ public class ContactsFragment extends BaseFragment implements InitiableFragment 
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                new GetContactsTask(getBaseFragment());
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        new GetContactsTask(getBaseFragment());
+                        refreshLayout.setRefreshing(false);
+                    }
+                }, 1000);
             }
         });
         setSearchView();

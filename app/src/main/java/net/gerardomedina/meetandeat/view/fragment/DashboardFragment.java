@@ -49,7 +49,13 @@ public class DashboardFragment extends BaseFragment implements InitiableFragment
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                new GetMeetingsTask(getBaseFragment());
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        new GetMeetingsTask(getBaseFragment());
+                        refreshLayout.setRefreshing(false);
+                    }
+                }, 1000);
             }
         });
         newMeetingButton.setOnClickListener(new View.OnClickListener() {
@@ -78,7 +84,6 @@ public class DashboardFragment extends BaseFragment implements InitiableFragment
             db.insert(MeetingValues.TABLE_NAME, null, values);
         }
         loadMeetingListFromLocalDB();
-
     }
 
     public void loadMeetingListFromLocalDB() {

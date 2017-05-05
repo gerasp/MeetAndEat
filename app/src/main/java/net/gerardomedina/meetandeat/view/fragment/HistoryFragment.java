@@ -4,7 +4,6 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,7 +13,6 @@ import android.widget.ListView;
 import net.gerardomedina.meetandeat.R;
 import net.gerardomedina.meetandeat.persistence.local.DBHelper;
 import net.gerardomedina.meetandeat.persistence.local.OldMeetingValues;
-import net.gerardomedina.meetandeat.task.GetContactsTask;
 import net.gerardomedina.meetandeat.task.GetOldMeetingsTask;
 import net.gerardomedina.meetandeat.view.activity.BaseActivity;
 import net.gerardomedina.meetandeat.view.adapter.MeetingAdapter;
@@ -46,7 +44,13 @@ public class HistoryFragment extends BaseFragment implements InitiableFragment {
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                new GetOldMeetingsTask(getBaseFragment());
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        new GetOldMeetingsTask(getBaseFragment());
+                        refreshLayout.setRefreshing(false);
+                    }
+                }, 1000);
             }
         });
         if (appCommon.hasInternet(getActivity())) new GetOldMeetingsTask(this).execute();

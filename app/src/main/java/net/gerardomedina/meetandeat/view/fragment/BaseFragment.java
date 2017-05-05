@@ -1,5 +1,6 @@
 package net.gerardomedina.meetandeat.view.fragment;
 
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.widget.Toast;
@@ -12,7 +13,7 @@ import org.json.JSONObject;
 public abstract class BaseFragment extends Fragment {
     public AppCommon appCommon = AppCommon.getInstance();
     public SwipeRefreshLayout refreshLayout;
-
+    public Handler handler = new Handler();
 
     public BaseFragment() {
     }
@@ -29,8 +30,4 @@ public abstract class BaseFragment extends Fragment {
     public void stopRefreshing() {
         if (refreshLayout != null && refreshLayout.isRefreshing()) refreshLayout.setRefreshing(false);
     }
-
-
-
-
 }
