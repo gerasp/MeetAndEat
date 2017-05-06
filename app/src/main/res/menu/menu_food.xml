@@ -1,0 +1,24 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="net.gerardomedina.meetandeat.view.activity.MeetingActivity">
+
+    <item
+        android:id="@+id/menu_add_food"
+        android:icon="@drawable/ic_add_black"
+        android:title="@string/add_food_label"/>
+
+    <item
+        android:id="@+id/menu_participants"
+        android:icon="@drawable/ic_people"
+        android:title="@string/participants" />
+    <item
+        android:id="@+id/menu_location"
+        android:icon="@drawable/ic_location"
+        android:title="@string/location"/>
+
+    <item
+        android:id="@+id/menu_options"
+        android:icon="@drawable/ic_settings"
+        android:title="@string/options"/>
+</menu>

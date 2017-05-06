@@ -13,18 +13,4 @@
         android:icon="@drawable/ic_menu_restaurant"
         android:visible="false"
         app:showAsAction="always" />
-    <item
-        android:id="@+id/menu_participants"
-        android:title="@string/participants"
-        app:showAsAction="never" />
-    <item
-        android:id="@+id/menu_location"
-        android:title="@string/location"
-        app:showAsAction="never" />
-
-
-    <item
-        android:id="@+id/menu_options"
-        android:title="Options"
-        app:showAsAction="never" />
 </menu>

@@ -104,7 +104,7 @@
     <string name="error_inviting_contacts">Error inviting contacts</string>
     <string name="participants_invited_uuccessfully">Participants invited successfully</string>
     <string name="close">Close</string>
-    <string name="admin_options">Admin options</string>
+    <string name="options">Options</string>
     <string name="title_activity_admin">Admin</string>
 
     <!-- ADMIN -->
