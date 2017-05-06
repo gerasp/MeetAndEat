@@ -74,6 +74,10 @@ public class MeetingActivity extends BaseActivity {
             case R.id.menu_location:
                 changeToActivity(LocationActivity.class);
                 break;
+            case R.id.menu_options:
+                changeToActivity(AdminActivity.class);
+                break;
+
         }
         return super.onOptionsItemSelected(item);
     }
