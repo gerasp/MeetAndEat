@@ -24,7 +24,6 @@ public class OptionAdapter extends ArrayAdapter<Option> {
         final Option option = getItem(position);
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(android.R.layout.simple_list_item_1, parent, false);
-
         }
 
         TextView optionLabel = (TextView) convertView.findViewById(android.R.id.text1);
