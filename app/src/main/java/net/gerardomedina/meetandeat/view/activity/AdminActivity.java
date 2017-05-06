@@ -38,7 +38,7 @@ import java.util.Locale;
 public class AdminActivity extends BaseActivity {
 
     private Meeting meeting;
-    private final static int PLACE_PICKER_REQUEST = 2;
+    private static final int PLACE_PICKER_REQUEST = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -132,6 +132,7 @@ public class AdminActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 final List<String> participants = meeting.getParticipants();
+                participants.remove(appCommon.getUser().getUsername());
                 final String [] selected = {""};
                 new AlertDialog.Builder(getBaseActivity())
                         .setTitle(getString(R.string.participants))
@@ -176,10 +177,10 @@ public class AdminActivity extends BaseActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == NewMeetingActivity.PLACE_PICKER_REQUEST) {
+        if (requestCode == PLACE_PICKER_REQUEST) {
             if (resultCode == RESULT_OK) {
                 Place place = PlacePicker.getPlace(data, this);
-                new AdminTask(this,1,place.getLatLng().latitude + "," + place.getLatLng().longitude);
+                new AdminTask(this,1,place.getLatLng().latitude + "," + place.getLatLng().longitude).execute();
             }
         }
     }

@@ -202,7 +202,7 @@ public class NewMeetingActivity extends BaseActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == NewMeetingActivity.PLACE_PICKER_REQUEST) {
+        if (requestCode == PLACE_PICKER_REQUEST) {
             if (resultCode == RESULT_OK) {
                 Place place = PlacePicker.getPlace(data, this);
                 locationInput.setText(place.getLatLng().latitude + "," + place.getLatLng().longitude);

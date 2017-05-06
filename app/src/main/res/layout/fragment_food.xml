@@ -1,18 +1,91 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:custom="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background">
 
+
     <net.gerardomedina.meetandeat.view.table.SortableFoodTableView
         android:id="@+id/foodTable"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         custom:tableView_columnCount="4"
-        custom:tableView_headerElevation="10">
+        custom:tableView_headerElevation="10"
+        android:layout_above="@+id/linearLayout">
 
     </net.gerardomedina.meetandeat.view.table.SortableFoodTableView>
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:layout_alignBottom="@id/foodTable"
+        android:background="@drawable/shadow_up" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="74dp"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:weightSum="1"
+        android:id="@+id/linearLayout">
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.25">
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@color/black"
+                custom:srcCompat="@drawable/ic_person_add" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.25">
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@color/black"
+                custom:srcCompat="@drawable/ic_person_add" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.25">
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@color/black"
+                custom:srcCompat="@drawable/ic_person_add" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.25">
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@color/black"
+                custom:srcCompat="@drawable/ic_person_add" />
+        </FrameLayout>
+    </LinearLayout>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/addFoodButton"
@@ -24,4 +97,4 @@
         app:fabSize="normal"
         app:srcCompat="@drawable/ic_add" />
 
-</FrameLayout>
+</RelativeLayout>

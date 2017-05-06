@@ -73,9 +73,11 @@ public class MeetingActivity extends BaseActivity {
                 break;
             case R.id.menu_location:
                 changeToActivity(LocationActivity.class);
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                 break;
             case R.id.menu_options:
                 changeToActivity(AdminActivity.class);
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                 break;
 
         }

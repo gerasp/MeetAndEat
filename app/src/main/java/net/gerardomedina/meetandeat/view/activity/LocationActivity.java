@@ -1,6 +1,8 @@
 package net.gerardomedina.meetandeat.view.activity;
 
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
+import android.support.v7.widget.Toolbar;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -22,13 +24,19 @@ public class LocationActivity extends BaseActivity implements OnMapReadyCallback
         setContentView(R.layout.activity_location);
 
         meeting = appCommon.getSelectedMeeting();
-
+        setupActionBar();
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
     }
 
+    private void setupActionBar() {
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+    }
     @Override
     public void onMapReady(GoogleMap googleMap) {
         map = googleMap;
