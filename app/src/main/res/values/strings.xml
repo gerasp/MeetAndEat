@@ -103,4 +103,5 @@
     <string name="error_creating_meeting">Error creating meeting</string>
     <string name="error_inviting_contacts">Error inviting contacts</string>
     <string name="participants_invited_uuccessfully">Participants invited successfully</string>
+    <string name="close">Close</string>
 </resources>

@@ -1,9 +1,6 @@
 package net.gerardomedina.meetandeat.view.fragment;
 
 import android.content.DialogInterface;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
@@ -11,15 +8,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import com.github.clans.fab.FloatingActionButton;
-import com.github.clans.fab.FloatingActionMenu;
+import com.getbase.floatingactionbutton.FloatingActionButton;
+import com.getbase.floatingactionbutton.FloatingActionsMenu;
 
 import net.gerardomedina.meetandeat.R;
 import net.gerardomedina.meetandeat.model.Food;
 import net.gerardomedina.meetandeat.model.Meeting;
-import net.gerardomedina.meetandeat.persistence.local.ContactValues;
-import net.gerardomedina.meetandeat.persistence.local.DBHelper;
-import net.gerardomedina.meetandeat.task.AddParticipantsTask;
 import net.gerardomedina.meetandeat.task.GetFoodTask;
 import net.gerardomedina.meetandeat.view.activity.MainActivity;
 import net.gerardomedina.meetandeat.view.dialog.AddFoodDialog;
@@ -83,7 +77,7 @@ public class FoodFragment extends BaseFragment implements InitiableFragment {
     }
 
     private void setAddButton() {
-        FloatingActionMenu floatingActionMenu = (FloatingActionMenu) view.findViewById(R.id.addMenu);
+        FloatingActionsMenu floatingActionMenu = (FloatingActionsMenu) view.findViewById(R.id.addMenu);
         if (meeting.isOld()) floatingActionMenu.setVisibility(View.GONE);
 
         FloatingActionButton addFoodButton = (FloatingActionButton) view.findViewById(R.id.addFoodButton);
@@ -94,55 +88,8 @@ public class FoodFragment extends BaseFragment implements InitiableFragment {
             }
         });
 
-        FloatingActionButton addParticipantButton = (FloatingActionButton) view.findViewById(R.id.addParticipantButton);
-        addParticipantButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                createAddParticipantDialog();
-            }
-        });
     }
 
-    private void createAddParticipantDialog() {
-        SQLiteOpenHelper dbHelper = new DBHelper(getBaseActivity());
-        SQLiteDatabase db = dbHelper.getReadableDatabase();
-        Cursor cursor = db.rawQuery("select " + ContactValues.COLUMN_NAME_USERNAME + " from " +
-                ContactValues.TABLE_NAME + " order by "
-                + ContactValues.COLUMN_NAME_USERNAME + " ASC;", null);
-        List<String> contactsList = new ArrayList<>();
-        for (cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext()) {
-            contactsList.add(cursor.getString(cursor.getColumnIndexOrThrow(ContactValues.COLUMN_NAME_USERNAME)));
-        }
-        cursor.close();
-        contactsList.removeAll(meeting.getParticipants());
-        if (contactsList.size() > 0) {
-            final String[] contacts = contactsList.toArray(new String[0]);
-            final boolean[] isChecked = new boolean[contacts.length];
-            final List<String> selectedContacts = new ArrayList<>();
-            new AlertDialog.Builder(getBaseActivity())
-                    .setTitle(getString(R.string.select_from_contacts))
-                    .setMultiChoiceItems(contacts, isChecked, new DialogInterface.OnMultiChoiceClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which, boolean isChecked) {
-                            if (isChecked) selectedContacts.add(contacts[which]);
-                            else selectedContacts.remove(contacts[which]);
-                        }
-                    })
-                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            String result = "";
-                            for (String selectedContact : selectedContacts) result = result + selectedContact +",";
-                            if (result.charAt(result.length()-1) == ',') result = result.substring(0,result.length()-1);
-                            new AddParticipantsTask(getBaseFragment(),result).execute();
-                        }
-                    })
-                    .create().show();
-
-        } else {
-            getBaseActivity().showSimpleDialog(R.string.no_contact_to_invite);
-        }
-    }
 
     private void createAddFoodDialog() {
         final AddFoodDialog addFoodDialog = new AddFoodDialog(this);

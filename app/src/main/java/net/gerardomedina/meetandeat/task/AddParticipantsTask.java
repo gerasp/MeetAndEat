@@ -3,7 +3,7 @@ package net.gerardomedina.meetandeat.task;
 import android.util.Log;
 
 import net.gerardomedina.meetandeat.R;
-import net.gerardomedina.meetandeat.view.fragment.BaseFragment;
+import net.gerardomedina.meetandeat.view.activity.BaseActivity;
 
 import org.json.JSONException;
 
@@ -14,9 +14,8 @@ public class AddParticipantsTask extends BaseTask {
 
     private final String participants;
 
-    public AddParticipantsTask(BaseFragment fragment, String participants) {
-        this.fragment = fragment;
-        this.activity = fragment.getBaseActivity();
+    public AddParticipantsTask(BaseActivity activity, String participants) {
+        this.activity = activity;
         this.participants = participants;
     }
 
@@ -40,7 +39,7 @@ public class AddParticipantsTask extends BaseTask {
                         activity.showSimpleDialog(R.string.error_inviting_contacts);
                         break;
                     case 2:
-                        fragment.showToast(R.string.participants_invited_uuccessfully);
+                        activity.showToast(R.string.participants_invited_uuccessfully);
                         break;
                 }
             } catch (JSONException e) {
