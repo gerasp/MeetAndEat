@@ -19,6 +19,7 @@ import net.gerardomedina.meetandeat.model.Food;
 import net.gerardomedina.meetandeat.model.Meeting;
 import net.gerardomedina.meetandeat.persistence.local.ContactValues;
 import net.gerardomedina.meetandeat.persistence.local.DBHelper;
+import net.gerardomedina.meetandeat.task.AddParticipantsTask;
 import net.gerardomedina.meetandeat.task.GetFoodTask;
 import net.gerardomedina.meetandeat.view.activity.MainActivity;
 import net.gerardomedina.meetandeat.view.dialog.AddFoodDialog;
@@ -108,25 +109,32 @@ public class FoodFragment extends BaseFragment implements InitiableFragment {
         Cursor cursor = db.rawQuery("select " + ContactValues.COLUMN_NAME_USERNAME + " from " +
                 ContactValues.TABLE_NAME + " order by "
                 + ContactValues.COLUMN_NAME_USERNAME + " ASC;", null);
-        List<String> contacts = new ArrayList<>();
+        List<String> contactsList = new ArrayList<>();
         for (cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext()) {
-            contacts.add(cursor.getString(cursor.getColumnIndexOrThrow(ContactValues.COLUMN_NAME_USERNAME)));
+            contactsList.add(cursor.getString(cursor.getColumnIndexOrThrow(ContactValues.COLUMN_NAME_USERNAME)));
         }
         cursor.close();
-        contacts.removeAll(meeting.getParticipants());
-        if (contacts.size() > 0) {
+        contactsList.removeAll(meeting.getParticipants());
+        if (contactsList.size() > 0) {
+            final String[] contacts = contactsList.toArray(new String[0]);
+            final boolean[] isChecked = new boolean[contacts.length];
+            final List<String> selectedContacts = new ArrayList<>();
             new AlertDialog.Builder(getBaseActivity())
                     .setTitle(getString(R.string.select_from_contacts))
-                    .setSingleChoiceItems(contacts.toArray(new String[0]), 0, new DialogInterface.OnClickListener() {
+                    .setMultiChoiceItems(contacts, isChecked, new DialogInterface.OnMultiChoiceClickListener() {
                         @Override
-                        public void onClick(DialogInterface dialog, int which) {
-
+                        public void onClick(DialogInterface dialog, int which, boolean isChecked) {
+                            if (isChecked) selectedContacts.add(contacts[which]);
+                            else selectedContacts.remove(contacts[which]);
                         }
                     })
                     .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-
+                            String result = "";
+                            for (String selectedContact : selectedContacts) result = result + selectedContact +",";
+                            if (result.charAt(result.length()-1) == ',') result = result.substring(0,result.length()-1);
+                            new AddParticipantsTask(getBaseFragment(),result).execute();
                         }
                     })
                     .create().show();
