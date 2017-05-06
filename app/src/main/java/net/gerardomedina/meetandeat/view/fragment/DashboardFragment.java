@@ -45,8 +45,8 @@ public class DashboardFragment extends BaseFragment implements InitiableFragment
         dbHelper = new DBHelper(getActivity());
         setMeetingList();
         setNewMeetingButton();
+        loadMeetingListFromLocalDB();
         if (appCommon.hasInternet(getActivity())) new GetMeetingsTask(this).execute();
-        else loadMeetingListFromLocalDB();
     }
 
     public void setNewMeetingButton() {

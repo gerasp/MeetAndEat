@@ -51,8 +51,8 @@ public class ContactsFragment extends BaseFragment implements InitiableFragment 
         setContactList();
         setSearchView();
         contactsInfo = (TextView) view.findViewById(R.id.contactsInfo);
+        loadContactListFromLocalDB();
         if (appCommon.hasInternet(getActivity())) new GetContactsTask(this).execute();
-        else loadContactListFromLocalDB();
     }
 
     public void setContactList() {

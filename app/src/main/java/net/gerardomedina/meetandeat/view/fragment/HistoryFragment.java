@@ -47,8 +47,8 @@ public class HistoryFragment extends BaseFragment implements InitiableFragment {
                 new GetOldMeetingsTask(getBaseFragment()).execute();
             }
         });
+        loadMeetingListFromLocalDB();
         if (appCommon.hasInternet(getActivity())) new GetOldMeetingsTask(this).execute();
-        else loadMeetingListFromLocalDB();
     }
 
     public void saveMeetingListToLocalDB(JSONObject response) throws JSONException {

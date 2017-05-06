@@ -60,7 +60,7 @@
     <string name="add_food_label">Add food</string>
     <string name="prompt_description">Description</string>
     <string name="prompt_amount">Amount</string>
-    <string name="selected_icon">Selected icon</string>
+    <string name="selected_icon">Icon</string>
     <string name="select_an_icon">Select an icon from this list</string>
     <string name="error_adding_food">Error adding food</string>
     <string name="calendar">Calendar</string>

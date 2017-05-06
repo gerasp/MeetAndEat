@@ -6,7 +6,6 @@
 
     <EditText
         android:id="@+id/messageInput"
-        android:theme="@style/AppTheme.AppBarOverlay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -15,7 +14,8 @@
         android:layout_toLeftOf="@+id/sendButton"
         android:layout_toStartOf="@+id/sendButton"
         android:hint="@string/send_a_message"
-        android:padding="@dimen/appbar_padding_top" />
+        android:padding="@dimen/appbar_padding_top"
+        android:theme="@style/AppTheme.AppBarOverlay" />
 
     <ImageView
         android:id="@+id/sendButton"
@@ -35,10 +35,11 @@
         android:layout_height="match_parent"
         android:layout_above="@+id/messageInput"
         android:layout_alignParentTop="true"
+        android:clipToPadding="false"
         android:divider="@color/transparent"
         android:dividerHeight="@dimen/button_margin"
         android:padding="@dimen/button_margin"
-        android:clipToPadding="false"
-        android:rotation="180" />
+        android:rotation="180"
+        android:verticalScrollbarPosition="left" />
 
 </RelativeLayout>
