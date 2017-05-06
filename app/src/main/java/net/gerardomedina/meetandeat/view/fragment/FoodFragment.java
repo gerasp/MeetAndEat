@@ -1,5 +1,6 @@
 package net.gerardomedina.meetandeat.view.fragment;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -11,8 +12,8 @@ import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewStub;
 import android.widget.Button;
+import android.widget.FrameLayout;
 
 import net.gerardomedina.meetandeat.R;
 import net.gerardomedina.meetandeat.model.Food;
@@ -86,14 +87,16 @@ public class FoodFragment extends BaseFragment implements InitiableFragment {
     }
 
     private void setBottomNavigation() {
-        ViewStub stub = (ViewStub) view.findViewById(R.id.navigation_stub);
+        FrameLayout stub = (FrameLayout) view.findViewById(R.id.navigation_stub);
+        LayoutInflater inflater = (LayoutInflater)getBaseActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View layout;
         if (appCommon.isColorDark(meeting.getColor())) {
-            stub.setLayoutResource(R.layout.fragment_food_navigation_white);
+            layout = inflater.inflate(R.layout.fragment_food_navigation_white, null);
         } else {
-            stub.setLayoutResource(R.layout.fragment_food_navigation_black);
+            layout = inflater.inflate(R.layout.fragment_food_navigation_black, null);
         }
-        View inflated = stub.inflate();
-        inflated.setBackgroundColor(Color.parseColor(meeting.getColor()));
+        layout.setBackgroundColor(Color.parseColor(meeting.getColor()));
+        stub.addView(layout);
         (view.findViewById(R.id.item1)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
