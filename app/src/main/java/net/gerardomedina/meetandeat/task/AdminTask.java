@@ -43,7 +43,7 @@ public class AdminTask extends BaseTask {
                     case 0: activity.showSimpleDialog(R.string.error);
                             break;
                     case 2: activity.showSimpleDialog(R.string.done);
-                            if (type == 5) activity.changeToActivityNoBackStack(MainActivity.class);
+                            activity.changeToActivityNoBackStack(MainActivity.class);
                             break;
                 }
             } catch (JSONException e) {
