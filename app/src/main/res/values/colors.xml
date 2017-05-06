@@ -15,12 +15,11 @@
     <color name="dark_grey">#303030</color>
     <color name="light_grey">#eceff1</color>
     <color name="grey">#838383</color>
-    <color name="odd_grey">#e0e0e0</color>
-    <color name="even_grey">#bdbdbd</color>
+    <color name="odd_grey">#f5f5f5</color>
+    <color name="even_grey">#eeeeee</color>
 
     <color name="icons">@color/black</color>
     <color name="divider">#BDBDBD</color>
     <color name="transparent">#00999999</color>
-    <color name="foreground_material_light">#ffffff</color>
 
 </resources>

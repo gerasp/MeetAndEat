@@ -4,12 +4,14 @@ import android.content.DialogInterface;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewStub;
 import android.widget.Button;
 
 import net.gerardomedina.meetandeat.R;
@@ -84,7 +86,14 @@ public class FoodFragment extends BaseFragment implements InitiableFragment {
     }
 
     private void setBottomNavigation() {
-
+        ViewStub stub = (ViewStub) view.findViewById(R.id.navigation_stub);
+        if (appCommon.isColorDark(meeting.getColor())) {
+            stub.setLayoutResource(R.layout.fragment_food_navigation_white);
+        } else {
+            stub.setLayoutResource(R.layout.fragment_food_navigation_black);
+        }
+        View inflated = stub.inflate();
+        inflated.setBackgroundColor(Color.parseColor(meeting.getColor()));
         (view.findViewById(R.id.item1)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

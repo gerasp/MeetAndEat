@@ -1,0 +1,68 @@
+<LinearLayout android:id="@+id/navigation"
+    android:layout_width="match_parent"
+    android:layout_height="56dp"
+    android:layout_alignParentBottom="true"
+    android:baselineAligned="false"
+    android:orientation="horizontal"
+    android:weightSum="1"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto">
+
+    <FrameLayout
+        android:id="@+id/item1"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="0.25"
+        android:background="?attr/selectableItemBackgroundBorderless">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            custom:srcCompat="@drawable/ic_add_black" />
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/item2"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="0.25"
+        android:background="?attr/selectableItemBackgroundBorderless">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            custom:srcCompat="@drawable/ic_people_black" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/item3"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="0.25"
+        android:background="?attr/selectableItemBackgroundBorderless">
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            custom:srcCompat="@drawable/ic_location_black" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/item4"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="0.25"
+        android:background="?attr/selectableItemBackgroundBorderless">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            custom:srcCompat="@drawable/ic_edit_black" />
+    </FrameLayout>
+</LinearLayout>

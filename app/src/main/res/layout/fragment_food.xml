@@ -10,11 +10,12 @@
         android:id="@+id/foodTable"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_above="@+id/navigation_stub"
         custom:tableView_columnCount="4"
-        custom:tableView_headerElevation="10"
-        android:layout_above="@+id/navigation">
+        custom:tableView_headerElevation="10">
 
     </net.gerardomedina.meetandeat.view.table.SortableFoodTableView>
+
     <View
         android:id="@+id/view"
         android:layout_width="match_parent"
@@ -22,68 +23,10 @@
         android:layout_alignBottom="@id/foodTable"
         android:background="@drawable/shadow_up" />
 
-    <LinearLayout
-        android:id="@+id/navigation"
-        android:layout_width="match_parent"
-        android:layout_height="56dp"
+    <ViewStub
+        android:id="@+id/navigation_stub"
         android:layout_alignParentBottom="true"
-        android:background="@color/black"
-        android:baselineAligned="false"
-        android:orientation="horizontal"
-        android:weightSum="1">
-
-        <FrameLayout
-            android:id="@+id/item1"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.25">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                custom:srcCompat="@drawable/ic_add" />
-
-        </FrameLayout>
-
-        <FrameLayout
-            android:id="@+id/item2"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.25">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                custom:srcCompat="@drawable/ic_people" />
-        </FrameLayout>
-
-        <FrameLayout
-            android:id="@+id/item3"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.25">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                custom:srcCompat="@drawable/ic_location" />
-        </FrameLayout>
-
-        <FrameLayout
-            android:id="@+id/item4"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.25">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                custom:srcCompat="@drawable/ic_edit" />
-        </FrameLayout>
-    </LinearLayout>
+        android:layout_width="match_parent"
+        android:layout_height="56dp" />
 
 </RelativeLayout>
