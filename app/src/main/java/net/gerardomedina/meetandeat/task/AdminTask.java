@@ -42,7 +42,7 @@ public class AdminTask extends BaseTask {
                 switch (response.getInt("code")) {
                     case 0: activity.showSimpleDialog(R.string.error);
                             break;
-                    case 2: activity.showSimpleDialog(R.string.done);
+                    case 2: activity.showToast(R.string.done);
                             activity.changeToActivityNoBackStack(MainActivity.class);
                             break;
                 }
