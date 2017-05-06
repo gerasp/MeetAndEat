@@ -5,15 +5,12 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.FrameLayout;
 
 import net.gerardomedina.meetandeat.R;
 import net.gerardomedina.meetandeat.model.Food;
@@ -87,22 +84,30 @@ public class FoodFragment extends BaseFragment implements InitiableFragment {
     }
 
     private void setBottomNavigation() {
-        (FrameLayout)view.findViewById(R.id.)
-                        createAddFoodDialog();
-                        return true;
-                    case R.id.menu_participants:
-                        createParticipantsDialog();
-                        return true;
-                    case R.id.menu_location:
-                        getBaseActivity().changeToActivity(LocationActivity.class);
-                        getBaseActivity().overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-                        break;
-                    case R.id.menu_options:
-                        getBaseActivity().changeToActivity(AdminActivity.class);
-                        getBaseActivity().overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-                        break;
-                }
-                return true;
+        (view.findViewById(R.id.item1)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                createAddFoodDialog();
+            }
+        });
+        (view.findViewById(R.id.item2)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                createParticipantsDialog();
+            }
+        });
+        (view.findViewById(R.id.item3)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getBaseActivity().changeToActivity(LocationActivity.class);
+                getBaseActivity().overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+            }
+        });
+        (view.findViewById(R.id.item4)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getBaseActivity().changeToActivity(AdminActivity.class);
+                getBaseActivity().overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             }
         });
     }
