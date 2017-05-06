@@ -115,4 +115,6 @@
     <string name="delete_participant">Delete participant</string>
     <string name="delete_meeting">Delete meeting</string>
     <string name="are_you_sure">Are you sure?</string>
+    <string name="done">Done</string>
+    <string name="error">Error</string>
 </resources>
