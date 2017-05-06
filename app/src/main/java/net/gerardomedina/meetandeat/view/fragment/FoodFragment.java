@@ -84,6 +84,7 @@ public class FoodFragment extends BaseFragment implements InitiableFragment {
     }
 
     private void setBottomNavigation() {
+
         (view.findViewById(R.id.item1)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

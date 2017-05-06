@@ -1,0 +1,20 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/menu_add_food"
+        android:title="@string/add_food_label"
+        android:icon="@drawable/ic_add" />
+    <item
+        android:id="@+id/menu_participants"
+        android:title="@string/participants"
+        android:icon="@drawable/ic_participants_black" />
+    <item
+        android:id="@+id/menu_location"
+        android:title="@string/location"
+        android:icon="@drawable/ic_location" />
+    <item
+        android:id="@+id/menu_options"
+        android:title="@string/options"
+        android:icon="@drawable/ic_edit" />
+</menu>

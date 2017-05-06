@@ -42,7 +42,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                custom:srcCompat="@drawable/ic_add_circle" />
+                custom:srcCompat="@drawable/ic_add" />
 
         </FrameLayout>
 
@@ -82,7 +82,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                custom:srcCompat="@drawable/ic_settings" />
+                custom:srcCompat="@drawable/ic_edit" />
         </FrameLayout>
     </LinearLayout>
 

@@ -40,7 +40,13 @@
         android:dividerHeight="@dimen/button_margin"
         android:padding="@dimen/button_margin"
         android:rotation="180"
-        android:verticalScrollbarPosition="left" />
+        android:verticalScrollbarPosition="left" />.
+    <View
+        android:id="@+id/topShadow"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/shadow_down" />
     <View
         android:id="@+id/bottomShadow"
         android:layout_width="match_parent"
