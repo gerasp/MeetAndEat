@@ -2,14 +2,12 @@ package net.gerardomedina.meetandeat.view.fragment;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-
-import com.getbase.floatingactionbutton.FloatingActionButton;
-import com.getbase.floatingactionbutton.FloatingActionsMenu;
 
 import net.gerardomedina.meetandeat.R;
 import net.gerardomedina.meetandeat.model.Food;
@@ -77,9 +75,6 @@ public class FoodFragment extends BaseFragment implements InitiableFragment {
     }
 
     private void setAddButton() {
-        FloatingActionsMenu floatingActionMenu = (FloatingActionsMenu) view.findViewById(R.id.addMenu);
-        if (meeting.isOld()) floatingActionMenu.setVisibility(View.GONE);
-
         FloatingActionButton addFoodButton = (FloatingActionButton) view.findViewById(R.id.addFoodButton);
         addFoodButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,7 +82,7 @@ public class FoodFragment extends BaseFragment implements InitiableFragment {
                 createAddFoodDialog();
             }
         });
-
+        if (meeting.isOld()) addFoodButton.setVisibility(View.GONE);
     }
 
 
