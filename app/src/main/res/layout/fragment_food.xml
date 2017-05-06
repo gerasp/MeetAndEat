@@ -27,6 +27,7 @@
         android:layout_height="74dp"
         android:layout_alignParentBottom="true"
         android:orientation="horizontal"
+        android:background="@color/accent"
         android:weightSum="1"
         android:id="@+id/linearLayout">
 
