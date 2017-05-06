@@ -41,5 +41,12 @@
         android:padding="@dimen/button_margin"
         android:rotation="180"
         android:verticalScrollbarPosition="left" />
+    <View
+        android:id="@+id/bottomShadow"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:layout_above="@id/sendButton"
+        android:layout_alignBottom="@id/messageList"
+        android:background="@drawable/shadow_up" />
 
 </RelativeLayout>
