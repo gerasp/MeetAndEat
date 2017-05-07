@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
+        android:id="@+id/navigation_calendar"
+        android:icon="@drawable/ic_calendar"
+        android:title="@string/calendar" />
+
+    <item
         android:id="@+id/navigation_history"
         android:icon="@drawable/ic_history"
         android:title="@string/title_history" />
-
-    <item
-        android:id="@+id/navigation_contacts"
-        android:icon="@drawable/ic_contacts"
-        android:title="@string/title_contacts" />
 
     <item
         android:id="@+id/navigation_dashboard"
@@ -16,13 +16,12 @@
         android:title="@string/title_dashboard" />
 
     <item
-        android:id="@+id/navigation_calendar"
-        android:icon="@drawable/ic_calendar"
-        android:title="@string/calendar" />
+        android:id="@+id/navigation_contacts"
+        android:icon="@drawable/ic_contacts"
+        android:title="@string/title_contacts" />
 
     <item
         android:id="@+id/navigation_preferences"
         android:icon="@drawable/ic_settings"
         android:title="@string/title_preferences" />
-
 </menu>

@@ -17,7 +17,6 @@ import net.gerardomedina.meetandeat.model.Meeting;
 import net.gerardomedina.meetandeat.persistence.local.DBHelper;
 import net.gerardomedina.meetandeat.persistence.local.MeetingValues;
 
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
@@ -27,6 +26,8 @@ public class CalendarFragment extends BaseFragment implements InitiableFragment 
     private SQLiteDatabase db;
     private Button setAlarmButton;
     private TextView calendarInfo;
+    private CalendarView calendarView;
+    private View view;
 
     public CalendarFragment() {
     }
@@ -34,9 +35,9 @@ public class CalendarFragment extends BaseFragment implements InitiableFragment 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_calendar, container, false);
+        view = inflater.inflate(R.layout.fragment_calendar, container, false);
 
-        CalendarView calendarView = (CalendarView) view.findViewById(R.id.calendar);
+        calendarView = (CalendarView) view.findViewById(R.id.calendar);
         calendarView.setFirstDayOfWeek(Calendar.getInstance(Locale.getDefault()).getFirstDayOfWeek());
 
         setAlarmButton = (Button) view.findViewById(R.id.setAlarmButton);
@@ -57,18 +58,16 @@ public class CalendarFragment extends BaseFragment implements InitiableFragment 
                     cursor.getString(cursor.getColumnIndexOrThrow(MeetingValues.COLUMN_NAME_TITLE)),
                     cursor.getString(cursor.getColumnIndexOrThrow(MeetingValues.COLUMN_NAME_LOCATION)),
                     cursor.getString(cursor.getColumnIndexOrThrow(MeetingValues.COLUMN_NAME_DATETIME)), "");
-            SimpleDateFormat simpleDateFormat1 = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
-            SimpleDateFormat simpleDateFormat2 = new SimpleDateFormat("hh:mm", Locale.getDefault());
-            calendarInfo.setText(getResources().getString(R.string.set_alarm_text,
-                    simpleDateFormat1.format(nextMeeting.getDatetime().getTime()),
-                    simpleDateFormat2.format(nextMeeting.getDatetime().getTime())));
-            setAlarmButton.setVisibility(View.VISIBLE);
+            calendarView.setDate(nextMeeting.getDatetime().getTime().getTime());
             setAlarmButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     setAlarm(nextMeeting);
                 }
             });
+        } else {
+            calendarInfo.setVisibility(View.VISIBLE);
+            setAlarmButton.setVisibility(View.GONE);
         }
     }
 

@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.SearchView;
-import android.widget.TextView;
 
 import net.gerardomedina.meetandeat.R;
 import net.gerardomedina.meetandeat.persistence.local.ContactValues;
@@ -32,8 +31,6 @@ public class ContactsFragment extends BaseFragment implements InitiableFragment 
     private List<String> contacts;
     private SQLiteOpenHelper dbHelper;
     private View view;
-    private TextView contactsInfo;
-    private ContactAdapter contactsAdapter;
 
     public ContactsFragment() {
     }
@@ -50,7 +47,6 @@ public class ContactsFragment extends BaseFragment implements InitiableFragment 
         dbHelper = new DBHelper(getActivity());
         setContactList();
         setSearchView();
-        contactsInfo = (TextView) view.findViewById(R.id.contactsInfo);
         loadContactListFromLocalDB();
         if (appCommon.hasInternet(getActivity())) new GetContactsTask(this).execute();
     }
@@ -58,7 +54,7 @@ public class ContactsFragment extends BaseFragment implements InitiableFragment 
     public void setContactList() {
         contactListView = (ListView) view.findViewById(R.id.contacts);
         contacts = new ArrayList<>();
-        contactsAdapter = new ContactAdapter(this,getBaseActivity(),contacts,false);
+        ContactAdapter contactsAdapter = new ContactAdapter(this, getBaseActivity(), contacts, false);
         contactListView.setAdapter(contactsAdapter);
         refreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipeRefresh);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -107,8 +103,6 @@ public class ContactsFragment extends BaseFragment implements InitiableFragment 
         Cursor cursor = db.rawQuery("select " + ContactValues.COLUMN_NAME_USERNAME + " from " +
                 ContactValues.TABLE_NAME + " order by "
                 + ContactValues.COLUMN_NAME_USERNAME + " ASC;", null);
-        if (cursor.getCount()>0)setContactsInfoText(R.string.long_tap_to_delete_contact);
-        else setContactsInfoText(R.string.no_contact);
         for (cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext()) {
             contacts.add(cursor.getString(cursor.getColumnIndexOrThrow(ContactValues.COLUMN_NAME_USERNAME)));
         }
@@ -127,11 +121,7 @@ public class ContactsFragment extends BaseFragment implements InitiableFragment 
         for (int i = 0; i < results.length(); i++) {
             contacts.add(results.getJSONObject(i).getString("username"));
         }
-        setContactsInfoText(R.string.tap_to_add_contact);
         contactListView.setAdapter(new ContactAdapter(this, getActivity(), contacts, true));
     }
 
-    public void setContactsInfoText(int stringId) {
-        contactsInfo.setText(getString(stringId));
-    }
 }

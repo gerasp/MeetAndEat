@@ -36,6 +36,14 @@ public class MainActivity extends BaseActivity {
         return true;
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        changeToActivity(InvitationsActivity.class);
+        overridePendingTransition(R.anim.slide_down,R.anim.fade_out);
+        return super.onOptionsItemSelected(item);
+    }
+
+
     public void setBadgeCount() {
         if (!realBadge) count = "0";
         BadgeDrawable badge;
@@ -47,18 +55,10 @@ public class MainActivity extends BaseActivity {
         icon.setDrawableByLayerId(R.id.ic_badge, badge);
     }
 
-
     public void setBadgeCountNoUI(String s) {
         realBadge = true;
         count = s;
         if (icon != null) setBadgeCount();
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        changeToActivity(InvitationsActivity.class);
-        overridePendingTransition(R.anim.slide_down,R.anim.fade_out);
-        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -88,17 +88,13 @@ public class MainActivity extends BaseActivity {
         viewPager.setOffscreenPageLimit(NUMBER_OF_SECTIONS - 1);
         viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-            }
-
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {}
             @Override
             public void onPageSelected(int position) {
                 bottomNavigationView.getMenu().getItem(position).setChecked(true);
             }
-
             @Override
-            public void onPageScrollStateChanged(int state) {
-            }
+            public void onPageScrollStateChanged(int state) {}
         });
     }
 
@@ -109,16 +105,16 @@ public class MainActivity extends BaseActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
-                    case R.id.navigation_history:
+                    case R.id.navigation_calendar:
                         viewPager.setCurrentItem(0);
                         return true;
-                    case R.id.navigation_contacts:
+                    case R.id.navigation_history:
                         viewPager.setCurrentItem(1);
                         return true;
                     case R.id.navigation_dashboard:
                         viewPager.setCurrentItem(2);
                         return true;
-                    case R.id.navigation_calendar:
+                    case R.id.navigation_contacts:
                         viewPager.setCurrentItem(3);
                         return true;
                     case R.id.navigation_preferences:
