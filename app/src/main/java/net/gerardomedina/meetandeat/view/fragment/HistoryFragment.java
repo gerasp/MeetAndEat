@@ -70,10 +70,12 @@ public class HistoryFragment extends BaseFragment implements InitiableFragment {
 
     public void loadMeetingListFromLocalDB() {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
-        Cursor cursor = db.rawQuery("select * from "+ OldMeetingValues.TABLE_NAME+
-                " order by " + OldMeetingValues.COLUMN_NAME_DATETIME+" ASC;",null);
+        Cursor cursor = db.rawQuery("select * from " + OldMeetingValues.TABLE_NAME +
+                " order by " + OldMeetingValues.COLUMN_NAME_DATETIME + " ASC;", null);
         if (cursor.getCount() > 0) {
-            meetingListView.setAdapter(new MeetingAdapter(getActivity(), (BaseActivity) getActivity(),cursor,true,true));
+            meetingListView.setVisibility(View.VISIBLE);
+            view.findViewById(R.id.noContent).setVisibility(View.GONE);
+            meetingListView.setAdapter(new MeetingAdapter(getActivity(), (BaseActivity) getActivity(), cursor, true, true));
         } else {
             meetingListView.setVisibility(View.GONE);
             view.findViewById(R.id.noContent).setVisibility(View.VISIBLE);

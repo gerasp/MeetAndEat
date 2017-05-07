@@ -107,6 +107,8 @@ public class ContactsFragment extends BaseFragment implements InitiableFragment 
             contacts.add(cursor.getString(cursor.getColumnIndexOrThrow(ContactValues.COLUMN_NAME_USERNAME)));
         }
         if (cursor.getCount() > 0) {
+            contactListView.setVisibility(View.VISIBLE);
+            view.findViewById(R.id.noContent).setVisibility(View.GONE);
             contactListView.setAdapter(new ContactAdapter(this, getActivity(), contacts, false));
         } else {
             contactListView.setVisibility(View.GONE);
@@ -122,6 +124,8 @@ public class ContactsFragment extends BaseFragment implements InitiableFragment 
             contacts.add(results.getJSONObject(i).getString("username"));
         }
         contactListView.setAdapter(new ContactAdapter(this, getActivity(), contacts, true));
+        contactListView.setVisibility(View.VISIBLE);
+        view.findViewById(R.id.noContent).setVisibility(View.GONE);
     }
 
 }
