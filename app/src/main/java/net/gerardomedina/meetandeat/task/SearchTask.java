@@ -1,10 +1,11 @@
 package net.gerardomedina.meetandeat.task;
 
+import android.app.AlertDialog;
 import android.util.Log;
 
 import net.gerardomedina.meetandeat.R;
+import net.gerardomedina.meetandeat.view.dialog.SearchContactsDialog;
 import net.gerardomedina.meetandeat.view.fragment.BaseFragment;
-import net.gerardomedina.meetandeat.view.fragment.ContactsFragment;
 
 import org.json.JSONException;
 
@@ -14,11 +15,12 @@ import java.util.Map;
 public class SearchTask extends BaseTask {
 
     private String username;
+    private AlertDialog dialog;
 
-    public SearchTask(BaseFragment fragment, String username) {
+    public SearchTask(AlertDialog dialog, BaseFragment fragment, String username) {
         this.username = username;
         this.fragment = fragment;
-        this.activity = fragment.getBaseActivity();
+        this.dialog = dialog;
     }
 
     @Override
@@ -39,7 +41,7 @@ public class SearchTask extends BaseTask {
                 switch (response.getInt("code")) {
                     case 0: fragment.showToast(R.string.no_user_found);
                             break;
-                    case 2: ((ContactsFragment)fragment).populateWithSearchResults(response);
+                    case 2: ((SearchContactsDialog)dialog).populateWithSearchResults(response);
                             break;
                 }
             } catch (JSONException e) {

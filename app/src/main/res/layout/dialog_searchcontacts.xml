@@ -15,7 +15,7 @@
         android:queryHint="@string/search_new_contacts" />
 
     <ListView
-        android:id="@+id/contacts"
+        android:id="@+id/resultList"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 </LinearLayout>

@@ -1,23 +1,24 @@
 package net.gerardomedina.meetandeat.view.fragment;
 
 import android.content.ContentValues;
+import android.content.DialogInterface;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
-import android.widget.SearchView;
 
 import net.gerardomedina.meetandeat.R;
 import net.gerardomedina.meetandeat.persistence.local.ContactValues;
 import net.gerardomedina.meetandeat.persistence.local.DBHelper;
 import net.gerardomedina.meetandeat.task.GetContactsTask;
-import net.gerardomedina.meetandeat.task.SearchTask;
 import net.gerardomedina.meetandeat.view.adapter.ContactAdapter;
+import net.gerardomedina.meetandeat.view.dialog.SearchContactsDialog;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -46,7 +47,7 @@ public class ContactsFragment extends BaseFragment implements InitiableFragment 
     public void init() {
         dbHelper = new DBHelper(getActivity());
         setContactList();
-        setSearchView();
+        setSearchDialog();
         loadContactListFromLocalDB();
         if (appCommon.hasInternet(getActivity())) new GetContactsTask(this).execute();
     }
@@ -66,21 +67,18 @@ public class ContactsFragment extends BaseFragment implements InitiableFragment 
 
     }
 
-    public void setSearchView() {
-        SearchView searchView = (SearchView) view.findViewById(R.id.contactsSearchBox);
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+    public void setSearchDialog() {
+        FloatingActionButton searchContactsButton = (FloatingActionButton) view.findViewById(R.id.searchContactsButton);
+        searchContactsButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onQueryTextSubmit(String s) {
-                new SearchTask(getBaseFragment(), s).execute();
-                appCommon.hideKeyboard(getActivity());
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String s) {
-                if (s.equals("")) loadContactListFromLocalDB();
-                if (s.contains(" ")) showToast(R.string.no_spaces_allowed);
-                return false;
+            public void onClick(View v) {
+                final SearchContactsDialog searchContactsDialog = new SearchContactsDialog(getBaseFragment());
+                searchContactsDialog.setView(getActivity().getLayoutInflater().inflate(R.layout.dialog_searchcontacts, null));
+                searchContactsDialog.setButton(DialogInterface.BUTTON_POSITIVE, getString(android.R.string.cancel), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {}
+                });
+                searchContactsDialog.show();
             }
         });
     }
@@ -114,18 +112,6 @@ public class ContactsFragment extends BaseFragment implements InitiableFragment 
             contactListView.setVisibility(View.GONE);
             view.findViewById(R.id.noContent).setVisibility(View.VISIBLE);
         }
-    }
-
-
-    public void populateWithSearchResults(JSONObject response) throws JSONException {
-        contacts.clear();
-        JSONArray results = response.getJSONArray("results");
-        for (int i = 0; i < results.length(); i++) {
-            contacts.add(results.getJSONObject(i).getString("username"));
-        }
-        contactListView.setAdapter(new ContactAdapter(this, getActivity(), contacts, true));
-        contactListView.setVisibility(View.VISIBLE);
-        view.findViewById(R.id.noContent).setVisibility(View.GONE);
     }
 
 }
