@@ -72,7 +72,12 @@ public class HistoryFragment extends BaseFragment implements InitiableFragment {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         Cursor cursor = db.rawQuery("select * from "+ OldMeetingValues.TABLE_NAME+
                 " order by " + OldMeetingValues.COLUMN_NAME_DATETIME+" ASC;",null);
-        meetingListView.setAdapter(new MeetingAdapter(getActivity(), (BaseActivity) getActivity(),cursor,true,true));
+        if (cursor.getCount() > 0) {
+            meetingListView.setAdapter(new MeetingAdapter(getActivity(), (BaseActivity) getActivity(),cursor,true,true));
+        } else {
+            meetingListView.setVisibility(View.GONE);
+            view.findViewById(R.id.noContent).setVisibility(View.VISIBLE);
+        }
     }
 
 }

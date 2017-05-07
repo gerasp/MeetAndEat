@@ -121,5 +121,5 @@
     <string name="exit_meeting">Exit this meeting</string>
     <string name="no_content_meeting">You have no meetings</string>
     <string name="no_content_contact">You have no contacts</string>
-    <string name="no_content_old_meeting">Old meetings will be here and will be deleted automatically after 10 days</string>
+    <string name="no_content_old_meeting">Old meetings will be deleted after 10 days</string>
 </resources>

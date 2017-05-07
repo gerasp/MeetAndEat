@@ -112,7 +112,12 @@ public class ContactsFragment extends BaseFragment implements InitiableFragment 
         for (cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext()) {
             contacts.add(cursor.getString(cursor.getColumnIndexOrThrow(ContactValues.COLUMN_NAME_USERNAME)));
         }
-        contactListView.setAdapter(new ContactAdapter(this, getActivity(), contacts, false));
+        if (cursor.getCount() > 0) {
+            contactListView.setAdapter(new ContactAdapter(this, getActivity(), contacts, false));
+        } else {
+            contactListView.setVisibility(View.GONE);
+            view.findViewById(R.id.noContent).setVisibility(View.VISIBLE);
+        }
     }
 
 
