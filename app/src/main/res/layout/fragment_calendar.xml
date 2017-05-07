@@ -17,15 +17,12 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
         android:id="@+id/linearLayout">
 
         <Button
             android:id="@+id/setAlarmButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_above="@id/calendarInfo"
             android:layout_marginLeft="@dimen/button_margin"
             android:layout_marginRight="@dimen/button_margin"
             android:layout_marginTop="@dimen/button_margin"
@@ -38,7 +35,6 @@
             android:id="@+id/calendarInfo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
             android:layout_margin="@dimen/text_margin"
             android:text="@string/no_meeting"
             android:textAlignment="center" />
