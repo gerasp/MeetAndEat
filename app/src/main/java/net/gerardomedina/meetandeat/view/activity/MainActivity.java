@@ -9,7 +9,6 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.TextView;
 
 import net.gerardomedina.meetandeat.R;
 import net.gerardomedina.meetandeat.task.GetInvitationsTask;
@@ -23,7 +22,6 @@ public class MainActivity extends BaseActivity {
 
     private final int DEFAULT_SECTION = 2;
     private final int NUMBER_OF_SECTIONS = 5;
-    private TextView counter;
     private LayerDrawable icon;
     public boolean realBadge = false;
     public String count;

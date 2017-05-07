@@ -66,14 +66,6 @@
                 android:value=".view.activity.MeetingActivity" />
         </activity>
         <activity android:name=".view.activity.InvitationsActivity" />
-        <activity
-            android:name=".view.activity.AdminActivity"
-            android:label="@string/title_activity_admin"
-            android:parentActivityName=".view.activity.MeetingActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="net.gerardomedina.meetandeat.view.activity.MeetingActivity" />
-        </activity>
     </application>
 
 </manifest>
