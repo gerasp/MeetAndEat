@@ -74,7 +74,7 @@ public class ContactsFragment extends BaseFragment implements InitiableFragment 
             public void onClick(View v) {
                 final SearchContactsDialog searchContactsDialog = new SearchContactsDialog(getBaseFragment());
                 searchContactsDialog.setView(getActivity().getLayoutInflater().inflate(R.layout.dialog_searchcontacts, null));
-                searchContactsDialog.setButton(DialogInterface.BUTTON_POSITIVE, getString(android.R.string.cancel), new DialogInterface.OnClickListener() {
+                searchContactsDialog.setButton(DialogInterface.BUTTON_POSITIVE, getString(R.string.close), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {}
                 });

@@ -51,7 +51,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            custom:srcCompat="@drawable/ic_location" />
+            custom:srcCompat="@drawable/ic_map_white" />
     </FrameLayout>
 
     <FrameLayout
@@ -65,6 +65,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            custom:srcCompat="@drawable/ic_edit" />
+            custom:srcCompat="@drawable/ic_menu_white" />
     </FrameLayout>
 </LinearLayout>

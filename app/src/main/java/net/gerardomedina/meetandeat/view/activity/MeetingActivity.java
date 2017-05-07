@@ -54,7 +54,7 @@ public class MeetingActivity extends BaseActivity {
         if (meeting == null) changeToActivityNoBackStack(MainActivity.class);
         super.onCreate(savedInstanceState);
         if (appCommon.isColorDark(meeting.getColor())) setContentView(R.layout.activity_meeting_white);
-        else setContentView(R.layout.activity_meeting);
+        else setContentView(R.layout.activity_meeting_black);
         init();
     }
 

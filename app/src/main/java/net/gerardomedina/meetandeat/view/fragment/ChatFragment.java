@@ -43,7 +43,7 @@ public class ChatFragment extends BaseFragment implements InitiableFragment {
         if (appCommon.isColorDark(meeting.getColor())){
             view = inflater.inflate(R.layout.fragment_chat_white, container, false);
         } else {
-            view = inflater.inflate(R.layout.fragment_chat, container, false);
+            view = inflater.inflate(R.layout.fragment_chat_black, container, false);
         }
         init();
         return view;
