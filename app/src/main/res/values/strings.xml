@@ -125,4 +125,5 @@
     <string name="no_content_old_meeting">Old meetings will be deleted after 10 days</string>
     <string name="leave_meeting">Leave this meeting</string>
     <string name="change_admin">Change administrator</string>
+    <string name="admin_options">Admin options</string>
 </resources>
