@@ -7,7 +7,7 @@
     android:focusable="true"
     android:focusableInTouchMode="true"
     android:theme="@style/AppTheme.AppBarOverlay"
-    tools:context="net.gerardomedina.meetandeat.view.activity.LoginActivity">
+    tools:activity="net.gerardomedina.meetandeat.view.activity.LoginActivity">
 
     <com.synnapps.carouselview.CarouselView
         android:id="@+id/carouselView"

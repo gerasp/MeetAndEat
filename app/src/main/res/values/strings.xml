@@ -127,4 +127,6 @@
     <string name="admin_options">Admin options</string>
     <string name="you_cannot_leave_this_meeting">You cannot leave this meeting before you change the administrator</string>
     <string name="no_participants">There are not enough participants</string>
+    <string name="this_food_is_not_yours">That\'s not your food!</string>
+    <string name="delete_food">Are you sure you want to delete this food?</string>
 </resources>

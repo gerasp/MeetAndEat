@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:theme="@style/AppTheme.AppBarOverlay"
-    tools:context="net.gerardomedina.meetandeat.view.activity.MeetingActivity">
+    tools:activity="net.gerardomedina.meetandeat.view.activity.MeetingActivity">
 
 
     <android.support.v7.widget.Toolbar

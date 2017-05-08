@@ -1,12 +1,14 @@
 package net.gerardomedina.meetandeat.model;
 
 public class Food {
+    private int id;
     private String icon;
     private String description;
     private int amount;
     private String username;
 
-    public Food(String icon, String description, int amount, String username) {
+    public Food(int id, String icon, String description, int amount, String username) {
+        this.id = id;
         this.icon = icon;
         this.description = description;
         this.amount = amount;
@@ -44,5 +46,13 @@ public class Food {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

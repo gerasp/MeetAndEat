@@ -163,6 +163,7 @@ public class OptionsDialog extends Dialog {
                 public void onClick(View v) {
                     new AlertDialog.Builder(fragment.getBaseActivity(), R.style.MyAlertDialogStyle)
                             .setMessage(R.string.are_you_sure)
+                            .setIcon(R.drawable.ic_warning)
                             .setNegativeButton(fragment.getString(android.R.string.cancel), new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
@@ -214,6 +215,7 @@ public class OptionsDialog extends Dialog {
                 } else {
                     new AlertDialog.Builder(fragment.getBaseActivity(), R.style.MyAlertDialogStyle)
                             .setMessage(R.string.are_you_sure)
+                            .setIcon(R.drawable.ic_warning)
                             .setNegativeButton(fragment.getString(android.R.string.cancel), new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {

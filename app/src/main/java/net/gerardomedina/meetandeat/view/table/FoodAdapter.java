@@ -1,13 +1,18 @@
 package net.gerardomedina.meetandeat.view.table;
 
-import android.content.Context;
+import android.content.DialogInterface;
+import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import net.gerardomedina.meetandeat.R;
+import net.gerardomedina.meetandeat.common.AppCommon;
 import net.gerardomedina.meetandeat.model.Food;
+import net.gerardomedina.meetandeat.task.DeleteFoodTask;
+import net.gerardomedina.meetandeat.view.activity.BaseActivity;
+import net.gerardomedina.meetandeat.view.fragment.BaseFragment;
 
 import java.util.List;
 
@@ -16,14 +21,16 @@ import de.codecrafters.tableview.toolkit.LongPressAwareTableDataAdapter;
 
 
 public class FoodAdapter extends LongPressAwareTableDataAdapter<Food> {
-
+    AppCommon appCommon = AppCommon.getInstance();
     private static final int TEXT_SIZE = 12;
-    private final Context context;
+    private final BaseActivity activity;
+    private final BaseFragment fragment;
 
 
-    public FoodAdapter(final Context context, final List<Food> data, final TableView<Food> tableView) {
-        super(context, data, tableView);
-        this.context = context;
+    public FoodAdapter(final BaseFragment fragment, final BaseActivity activity, final List<Food> data, final TableView<Food> tableView) {
+        super(activity, data, tableView);
+        this.activity = activity;
+        this.fragment = fragment;
     }
 
     @Override
@@ -50,13 +57,34 @@ public class FoodAdapter extends LongPressAwareTableDataAdapter<Food> {
     @Override
     public View getLongPressCellView(int rowIndex, int columnIndex, ViewGroup parentView) {
         final Food food = getRowData(rowIndex);
-        View renderedView = null;
-
-        return renderedView;
+        if (columnIndex == 0) {
+            if (food.getUsername().equals(appCommon.getUser().getUsername()) ||
+                    appCommon.getSelectedMeeting().getAdmin().equals(appCommon.getUser().getUsername())) {
+                new AlertDialog.Builder(activity, R.style.MyAlertDialogStyle)
+                        .setMessage(R.string.delete_food)
+                        .setIcon(R.drawable.ic_warning)
+                        .setNegativeButton(fragment.getString(android.R.string.cancel), new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                            }
+                        })
+                        .setPositiveButton(fragment.getString(android.R.string.ok), new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                new DeleteFoodTask(fragment,food.getId()).execute();
+                            }
+                        })
+                        .create()
+                        .show();
+            } else {
+                activity.showSimpleDialog(R.string.this_food_is_not_yours);
+            }
+        }
+        return getDefaultCellView(rowIndex, columnIndex, parentView);
     }
 
     private View renderIcon(final Food food, final ViewGroup parentView) {
-        ImageView imageView = new ImageView(context);
+        ImageView imageView = new ImageView(activity);
         try {
             imageView.setImageResource(R.drawable.class.getField(food.getIcon()).getInt(0));
         } catch (IllegalAccessException e) {

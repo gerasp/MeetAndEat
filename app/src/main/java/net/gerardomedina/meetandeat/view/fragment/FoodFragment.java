@@ -70,7 +70,7 @@ public class FoodFragment extends BaseFragment implements InitiableFragment {
     public void setTable() {
         foodList = new ArrayList<>();
         SortableFoodTableView foodTableView = (SortableFoodTableView) view.findViewById(R.id.foodTable);
-        foodAdapter = new FoodAdapter(getBaseActivity(), foodList, foodTableView);
+        foodAdapter = new FoodAdapter(this,getBaseActivity(), foodList, foodTableView);
         foodTableView.setDataAdapter(foodAdapter);
         foodTableView.setSwipeToRefreshEnabled(true);
         foodTableView.setSwipeToRefreshListener(new SwipeToRefreshListener() {
@@ -139,7 +139,9 @@ public class FoodFragment extends BaseFragment implements InitiableFragment {
         JSONArray results = response.getJSONArray("results");
         for (int i = 0; i < results.length(); i++) {
             JSONObject jsonObject = results.getJSONObject(i);
-            foodList.add(new Food(jsonObject.getString("icon"),
+            foodList.add(new Food(
+                    jsonObject.getInt("id"),
+                    jsonObject.getString("icon"),
                     jsonObject.getString("description"),
                     jsonObject.getInt("amount"),
                     jsonObject.getString("username")
