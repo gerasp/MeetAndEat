@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.support.v7.app.AlertDialog;
 
 import net.gerardomedina.meetandeat.R;
+import net.gerardomedina.meetandeat.common.AppCommon;
 import net.gerardomedina.meetandeat.persistence.local.ContactValues;
 import net.gerardomedina.meetandeat.persistence.local.DBHelper;
 import net.gerardomedina.meetandeat.task.AddParticipantsTask;
@@ -15,13 +16,38 @@ import net.gerardomedina.meetandeat.view.fragment.FoodFragment;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AddParticipantsDialog {
+public class ParticipantsDialog {
     private final FoodFragment foodFragment;
+    AppCommon appCommon = AppCommon.getInstance();
 
-    public AddParticipantsDialog(FoodFragment foodFragment) {
+    public ParticipantsDialog(FoodFragment foodFragment) {
+
         this.foodFragment = foodFragment;
     }
 
+    public void createParticipantsDialog() {
+
+        List<String> participants = foodFragment.getMeeting().getParticipants();
+        participants.remove(foodFragment.getMeeting().getAdmin());
+        participants.add(foodFragment.getMeeting().getAdmin()+" (admin)");
+        String[] items = participants.toArray(new String[0]);
+
+        new AlertDialog.Builder(foodFragment.getBaseActivity())
+                .setTitle(foodFragment.getString(R.string.participants))
+                .setItems(items, null)
+                .setPositiveButton(R.string.close, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                    }
+                })
+                .setNeutralButton(R.string.add_participant_label, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        createAddParticipantDialog();
+                    }
+                })
+                .create().show();
+    }
     public void createAddParticipantDialog() {
         SQLiteOpenHelper dbHelper = new DBHelper(foodFragment.getBaseActivity());
         SQLiteDatabase db = dbHelper.getReadableDatabase();

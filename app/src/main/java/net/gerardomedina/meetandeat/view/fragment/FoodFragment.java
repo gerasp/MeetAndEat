@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +17,7 @@ import net.gerardomedina.meetandeat.view.activity.LocationActivity;
 import net.gerardomedina.meetandeat.view.activity.MainActivity;
 import net.gerardomedina.meetandeat.view.dialog.AddFoodDialog;
 import net.gerardomedina.meetandeat.view.dialog.OptionsDialog;
-import net.gerardomedina.meetandeat.view.dialog.AddParticipantsDialog;
+import net.gerardomedina.meetandeat.view.dialog.ParticipantsDialog;
 import net.gerardomedina.meetandeat.view.table.FoodAdapter;
 import net.gerardomedina.meetandeat.view.table.SortableFoodTableView;
 
@@ -34,7 +33,7 @@ import de.codecrafters.tableview.listeners.SwipeToRefreshListener;
 public class FoodFragment extends BaseFragment implements InitiableFragment {
 
 
-    private final AddParticipantsDialog addParticipantsDialog = new AddParticipantsDialog(this);
+    private final ParticipantsDialog participantsDialog = new ParticipantsDialog(this);
     private View view;
     private SwipeToRefreshListener.RefreshIndicator refreshIndicator;
     private Meeting meeting;
@@ -117,7 +116,7 @@ public class FoodFragment extends BaseFragment implements InitiableFragment {
         (view.findViewById(R.id.item2)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                createParticipantsDialog();
+                participantsDialog.createParticipantsDialog();
             }
         });
         (view.findViewById(R.id.item3)).setOnClickListener(new View.OnClickListener() {
@@ -132,24 +131,6 @@ public class FoodFragment extends BaseFragment implements InitiableFragment {
                 new OptionsDialog(getBaseFragment()).show();
             }
         });
-    }
-
-    private void createParticipantsDialog() {
-        new AlertDialog.Builder(getBaseActivity())
-                .setTitle(getString(R.string.participants))
-                .setItems(meeting.getParticipants().toArray(new String[0]), null)
-                .setPositiveButton(R.string.close, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                    }
-                })
-                .setNeutralButton(R.string.add_participant_label, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        addParticipantsDialog.createAddParticipantDialog();
-                    }
-                })
-                .create().show();
     }
 
 
