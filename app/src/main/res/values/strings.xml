@@ -126,4 +126,5 @@
     <string name="leave_meeting">Leave this meeting</string>
     <string name="change_admin">Change administrator</string>
     <string name="admin_options">Admin options</string>
+    <string name="you_cannot_leave_this_meeting">You cannot leave this meeting before you change the administrator</string>
 </resources>

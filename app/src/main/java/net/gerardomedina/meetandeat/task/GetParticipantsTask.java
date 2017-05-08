@@ -32,6 +32,7 @@ public class GetParticipantsTask extends BaseTask {
                 switch (response.getInt("code")) {
                     case 2:
                         appCommon.getSelectedMeeting().setParticipants(response);
+                        appCommon.getSelectedMeeting().setAdmin(response.getString("admin"));
                         break;
                 }
             } catch (JSONException e) {

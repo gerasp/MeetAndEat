@@ -17,18 +17,18 @@ public class Meeting {
     private Calendar datetime;
     private String color;
     private boolean isOld;
-    private boolean isAdmin;
 
     private List<String> participants;
+    private String admin;
 
-    public Meeting(int id, String title, String location, String datetime, String color, boolean isAdmin) {
+    public Meeting(int id, String title, String location, String datetime, String color) {
         this.id = id;
         this.title = title;
-        this.isAdmin = isAdmin;
         setLocation(location);
         setDate(datetime);
         this.color = color;
         this.isOld = false;
+        this.admin = "";
         this.participants = new ArrayList<>();
     }
 
@@ -103,11 +103,11 @@ public class Meeting {
         return participants;
     }
 
-    public boolean isAdmin() {
-        return isAdmin;
+    public String getAdmin() {
+        return admin;
     }
 
-    public void setAdmin(boolean admin) {
-        isAdmin = admin;
+    public void setAdmin(String admin) {
+        this.admin = admin;
     }
 }

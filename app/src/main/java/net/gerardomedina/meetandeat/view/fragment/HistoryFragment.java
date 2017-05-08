@@ -12,7 +12,6 @@ import android.widget.ListView;
 
 import net.gerardomedina.meetandeat.R;
 import net.gerardomedina.meetandeat.persistence.local.DBHelper;
-import net.gerardomedina.meetandeat.persistence.local.MeetingValues;
 import net.gerardomedina.meetandeat.persistence.local.OldMeetingValues;
 import net.gerardomedina.meetandeat.task.GetOldMeetingsTask;
 import net.gerardomedina.meetandeat.view.activity.BaseActivity;
@@ -64,7 +63,6 @@ public class HistoryFragment extends BaseFragment implements InitiableFragment {
             values.put(OldMeetingValues.COLUMN_NAME_LOCATION, jsonObject.getString("location"));
             values.put(OldMeetingValues.COLUMN_NAME_DATETIME, jsonObject.getString("datetime"));
             values.put(OldMeetingValues.COLUMN_NAME_COLOR, jsonObject.getString("color"));
-            values.put(MeetingValues.COLUMN_NAME_ISADMIN, jsonObject.getString("isAdmin"));
             db.insert(OldMeetingValues.TABLE_NAME, null, values);
         }
         loadMeetingListFromLocalDB();

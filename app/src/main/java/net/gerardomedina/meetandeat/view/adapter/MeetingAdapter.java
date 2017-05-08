@@ -53,8 +53,7 @@ public class MeetingAdapter extends CursorAdapter {
                 title,
                 cursor.getString(cursor.getColumnIndexOrThrow(MeetingValues.COLUMN_NAME_LOCATION)),
                 datetime,
-                color,
-                cursor.getInt(cursor.getColumnIndexOrThrow(MeetingValues.COLUMN_NAME_ISADMIN))>0);
+                color);
 
         if (isOld) meeting.setOld(true);
 

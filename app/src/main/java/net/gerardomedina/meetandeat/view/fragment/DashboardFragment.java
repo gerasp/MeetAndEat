@@ -83,7 +83,6 @@ public class DashboardFragment extends BaseFragment implements InitiableFragment
             values.put(MeetingValues.COLUMN_NAME_LOCATION, jsonObject.getString("location"));
             values.put(MeetingValues.COLUMN_NAME_DATETIME, jsonObject.getString("datetime"));
             values.put(MeetingValues.COLUMN_NAME_COLOR, jsonObject.getString("color"));
-            values.put(MeetingValues.COLUMN_NAME_ISADMIN, jsonObject.getString("isAdmin"));
             db.insert(MeetingValues.TABLE_NAME, null, values);
         }
         loadMeetingListFromLocalDB();
