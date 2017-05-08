@@ -97,7 +97,7 @@ public class FoodFragment extends BaseFragment implements InitiableFragment {
         (view.findViewById(R.id.item1)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                createAddFoodDialog();
+                new AddFoodDialog(getBaseFragment()).show();
             }
         });
         (view.findViewById(R.id.item2)).setOnClickListener(new View.OnClickListener() {
@@ -139,23 +139,6 @@ public class FoodFragment extends BaseFragment implements InitiableFragment {
     }
 
 
-    private void createAddFoodDialog() {
-        final AddFoodDialog addFoodDialog = new AddFoodDialog(this);
-        addFoodDialog.setView(getActivity().getLayoutInflater().inflate(R.layout.dialog_addfood, null));
-        addFoodDialog.setButton(DialogInterface.BUTTON_POSITIVE, getString(android.R.string.ok), new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                addFoodDialog.attemptAddFood();
-            }
-        });
-        addFoodDialog.setButton(DialogInterface.BUTTON_NEGATIVE, getString(android.R.string.cancel), new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                addFoodDialog.dismiss();
-            }
-        });
-        addFoodDialog.show();
-    }
 
     public void populateFoodTable(JSONObject response) throws JSONException {
         foodList.clear();

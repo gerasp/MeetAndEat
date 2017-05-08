@@ -50,6 +50,7 @@ public class OptionsDialog extends Dialog {
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.dialog_options);
         meeting = appCommon.getSelectedMeeting();
         setupAdminOptions();
         setupNormalOptions();

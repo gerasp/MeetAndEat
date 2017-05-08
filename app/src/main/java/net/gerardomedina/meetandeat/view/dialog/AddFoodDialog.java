@@ -2,6 +2,7 @@ package net.gerardomedina.meetandeat.view.dialog;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.Gravity;
@@ -32,6 +33,19 @@ public class AddFoodDialog extends AlertDialog {
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.dialog_addfood);
+        setButton(DialogInterface.BUTTON_POSITIVE, fragment.getString(android.R.string.ok), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                attemptAddFood();
+            }
+        });
+        setButton(DialogInterface.BUTTON_NEGATIVE, fragment.getString(android.R.string.cancel), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dismiss();
+            }
+        });
         selectedIcon = (ImageView) findViewById(R.id.selectedIcon);
         selectedIcon.setImageResource(R.drawable.ic_1);
         selectedIconParameter = "ic_1";
