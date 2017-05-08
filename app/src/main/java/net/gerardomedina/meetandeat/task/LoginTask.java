@@ -42,7 +42,7 @@ public class LoginTask extends BaseTask {
                         ((LoginActivity) activity).showEmailDialog(username, password);
                         break;
                     case 1:
-                        activity.showSimpleDialog(R.string.error_incorrect_password);
+                        activity.showSimpleDialog(R.string.error_invalid_password);
                         break;
                     case 2:
                         activity.login(response.getInt("id"),response.getString("username"));

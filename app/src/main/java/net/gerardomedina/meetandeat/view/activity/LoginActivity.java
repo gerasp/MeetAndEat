@@ -46,7 +46,7 @@ public class LoginActivity extends BaseActivity {
         setContentView(R.layout.activity_login);
 
         LinearLayout loginForm = (LinearLayout) findViewById(R.id.email_login_form);
-        loginForm.startAnimation(AnimationUtils.loadAnimation(this, R.anim.slide_in_bottom));
+        loginForm.startAnimation(AnimationUtils.loadAnimation(this, R.anim.slide_in_left));
 
         setCarouselView();
         setInputs();
@@ -76,7 +76,7 @@ public class LoginActivity extends BaseActivity {
     private void setCarouselView() {
         carouselView = (CarouselView) findViewById(R.id.carouselView);
         carouselView.setPageCount(sampleImages.length);
-        carouselView.startAnimation(AnimationUtils.loadAnimation(this, R.anim.slide_in_top));
+        carouselView.startAnimation(AnimationUtils.loadAnimation(this, R.anim.fade_in));
         carouselView.setImageListener(new ImageListener() {
             @Override
             public void setImageForPosition(int position, ImageView imageView) {

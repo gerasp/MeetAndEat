@@ -21,6 +21,6 @@
     <color name="icons">@color/black</color>
     <color name="divider">#BDBDBD</color>
     <color name="transparent">#00999999</color>
-    <color name="halftransparent">#c8ffffff</color>
+    <color name="halftransparent">#b0ffffff</color>
 
 </resources>
