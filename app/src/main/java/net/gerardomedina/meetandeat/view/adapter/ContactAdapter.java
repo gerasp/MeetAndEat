@@ -38,10 +38,11 @@ public class ContactAdapter extends ArrayAdapter<String> {
             else convertView = LayoutInflater.from(getContext()).inflate(android.R.layout.simple_list_item_1, parent, false);
         }
 
-        TextView username = (TextView) convertView.findViewById(R.id.text1);
-        username.setText(contactUsername);
+
 
         if (isSearch) {
+            TextView username = (TextView) convertView.findViewById(R.id.text1);
+            username.setText(contactUsername);
             ((ImageView)convertView.findViewById(R.id.icon)).setImageResource(R.drawable.ic_contact_add);
             convertView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -50,6 +51,8 @@ public class ContactAdapter extends ArrayAdapter<String> {
                 }
             });
         } else {
+            TextView username = (TextView) convertView.findViewById(android.R.id.text1);
+            username.setText(contactUsername);
             convertView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View v) {

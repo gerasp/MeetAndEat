@@ -10,7 +10,6 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.animation.AnimationUtils;
-import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -34,7 +33,11 @@ public class LoginActivity extends BaseActivity {
 
     private CarouselView carouselView;
 
-    private int[] sampleImages = {R.drawable.logo, R.drawable.logo};
+    private int[] sampleImages = {R.drawable.carousel1,
+            R.drawable.carousel2,
+            R.drawable.carousel3,
+            R.drawable.carousel4,
+            R.drawable.carousel5};
 
 
     @Override
@@ -60,26 +63,12 @@ public class LoginActivity extends BaseActivity {
 
     private void setInputs() {
         usernameView = (EditText) findViewById(R.id.username);
-        usernameView.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (hasFocus) carouselView.setVisibility(View.GONE);
-                else carouselView.setVisibility(View.VISIBLE);
-            }
-        });
         passwordView = (EditText) findViewById(R.id.password);
         passwordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
                 attemptLogin();
                 return true;
-            }
-        });
-        passwordView.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (hasFocus) carouselView.setVisibility(View.GONE);
-                else carouselView.setVisibility(View.VISIBLE);
             }
         });
     }
