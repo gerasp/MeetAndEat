@@ -77,7 +77,7 @@ public class OptionsDialog extends Dialog {
                 });
                 alertDialog.show();
             }
-        }));
+        }, true));
         options.add(new Option(fragment.getString(R.string.change_location), new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -90,7 +90,7 @@ public class OptionsDialog extends Dialog {
                     Log.e("Google Play", e.getMessage());
                 }
             }
-        }));
+        }, true));
         options.add(new Option(fragment.getString(R.string.change_date_and_time), new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -111,7 +111,7 @@ public class OptionsDialog extends Dialog {
                 datePickerDialog.getDatePicker().setMinDate(newCalendar.getTime().getTime());
                 datePickerDialog.show();
             }
-        }));
+        }, true));
         options.add(new Option(fragment.getString(R.string.change_color), new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -129,7 +129,7 @@ public class OptionsDialog extends Dialog {
                     }
                 }).build().show();
             }
-        }));
+        }, true));
         options.add(new Option(fragment.getString(R.string.delete_participant), new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -152,7 +152,7 @@ public class OptionsDialog extends Dialog {
                         })
                         .create().show();
             }
-        }));
+        }, true));
         options.add(new Option(fragment.getString(R.string.delete_meeting), new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -172,7 +172,7 @@ public class OptionsDialog extends Dialog {
                         .create()
                         .show();
             }
-        }));
+        }, true));
         options.add(new Option(fragment.getString(R.string.change_admin), new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -195,7 +195,7 @@ public class OptionsDialog extends Dialog {
                         })
                         .create().show();
             }
-        }));
+        }, true));
         options.add(new Option(fragment.getString(R.string.leave_meeting), new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -215,7 +215,7 @@ public class OptionsDialog extends Dialog {
                         .create()
                         .show();
             }
-        }));
+        }, false));
         options.add(new Option(fragment.getString(R.string.set_alarm_text), new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -227,7 +227,7 @@ public class OptionsDialog extends Dialog {
                 intent.putExtra(CalendarContract.Events.EVENT_LOCATION, meeting.getLocation().toString());
                 fragment.startActivity(intent);
             }
-        }));
+        }, false));
         optionList.setAdapter(new OptionAdapter(fragment.getBaseActivity(), options));
         setContentView(optionList);
     }

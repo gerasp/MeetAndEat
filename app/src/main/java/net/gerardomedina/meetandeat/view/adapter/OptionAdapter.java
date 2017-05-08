@@ -29,7 +29,8 @@ public class OptionAdapter extends ArrayAdapter<Option> {
         }
 
         ((TextView) convertView.findViewById(R.id.text1)).setText(option.getName());
-        ((ImageView)convertView.findViewById(R.id.icon)).setImageResource(R.drawable.ic_star);
+        if (option.isAdmin()) ((ImageView)convertView.findViewById(R.id.icon)).setImageResource(R.drawable.ic_star);
+        else ((ImageView)convertView.findViewById(R.id.icon)).setImageResource(R.drawable.ic_star_border);
 
         convertView.setOnClickListener(option.getAction());
         return convertView;
