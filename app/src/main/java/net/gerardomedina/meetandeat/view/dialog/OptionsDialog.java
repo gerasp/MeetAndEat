@@ -10,6 +10,7 @@ import android.provider.CalendarContract;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -50,14 +51,13 @@ public class OptionsDialog extends Dialog {
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.dialog_options);
         meeting = appCommon.getSelectedMeeting();
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setupAdminOptions();
-        setupNormalOptions();
     }
 
     private void setupAdminOptions() {
-        ListView adminOptions = (ListView) findViewById(R.id.adminOptions);
+        ListView optionList = new ListView(fragment.getBaseActivity());
         List<Option> options = new ArrayList<>();
         options.add(new Option(fragment.getString(R.string.change_title), new View.OnClickListener() {
             @Override
@@ -196,12 +196,6 @@ public class OptionsDialog extends Dialog {
                         .create().show();
             }
         }));
-        adminOptions.setAdapter(new OptionAdapter(fragment.getBaseActivity(), options));
-    }
-
-    private void setupNormalOptions() {
-        ListView normalOptions = (ListView) findViewById(R.id.normalOptions);
-        List<Option> options = new ArrayList<>();
         options.add(new Option(fragment.getString(R.string.leave_meeting), new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -234,7 +228,8 @@ public class OptionsDialog extends Dialog {
                 fragment.startActivity(intent);
             }
         }));
-        normalOptions.setAdapter(new OptionAdapter(fragment.getBaseActivity(), options));
-
+        optionList.setAdapter(new OptionAdapter(fragment.getBaseActivity(), options));
+        setContentView(optionList);
     }
+
 }

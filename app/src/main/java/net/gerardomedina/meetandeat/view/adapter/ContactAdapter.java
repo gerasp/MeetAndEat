@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import net.gerardomedina.meetandeat.R;
@@ -33,13 +34,15 @@ public class ContactAdapter extends ArrayAdapter<String> {
     public View getView(final int position, View convertView, @NonNull ViewGroup parent) {
         final String contactUsername = getItem(position);
         if (convertView == null) {
-            convertView = LayoutInflater.from(getContext()).inflate(android.R.layout.simple_list_item_1, parent, false);
+            if (isSearch) convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_with_icon, parent, false);
+            else convertView = LayoutInflater.from(getContext()).inflate(android.R.layout.simple_list_item_1, parent, false);
         }
 
-        TextView username = (TextView) convertView.findViewById(android.R.id.text1);
+        TextView username = (TextView) convertView.findViewById(R.id.text1);
         username.setText(contactUsername);
 
         if (isSearch) {
+            ((ImageView)convertView.findViewById(R.id.icon)).setImageResource(R.drawable.ic_contact_add);
             convertView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
