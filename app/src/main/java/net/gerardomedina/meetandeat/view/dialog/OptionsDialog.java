@@ -136,6 +136,10 @@ public class OptionsDialog extends Dialog {
                 public void onClick(View v) {
                     final List<String> participants = meeting.getParticipants();
                     participants.remove(appCommon.getUser().getUsername());
+                    if (participants.size() == 0) {
+                        fragment.showToast(R.string.no_participants);
+                        return;
+                    }
                     final String[] selected = {""};
                     new AlertDialog.Builder(fragment.getBaseActivity())
                             .setTitle(fragment.getString(R.string.participants))
@@ -178,7 +182,11 @@ public class OptionsDialog extends Dialog {
                 @Override
                 public void onClick(View v) {
                     final List<String> participants = meeting.getParticipants();
-                    participants.remove(appCommon.getUser().getUsername());
+                    participants.remove(meeting.getAdmin());
+                    if (participants.size() == 0) {
+                        fragment.showToast(R.string.no_participants);
+                        return;
+                    }
                     final String[] selected = {""};
                     new AlertDialog.Builder(fragment.getBaseActivity())
                             .setTitle(fragment.getString(R.string.participants))

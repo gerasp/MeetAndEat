@@ -26,11 +26,13 @@ public class ParticipantAdapter extends ArrayAdapter<String> {
     public View getView(final int position, View convertView, @NonNull ViewGroup parent) {
         final String participant = getItem(position);
         if (convertView == null) {
-            convertView = LayoutInflater.from(getContext()).inflate(android.R.layout.activity_list_item, parent, false);
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_with_icon, parent, false);
         }
-        ((TextView) convertView.findViewById(android.R.id.text1)).setText(participant);
+        ((TextView) convertView.findViewById(R.id.text1)).setText(participant);
         if (participant.equals(appCommon.getSelectedMeeting().getAdmin())) {
-            ((ImageView) convertView.findViewById(android.R.id.icon)).setImageResource(R.drawable.ic_star);
+            ((ImageView) convertView.findViewById(R.id.icon)).setImageResource(R.drawable.ic_star);
+        } else {
+            ((ImageView) convertView.findViewById(R.id.icon)).setImageResource(R.drawable.ic_star_border);
         }
         return convertView;
     }
