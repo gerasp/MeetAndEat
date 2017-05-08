@@ -62,7 +62,6 @@ public class FoodAdapter extends LongPressAwareTableDataAdapter<Food> {
                     appCommon.getSelectedMeeting().getAdmin().equals(appCommon.getUser().getUsername())) {
                 new AlertDialog.Builder(activity, R.style.MyAlertDialogStyle)
                         .setMessage(R.string.delete_food)
-                        .setIcon(R.drawable.ic_warning)
                         .setNegativeButton(fragment.getString(android.R.string.cancel), new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
@@ -74,7 +73,6 @@ public class FoodAdapter extends LongPressAwareTableDataAdapter<Food> {
                                 new DeleteFoodTask(fragment,food.getId()).execute();
                             }
                         })
-                        .create()
                         .show();
             } else {
                 activity.showSimpleDialog(R.string.this_food_is_not_yours);

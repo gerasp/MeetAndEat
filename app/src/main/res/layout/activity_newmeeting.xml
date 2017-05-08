@@ -32,7 +32,6 @@
                     <EditText
                         android:id="@+id/newMeetingTitleInput"
                         style="@style/NewMeetingInputStyle"
-                        android:editable="true"
                         android:focusable="true"
                         android:hint="@string/new_meeting_title"
                         android:imeActionLabel="@string/new_meeting_title" />

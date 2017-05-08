@@ -94,6 +94,7 @@ public class NewMeetingActivity extends BaseActivity {
 
     private void setLocationPicker() {
         locationInput = (TextView) findViewById(R.id.newMeetingLocationInput);
+        locationInput.setKeyListener(null);
         locationInput.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -128,6 +129,7 @@ public class NewMeetingActivity extends BaseActivity {
         }, newCalendar.get(Calendar.YEAR), newCalendar.get(Calendar.MONTH), newCalendar.get(Calendar.DAY_OF_MONTH));
         datePickerDialog.getDatePicker().setMinDate(newCalendar.getTime().getTime());
         datetimeInput = (TextView) findViewById(R.id.newMeetingDatetimeInput);
+        datetimeInput.setKeyListener(null);
         datetimeInput.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -139,6 +141,7 @@ public class NewMeetingActivity extends BaseActivity {
 
     private void setColorPicker() {
         colorInput = (TextView) findViewById(R.id.newMeetingColorInput);
+        colorInput.setKeyListener(null);
         colorInput.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -161,6 +164,7 @@ public class NewMeetingActivity extends BaseActivity {
                 ContactValues.TABLE_NAME + " order by "
                 + ContactValues.COLUMN_NAME_USERNAME + " ASC;", null);
         participantsInput = (TextView) findViewById(R.id.newMeetingContactsInput);
+        participantsInput.setKeyListener(null);
         if (cursor.getCount() > 0) {
             final String[] contacts = new String[cursor.getCount()];
             int i = 0;
