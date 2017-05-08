@@ -11,12 +11,12 @@ import org.json.JSONException;
 import java.util.HashMap;
 import java.util.Map;
 
-public class AdminTask extends BaseTask {
+public class MeetingOptionsTask extends BaseTask {
 
     private final String parameter;
     private final int type;
 
-    public AdminTask(BaseActivity activity, int type, String parameter) {
+    public MeetingOptionsTask(BaseActivity activity, int type, String parameter) {
         this.activity = activity;
         this.type = type;
         this.parameter = parameter;
@@ -30,7 +30,7 @@ public class AdminTask extends BaseTask {
         parameters.put("type", type+"");
         parameters.put("parameter", parameter);
 
-        response = requester.httpRequest("Admin.php", "POST", parameters);
+        response = requester.httpRequest("MeetingOptions.php", "POST", parameters);
         return true;
     }
 
@@ -40,7 +40,7 @@ public class AdminTask extends BaseTask {
         if (success) {
             try {
                 switch (response.getInt("code")) {
-                    case 0: activity.showSimpleDialog(R.string.error);
+                    case 0: activity.showSimpleDialog(R.string.error_retrieving_data);
                             break;
                     case 2: activity.showToast(R.string.done);
                             activity.changeToActivityNoBackStack(MainActivity.class);

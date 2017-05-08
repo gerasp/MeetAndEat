@@ -65,8 +65,6 @@
     <string name="error_adding_food">Error adding food</string>
     <string name="calendar">Calendar</string>
     <string name="no_meeting">You have no meetings. Create a new one on the dashboard screen!</string>
-    <string name="set_alarm_button">Set a reminder</string>
-    <string name="set_alarm_text">Your next meeting takes place on %1$s at %2$s</string>
     <string name="title_history">History</string>
     <string name="dummy" />
     <string name="what">What</string>
@@ -118,8 +116,13 @@
     <string name="done">Done</string>
     <string name="error">Error</string>
     <string name="normal_options">Normal options</string>
+    <string name="set_alarm_text">Set a reminder</string>
     <string name="exit_meeting">Exit this meeting</string>
+
+    <!-- NO CONTENT -->
     <string name="no_content_meeting">You have no meetings</string>
     <string name="no_content_contact">You have no contacts</string>
     <string name="no_content_old_meeting">Old meetings will be deleted after 10 days</string>
+    <string name="leave_meeting">Leave this meeting</string>
+    <string name="change_admin">Change administrator</string>
 </resources>

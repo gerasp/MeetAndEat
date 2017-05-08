@@ -1,43 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<CalendarView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/calendar"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_margin="@dimen/activity_horizontal_margin">
+    android:layout_height="wrap_content"
+    android:layout_alignParentTop="true" />
 
-
-    <CalendarView
-        android:id="@+id/calendar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_above="@+id/linearLayout" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_alignParentBottom="true"
-        android:id="@+id/linearLayout">
-
-        <Button
-            android:id="@+id/setAlarmButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/button_margin"
-            android:layout_marginRight="@dimen/button_margin"
-            android:layout_marginTop="@dimen/button_margin"
-            android:background="@color/accent"
-            android:text="@string/set_alarm_button"
-            android:textColor="@color/inverted_text"
-            android:visibility="gone" />
-
-        <TextView
-            android:id="@+id/calendarInfo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/text_margin"
-            android:text="@string/no_meeting"
-            android:textAlignment="center" />
-    </LinearLayout>
-
-</RelativeLayout>
