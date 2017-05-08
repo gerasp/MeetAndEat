@@ -34,11 +34,12 @@
 
         <ListView
             android:id="@+id/meetings"
-            android:padding="@dimen/cardview_padding"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
             android:divider="@color/transparent"
             android:dividerHeight="8dp"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:padding="@dimen/cardview_padding" />
     </android.support.v4.widget.SwipeRefreshLayout>
 
     <android.support.design.widget.FloatingActionButton

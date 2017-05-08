@@ -131,6 +131,33 @@ public class OptionsDialog extends Dialog {
                     }).build().show();
                 }
             }, true));
+            options.add(new Option(fragment.getString(R.string.change_admin), new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    final List<String> participants = meeting.getParticipants();
+                    participants.remove(meeting.getAdmin());
+                    if (participants.size() == 0) {
+                        fragment.showToast(R.string.no_participants);
+                        return;
+                    }
+                    final String[] selected = {""};
+                    new AlertDialog.Builder(fragment.getBaseActivity())
+                            .setTitle(fragment.getString(R.string.participants))
+                            .setSingleChoiceItems(participants.toArray(new String[0]), 0, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    selected[0] = participants.get(which);
+                                }
+                            })
+                            .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    new MeetingOptionsTask(fragment.getBaseActivity(), 6, selected[0]).execute();
+                                }
+                            })
+                            .show();
+                }
+            }, true));
             options.add(new Option(fragment.getString(R.string.delete_participant), new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -172,33 +199,6 @@ public class OptionsDialog extends Dialog {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
                                     new MeetingOptionsTask(fragment.getBaseActivity(), 5, "").execute();
-                                }
-                            })
-                            .show();
-                }
-            }, true));
-            options.add(new Option(fragment.getString(R.string.change_admin), new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    final List<String> participants = meeting.getParticipants();
-                    participants.remove(meeting.getAdmin());
-                    if (participants.size() == 0) {
-                        fragment.showToast(R.string.no_participants);
-                        return;
-                    }
-                    final String[] selected = {""};
-                    new AlertDialog.Builder(fragment.getBaseActivity())
-                            .setTitle(fragment.getString(R.string.participants))
-                            .setSingleChoiceItems(participants.toArray(new String[0]), 0, new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    selected[0] = participants.get(which);
-                                }
-                            })
-                            .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    new MeetingOptionsTask(fragment.getBaseActivity(), 6, selected[0]).execute();
                                 }
                             })
                             .show();

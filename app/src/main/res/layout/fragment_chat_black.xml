@@ -46,14 +46,14 @@
     <View
         android:id="@+id/topShadow"
         android:layout_width="match_parent"
-        android:layout_height="5dp"
+        android:layout_height="@dimen/shadow_height"
         android:layout_alignParentTop="true"
         android:background="@drawable/shadow_down" />
 
     <View
         android:id="@+id/bottomShadow"
         android:layout_width="match_parent"
-        android:layout_height="5dp"
+        android:layout_height="@dimen/shadow_height"
         android:layout_above="@id/sendButton"
         android:layout_alignBottom="@id/messageList"
         android:background="@drawable/shadow_up" />
