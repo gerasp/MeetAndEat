@@ -11,6 +11,7 @@ import net.gerardomedina.meetandeat.common.AppCommon;
 import net.gerardomedina.meetandeat.persistence.local.ContactValues;
 import net.gerardomedina.meetandeat.persistence.local.DBHelper;
 import net.gerardomedina.meetandeat.task.AddParticipantsTask;
+import net.gerardomedina.meetandeat.view.adapter.ParticipantAdapter;
 import net.gerardomedina.meetandeat.view.fragment.FoodFragment;
 
 import java.util.ArrayList;
@@ -26,15 +27,13 @@ public class ParticipantsDialog {
     }
 
     public void createParticipantsDialog() {
-
         List<String> participants = foodFragment.getMeeting().getParticipants();
-        participants.remove(foodFragment.getMeeting().getAdmin());
-        participants.add(foodFragment.getMeeting().getAdmin()+" (admin)");
-        String[] items = participants.toArray(new String[0]);
-
         new AlertDialog.Builder(foodFragment.getBaseActivity())
                 .setTitle(foodFragment.getString(R.string.participants))
-                .setItems(items, null)
+                .setAdapter(new ParticipantAdapter(foodFragment.getBaseActivity(), participants), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {}
+                })
                 .setPositiveButton(R.string.close, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
