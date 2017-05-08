@@ -1,11 +1,6 @@
 package net.gerardomedina.meetandeat.model;
 
-import android.content.ContentValues;
-import android.database.sqlite.SQLiteDatabase;
-
 import com.google.android.gms.maps.model.LatLng;
-
-import net.gerardomedina.meetandeat.persistence.local.MeetingValues;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -22,12 +17,14 @@ public class Meeting {
     private Calendar datetime;
     private String color;
     private boolean isOld;
+    private boolean isAdmin;
 
     private List<String> participants;
 
-    public Meeting(int id, String title, String location, String datetime, String color) {
+    public Meeting(int id, String title, String location, String datetime, String color, boolean isAdmin) {
         this.id = id;
         this.title = title;
+        this.isAdmin = isAdmin;
         setLocation(location);
         setDate(datetime);
         this.color = color;
@@ -104,5 +101,13 @@ public class Meeting {
 
     public List<String> getParticipants() {
         return participants;
+    }
+
+    public boolean isAdmin() {
+        return isAdmin;
+    }
+
+    public void setAdmin(boolean admin) {
+        isAdmin = admin;
     }
 }

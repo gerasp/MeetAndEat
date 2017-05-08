@@ -12,6 +12,7 @@ import android.widget.ListView;
 
 import net.gerardomedina.meetandeat.R;
 import net.gerardomedina.meetandeat.persistence.local.DBHelper;
+import net.gerardomedina.meetandeat.persistence.local.MeetingValues;
 import net.gerardomedina.meetandeat.persistence.local.OldMeetingValues;
 import net.gerardomedina.meetandeat.task.GetOldMeetingsTask;
 import net.gerardomedina.meetandeat.view.activity.BaseActivity;
@@ -57,11 +58,13 @@ public class HistoryFragment extends BaseFragment implements InitiableFragment {
         db.delete(OldMeetingValues.TABLE_NAME, null, null);
         ContentValues values = new ContentValues();
         for (int i = 0; i < results.length(); i++) {
-            values.put(OldMeetingValues._ID, results.getJSONObject(i).getInt("id"));
-            values.put(OldMeetingValues.COLUMN_NAME_TITLE, results.getJSONObject(i).getString("title"));
-            values.put(OldMeetingValues.COLUMN_NAME_LOCATION, results.getJSONObject(i).getString("location"));
-            values.put(OldMeetingValues.COLUMN_NAME_DATETIME, results.getJSONObject(i).getString("datetime"));
-            values.put(OldMeetingValues.COLUMN_NAME_COLOR, results.getJSONObject(i).getString("color"));
+            JSONObject jsonObject = results.getJSONObject(i);
+            values.put(OldMeetingValues._ID, jsonObject.getInt("id"));
+            values.put(OldMeetingValues.COLUMN_NAME_TITLE, jsonObject.getString("title"));
+            values.put(OldMeetingValues.COLUMN_NAME_LOCATION, jsonObject.getString("location"));
+            values.put(OldMeetingValues.COLUMN_NAME_DATETIME, jsonObject.getString("datetime"));
+            values.put(OldMeetingValues.COLUMN_NAME_COLOR, jsonObject.getString("color"));
+            values.put(MeetingValues.COLUMN_NAME_ISADMIN, jsonObject.getString("isAdmin"));
             db.insert(OldMeetingValues.TABLE_NAME, null, values);
         }
         loadMeetingListFromLocalDB();

@@ -85,6 +85,7 @@ public class FoodFragment extends BaseFragment implements InitiableFragment {
 
     private void setBottomNavigation() {
         FrameLayout stub = (FrameLayout) view.findViewById(R.id.navigation_stub);
+        if (meeting.isOld()){ stub.setVisibility(View.GONE); return;}
         LayoutInflater inflater = (LayoutInflater) getBaseActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View layout;
         if (appCommon.isColorDark(meeting.getColor())) {

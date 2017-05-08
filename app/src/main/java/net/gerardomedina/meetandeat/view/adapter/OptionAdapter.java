@@ -6,10 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import net.gerardomedina.meetandeat.R;
 import net.gerardomedina.meetandeat.model.Option;
 
 import java.util.List;
@@ -25,12 +23,10 @@ public class OptionAdapter extends ArrayAdapter<Option> {
     public View getView(final int position, View convertView, @NonNull ViewGroup parent) {
         final Option option = getItem(position);
         if (convertView == null) {
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_with_icon, parent, false);
+            convertView = LayoutInflater.from(getContext()).inflate(android.R.layout.simple_list_item_1, parent, false);
         }
 
-        ((TextView) convertView.findViewById(R.id.text1)).setText(option.getName());
-        if (option.isAdmin()) ((ImageView)convertView.findViewById(R.id.icon)).setImageResource(R.drawable.ic_star);
-        else ((ImageView)convertView.findViewById(R.id.icon)).setImageResource(R.drawable.ic_star_border);
+        ((TextView) convertView.findViewById(android.R.id.text1)).setText(option.getName());
 
         convertView.setOnClickListener(option.getAction());
         return convertView;
