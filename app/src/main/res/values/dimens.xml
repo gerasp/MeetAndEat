@@ -7,5 +7,6 @@
     <dimen name="button_margin">16dp</dimen>
     <dimen name="cardview_padding">8dp</dimen>
     <dimen name="shadow_height">8dp</dimen>
+    <dimen name="dialog_margin">20dp</dimen>
 
 </resources>

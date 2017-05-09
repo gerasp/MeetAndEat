@@ -4,8 +4,15 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceFragmentCompat;
+import android.text.InputType;
+import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import net.gerardomedina.meetandeat.R;
 import net.gerardomedina.meetandeat.common.AppCommon;
@@ -38,11 +45,67 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Initia
     public void init() {
         welcome.setTitle(getString(R.string.welcome,appCommon.getUser().getUsername()));
 
+        editAccount.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                final EditText emailInput = new EditText(getBaseActivity());
+                emailInput.setInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
+                emailInput.setHint(R.string.change_email);
+
+                final EditText passwordInput = new EditText(getBaseActivity());
+                passwordInput.setInputType(InputType.TYPE_CLASS_TEXT |
+                        InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                passwordInput.setHint(R.string.change_password);
+
+                final EditText oldPasswordInput = new EditText(getBaseActivity());
+                oldPasswordInput.setInputType(InputType.TYPE_CLASS_TEXT |
+                        InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                oldPasswordInput.setHint(R.string.actual_password);
+
+                LinearLayout container = new LinearLayout(getBaseActivity());
+                LinearLayout.LayoutParams params = new  LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                params.leftMargin = getResources().getDimensionPixelSize(R.dimen.dialog_margin);
+                params.rightMargin = getResources().getDimensionPixelSize(R.dimen.dialog_margin);
+                container.setLayoutParams(params);
+                container.setOrientation(LinearLayout.VERTICAL);
+
+                container.addView(emailInput);
+                container.addView(passwordInput);
+                container.addView(oldPasswordInput);
+
+                new AlertDialog.Builder(getActivity(), R.style.MyAlertDialogStyle)
+                        .setMessage(getString(R.string.confirm_with_password))
+                        .setView(container)
+                        .setNegativeButton(getString(android.R.string.cancel), new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {}
+                        })
+                        .setPositiveButton(getString(android.R.string.ok), new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {}
+                        })
+                        .create()
+                        .show();
+                return false;
+            }
+        });
+
         deleteAccount.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
-                new android.support.v7.app.AlertDialog.Builder(getActivity(), R.style.MyAlertDialogStyle)
-                        .setMessage("")
+                final EditText input = new EditText(getBaseActivity());
+                input.setInputType(InputType.TYPE_CLASS_TEXT |
+                        InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                FrameLayout container = new FrameLayout(getBaseActivity());
+                FrameLayout.LayoutParams params = new  FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                params.leftMargin = getResources().getDimensionPixelSize(R.dimen.dialog_margin);
+                params.rightMargin = getResources().getDimensionPixelSize(R.dimen.dialog_margin);
+                input.setLayoutParams(params);
+                container.addView(input);
+
+                new AlertDialog.Builder(getActivity(), R.style.MyAlertDialogStyle)
+                        .setMessage(getString(R.string.confirm_with_password))
+                        .setView(container)
                         .setNegativeButton(getString(android.R.string.cancel), new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {}
@@ -60,15 +123,20 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Initia
         logout.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
-                appCommon.sharedRemoveValue(getActivity(),"id");
-                appCommon.sharedRemoveValue(getActivity(),"username");
-                appCommon.setUser(null);
-                appCommon.setInvitations(null);
-                appCommon.setSelectedMeeting(null);
-                getActivity().deleteDatabase(DBHelper.DATABASE_NAME);
-                getBaseActivity().changeToActivityNoBackStack(LoginActivity.class);
-                getActivity().overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
-                getActivity().finish();
+                logout();
+                return false;
+            }
+        });
+
+        feedback.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                final String appPackageName = getActivity().getPackageName();
+                try {
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName)));
+                } catch (android.content.ActivityNotFoundException anfe) {
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
+                }
                 return false;
             }
         });
@@ -87,18 +155,36 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Initia
             }
         });
 
-        feedback.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+        copyright.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
-                final String appPackageName = getActivity().getPackageName();
-                try {
-                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName)));
-                } catch (android.content.ActivityNotFoundException anfe) {
-                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
-                }
+                AlertDialog.Builder dialog = new AlertDialog.Builder(getBaseActivity());
+                TextView textView = new TextView(getBaseActivity());
+                textView.setText(R.string.copyright_notice);
+                textView.setPadding(20,20,20,20);
+                dialog.setView(textView);
+                dialog.setPositiveButton(R.string.close, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+                dialog.show();
                 return false;
             }
         });
+    }
+
+    public void logout() {
+        appCommon.sharedRemoveValue(getActivity(),"id");
+        appCommon.sharedRemoveValue(getActivity(),"username");
+        appCommon.setUser(null);
+        appCommon.setInvitations(null);
+        appCommon.setSelectedMeeting(null);
+        getActivity().deleteDatabase(DBHelper.DATABASE_NAME);
+        getBaseActivity().changeToActivityNoBackStack(LoginActivity.class);
+        getActivity().overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
+        getActivity().finish();
     }
 
     @Override

@@ -36,7 +36,7 @@
     <string name="error_invalid_password">This password is too weak</string>
     <string name="error_invalid_email">This email is invalid</string>
     <string name="error_taken_email">This email is already taken</string>
-    <string name="request_email">This email is not taken. Please write your email in order to finish the creation of a new account. We need it in case you forget your password.</string>
+    <string name="request_email">This username is not taken. Please write your email (for the case you forget your username or password) to create a new account.</string>
     <string name="request_email_for_password">We need your email</string>
     <string name="remember_password">Forgot username or password?</string>
     <string name="remember_password_confirmation">If the email is correct, you will receive an email from us</string>
@@ -117,5 +117,15 @@
     <string name="feedback">Feedback</string>
     <string name="share">Share</string>
     <string name="copyright">Copyright notice</string>
+    <string name="copyright_notice">Copyright 2017 © Gerardo Medina
+        \nSpecial thanks to:
+        \n- https://unsplash.com/ for the images
+        \n- https://github.com/sayyam for the carousel
+        \n- https://github.com/QuadFlask for the ColorPicker
+        \n- https://github.com/ISchwarz23 for the SortableTableView</string>
+    <string name="confirm_with_password">Write your password to confirm the elimination of your account</string>
+    <string name="change_email">Change email</string>
+    <string name="actual_password">Actual password (required)</string>
+    <string name="change_password">New password</string>
 
 </resources>
