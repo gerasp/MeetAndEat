@@ -3,7 +3,7 @@ package net.gerardomedina.meetandeat.persistence.local;
 import android.provider.BaseColumns;
 
 public class OldMeetingValues implements BaseColumns {
-    public static final String TABLE_NAME = "oldOldMeeting";
+    public static final String TABLE_NAME = "oldMeeting";
     public static final String COLUMN_NAME_TITLE = "title";
     public static final String COLUMN_NAME_LOCATION = "location";
     public static final String COLUMN_NAME_DATETIME = "datetime";
