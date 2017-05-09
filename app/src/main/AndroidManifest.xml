@@ -44,7 +44,7 @@
         </activity>
         <activity
             android:name=".view.activity.NewMeetingActivity"
-            android:label="@string/title_activity_scrolling"
+            android:label="@string/title_new_meeting"
             android:parentActivityName=".view.activity.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

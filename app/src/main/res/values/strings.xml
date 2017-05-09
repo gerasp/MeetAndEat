@@ -23,6 +23,7 @@
     <string name="title_preferences">Preferences</string>
     <string name="title_invitations">Invitations</string>
     <string name="title_meeting">Meeting</string>
+    <string name="title_new_meeting">New meeting</string>
     <string name="title_location">Location</string>
     <string name="title_calendar">Calendar</string>
     <string name="title_history">History</string>
@@ -45,7 +46,6 @@
     <string name="error_deleting_contacts">Error deleting contact</string>
 
     <!-- New Meeting -->
-    <string name="new_meeting">New meeting</string>
     <string name="new_meeting_title">Title</string>
     <string name="new_meeting_location">Location</string>
     <string name="new_meeting_datetime">Date and time</string>
@@ -70,31 +70,24 @@
     <!-- Meeting -->
     <string name="location">Location</string>
     <string name="no_meeting">You have no meetings. Create a new one on the dashboard screen!</string>
-
-    <!-- Contacts -->
-    <string name="no_user_found">No user found with that criteria</string>
-    <string name="no_spaces_allowed">Spaces are not allowed</string>
-    <string name="contact_added_successfully">Contact invited</string>
-
-    <!-- Participants -->
     <string name="add_participant_label">Add participant</string>
     <string name="participants">Participants</string>
     <string name="select_from_contacts">Choose the people you want to invite</string>
     <string name="no_contact_to_invite">You have no contacts to invite. Add them in the main menu.</string>
     <string name="participants_invited_successfully">Participants invited successfully</string>
     <string name="no_participants">There are not enough participants</string>
-
-    <!-- Chat -->
     <string name="chat">Chat</string>
     <string name="send_a_message">Send a message</string>
+
+    <!-- Contacts -->
+    <string name="no_user_found">No user found with that criteria</string>
+    <string name="no_spaces_allowed">Spaces are not allowed</string>
+    <string name="contact_added_successfully">Contact invited</string>
 
     <!-- Invitations -->
     <string name="invitation_meeting">Someone has invited you to %1$s</string>
     <string name="invitation_contact">%1$s wants to be your contact</string>
     <string name="confirmation_accept_invitation">Do you accept this invitation?</string>
-
-    <!-- History -->
-    <string name="old_meetings_info">Old meetings will be automatically deleted after 10 days</string>
 
     <!-- Options -->
     <string name="options">Options</string>
@@ -113,10 +106,11 @@
     <string name="no_content_meeting">You have no meetings</string>
     <string name="no_content_contact">You have no contacts</string>
     <string name="no_content_old_meeting">Old meetings will be deleted after 10 days</string>
-    
+
     <!-- Settings -->
-    <string name="welcome">Welcome %1$s</string>
+    <string name="welcome">Welcome, %1$s</string>
     <string name="account_management">Account management</string>
+    <string name="edit_account">Edit account</string>
     <string name="delete_account">Delete account</string>
     <string name="logout">Logout</string>
     <string name="about_this_app">About this app</string>

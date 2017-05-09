@@ -24,7 +24,6 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Initia
         setPreferencesFromResource(R.xml.preferences, s);
 
         welcome = getPreferenceManager().findPreference("welcome");
-        editAccount = getPreferenceManager().findPreference("edit_account");
         deleteAccount = getPreferenceManager().findPreference("delete_account");
         logout = getPreferenceManager().findPreference("logout");
 
@@ -50,12 +49,6 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Initia
                         })
                         .create()
                         .show();
-                return false;
-            }
-        });
-        editAccount.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-            @Override
-            public boolean onPreferenceClick(Preference preference) {
                 return false;
             }
         });

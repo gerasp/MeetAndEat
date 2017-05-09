@@ -5,9 +5,15 @@
     <Preference
         android:key="welcome"
         android:selectable="false"
+        android:enabled="true"
+        android:icon="@drawable/ic_person"
         android:title="@string/welcome" />
 
     <PreferenceCategory android:title="@string/account_management">
+        <Preference
+            android:icon="@drawable/ic_edit_black"
+            android:key="edit_account"
+            android:title="@string/edit_account" />
         <Preference
             android:icon="@drawable/ic_delete"
             android:key="delete_account"
