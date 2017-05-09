@@ -28,7 +28,6 @@ public class MeetingActivity extends BaseActivity {
             menu.getItem(0).setIcon(R.drawable.ic_chat_white);
             menu.getItem(1).setIcon(R.drawable.ic_menu_restaurant_white);
         }
-
         return true;
     }
 

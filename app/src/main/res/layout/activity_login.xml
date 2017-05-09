@@ -24,8 +24,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:background="@color/halftransparent"
         android:layout_margin="@dimen/activity_horizontal_margin"
+        android:background="@color/halftransparent"
         android:paddingBottom="@dimen/activity_vertical_margin"
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
@@ -56,6 +56,15 @@
                     android:inputType="textPassword" />
             </android.support.design.widget.TextInputLayout>
 
+            <TextView
+                android:id="@+id/rememberPasswordButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:text="@string/remember_password"
+                android:textColor="@color/accent"
+                android:textAlignment="textEnd" />
+
             <Button
                 android:id="@+id/sign_in_button"
                 style="?android:textAppearanceSmall"
@@ -65,8 +74,8 @@
                 android:layout_weight="1"
                 android:background="@color/primary"
                 android:text="@string/action_sign_in"
-                android:textStyle="bold"
-                android:textColor="@color/primary_text"/>
+                android:textColor="@color/primary_text"
+                android:textStyle="bold" />
         </LinearLayout>
     </ScrollView>
 </RelativeLayout>

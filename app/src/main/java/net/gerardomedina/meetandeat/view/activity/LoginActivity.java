@@ -21,6 +21,7 @@ import com.synnapps.carouselview.ImageListener;
 
 import net.gerardomedina.meetandeat.R;
 import net.gerardomedina.meetandeat.task.LoginTask;
+import net.gerardomedina.meetandeat.task.RememberPasswordTask;
 import net.gerardomedina.meetandeat.task.SignupTask;
 
 
@@ -69,6 +70,13 @@ public class LoginActivity extends BaseActivity {
             public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
                 attemptLogin();
                 return true;
+            }
+        });
+        TextView rememberPasswordButton = (TextView) findViewById(R.id.rememberPasswordButton);
+        rememberPasswordButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showRememberPasswordDialog();
             }
         });
     }
@@ -144,6 +152,27 @@ public class LoginActivity extends BaseActivity {
                     showEmailDialog(username, password);
                     showToast(R.string.error_invalid_email);
                 }
+            }
+        });
+        alertDialog.setButton(DialogInterface.BUTTON_NEGATIVE, getString(android.R.string.cancel), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                alertDialog.dismiss();
+            }
+        });
+        alertDialog.show();
+    }
+
+    public void showRememberPasswordDialog() {
+        final AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+        final EditText input = new EditText(this);
+        input.setText(usernameView.getText().toString());
+        alertDialog.setMessage(getString(R.string.request_username));
+        alertDialog.setView(input);
+        alertDialog.setButton(DialogInterface.BUTTON_POSITIVE, getString(android.R.string.ok), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                new RememberPasswordTask(getBaseActivity(),input.getText().toString()).execute();
             }
         });
         alertDialog.setButton(DialogInterface.BUTTON_NEGATIVE, getString(android.R.string.cancel), new DialogInterface.OnClickListener() {

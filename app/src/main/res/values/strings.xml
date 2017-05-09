@@ -129,4 +129,7 @@
     <string name="no_participants">There are not enough participants</string>
     <string name="this_food_is_not_yours">That\'s not your food!</string>
     <string name="delete_food">Are you sure you want to delete this food?</string>
+    <string name="remember_password">Forgot password?</string>
+    <string name="request_username">Enter your username. You will receive an email you can reset your password with.</string>
+    <string name="remember_password_confirmation">If the username is correct, you will receive an email from us.</string>
 </resources>
