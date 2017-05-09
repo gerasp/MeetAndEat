@@ -33,7 +33,7 @@
     <string name="login_password">Password</string>
     <string name="action_sign_in">Sign in (or sign up)</string>
     <string name="error_invalid_username">This username is too short</string>
-    <string name="error_invalid_password">This password is too weak</string>
+    <string name="error_invalid_password">This password is invalid</string>
     <string name="error_invalid_email">This email is invalid</string>
     <string name="error_taken_email">This email is already taken</string>
     <string name="request_email">This username is not taken. Please write your email (for the case you forget your username or password) to create a new account.</string>

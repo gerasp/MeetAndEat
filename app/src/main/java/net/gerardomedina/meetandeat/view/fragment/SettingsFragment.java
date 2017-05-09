@@ -78,7 +78,11 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Initia
                         .setPositiveButton(getString(android.R.string.ok), new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                new AccountTask(getBaseActivity(),0,emailInput.getText().toString(),oldPasswordInput.getText().toString()).execute();
+                                if (appCommon.isEmailValid(emailInput.getText().toString())) {
+                                    new AccountTask(getBaseActivity(),0,emailInput.getText().toString(),oldPasswordInput.getText().toString()).execute();
+                                } else {
+                                    getBaseActivity().showToast(R.string.error_invalid_email);
+                                }
                             }
                         })
                         .create()
@@ -117,7 +121,11 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Initia
                         .setNegativeButton(getString(android.R.string.cancel), new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                new AccountTask(getBaseActivity(),1,passwordInput.getText().toString(),oldPasswordInput.getText().toString()).execute();
+                                if (passwordInput.getText().toString().length()>5 && !passwordInput.getText().toString().contains(" ")) {
+                                    new AccountTask(getBaseActivity(),1,passwordInput.getText().toString(),oldPasswordInput.getText().toString()).execute();
+                                } else {
+                                    getBaseActivity().showToast(R.string.error_invalid_password);
+                                }
                             }
                         })
                         .setPositiveButton(getString(android.R.string.ok), new DialogInterface.OnClickListener() {
