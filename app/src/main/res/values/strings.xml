@@ -20,7 +20,7 @@
     <string name="title_login">Login</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_contacts">Contacts</string>
-    <string name="title_preferences">Preferences</string>
+    <string name="title_preferences">Settings</string>
     <string name="title_invitations">Invitations</string>
     <string name="title_meeting">Meeting</string>
     <string name="title_new_meeting">New meeting</string>

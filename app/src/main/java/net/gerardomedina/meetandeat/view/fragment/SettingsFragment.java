@@ -1,5 +1,8 @@
 package net.gerardomedina.meetandeat.view.fragment;
+
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceFragmentCompat;
@@ -14,18 +17,19 @@ import net.gerardomedina.meetandeat.view.activity.LoginActivity;
 public class SettingsFragment extends PreferenceFragmentCompat implements InitiableFragment {
 
     AppCommon appCommon = AppCommon.getInstance();
-    private Preference welcome;
-    private Preference editAccount;
-    private Preference deleteAccount;
-    private Preference logout;
+    private Preference welcome, editAccount, deleteAccount, logout, feedback, share, copyright;
 
     @Override
     public void onCreatePreferences(Bundle bundle, String s) {
         setPreferencesFromResource(R.xml.preferences, s);
 
         welcome = getPreferenceManager().findPreference("welcome");
+        editAccount = getPreferenceManager().findPreference("edit_account");
         deleteAccount = getPreferenceManager().findPreference("delete_account");
         logout = getPreferenceManager().findPreference("logout");
+        feedback = getPreferenceManager().findPreference("feedback");
+        share = getPreferenceManager().findPreference("share");
+        copyright = getPreferenceManager().findPreference("copyright");
 
         init();
 
@@ -65,6 +69,32 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Initia
                 getBaseActivity().changeToActivityNoBackStack(LoginActivity.class);
                 getActivity().overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
                 getActivity().finish();
+                return false;
+            }
+        });
+
+        share.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+                sharingIntent.setType("text/plain");
+                String shareBody = "Here is the share content body";
+                sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Subject Here");
+                sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
+                startActivity(Intent.createChooser(sharingIntent, "Share via"));
+                return false;
+            }
+        });
+
+        feedback.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                final String appPackageName = getActivity().getPackageName(); // getPackageName() from Context or Activity object
+                try {
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
+                } catch (android.content.ActivityNotFoundException anfe) {
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName)));
+                }
                 return false;
             }
         });
