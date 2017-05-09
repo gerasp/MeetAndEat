@@ -5,7 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 public class DBHelper extends SQLiteOpenHelper {
-    public static final int DATABASE_VERSION = 10;
+    public static final int DATABASE_VERSION = 2;
     public static final String DATABASE_NAME = "MeetAndEat.db";
 
     public DBHelper(Context context) {

@@ -49,7 +49,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Initia
                         })
                         .setPositiveButton(getString(android.R.string.ok), new DialogInterface.OnClickListener() {
                             @Override
-                            public void onClick(DialogInterface dialog, int which) {deleteAccount();}
+                            public void onClick(DialogInterface dialog, int which) {}
                         })
                         .create()
                         .show();
@@ -76,12 +76,13 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Initia
         share.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
+                final String appPackageName = getActivity().getPackageName();
                 Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
                 sharingIntent.setType("text/plain");
-                String shareBody = "Here is the share content body";
-                sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Subject Here");
+                String shareBody = getString(R.string.app_name)+": https://play.google.com/store/apps/details?id=" + appPackageName;
+                sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, getString(R.string.app_name));
                 sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
-                startActivity(Intent.createChooser(sharingIntent, "Share via"));
+                startActivity(Intent.createChooser(sharingIntent, getString(R.string.share)));
                 return false;
             }
         });
@@ -89,7 +90,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Initia
         feedback.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
-                final String appPackageName = getActivity().getPackageName(); // getPackageName() from Context or Activity object
+                final String appPackageName = getActivity().getPackageName();
                 try {
                     startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName)));
                 } catch (android.content.ActivityNotFoundException anfe) {
@@ -104,15 +105,6 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Initia
     public BaseActivity getBaseActivity() {
         return (BaseActivity)getActivity();
     }
-
-    public void editAccount() {
-
-    }
-
-    public void deleteAccount() {
-
-    }
-
 
 }
 
