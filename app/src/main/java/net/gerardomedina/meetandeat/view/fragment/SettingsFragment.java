@@ -43,7 +43,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Initia
     }
 
     public void init() {
-        welcome.setTitle(getString(R.string.welcome,appCommon.getUser().getUsername()));
+        welcome.setTitle(getString(R.string.welcome, appCommon.getUser().getUsername()));
 
         changeEmail.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
@@ -58,7 +58,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Initia
                 oldPasswordInput.setHint(R.string.actual_password);
 
                 LinearLayout container = new LinearLayout(getBaseActivity());
-                LinearLayout.LayoutParams params = new  LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
                 params.leftMargin = getResources().getDimensionPixelSize(R.dimen.dialog_margin);
                 params.rightMargin = getResources().getDimensionPixelSize(R.dimen.dialog_margin);
                 container.setOrientation(LinearLayout.VERTICAL);
@@ -73,13 +73,14 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Initia
                         .setView(container)
                         .setNegativeButton(getString(android.R.string.cancel), new DialogInterface.OnClickListener() {
                             @Override
-                            public void onClick(DialogInterface dialog, int which) {}
+                            public void onClick(DialogInterface dialog, int which) {
+                            }
                         })
                         .setPositiveButton(getString(android.R.string.ok), new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 if (appCommon.isEmailValid(emailInput.getText().toString())) {
-                                    new AccountTask(getBaseActivity(),0,emailInput.getText().toString(),oldPasswordInput.getText().toString()).execute();
+                                    new AccountTask(getBaseActivity(), 0, emailInput.getText().toString(), oldPasswordInput.getText().toString()).execute();
                                 } else {
                                     getBaseActivity().showSimpleDialog(R.string.error_invalid_email);
                                 }
@@ -105,7 +106,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Initia
                 oldPasswordInput.setHint(R.string.actual_password);
 
                 LinearLayout container = new LinearLayout(getBaseActivity());
-                LinearLayout.LayoutParams params = new  LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
                 params.leftMargin = getResources().getDimensionPixelSize(R.dimen.dialog_margin);
                 params.rightMargin = getResources().getDimensionPixelSize(R.dimen.dialog_margin);
                 container.setOrientation(LinearLayout.VERTICAL);
@@ -121,16 +122,17 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Initia
                         .setNegativeButton(getString(android.R.string.cancel), new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                if (passwordInput.getText().toString().length()>5 && !passwordInput.getText().toString().contains(" ")) {
-                                    new AccountTask(getBaseActivity(),1,passwordInput.getText().toString(),oldPasswordInput.getText().toString()).execute();
-                                } else {
-                                    getBaseActivity().showSimpleDialog(R.string.error_invalid_password);
-                                }
                             }
                         })
                         .setPositiveButton(getString(android.R.string.ok), new DialogInterface.OnClickListener() {
                             @Override
-                            public void onClick(DialogInterface dialog, int which) {}
+                            public void onClick(DialogInterface dialog, int which) {
+                                if (passwordInput.getText().toString().length() > 5 && !passwordInput.getText().toString().contains(" ")) {
+                                    new AccountTask(getBaseActivity(), 1, passwordInput.getText().toString(), oldPasswordInput.getText().toString()).execute();
+                                } else {
+                                    getBaseActivity().showSimpleDialog(R.string.error_invalid_password);
+                                }
+                            }
                         })
                         .create()
                         .show();
@@ -145,7 +147,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Initia
                 input.setInputType(InputType.TYPE_CLASS_TEXT |
                         InputType.TYPE_TEXT_VARIATION_PASSWORD);
                 FrameLayout container = new FrameLayout(getBaseActivity());
-                FrameLayout.LayoutParams params = new  FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
                 params.leftMargin = getResources().getDimensionPixelSize(R.dimen.dialog_margin);
                 params.rightMargin = getResources().getDimensionPixelSize(R.dimen.dialog_margin);
                 input.setLayoutParams(params);
@@ -157,12 +159,13 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Initia
                         .setNegativeButton(getString(android.R.string.cancel), new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                new AccountTask(getBaseActivity(),2,"",input.getText().toString()).execute();
                             }
                         })
                         .setPositiveButton(getString(android.R.string.ok), new DialogInterface.OnClickListener() {
                             @Override
-                            public void onClick(DialogInterface dialog, int which) {}
+                            public void onClick(DialogInterface dialog, int which) {
+                                new AccountTask(getBaseActivity(), 2, "", input.getText().toString()).execute();
+                            }
                         })
                         .create()
                         .show();
@@ -197,7 +200,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Initia
                 final String appPackageName = getActivity().getPackageName();
                 Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
                 sharingIntent.setType("text/plain");
-                String shareBody = getString(R.string.app_name)+": https://play.google.com/store/apps/details?id=" + appPackageName;
+                String shareBody = getString(R.string.app_name) + ": https://play.google.com/store/apps/details?id=" + appPackageName;
                 sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, getString(R.string.app_name));
                 sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
                 startActivity(Intent.createChooser(sharingIntent, getString(R.string.share)));
@@ -211,7 +214,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Initia
                 AlertDialog.Builder dialog = new AlertDialog.Builder(getBaseActivity());
                 TextView textView = new TextView(getBaseActivity());
                 textView.setText(R.string.copyright_notice);
-                textView.setPadding(20,20,20,20);
+                textView.setPadding(20, 20, 20, 20);
                 dialog.setView(textView);
                 dialog.setPositiveButton(R.string.close, new DialogInterface.OnClickListener() {
                     @Override
@@ -227,7 +230,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Initia
 
     @Override
     public BaseActivity getBaseActivity() {
-        return (BaseActivity)getActivity();
+        return (BaseActivity) getActivity();
     }
 
 }
