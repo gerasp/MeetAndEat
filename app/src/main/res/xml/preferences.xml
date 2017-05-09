@@ -2,18 +2,12 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     android:title="@string/title_preferences">
 
-
     <Preference
         android:key="welcome"
         android:selectable="false"
         android:title="@string/welcome" />
 
     <PreferenceCategory android:title="@string/account_management">
-        <Preference
-            android:icon="@drawable/ic_edit"
-            android:key="edit_account"
-            android:title="@string/edit_account" />
-
         <Preference
             android:icon="@drawable/ic_delete"
             android:key="delete_account"
@@ -23,6 +17,20 @@
             android:key="logout"
             android:title="@string/logout" />
     </PreferenceCategory>
+    <PreferenceCategory android:title="@string/about_this_app">
+        <Preference
+            android:icon="@drawable/ic_feedback"
+            android:key="feedback"
+            android:title="@string/feedback" />
 
+        <Preference
+            android:icon="@drawable/ic_share"
+            android:key="share"
+            android:title="@string/share" />
+        <Preference
+            android:icon="@drawable/ic_copyright"
+            android:key="copyright"
+            android:title="@string/copyright" />
+    </PreferenceCategory>
 
 </PreferenceScreen>

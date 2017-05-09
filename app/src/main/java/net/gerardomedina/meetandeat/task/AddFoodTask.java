@@ -3,7 +3,6 @@ package net.gerardomedina.meetandeat.task;
 import android.util.Log;
 
 import net.gerardomedina.meetandeat.R;
-import net.gerardomedina.meetandeat.view.activity.BaseActivity;
 import net.gerardomedina.meetandeat.view.fragment.BaseFragment;
 
 import org.json.JSONException;
@@ -45,7 +44,7 @@ public class AddFoodTask extends BaseTask {
             try {
                 switch (response.getInt("code")) {
                     case 0:
-                        activity.showSimpleDialog(R.string.error_adding_food);
+                        activity.showSimpleDialog(R.string.error_retrieving_data);
                         break;
                     case 2:
                         new GetFoodTask(fragment).execute();

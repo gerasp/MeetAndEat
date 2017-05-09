@@ -36,10 +36,10 @@ public class AddParticipantsTask extends BaseTask {
             try {
                 switch (response.getInt("code")) {
                     case 0:
-                        activity.showSimpleDialog(R.string.error_inviting_contacts);
+                        activity.showSimpleDialog(R.string.error_retrieving_data);
                         break;
                     case 2:
-                        activity.showToast(R.string.participants_invited_uuccessfully);
+                        activity.showToast(R.string.participants_invited_successfully);
                         break;
                 }
             } catch (JSONException e) {

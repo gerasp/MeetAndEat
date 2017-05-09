@@ -34,7 +34,7 @@
             android:label="@string/app_name" />
         <activity
             android:name=".view.activity.MeetingActivity"
-            android:label="@string/title_activity_scrolling"
+            android:label="@string/title_meeting"
             android:parentActivityName=".view.activity.MainActivity"
             android:theme="@style/AppTheme">
             <meta-data
@@ -58,7 +58,7 @@
 
         <activity
             android:name=".view.activity.LocationActivity"
-            android:label="@string/title_activity_location"
+            android:label="@string/title_location"
             android:parentActivityName=".view.activity.MeetingActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

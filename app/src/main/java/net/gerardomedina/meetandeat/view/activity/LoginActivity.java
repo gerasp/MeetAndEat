@@ -166,13 +166,17 @@ public class LoginActivity extends BaseActivity {
     public void showRememberPasswordDialog() {
         final AlertDialog alertDialog = new AlertDialog.Builder(this).create();
         final EditText input = new EditText(this);
-        input.setText(usernameView.getText().toString());
-        alertDialog.setMessage(getString(R.string.request_username));
+        input.setInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
+        alertDialog.setMessage(getString(R.string.request_email_for_password));
         alertDialog.setView(input);
         alertDialog.setButton(DialogInterface.BUTTON_POSITIVE, getString(android.R.string.ok), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                new RememberPasswordTask(getBaseActivity(),input.getText().toString()).execute();
+                if (appCommon.isEmailValid(input.getText().toString())) {
+                    new RememberPasswordTask(getBaseActivity(),input.getText().toString()).execute();
+                } else {
+                    showToast(R.string.error_invalid_email);
+                }
             }
         });
         alertDialog.setButton(DialogInterface.BUTTON_NEGATIVE, getString(android.R.string.cancel), new DialogInterface.OnClickListener() {

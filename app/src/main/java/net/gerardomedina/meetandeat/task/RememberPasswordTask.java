@@ -12,17 +12,17 @@ import java.util.Map;
 
 public class RememberPasswordTask extends BaseTask {
 
-    private final String username;
+    private final String email;
 
-    public RememberPasswordTask(BaseActivity activity, String username) {
+    public RememberPasswordTask(BaseActivity activity, String email) {
         this.activity = activity;
-        this.username = username;
+        this.email = email;
     }
 
     @Override
     protected Boolean doInBackground(Void... params) {
         Map<String, String> parameters = new HashMap<>();
-        parameters.put("username", username);
+        parameters.put("email", email);
 
         response = requester.httpRequest("RememberPassword.php", "POST", parameters);
         return true;

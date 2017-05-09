@@ -36,7 +36,7 @@ public class AddContactTask extends BaseTask {
         if (success) {
             try {
                 switch (response.getInt("code")) {
-                    case 0: activity.showSimpleDialog(R.string.error_adding_contact);
+                    case 0: activity.showSimpleDialog(R.string.error_retrieving_data);
                             break;
                     case 2: fragment.showToast(R.string.contact_added_successfully);
                             new GetContactsTask(fragment).execute();

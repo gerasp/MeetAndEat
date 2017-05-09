@@ -57,8 +57,7 @@ public class ContactAdapter extends ArrayAdapter<String> {
                 @Override
                 public boolean onLongClick(View v) {
                     new AlertDialog.Builder(contactsFragment.getActivity())
-                            .setTitle(contactsFragment.getString(R.string.confirmation))
-                            .setMessage(contactsFragment.getString(R.string.confirmation_delete_contact))
+                            .setMessage(contactsFragment.getString(R.string.are_you_sure))
                             .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int which) {
                                     if (contactsFragment.appCommon.hasInternet(contactsFragment.getActivity())) {
@@ -68,7 +67,6 @@ public class ContactAdapter extends ArrayAdapter<String> {
                                 }
                             })
                             .setNegativeButton(android.R.string.no, null)
-                            .setIcon(R.drawable.ic_warning)
                             .show();
                     return false;
                 }

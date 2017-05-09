@@ -40,7 +40,7 @@ public class SendMessageTask extends BaseTask {
             try {
                 switch (response.getInt("code")) {
                     case 0:
-                        activity.showSimpleDialog(R.string.error_sending_message);
+                        activity.showSimpleDialog(R.string.error_retrieving_data);
                         break;
                     case 2:
                         break;
