@@ -10,6 +10,7 @@ import android.widget.Toast;
 import net.gerardomedina.meetandeat.R;
 import net.gerardomedina.meetandeat.common.AppCommon;
 import net.gerardomedina.meetandeat.model.User;
+import net.gerardomedina.meetandeat.persistence.local.DBHelper;
 
 public abstract class BaseActivity extends AppCompatActivity {
 
@@ -59,6 +60,18 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     public void showToast(int stringId) {
         Toast.makeText(this, getString(stringId), Toast.LENGTH_SHORT).show();
+    }
+
+    public void logout() {
+        appCommon.sharedRemoveValue(this,"id");
+        appCommon.sharedRemoveValue(this,"username");
+        appCommon.setUser(null);
+        appCommon.setInvitations(null);
+        appCommon.setSelectedMeeting(null);
+        this.deleteDatabase(DBHelper.DATABASE_NAME);
+        getBaseActivity().changeToActivityNoBackStack(LoginActivity.class);
+        this.overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
+        this.finish();
     }
 }
 

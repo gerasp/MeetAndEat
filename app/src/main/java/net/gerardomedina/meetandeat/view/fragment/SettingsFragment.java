@@ -16,9 +16,8 @@ import android.widget.TextView;
 
 import net.gerardomedina.meetandeat.R;
 import net.gerardomedina.meetandeat.common.AppCommon;
-import net.gerardomedina.meetandeat.persistence.local.DBHelper;
+import net.gerardomedina.meetandeat.task.AccountTask;
 import net.gerardomedina.meetandeat.view.activity.BaseActivity;
-import net.gerardomedina.meetandeat.view.activity.LoginActivity;
 
 
 public class SettingsFragment extends PreferenceFragmentCompat implements InitiableFragment {
@@ -78,7 +77,9 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Initia
                         })
                         .setPositiveButton(getString(android.R.string.ok), new DialogInterface.OnClickListener() {
                             @Override
-                            public void onClick(DialogInterface dialog, int which) {}
+                            public void onClick(DialogInterface dialog, int which) {
+                                new AccountTask(getBaseActivity(),0,emailInput.getText().toString(),oldPasswordInput.getText().toString()).execute();
+                            }
                         })
                         .create()
                         .show();
@@ -115,7 +116,9 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Initia
                         .setView(container)
                         .setNegativeButton(getString(android.R.string.cancel), new DialogInterface.OnClickListener() {
                             @Override
-                            public void onClick(DialogInterface dialog, int which) {}
+                            public void onClick(DialogInterface dialog, int which) {
+                                new AccountTask(getBaseActivity(),1,passwordInput.getText().toString(),oldPasswordInput.getText().toString()).execute();
+                            }
                         })
                         .setPositiveButton(getString(android.R.string.ok), new DialogInterface.OnClickListener() {
                             @Override
@@ -145,7 +148,9 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Initia
                         .setView(container)
                         .setNegativeButton(getString(android.R.string.cancel), new DialogInterface.OnClickListener() {
                             @Override
-                            public void onClick(DialogInterface dialog, int which) {}
+                            public void onClick(DialogInterface dialog, int which) {
+                                new AccountTask(getBaseActivity(),2,"",input.getText().toString()).execute();
+                            }
                         })
                         .setPositiveButton(getString(android.R.string.ok), new DialogInterface.OnClickListener() {
                             @Override
@@ -160,7 +165,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Initia
         logout.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
-                logout();
+                getBaseActivity().logout();
                 return false;
             }
         });
@@ -210,18 +215,6 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Initia
                 return false;
             }
         });
-    }
-
-    public void logout() {
-        appCommon.sharedRemoveValue(getActivity(),"id");
-        appCommon.sharedRemoveValue(getActivity(),"username");
-        appCommon.setUser(null);
-        appCommon.setInvitations(null);
-        appCommon.setSelectedMeeting(null);
-        getActivity().deleteDatabase(DBHelper.DATABASE_NAME);
-        getBaseActivity().changeToActivityNoBackStack(LoginActivity.class);
-        getActivity().overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
-        getActivity().finish();
     }
 
     @Override

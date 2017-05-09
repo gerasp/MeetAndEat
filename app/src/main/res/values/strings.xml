@@ -103,9 +103,9 @@
     <string name="you_cannot_leave_this_meeting">You cannot leave this meeting before you change the administrator</string>
 
     <!-- No content -->
-    <string name="no_content_meeting">You have no meetings</string>
-    <string name="no_content_contact">You have no contacts</string>
-    <string name="no_content_old_meeting">Old meetings will be deleted after 10 days</string>
+    <string name="no_content_meeting">You have \nno meetings</string>
+    <string name="no_content_contact">You have \nno contacts</string>
+    <string name="no_content_old_meeting">Old meetings will be \ndeleted after 10 days</string>
 
     <!-- Settings -->
     <string name="welcome">Welcome, %1$s</string>
