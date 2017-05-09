@@ -24,14 +24,15 @@ import net.gerardomedina.meetandeat.view.activity.LoginActivity;
 public class SettingsFragment extends PreferenceFragmentCompat implements InitiableFragment {
 
     AppCommon appCommon = AppCommon.getInstance();
-    private Preference welcome, editAccount, deleteAccount, logout, feedback, share, copyright;
+    private Preference welcome, changeEmail, changePassword, deleteAccount, logout, feedback, share, copyright;
 
     @Override
     public void onCreatePreferences(Bundle bundle, String s) {
         setPreferencesFromResource(R.xml.preferences, s);
 
         welcome = getPreferenceManager().findPreference("welcome");
-        editAccount = getPreferenceManager().findPreference("edit_account");
+        changeEmail = getPreferenceManager().findPreference("change_email");
+        changePassword = getPreferenceManager().findPreference("change_password");
         deleteAccount = getPreferenceManager().findPreference("delete_account");
         logout = getPreferenceManager().findPreference("logout");
         feedback = getPreferenceManager().findPreference("feedback");
@@ -45,17 +46,12 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Initia
     public void init() {
         welcome.setTitle(getString(R.string.welcome,appCommon.getUser().getUsername()));
 
-        editAccount.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+        changeEmail.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
                 final EditText emailInput = new EditText(getBaseActivity());
                 emailInput.setInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
-                emailInput.setHint(R.string.change_email);
-
-                final EditText passwordInput = new EditText(getBaseActivity());
-                passwordInput.setInputType(InputType.TYPE_CLASS_TEXT |
-                        InputType.TYPE_TEXT_VARIATION_PASSWORD);
-                passwordInput.setHint(R.string.change_password);
+                emailInput.setHint(R.string.new_email);
 
                 final EditText oldPasswordInput = new EditText(getBaseActivity());
                 oldPasswordInput.setInputType(InputType.TYPE_CLASS_TEXT |
@@ -66,15 +62,56 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Initia
                 LinearLayout.LayoutParams params = new  LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
                 params.leftMargin = getResources().getDimensionPixelSize(R.dimen.dialog_margin);
                 params.rightMargin = getResources().getDimensionPixelSize(R.dimen.dialog_margin);
-                container.setLayoutParams(params);
                 container.setOrientation(LinearLayout.VERTICAL);
 
+                emailInput.setLayoutParams(params);
+                oldPasswordInput.setLayoutParams(params);
+
                 container.addView(emailInput);
+                container.addView(oldPasswordInput);
+
+                new AlertDialog.Builder(getActivity(), R.style.MyAlertDialogStyle)
+                        .setView(container)
+                        .setNegativeButton(getString(android.R.string.cancel), new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {}
+                        })
+                        .setPositiveButton(getString(android.R.string.ok), new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {}
+                        })
+                        .create()
+                        .show();
+                return false;
+            }
+        });
+
+        changePassword.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                final EditText passwordInput = new EditText(getBaseActivity());
+                passwordInput.setInputType(InputType.TYPE_CLASS_TEXT |
+                        InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                passwordInput.setHint(R.string.new_password);
+
+                final EditText oldPasswordInput = new EditText(getBaseActivity());
+                oldPasswordInput.setInputType(InputType.TYPE_CLASS_TEXT |
+                        InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                oldPasswordInput.setHint(R.string.actual_password);
+
+                LinearLayout container = new LinearLayout(getBaseActivity());
+                LinearLayout.LayoutParams params = new  LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                params.leftMargin = getResources().getDimensionPixelSize(R.dimen.dialog_margin);
+                params.rightMargin = getResources().getDimensionPixelSize(R.dimen.dialog_margin);
+                container.setOrientation(LinearLayout.VERTICAL);
+
+                passwordInput.setLayoutParams(params);
+                oldPasswordInput.setLayoutParams(params);
+
                 container.addView(passwordInput);
                 container.addView(oldPasswordInput);
 
                 new AlertDialog.Builder(getActivity(), R.style.MyAlertDialogStyle)
-                        .setMessage(getString(R.string.confirm_with_password))
                         .setView(container)
                         .setNegativeButton(getString(android.R.string.cancel), new DialogInterface.OnClickListener() {
                             @Override

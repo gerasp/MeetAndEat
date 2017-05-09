@@ -11,9 +11,13 @@
 
     <PreferenceCategory android:title="@string/account_management">
         <Preference
-            android:icon="@drawable/ic_edit_black"
-            android:key="edit_account"
-            android:title="@string/edit_account" />
+            android:icon="@drawable/ic_email"
+            android:key="change_email"
+            android:title="@string/change_email" />
+        <Preference
+            android:icon="@drawable/ic_key"
+            android:key="change_password"
+            android:title="@string/change_password" />
         <Preference
             android:icon="@drawable/ic_delete"
             android:key="delete_account"

@@ -123,9 +123,11 @@
         \n- https://github.com/sayyam for the carousel
         \n- https://github.com/QuadFlask for the ColorPicker
         \n- https://github.com/ISchwarz23 for the SortableTableView</string>
-    <string name="confirm_with_password">Write your password to confirm the elimination of your account</string>
+    <string name="confirm_with_password">You must write your actual password</string>
     <string name="change_email">Change email</string>
-    <string name="actual_password">Actual password (required)</string>
-    <string name="change_password">New password</string>
+    <string name="actual_password">Actual password</string>
+    <string name="change_password">Change password</string>
+    <string name="new_email">New email</string>
+    <string name="new_password">New password</string>
 
 </resources>
