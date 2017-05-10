@@ -1,5 +1,6 @@
 package net.gerardomedina.meetandeat.view.activity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
@@ -8,14 +9,18 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 
+import com.google.android.gms.location.places.Place;
+import com.google.android.gms.location.places.ui.PlacePicker;
+
 import net.gerardomedina.meetandeat.R;
 import net.gerardomedina.meetandeat.model.Meeting;
 import net.gerardomedina.meetandeat.task.GetParticipantsTask;
+import net.gerardomedina.meetandeat.task.MeetingOptionsTask;
 import net.gerardomedina.meetandeat.view.fragment.ChatFragment;
 import net.gerardomedina.meetandeat.view.fragment.FoodFragment;
 
 public class MeetingActivity extends BaseActivity {
-
+    private static final int PLACE_PICKER_REQUEST = 2;
     private Meeting meeting;
     private Menu menu;
     private Toolbar toolbar;
@@ -94,6 +99,16 @@ public class MeetingActivity extends BaseActivity {
         fragmentContainer.setBackgroundColor(Color.parseColor(meeting.getColor()));
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == PLACE_PICKER_REQUEST) {
+            if (resultCode == RESULT_OK) {
+                Place place = PlacePicker.getPlace(data, this);
+                new MeetingOptionsTask(this,1,place.getLatLng().latitude + "," + place.getLatLng().longitude);
+            }
+        }
+    }
 
 
 }
