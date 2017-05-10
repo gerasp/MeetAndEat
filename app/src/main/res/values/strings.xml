@@ -48,7 +48,7 @@
     <string name="new_meeting_datetime">Date and time</string>
     <string name="new_meeting_color">Color</string>
     <string name="new_meeting_participants">Participants</string>
-    <string name="new_meeting_no_contact">You have no contacts to invite. You can also create the meeting and then add some contacts.</string>
+    <string name="new_meeting_no_contact">You have no contacts to invite. You can also create the meeting and then add some contacts</string>
     <string name="choose_color">Choose color</string>
 
     <!-- Food -->
@@ -66,11 +66,10 @@
 
     <!-- Meeting -->
     <string name="location">Location</string>
-    <string name="no_meeting">You have no meetings. Create a new one on the dashboard screen!</string>
     <string name="add_participant_label">Add participant</string>
     <string name="participants">Participants</string>
     <string name="select_from_contacts">Choose the people you want to invite</string>
-    <string name="no_contact_to_invite">You have no contacts to invite. Add them in the main menu.</string>
+    <string name="no_contact_to_invite">You have no contacts to invite. Please add them in the main menu</string>
     <string name="participants_invited_successfully">Participants invited successfully</string>
     <string name="no_participants">There are not enough participants</string>
     <string name="chat" translatable="false">Chat</string>

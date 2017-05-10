@@ -20,6 +20,7 @@ public class GetMessagesTask extends BaseTask {
 
     @Override
     protected Boolean doInBackground(Void... params) {
+        if (fragment == null) return true;
         Map<String,String> parameters = new HashMap<>();
         parameters.put("meeting_id",appCommon.getSelectedMeeting().getId()+"");
 
@@ -30,6 +31,7 @@ public class GetMessagesTask extends BaseTask {
     @Override
     protected void onPostExecute(final Boolean success) {
         super.onPostExecute(success);
+        if (fragment == null) return;
         if (success) {
             try {
                 switch (response.getInt("code")) {
