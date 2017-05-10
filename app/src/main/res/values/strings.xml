@@ -3,6 +3,7 @@
     <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">
         AIzaSyCBkuITs_rVw2qY6TZNCdZHTnKUxjS6vVw
     </string>
+    <string name="banner_ad_unit_id" translatable="false">ca-app-pub-2708387986502238/8660646903</string>
 
     <!-- General -->
     <string name="no_internet_connection">This feature requires an Internet connection</string>
