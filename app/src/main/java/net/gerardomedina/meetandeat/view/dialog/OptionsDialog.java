@@ -8,7 +8,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.provider.CalendarContract;
 import android.support.v7.app.AlertDialog;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.DatePicker;
@@ -19,15 +18,13 @@ import android.widget.TimePicker;
 import com.flask.colorpicker.ColorPickerView;
 import com.flask.colorpicker.builder.ColorPickerClickListener;
 import com.flask.colorpicker.builder.ColorPickerDialogBuilder;
-import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
-import com.google.android.gms.common.GooglePlayServicesRepairableException;
-import com.google.android.gms.location.places.ui.PlacePicker;
 
 import net.gerardomedina.meetandeat.R;
 import net.gerardomedina.meetandeat.common.AppCommon;
 import net.gerardomedina.meetandeat.model.Meeting;
 import net.gerardomedina.meetandeat.model.Option;
 import net.gerardomedina.meetandeat.task.MeetingOptionsTask;
+import net.gerardomedina.meetandeat.view.activity.MeetingActivity;
 import net.gerardomedina.meetandeat.view.adapter.OptionAdapter;
 import net.gerardomedina.meetandeat.view.fragment.BaseFragment;
 
@@ -82,14 +79,7 @@ public class OptionsDialog extends Dialog {
             options.add(new Option(fragment.getString(R.string.change_location), new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
-                    Intent intent;
-                    try {
-                        intent = builder.build(fragment.getBaseActivity());
-                        fragment.startActivityForResult(intent, PLACE_PICKER_REQUEST);
-                    } catch (GooglePlayServicesRepairableException | GooglePlayServicesNotAvailableException e) {
-                        Log.e("Google Play", e.getMessage());
-                    }
+                    ((MeetingActivity)fragment.getBaseActivity()).changeLocation();
                 }
             }, true));
             options.add(new Option(fragment.getString(R.string.change_date_and_time), new View.OnClickListener() {
