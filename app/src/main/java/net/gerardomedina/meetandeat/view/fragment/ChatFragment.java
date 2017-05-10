@@ -69,6 +69,7 @@ public class ChatFragment extends BaseFragment implements InitiableFragment {
             public void onClick(View v) {
                 if (messageInput.getText().length() > 0) {
                     new SendMessageTask(fragment, messageInput.getText().toString()).execute();
+                    new GetMessagesTask(fragment).execute();
                     messageInput.setText("");
                 }
             }
@@ -81,6 +82,7 @@ public class ChatFragment extends BaseFragment implements InitiableFragment {
         });
         messageInput.setBackgroundColor(Color.parseColor(meeting.getColor()));
         sendButton.setBackgroundColor(Color.parseColor(meeting.getColor()));
+        refreshButton.setBackgroundColor(Color.parseColor(meeting.getColor()));
     }
 
     public void setMessageList() {
