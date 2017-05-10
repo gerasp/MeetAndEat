@@ -62,15 +62,21 @@ public class ChatFragment extends BaseFragment implements InitiableFragment {
     public void setMessageInput() {
         final EditText messageInput = (EditText) view.findViewById(R.id.messageInput);
         ImageView sendButton = (ImageView) view.findViewById(R.id.sendButton);
+        ImageView refreshButton = (ImageView) view.findViewById(R.id.refreshButton);
         final BaseFragment fragment = this;
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (messageInput.getText().length() > 0) {
                     new SendMessageTask(fragment, messageInput.getText().toString()).execute();
-                    new GetMessagesTask(fragment).execute();
                     messageInput.setText("");
                 }
+            }
+        });
+        refreshButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new GetMessagesTask(fragment).execute();
             }
         });
         messageInput.setBackgroundColor(Color.parseColor(meeting.getColor()));

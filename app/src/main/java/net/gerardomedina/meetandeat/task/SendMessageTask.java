@@ -43,6 +43,7 @@ public class SendMessageTask extends BaseTask {
                         activity.showSimpleDialog(R.string.error_retrieving_data);
                         break;
                     case 2:
+                        new GetMessagesTask(fragment).execute();
                         break;
                 }
             } catch (JSONException e) {

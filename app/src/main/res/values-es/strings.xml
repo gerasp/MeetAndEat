@@ -36,9 +36,7 @@
     <string name="error_invalid_username">Este nombre de usuario no es válido</string>
     <string name="error_retrieving_data">Error modificando o recibiendo datos</string>
     <string name="error_taken_email">Este email ya está siendo usado</string>
-    <string name="feedback"></string>
     <string name="food">Comida</string>
-    <string name="how_many"></string>
     <string name="invitation_contact">%1$s quiere ser tu contacto</string>
     <string name="invitation_meeting">Alguien te ha invitado a %1$s</string>
     <string name="leave_meeting">Abandonar quedada</string>
@@ -82,7 +80,6 @@
     <string name="this_food_is_not_yours">¡Esa no es tu comida!</string>
     <string name="title_calendar">Calendario</string>
     <string name="title_contacts">Contactos</string>
-    <string name="title_dashboard"></string>
     <string name="title_history">Historial</string>
     <string name="title_invitations">Invitaciones</string>
     <string name="title_location">Ubicación</string>
