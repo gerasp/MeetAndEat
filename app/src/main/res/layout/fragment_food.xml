@@ -5,7 +5,7 @@
     android:background="@color/background">
 
 
-    <net.gerardomedina.meetandeat.view.table.SortableFoodTableView
+    <net.gerardomedina.meeteat.view.table.SortableFoodTableView
         android:id="@+id/foodTable"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -13,7 +13,7 @@
         custom:tableView_columnCount="4"
         custom:tableView_headerElevation="10">
 
-    </net.gerardomedina.meetandeat.view.table.SortableFoodTableView>
+    </net.gerardomedina.meeteat.view.table.SortableFoodTableView>
 
     <View
         android:layout_width="match_parent"

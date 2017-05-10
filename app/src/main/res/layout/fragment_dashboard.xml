@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:activity="net.gerardomedina.meetandeat.view.fragment.BaseFragment">
+    tools:activity="net.gerardomedina.meeteat.view.fragment.BaseFragment">
 
     <LinearLayout
         android:id="@+id/noContent"

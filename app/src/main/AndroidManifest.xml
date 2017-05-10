@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="net.gerardomedina.meetandeat">
+    package="net.gerardomedina.meeteat">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -16,7 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".view.activity.SplashActivity"
+            android:name="net.gerardomedina.meeteat.view.activity.SplashActivity"
             android:label="@string/app_name"
             android:noHistory="true">
             <intent-filter>
@@ -26,30 +26,30 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".view.activity.LoginActivity"
+            android:name="net.gerardomedina.meeteat.view.activity.LoginActivity"
             android:label="@string/title_login"
             android:noHistory="true" />
         <activity
-            android:name=".view.activity.MainActivity"
+            android:name="net.gerardomedina.meeteat.view.activity.MainActivity"
             android:label="@string/app_name" />
         <activity
-            android:name=".view.activity.MeetingActivity"
+            android:name="net.gerardomedina.meeteat.view.activity.MeetingActivity"
             android:label="@string/title_meeting"
-            android:parentActivityName=".view.activity.MainActivity"
+            android:parentActivityName="net.gerardomedina.meeteat.view.activity.MainActivity"
             android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:theme="@style/AppTheme"
-                android:value=".view.activity.MainActivity" />
+                android:value="net.gerardomedina.meeteat.view.activity.MainActivity" />
         </activity>
         <activity
-            android:name=".view.activity.NewMeetingActivity"
+            android:name="net.gerardomedina.meeteat.view.activity.NewMeetingActivity"
             android:label="@string/title_new_meeting"
-            android:parentActivityName=".view.activity.MainActivity">
+            android:parentActivityName="net.gerardomedina.meeteat.view.activity.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:theme="@style/AppTheme"
-                android:value=".view.activity.MainActivity" />
+                android:value="net.gerardomedina.meeteat.view.activity.MainActivity" />
         </activity>
 
         <meta-data
@@ -57,15 +57,15 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".view.activity.LocationActivity"
+            android:name="net.gerardomedina.meeteat.view.activity.LocationActivity"
             android:label="@string/title_location"
-            android:parentActivityName=".view.activity.MeetingActivity">
+            android:parentActivityName="net.gerardomedina.meeteat.view.activity.MeetingActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:theme="@style/AppTheme"
-                android:value=".view.activity.MeetingActivity" />
+                android:value="net.gerardomedina.meeteat.view.activity.MeetingActivity" />
         </activity>
-        <activity android:name=".view.activity.InvitationsActivity" />
+        <activity android:name="net.gerardomedina.meeteat.view.activity.InvitationsActivity" />
     </application>
 
 </manifest>

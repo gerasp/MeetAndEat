@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/primary"
-    tools:activity="net.gerardomedina.meetandeat.view.activity.LoginActivity">
+    tools:activity="net.gerardomedina.meeteat.view.activity.LoginActivity">
 
     <ProgressBar
         android:id="@+id/splash_progress_bar"
