@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Meet&amp;Eat</string>
     <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">
-        AIzaSyDhWUfyNygBcIGXTqhJMFQfBaAnpfjHVmM
+        AIzaSyCBkuITs_rVw2qY6TZNCdZHTnKUxjS6vVw
     </string>
 
     <!-- General -->
@@ -14,11 +14,11 @@
     <string name="are_you_sure">Are you sure?</string>
     <string name="done">Done</string>
     <string name="error">Error</string>
-    <string name="dummy" />
+    <string name="dummy" translatable="false" />
 
     <!-- Navigation -->
     <string name="title_login">Login</string>
-    <string name="title_dashboard">Dashboard</string>
+    <string name="title_dashboard" translatable="false">Dashboard</string>
     <string name="title_contacts">Contacts</string>
     <string name="title_preferences">Settings</string>
     <string name="title_invitations">Invitations</string>
@@ -39,11 +39,8 @@
     <string name="request_email">This username is not taken. Please write your email (for the case you forget your username or password) to create a new account.</string>
     <string name="request_email_for_password">We need your email</string>
     <string name="remember_password">Forgot username or password?</string>
-    <string name="remember_password_confirmation">If the email is correct, you will receive an email from us</string>
+    <string name="remember_password_confirmation">If the email is correct, you will receive a link from us</string>
 
-    <!-- Contacts -->
-    <string name="search_new_contacts">Search new contacts</string>
-    <string name="error_deleting_contacts">Error deleting contact</string>
 
     <!-- New Meeting -->
     <string name="new_meeting_title">Title</string>
@@ -63,7 +60,7 @@
     <string name="select_an_icon">Select an icon from this list</string>
     <string name="what">What</string>
     <string name="who">Who</string>
-    <string name="how_many">#</string>
+    <string name="how_many" translatable="false">#</string>
     <string name="this_food_is_not_yours">That is not your food!</string>
     <string name="delete_food">Are you sure you want to delete this food?</string>
 
@@ -76,13 +73,15 @@
     <string name="no_contact_to_invite">You have no contacts to invite. Add them in the main menu.</string>
     <string name="participants_invited_successfully">Participants invited successfully</string>
     <string name="no_participants">There are not enough participants</string>
-    <string name="chat">Chat</string>
+    <string name="chat" translatable="false">Chat</string>
     <string name="send_a_message">Send a message</string>
 
     <!-- Contacts -->
-    <string name="no_user_found">No user found with that criteria</string>
+    <string name="search_new_contacts">Search new contacts</string>
+    <string name="no_user_found">No user found for that criteria</string>
     <string name="no_spaces_allowed">Spaces are not allowed</string>
     <string name="contact_added_successfully">Contact invited</string>
+    <string name="are_you_sure_you_want_to_delete_this_contact">Are you sure you want to delete this contact?</string>
 
     <!-- Invitations -->
     <string name="invitation_meeting">Someone has invited you to %1$s</string>
@@ -103,9 +102,9 @@
     <string name="you_cannot_leave_this_meeting">You cannot leave this meeting before you change the administrator</string>
 
     <!-- No content -->
-    <string name="no_content_meeting">You have \nno meetings</string>
-    <string name="no_content_contact">You have \nno contacts</string>
-    <string name="no_content_old_meeting">Old meetings will be \ndeleted after 10 days</string>
+    <string name="no_content_meeting">You have\nno meetings</string>
+    <string name="no_content_contact">You have\nno contacts</string>
+    <string name="no_content_old_meeting">Old meetings will be\ndeleted after 10 days</string>
 
     <!-- Settings -->
     <string name="welcome">Welcome, %1$s</string>
@@ -114,10 +113,10 @@
     <string name="delete_account">Delete account</string>
     <string name="logout">Logout</string>
     <string name="about_this_app">About this app</string>
-    <string name="feedback">Feedback</string>
+    <string name="feedback" translatable="false">Feedback</string>
     <string name="share">Share</string>
     <string name="copyright">Copyright notice</string>
-    <string name="copyright_notice">Copyright 2017 © Gerardo Medina
+    <string name="copyright_notice" translatable="false">Copyright 2017 © Gerardo Medina
         \nSpecial thanks to:
         \n- https://unsplash.com/ for the images
         \n- https://github.com/sayyam for the carousel

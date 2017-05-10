@@ -56,15 +56,6 @@
                     android:inputType="textPassword" />
             </android.support.design.widget.TextInputLayout>
 
-            <TextView
-                android:id="@+id/rememberPasswordButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="end"
-                android:text="@string/remember_password"
-                android:textColor="@color/accent"
-                android:textAlignment="textEnd" />
-
             <Button
                 android:id="@+id/sign_in_button"
                 style="?android:textAppearanceSmall"
@@ -76,6 +67,16 @@
                 android:text="@string/action_sign_in"
                 android:textColor="@color/primary_text"
                 android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/rememberPasswordButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/text_margin"
+                android:text="@string/remember_password"
+                android:textAlignment="center"
+                android:textColor="@color/accent" />
+
         </LinearLayout>
     </ScrollView>
 </RelativeLayout>

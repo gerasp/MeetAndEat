@@ -66,6 +66,7 @@ public class LoginActivity extends BaseActivity {
 
     private void setInputs() {
         usernameView = (EditText) findViewById(R.id.username);
+        usernameView.setText((String)appCommon.sharedGetValue(this,"username",1));
         passwordView = (EditText) findViewById(R.id.password);
         passwordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override

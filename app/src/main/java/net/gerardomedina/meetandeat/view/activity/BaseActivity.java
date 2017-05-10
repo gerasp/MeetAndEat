@@ -64,7 +64,6 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     public void logout() {
         appCommon.sharedRemoveValue(this,"id");
-        appCommon.sharedRemoveValue(this,"username");
         appCommon.setUser(null);
         appCommon.setInvitations(null);
         appCommon.setSelectedMeeting(null);

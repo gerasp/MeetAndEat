@@ -57,7 +57,7 @@ public class ContactAdapter extends ArrayAdapter<String> {
                 @Override
                 public boolean onLongClick(View v) {
                     new AlertDialog.Builder(contactsFragment.getActivity())
-                            .setMessage(contactsFragment.getString(R.string.are_you_sure))
+                            .setMessage(contactsFragment.getString(R.string.are_you_sure_you_want_to_delete_this_contact))
                             .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int which) {
                                     if (contactsFragment.appCommon.hasInternet(contactsFragment.getActivity())) {
