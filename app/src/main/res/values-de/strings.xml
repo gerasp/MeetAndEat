@@ -12,7 +12,7 @@
     <string name="change_color">Farbe ändern</string>
     <string name="change_date_and_time">Datum und Uhrzet ändern</string>
     <string name="change_email">Emailadresse ändern</string>
-    <string name="change_location">Ort ändern</string>
+    <string name="change_location">Standort ändern</string>
     <string name="change_password">Passwort ändern</string>
     <string name="change_title">Überschrift ändern</string>
     <string name="choose_color">Farbe auswählen</string>
@@ -40,14 +40,14 @@
     <string name="invitation_contact">%1$s will dein Kontakt sein</string>
     <string name="invitation_meeting">Jemand hat dich zum %1$s eingeladen</string>
     <string name="leave_meeting">Meeting verlassen</string>
-    <string name="location">Ort</string>
+    <string name="location">Standort</string>
     <string name="login_password">Passwort</string>
     <string name="login_username">Benutzername</string>
     <string name="logout">Abmelden</string>
     <string name="new_email">Neue Emailadresse</string>
     <string name="new_meeting_color">Farbe</string>
     <string name="new_meeting_datetime">Datum und Uhrzeit</string>
-    <string name="new_meeting_location">Ort</string>
+    <string name="new_meeting_location">Standort</string>
     <string name="new_meeting_no_contact">Sie haben keinen Kontakt. Sie können erstmal das Meeting schaffen und dann einen Kontakt einladen</string>
     <string name="new_meeting_participants">Teilnehmer</string>
     <string name="new_meeting_title">Überschrift</string>
@@ -69,8 +69,8 @@
     <string name="remember_password_confirmation">Wenn die Emailadresse gültig ist, werden Sie einen Link erhalten</string>
     <string name="request_email">Dieser Benutzername ist nicht in Benutzung. Bitte schreiben Sie Ihre Emailadresse, falls Sie Ihr Passwort oder Ihren Benutzername in der Zukunft vergessen, um ein neues Konto zu erstellen</string>
     <string name="request_email_for_password">Wir brauchen Ihre Emailadresse</string>
-    <string name="search_new_contacts">Nach neuen Kontakten suchen</string>
-    <string name="select_an_icon">Wählen Sie ein Icon von der folgenden Liste</string>
+    <string name="search_new_contacts">Nach jemandem suchen</string>
+    <string name="select_an_icon">Wählen Sie ein Icon aus</string>
     <string name="select_from_contacts">Wählen Sie die Kontakte aus, die sie einladen wollen</string>
     <string name="selected_icon">Icon</string>
     <string name="send_a_message">Nachricht eingeben</string>
@@ -81,7 +81,7 @@
     <string name="title_contacts">Kontakte</string>
     <string name="title_history">Verlauf</string>
     <string name="title_invitations">Einladungen</string>
-    <string name="title_location">Ort</string>
+    <string name="title_location">Standort</string>
     <string name="title_login">Anmelden</string>
     <string name="title_meeting">Meeting</string>
     <string name="title_new_meeting">Neues Meeting</string>
