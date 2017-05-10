@@ -3,7 +3,7 @@
     <string name="app_name">Meet&amp;Eat</string>
     <string name="about_this_app">Über diese App</string>
     <string name="account_management">Kontoverwaltung</string>
-    <string name="action_sign_in">Anmelden (o registrieren)</string>
+    <string name="action_sign_in">Anmelden (oder registrieren)</string>
     <string name="actual_password">Aktuelles Passwort</string>
     <string name="add_food_label">Essen hinzufügen</string>
     <string name="add_participant_label">Jemanden einladen</string>
