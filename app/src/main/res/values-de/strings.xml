@@ -90,5 +90,5 @@
     <string name="what">Was</string>
     <string name="who">Wer</string>
     <string name="you_cannot_leave_this_meeting">Sie können dieses Meeting nicht verlassen, bevor Sie den Admin ändern</string>
-    <string name="are_you_sure_you_want_to_delete_this_contact">¿Estás seguro de que quieres eliminar este contacto?</string>
+    <string name="are_you_sure_you_want_to_delete_this_contact">Sind Sie sicher, dass Sie diesen Kontakt löschen wollen?</string>
 </resources>
